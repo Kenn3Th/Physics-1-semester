@@ -4,7 +4,7 @@ def c(f):
     return (f - 32)*(5.0/9)
 
 try:
-    degree = sys.argv[1]
+    degree = sys.argv[1]   #Fetches variables from cmd-window
     degree = float(degree)
 except:
     print "No command line argument"
