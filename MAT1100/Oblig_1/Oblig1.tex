@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{MAT 1110 Obligatorisk oppgave 1}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\section{Oppgave 2}
+\subsection{Oppgave 2. f)}
+\begin{figure}[h!]
+\includegraphics[width=1\textwidth]{2f.png} 
+\caption{s(x),(X(x),Y(x)),r(x)}
+\label{2f}
+\end{figure}
+På figur \vref{2f} ser vi plotet jeg fikk når jeg plottet sammen s(x), (X(x),Y(x)) og r(x). Den blå linjen på figuren er kurven $y = x^2$. Den grønne linjen er hvordan sentrum av disken har beveget seg langs kurven. Den rød linjen er hvordan et punkt (r(x)) har beveget seg på randen av disken langs kurven.
+Jeg har kodet dette i python og legger ved python koden min:
+\lstinputlisting{oblig1.py}
+
+\section{Oppgave 3}
+\subsection{a)}
+\begin{figure}[h!]
+\includegraphics[width=1\textwidth]{opg3.png} 
+\caption{s(x),(X(x),Y(x)),r(x)}
+\label{opg3}
+\end{figure}
+Som du ser på figur \vref{opg3} har jeg brukt python til å skissere kurven til denne funksjonen. Det kommer ikke så tydelig frem på bildet, men når jeg zoomer inn på grafen la jeg merke til at lar vi t gå mot uendelig blir dette en endeløs spiral innover. \\
+Legger ved python koden min:
+\lstinputlisting{oblig12.py}
+
+\end{document}
