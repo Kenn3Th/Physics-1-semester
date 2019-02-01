@@ -27,7 +27,6 @@ class Parabola(Line):
         return Line.__call__(self, x) + self.c2*x**2
 
 #Cubic Y = c3x^3 + c2x^2 + c1x + c0
- 
 class Cubic(Parabola):
     def __init__(self, c0, c1, c2, c3):
         Parabola.__init__(self, c0, c1, c2)
