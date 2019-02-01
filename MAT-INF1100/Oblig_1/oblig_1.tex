@@ -1,0 +1,153 @@
+\documentclass[,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{MAT-INF 1100 Obligatorisk oppgave 1}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Oppgave 1.} 
+\textbf{a)}\\
+Jeg lagde et dataprogram til differensligningen: 
+
+$x_{n+2} - 2 x_{n+1} - x_{n} = 0$ med  $x_0 = 1$ og $x_1 = 1$.
+
+Jeg brukte at  $x_{n+2} = 2x_{n+1} + x_n$ i programmet.
+\lstinputlisting{oblig1.py}
+\\
+\textbf{b)}\\
+Her er hvordan programmet ser ut når startverdiene endres til $x_0 =
+1$ og $x_1 = 1 - \sqrt2$
+\lstinputlisting{oblig1_2.py}
+\textbf{c)} \\ 
+Jeg bruker at $x_n=C\times r^n$ på ligningen $x_{n+2} - 2 x_{n+1} - x_{n} =0$ som gir den karakteristiskeligningen $r^2-2r-1$. Jeg løser den ved hjelp av abc formelen:
+\begin{equation}
+\frac{2_-^+\sqrt{2^2-(4\times1\times(-1))}}{2} =\frac{2_-^+\sqrt8}{2} = \frac{2_-^+2\sqrt2}{2} =
+1_-^+\sqrt2
+\end{equation}
+Jeg får to røtter $r_1=1-\sqrt2$ og $r_2=1+\sqrt2$ \\
+Ut i fra Lemma 4.1.4 blir den generelle løsningen til $x_{n+2} - 2 x_{n+1} - x_{n} =0$ $$x_n = C(1-\sqrt 2)^n + D(1+\sqrt2)^n$$ 
+Får å få en endelig løsning setter jeg inn startverdiene $x_0=1$ og $x_1=1-\sqrt2$ inn i den
+generelle løsningen. $$1 = x_0 = C(1-\sqrt2)^0 + D(1+\sqrt2)^0 = C +
+D\Rightarrow C = 1 -D$$
+$$1-\sqrt2 = x_1 = C(1-\sqrt2)^1 + D(1+\sqrt2)^1 = (1-D)(1-\sqrt2) +
+D(1+\sqrt2)$$ $$= (1 - \sqrt2 - D +D\sqrt2) + D + D\sqrt2 = 1 -\sqrt2 +
+2D\sqrt2 = 2D\sqrt2 \Rightarrow D = 0 \Rightarrow C =1 - 0$$
+Setter inn C og D i den generelle løsningen og får :
+$$x_n = 1\times(1-\sqrt 2)^n + 0\times(1+\sqrt2)^n = (1 - \sqrt2)^n$$
+\textbf{d)}\\
+Løsningen i c) stemmer ikke med beregningene mine i b). Dette er pga
+avrundnings feil.  I c) ser man at $(1+\sqrt2)^n$ forsvinner, altså
+blir akkurat 0.0, men på datamaskinen skjer det en avrundnings feil
+her. I steden for å bli 0.0 blir svaret $10^{-16}$ dermed faller
+ikke den bort. Dette medfører at det blir feil når n blir stor.
+Avviket i starten er liten, men alikvel vokser den. Vi ser
+allerede når n = 20 ($x_{20}$) at svaret endre seg fra å gå mot null
+til å stige. Når jeg kommer til n = 40 ($x_{40}$) er avviket allerede på
+$6.99\cdot 10^{-2}$ på n = 60 ($x_{60}$) er avviket på $3.16\cdot 10^6$! på
+n = 100($x_{100}$) er avviket kommet på $6.48\cdot 10^{21}$! Avrundningsfeilen
+har store konsekvenser for denne følgen. Jeg legger ved en kode jeg brukte for å studere feilen nærmere.
+\lstinputlisting{oblig1_1.py}
+\section{Oppgave 2.}
+\textbf{a)}
+\lstinputlisting{oblig1_3.py}
+Jeg programmer i python og da trenger jeg ikke bruke flyttall, dette
+er på grunn av at python setter opp presisjonen når tallene blir
+store. Her er ikke ''integer overflow'' så farlig, det som skjer er at
+kjøringen av programmet går saktere enn vanlig. Heltall aritmetikk er
+mer presis og svarerne man får er eksakte, og det er lett å se om noe
+går feil (resultatene er fullstendig feil!). Her er det greit å bruke
+heltall siden binomialkoeffisientene er heltall og divisjonen gir
+ingen rest. Hvis jeg hadde brukt et annet programerings språk kan det tenkes
+at jeg burde ha brukt flyttall og tilnærminger for å forhindre ''overflow''. \\
+Svarene jeg fikk ser man under koden. \\
+\textbf{b)}\\
+Ja. Dette kan skje når enten i eller n blir for stor i forhold til
+hverandre. I mitt program i a) så blir det overflow når n blir mye større en i
+selv om binomialkoeffisienten er innen for det største flyttallet som
+kan representere på min maskin. Jeg får memory error når jeg prøver
+f.eks $n = 2^{63}$ og $i = 2$ eller $n = 2*10^9$ og i = 2 \\
+\textbf{c)}\\
+\begin{equation}\label{eq:binomdef}
+\binom{n}{i}=\frac{n!}{i!\,(n-i)!}
+=\frac{n(n-1)(n-2)\cdot...\cdot(n-i+1)(n-i)(n-i-1)(n-i-2)\cdot3\cdot2\cdot1}{i!
+  (n-i)(n-i-1)(n-i-2)\cdot...\cdot3\cdot2\cdot1}
+\end{equation}
+Jeg forkorter og får:
+\begin{equation}\label{eq:binomdef}
+\frac{n(n-1)(n-2)\cdot...\cdot(n-i+1)}{i!}
+\end{equation}
+Ved hjelp av produktnotasjon kan vi derfor skrive $\binom{n}{i}$ som
+\begin{equation}\label{eq:altdef}
+\binom{n}{i}=\prod_{j=1}^{i} \frac{n-i-j}{j} = \frac{n(n-1)(n-2)\cdot...\cdot(n-i+1)}{i!}
+\end{equation}
+Denne metoden er bedre å bruke når n er mye større enn i. F.eks $n = 2^{63}$ og $i = 2$
+. Den forrige er best å bruke når i er mye større enn n.
+\section{Oppgave 3.}
+\textbf{a)}\\
+\lstinputlisting{oblig1_opg3.py}
+Programmet importer funksjonen random.\\
+Den oppgir variabler (antfeil, x0, y0, z0, feil1, feil2) som er tomme, altså med verdi 0.0, og N til 10 000.\\
+x = random() genererer et tilfeldig flyttall i intervallet [0.0, 1.0)\\
+y = random() genererer et tilfeldig flyttall i intervallet [0.0, 1.0). \\
+res1 adderer og subtraherer de tilfeldige flyttallene x og y, før den
+multipliserer resultatene.$(x + y)*(x - y)$\\
+res2 kvadrerer de tilfeldige flyttallene x og y også subtraherer
+de.$x^2 - y^2$\\
+Hvis res1 er forskjellig fra res2 legger programmet til 1 i
+antfeil. Tallet x blir satt til $x_0$ og tallet y blir satt
+til $y_0$. res1 blir satt til feil1 og res2 blir satt til feil2.
+Programmet skriver ut antall feil som har forekommet i prosent,
+skriver også ut x og y verdien på den siste feilen som ble gjort samt differansen mellom
+res1 og res2 på den siste feilen.\\
+\textbf{b)}\\ 
+En mulig forklaring kan være at det gjøres flere opperasjoner i det
+første programmet i forhold til det andre.
+Siden i første programmet skal programmet addere x og y, så subtrahere x
+og y før den multipliserer svarerene fra addisjonen og
+subtraksjonen.$(x + y)\times(x -y)$ og den skal sammenligne dette med
+$x^2 - y^2$ Altså 6 opperasjoner som gir 6 muligheter for feil. \\
+I det andre programmet skal den dele x på y.$\frac{x}{y}$ Og sammenligner dette
+med 1 over y delt på x. $\frac{1.0}{\frac{y}{x}}$ Her er det altså 3
+opperasjoner som medfører 3 muligheter for feil.  Jeg tror dette kan
+være en grunn til at feilen blir mindre i program 2.\\
+En annen forklaring er at når man adderer og subtraherer på en
+datamaskin kan det fort hende at noen tall forsvinner, spesielt hvis
+disse tallene er veldig like, denne effekten kalles
+''cancellation''. Cancellation forekommer ikke når man skal dividere
+eller multiplisere, den verste feilen som kan skje når man gjør en av disse
+operasjonene er at det siste sifferet er feil. Siden både addisjon og
+subtraksjon forekommer i program 1 og kun divisjon forekommer i
+program 2 er nok dette mest sansynlig grunnen til at det er mindre
+feil i program 2.
+
+\end{document}
