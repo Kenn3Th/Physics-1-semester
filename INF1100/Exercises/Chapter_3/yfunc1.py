@@ -1,4 +1,4 @@
-def yfunc(t, v0):
+def yfunc(t, v0): #function to find the velocity of a particle
     g = 9.81
     y = v0*t - 0.5*g*t**2
     dydt = v0 - g*t
