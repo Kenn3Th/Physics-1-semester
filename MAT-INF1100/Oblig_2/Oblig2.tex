@@ -1,0 +1,105 @@
+\documentclass[,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{varioref}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{MAT-INF 1100 Obligatorisk oppgave 2}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Oppgave 1.}
+\\
+\textbf{a)}\\
+Her brukte jeg at akselerasjon er den deriverte av farten. Det betyr at akselerasjonen er $\frac{fartsendring}{tids endring}$ altså $a = \frac{\delta x}{\delta t}$ Jeg lagde to arrayer av fart- og tidsverdiene slik at jeg kunne indeksere inn endring i fart over endring av tid og lagret dette i en array for akselerasjon som jeg senere skulle plotte. \\
+\textbf{b)}\\
+Her brukte jeg numerisk integrasjon, nærmere bestemt trapes metoden. Fordi jeg vet at integralet av fart = posisjon, og trapes metoden er en god tilnærming til den virkelige grafen. \\
+\textbf{c)}\\
+Her skulle vi plotte a) og b), jeg laget derfor en klasse der jeg kunne lett hente inn de funksjonene jeg ville bruke og det ble enklere for meg å plotte resultatet. Jeg syntes også koden ser penere ut på denne måten. Jeg plottet også begge grafene i et vindu. \\
+Jeg har lagt ved python koden min:
+\lstinputlisting{algoritme_a.py}
+\begin{figure}
+\includegraphics[width = 1\textwidth]{aks_pos.png}
+\caption{Jeg har plottet begge grafene i samme plott \label{aks}}
+\end{figure}
+Den øverste grafen i figur\vref{aks} viser hvordan akselerasjonen er som funksjon av tiden t. Den nederste grafen i figur\vref{aks} viser hvordan posisjonen endrer seg med tiden.
+\\
+\section{Oppgave 2.}
+\textbf{a)}\\
+\begin{equation}
+x' + x^2 =1,\text{ } x(0)=0
+\end{equation}\\
+Dette kan også skrives som $$\frac{d}{dt}x(t) = 1 - x(t)^2$$ 
+Deler vi med $1-x(t)^2$ og tar integralet på begge sider får vi en ligning som ser slik ut: $$ \int{\frac{\frac{d}{dt}x(t)}{1-x(t)^2} dt= \int{1 dt}$$ \\
+Jeg ser at venste siden blir $t + c_1$, jeg løser så høyre siden og slår sammen:
+\begin{equation}
+\int{\frac{\frac{d}{dt}x(t)}{1-x(t)^2} dt= \int{\frac{dx(t)}{1-x(t)^2} = artanh(x(t)) + c_2
+\end{equation}\\
+$$artanh(x(t)) + c_2 = t + c_1$$
+$$artanh(x(t)) = t + c_1 - c_2$$
+$$x(t) = tanh(t + c)$$
+Putter inn $x(0) = 0$ får at $tanh(c)=0 \Rightarrow c=0$, $x(t) = tanh(t)$ Vet at $tanh(t) = \frac{e^t-e^{-t}}{e^t+e^{-t}}$ kan nå skrive $x(t)$ på en annen måte. $$x(t) = \frac{e^t-e^{-t}}{e^t+e^{-t}}$$
+\\Her har jeg brukt at $\int{\frac{1}{1-x^2} dx = artanh(x) + c$ som det står om i kap 7.7 side 387 i kalkulus.\\
+\textbf{b)}\\
+Jeg har brukt følgende algoritme til å løse denne oppgaven.\\
+\begin{equation} n=5 ,\text{ }  h = \frac{2}{5},\text{ } k = \left\{0,1,2,3,4,5\right\}
+\end{equation}
+$$x_{k+1} = x_k + h\cdot f(t_k, x_k)$$ $$t_{k+1} = a + (k+1)\cdot h$$
+Legger ved python koden:
+\lstinputlisting{Euler_vs_exact.py}
+\begin{figure}
+\includegraphics[width=1\textwidth]{Euler_vs_exact.png}
+\caption{I dette plottet ser vi Euler metoden mot den eksakte løsningen\label{Euler}}
+\end{figure}
+På figuren\vref{Euler} ser vi hvorden Euler metoden bruker tangenten i $x_i$ for å finne en tilnærming til den eksakte grafen.\\
+\textbf{c)}\\
+Jeg modifiserte litt på algoritmen jeg brukte i oppgave b). \\
+\begin{equation} n=5 ,\text{ }  h = \frac{2}{5},\text{ } k = \left\{0,1,2,3,4,5\right\}
+\end{equation}
+$$x_{k+\frac{1}{2}} = x_k + \frac{h}{2}\cdot f(t_k, x_k)$$
+$$x_{k+1} = x_k + h\cdot f(t_K, x_{k+\frac{1}{2}})$$
+$$t_{k+1} = a + (k+1)\cdot h$$
+Legger ved python koden:
+\lstinputlisting{diff3.py}
+\begin{figure}
+\includegraphics[width=1\textwidth]{Euler_m_e.png}
+\caption{I dette plottet ser vi Euler metoden og Eulers midtpunkt metode mot den eksakte løsningen\label{Emidt}}
+\end{figure}
+\textbf{d)}\\
+Jeg ser ut ifra grafene jeg har fått når jeg har plottet at for $0\leq x(t^*) < 1$ er voksende uansett hvilken verdi $t^*$ har, innenfor de begrensiningene som er satt. Hvis vi bruker grafen til tanh(t), som vi ser på figur \vref{tanh}, at den går mot 1 for $t^* \in [1, \infty)$
+\begin{figure}
+\includegraphics[width=1\textwidth]{tanh.png}
+\caption{Grafen til den hyperbolske funksjonen tanh(x)\label{tanh}}
+\end{figure}
+\end{document}
+
