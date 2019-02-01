@@ -39,6 +39,4 @@ Test funksjonen min tester om funksjon 1 er lik funksjon 2.
 
 Jeg hentet filen jeg brukte til aa lage programmet her:
 Terminal> curl https://raw.githubust/scipro-primer/master/src/dictstring/densities.dat < densities.dat
-
-Jeg
 """
