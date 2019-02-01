@@ -1,0 +1,237 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{MEK 1100 Obligatorisk oppgave 1}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Oppgave 1}
+\subsection{a)}
+\begin{align*}
+x(t) &= v_0tcos(\theta)\\
+y(t) &= v_0tsin(\theta) - \frac{1}{2}gt^2
+\end{align*}
+Jeg skal finne et utrykk for å finne $t_m$, det jeg vet er at ballen er da på bakken og $y = 0$ jeg får da en andre grads liknings jeg må løse.
+\begin{align*}
+t_m &\equiv v_0tsin(\theta) - \frac{1}{2}gt^2 = 0 \\
+t_m & = \frac{-v_0sin(\theta)\pm \sqrt{v_0sin(\theta)^2 - (4*-1*0)}}{-g}\\
+& = \frac{v_0sin(\theta) \pm v_0sin(\theta)}{g} = 0 \cup  \frac{2v_0sin(\theta)}{g}
+\end{align*}
+$t_m = \frac{2v_0sin(\theta)}{g}$ siden løsning $t = 0$ er når ballen blir kastet. 
+$$x_m = x(t_m) = v_0t_mcos(\theta) = v_0(\frac{2v_0sin(\theta)}{g})cos(\theta) = \frac{2v_0^2sin(\theta)cos(\theta)}{g}$$
+
+\subsection{b)}
+I oppgaven får vi oppgitt at vi skalere lengde på $x_m$ og tid på $t_m$, jeg deler derfor x(t) og y(t) på $x_m$ og t på $t_m$
+$$x^* = \frac{x}{x_m}, y^* = \frac{y}{x_m}, t^* = \frac{t}{t_m}$$
+\begin{align*}
+x^* &= \frac{v_0tcos(\theta)}{\frac{2v_0^2sin(\theta)cos(\theta)}{g}} = \frac{t}{\frac{2v_0sin(\theta)}{g}}= \frac{t}{t_m} = t^*\\
+y^* &= \frac{v_0tsin(\theta) - \frac{1}{2}gt^2}{\frac{2v_0^2sin(\theta)cos(\theta)}{g}}  = \frac{v_0tsin(\theta)}{\frac{2v_0^2sin(\theta)cos(\theta)}{g}} - \frac{\frac{1}{2}gt^2}{\frac{2v_0^2sin(\theta)cos(\theta)}{g}} = tan(\theta)t^* - \frac{gt}{2v_0cos(\theta)}t^*\\
+ &= tan(\theta)t^* - \frac{gt^*t_m}{2v_0cos(\theta)}t^* = tan(\theta)t^* - \frac{g2v_0sin(\theta)}{g2v_0cos(\theta)}(t^*)^2 = tan(\theta)t^* - tan(\theta)(t^*)^2 \\
+ &= tan(\theta)t^*(1-t^*)
+\end{align*}
+I $y^*$ har jeg satt inn $ t= t^*t_m$ og at $t_m = \frac{2v_0sin(\theta)}{g}$ for at jeg skulle kunne gjøre den dimensjons-løs. De dimensjon-løse ligningene jeg kom fram til var : 
+\begin{align*}
+t^* &= \frac{t}{t_m} = \frac{tg}{2v_0sin(\theta)}\\
+x^* &= t^*\\
+y^* &= tan(\theta)t^*(1-t^*)
+\end{align*}
+Årsaken til at vi ikke trenger å skalere vinkelen $\theta$ er fordi den allerede er dimensjons-løs
+
+\subsection{c)}
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{1c.png} 
+\caption{Graf av de banene tre forskjellige utkastvinklene lager}
+\label{1c}
+\end{figure} 
+På figur \vref{1c} ser vi grafene av de banene de tre forskjellige utkastvinklene har. Det vil bli samme bane uansett hvilken utgangshastighet eller gravitasjonkraft man velger, det vil si at grafene forblir uendret. Det som er vanskelig her er å tolke aksene.\\
+Jeg har programmert dette i python og legger ved python koden min:
+\lstinputlisting[language=Python, firstline=4, lastline=14]{oblig1c.py}
+
+
+\section{Oppgave 2}
+\subsection{a)}
+$$\vec{v} = v_x\hat{i} + v_y\hat{j} \textrm{ der } v_x = xy \textrm{ og } v_y = y$$
+For å finne strømlinjene kan jeg bruke $\vec{v} \times d\vec{r} = 0$
+\begin{align*}
+\vec{v} \times d\vec{r} =
+\begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k}\\
+v_x & v_y & 0 \\
+dx & dy & 0
+\end{vmatrix}
+&= (v_xdy - v_ydx)\hat{k} = 0\\
+v_xdy - v_ydx &= 0 \rightarrow v_xdy = v_ydx \\
+xy dy &= y dx \\
+\int dy &= \int \frac{1}{x}dx\\
+y &= ln|x| + C \\
+\end{align*}
+
+
+\subsection{b)}
+\begin{figure}[h!]
+\includegraphics[scale=0.06]{skisse.jpg} 
+\includegraphics[scale=0.5]{2b.png} 
+\caption{Skisse til venstre og plott til høyre av grafen til $\vec{v} = xy\hat{i} + y\hat{j}$}
+\label{2b}
+\end{figure} 
+Legger ved python koden til grafen
+\lstinputlisting[language=Python, firstline=2, lastline=17]{oblig2b.py}
+\subsection{c)}
+For å undersøke om det finnes en strømfunksjon $\psi$ så velger jeg å se om det finnes en divergens. Hvis et vektorfelt har divergens, så finnes det ingen strømfunksjon $\psi$
+\begin{align*}
+\frac{\partial{v_x}}{\partial{x}} &= \frac{\partial}{\partial{x}}xy = y \\
+\frac{\partial{v_y}}{\partial{y}} &= \frac{\partial}{\partial{y}}y = 1\\
+div\vec{v}=\nabla \cdot \vec{v} = \frac{\partial{v_x}}{\partial{x}}&+\frac{\partial{v_y}}{\partial{y}} = y + 1
+\end{align*}
+Dette blir kun divergensfritt hvis $y = -1$, så med andre ord så har feltet divergens. På grunn av at vektorfeltet har divergens har det derfor ikke en strømfunksjon $\psi$
+
+\section{Oppgave 3}
+\subsection{a)}
+$$\vec{v} = v_x\hat{i} + v_y\hat{j} \textrm{ der }v_x = cos(x)sin(y) \textrm{ , } v_y = -sin(x)cos(y)$$
+Divergensen er gitt ved:
+$$\nabla \cdot \vec{v} = \frac{\partial{v_x}}{\partial{x}}+\frac{\partial{v_y}}{\partial{y}}$$
+og virvlingen er gitt ved:
+$$\nabla \times \vec{v} =  (\frac{\partial{v_y}}{\partial{x}}-\frac{\partial{v_x}}{\partial{y}})\hat{k}$$
+Dette betyr at jeg må partiell-derivere $\vec{v}$ 
+\begin{align*}
+\frac{\partial{v_x}}{\partial{x}} &= -sin(x)sin(y) &\text{} \frac{\partial{v_y}}{\partial{y}} &= sin(x)sin(y) \\
+\frac{\partial{v_x}}{\partial{y}} &= cos(x)cos(y) &\text{} \frac{\partial{v_y}}{\partial{x}} &= -cos(x)cos(y)
+\end{align*}
+Nå er det bare for meg å sette inn de verdiene jeg har funnet.
+\begin{align*}
+\nabla \cdot \vec{v} &= -sin(x)sin(y) + sin(x)sin(y) = 0\\
+\nabla \times \vec{v} &= -cos(x)cos(y)- cos(x)cos(y) = -2cos(x)cos(y)
+\end{align*}
+Divergensen til hastighets feltet $= 0$ og virvlingen $=-2cos(x)cos(y)$
+
+\subsection{b)}
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{3c.png} 
+\caption{Strømlinjene til $\vec{v} = v_x\hat{i} + v_y\hat{j}$}
+\label{3c}
+\end{figure}
+Jeg tegnet strømlinjene mine ved hjelp av python, Du kan se de på figur \vref{3c}\\
+Python koden min:
+\lstinputlisting[language=Python, firstline=4, lastline=16]{oblig3b.py}
+
+\subsection{c)}
+For å finne sirkulasjonen om randen av området utspent av $-\frac{\pi}{2} \leq x \leq \frac{\pi}{2}$ og $-\frac{\pi}{2} \leq y \leq \frac{\pi}{2}$, kan vi ta linje integralet av den lukkede kurven dette lager. Dette innebærer å ta linje integralet av hver side for seg og til slutt legge dem sammen. Jeg har valgt side1 og 2 til å representere y-aksen. Side 3 og 4 er dermed x-aksen.
+$$\oint \vec{v} \cdot d\vec{r} = \int_{side1} \vec{v} \cdot d\vec{r} + \int_{side2} \vec{v} \cdot d\vec{r} + \int_{side3} \vec{v} \cdot d\vec{r} + \int_{side4} \vec{v} \cdot d\vec{r}$$
+På grunn av at side 1 og 2 er langs y-aksen er $d\vec{r} = dy\hat{j}$, og for side 3 og 4 som ligger langs x-aksen er $d\vec{r} = dx\hat{i}$ Da blir $\vec{v} \cdot dy\hat{j} = v_y \textrm{ og } \vec{v} \cdot dx\hat{i} = v_x$ som jeg kan sette inn i ligningen min. Det er også greit å huske noen trigonometriske identiteter som $sin(-a) = -sin(a) \textrm{ og } cos(-a) = cos(a)$
+\begin{align*}
+\text{side 1.} &\equiv  \int_{\frac{\pi}{2}}^{-\frac{\pi}{2}} v(-\frac{\pi}{2},y) dy = \int_{\frac{\pi}{2}}^{-\frac{\pi}{2}} -sin(-\frac{\pi}{2})cos(y)dy = \int_{\frac{\pi}{2}}^{-\frac{\pi}{2}} cos(y)dy = [sin(y)]_{\frac{\pi}{2}}^{-\frac{\pi}{2}} = -2\\
+\text{side 2.} &\equiv  \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} v(\frac{\pi}{2},y) dy = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} -sin(\frac{\pi}{2})cos(y)dy = -\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}cos(y)dy = -[sin(y)]_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \\ &= -(sin(\frac{\pi}{2}) - sin(-\frac{\pi}{2})) = - (sin(\frac{\pi}{2}) + sin(\frac{\pi}{2})) = -(1+1) = -2\\
+\text{side 3.} &\equiv  \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} v(x,-\frac{\pi}{2}) dx = \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} cos(x)sin(-\frac{\pi}{2})dx =  \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} -cos(x)sin(\frac{\pi}{2})dx = \\
+&- \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} cos(x)dx = -[sin(y)]_{-\frac{\pi}{2}}^{\frac{\pi}{2}} = -2\\
+\text{side 4.} &\equiv  \int_{\frac{\pi}{2}}^{-\frac{\pi}{2}} v(x,\frac{\pi}{2}) dx = \int_{\frac{\pi}{2}}^{-\frac{\pi}{2}} cos(x)sin(\frac{\pi}{2})dx = \int_{\frac{\pi}{2}}^{-\frac{\pi}{2}} cos(x)dx = [sin(x)]_{\frac{\pi}{2}}^{-\frac{\pi}{2}} = -2\\
+\end{align*}
+Da er det bare å sette inn verdiene jeg nå har funnet:
+$$\oint \vec{v} \cdot d\vec{r} = -2 -2 -2 -2 = -8$$
+Så sirkulasjonen runden randen er -8.
+
+\subsection{d)}
+Hvis vektorfeltet er to dimensjonalt i xy-planet og div $\vec{v} = 0$ finnes det en strømfunksjon, og følgelig hvis div $\neq 0$ finnes det ikke en strømfunksjon. \\
+Det finnes en strømfunksjon av dette vektorfeltet fordi det er todimensjonalt i xy-planet og div $\vec{v}= 0$\\
+For å vise at $\psi = cos(x)sin(y)$ jeg vet at dersom strømkomponentene er kjent kan man finne strømfunksjonen ved å integrere disse. 
+$$ v_x = -\frac{\partial{\psi}}{\partial{y}} \textrm{ og } v_y = \frac{\partial{\psi}}{\partial{x}}$$
+\begin{align*}
+\frac{\partial{\psi}}{\partial{x}} &= -cos(x)sin(y) &\psi = -\int cos(x)sin(y)dy = -(-cos(x)cos(y)) = cos(x)cos(y) + C_1\\
+\frac{\partial{\psi}}{\partial{y}} &= -sin(x)cos(y) &\psi = -\int sin(x)cos(y)dy = -(-cos(x)cos(y)) = cos(x)cos(y) + C_2
+\end{align*}
+Hvis jeg velger konstantene $C_1\textrm{ og } C_2$ til å være lik null, har vi:
+$$\psi = cos(x)cos(y)$$
+Som var det jeg skulle vise.
+
+\subsection{e)}
+O = (0,0), $\psi(x_0,y_0) = cos(x_0)cos(y_0)$, $x_0=y_0=0$
+En andre ordens Taylorutvikling nær origo(O) vil se sånn ut:
+\begin{align*}
+T_2\psi (x_0,y_0)= &\psi (x_0,y_0) + \frac{ \partial \psi (x_0,y_0) }{\partial{x}} (x_0 - x)+ \frac{ \partial \psi (x_0,y_0) }{\partial{y}}(y_0 - y) + \frac{1}{2}\frac{ \partial^2 \psi (x_0,y_0) }{\partial{x^2}} (x_0 - x)^2 +\\
+&\frac{1}{2}\frac{ \partial^2 \psi (x_0,y_0) }{\partial{x}\partial{y}} (x_0 - x)(y_0 - y)+ \frac{1}{2}\frac{ \partial^2 \psi (x_0,y_0) }{\partial{y^2}} (y_0 - y)^2
+\end{align*}
+Når vi putter inn de gitte initial verdiene blir 
+\begin{align*}
+\psi(0,0) &= cos(0)cos(0) = 1\\
+\frac{ \partial \psi (x_0,y_0) }{\partial{x}} (x_0 - x) &= -sin(x_0)cos(y_0)x = -sin(0)cos(0)x = 0\\
+\frac{ \partial \psi (x_0,y_0) }{\partial{y}} (y_0 - y) &= -cos(x_0)sin(y_0)y = -cos(0)sin(0)y = 0\\
+\frac{1}{2}\frac{ \partial^2 \psi (x_0,y_0) }{\partial{x^2}} (x_0 - x)^2 &= \frac{1}{2}(-cos(x_0)cos(y_0))x^2
+= \frac{1}{2}(-cos(0)cos(0))x^2= -\frac{x^2}{2}\\
+\frac{1}{2}\frac{ \partial^2 \psi (x_0,y_0) }{\partial{y^2}} (y_0 - y)^2 &= \frac{1}{2}(-cos(x_0)cos(y_0))y^2
+= \frac{1}{2}(-cos(0)cos(0))y^2= -\frac{y^2}{2} \\
+\frac{1}{2}\frac{ \partial^2 \psi (x_0,y_0) }{\partial{x}\partial{y}} (x_0 - x)(y_0 - y) &= \frac{1}{2} \frac{ \partial}{\partial{x}}(-cos(x_0)sin(y_0)y) = \frac{1}{2}sin(x_0)sin(y_0)xy \\ 
+&= \frac{1}{2}sin(0)sin(0)xy = 0\\
+T_2\psi (x_0,y_0) &= 1+ 0 + 0 -\frac{x^2}{2} -\frac{y^2}{2} = 1-\frac{x^2}{2} -\frac{y^2}{2} 
+\end{align*}
+
+De tilnærmede strømlinjene nær origo er $\psi (x_0,y_0) = 1- \frac{x^2}{2} - \frac{y^2}{2}$
+
+\section{oppgave 4}
+\subsection{a)}
+strlin.py
+\lstinputlisting{strlin.py}
+\begin{figure}[h!]
+\includegraphics[scale=0.4]{4a5.png} 
+\includegraphics[scale=0.4]{4a30.png} 
+\includegraphics[scale=0.4]{te5.png} 
+\includegraphics[scale=0.4]{te30.png} 
+\caption{Øverst rekke er Streamfun, fra venstre er n=5, n=30\\ Nederste rekke er Taylorutviklingen i fra oppgave 3 e) fra venstre n=5, n=30}
+\label{4a}
+\end{figure} 
+Som vi ser på figur \vref{4a} er det mye likheter mellom Taylorutviklingen i oppgave3. e) og funksjonen fra streamfun. Taylorutviklingen av andre orden er en god tilnærming, men den er ikke god nok, spesielt ikke i forhold til den vi får fra streamfun. Vi kunne ha gjort en bedre tilnærming av taylorutviklingen hvis vi øker graden, men det er utrolig mye jobb. \\
+Når det gjelder de forskjellige valgene av n kan vi tydelig se hva som skjer når n blir for liten. Når n er liten mister vi punkter som gjør at grafen blir ufullstendig. Dette betyr at vi mister verdifull informasjon som grafen kan gi oss. I noen tilfeller der n blir for liten får vi en graf som er helt på villspor. Når vi ser på der n er større at vi har fått med tilstrekkelig mange punkter og grafen gir mening.
+
+\subsection{b)}
+På figur \vref{4b} ser man hvordan strømlinjene til hastighets feltet blir.\\
+velfield.py
+\lstinputlisting{velfield.py}
+vec.py
+\lstinputlisting{vec.py}
+
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{4b.png}
+ \caption{strømlinjene til hastighets feltet}
+\label{4b}
+\end{figure} 
+
+
+
+
+
+
+
+\end{document}
