@@ -1,5 +1,6 @@
+#Comparing Runge-Kutta4 to Euler's method
 """
-dy/dx=1/(2*(y-1)) er det samme som y' = 1/(2*(y-1)), y(0) = 1 + sqrt(eps) ,
+dy/dx=1/(2*(y-1)) the same as y' = 1/(2*(y-1)), y(0) = 1 + sqrt(eps) ,
 x element [0,4], eps = 1E-3 n = 4
 exact = y(x) = 1 + sqrt(x + eps)
 """
