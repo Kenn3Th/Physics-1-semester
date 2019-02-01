@@ -31,13 +31,13 @@ plt.ylabel('ln')
 plt.show()
 
 """
-Jeg hentet inn filen paa denne maaten:
+This is the way i fetch the file:
 
 Terminal> curl https://raw.githubusercontent.com/hplgit/scipro-primer/master/src/funcif/lnsum.py >lnsum.py
 
 Terminal> python lnsum.py > lnsum.dat
 
-Jeg lagret filen som lnsum.dat, jeg brukte derfor dette navnet i koden min.
+I saved the file as lnsum.dat, that is why I used this name in my code.
 
 Terminal> python read_error.py 
 """
