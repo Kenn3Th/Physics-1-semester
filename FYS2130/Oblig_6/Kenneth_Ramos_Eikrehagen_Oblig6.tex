@@ -1,0 +1,223 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage[toc,page]{appendix}
+\usepackage{url}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 6}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\newcommand{\ov}{\overset}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+
+\section{Forståelses- og diskusjonsspørsmål}
+\subsection{Diffraksjonseksperiment uten intensitetsminimum}
+For at det skal kunne bli et interferensmønster må dette kravet tilfredstilles: 
+$$
+sin\theta = \frac{\lambda}{a}
+$$
+der $\lambda$ er bølgelengden og a er bredden til spalten, bølgen må også være koherent. 
+$sin\theta$ kan på det meste bli en slik at forholdet mellom $\lambda$ og a kan ikke bli større enn dette for å få interferens. Så her er nok forholdet mellom $\lambda$ og a større siden det ikke blir et interferens mønster.
+
+
+\subsection{Påvise interferensstriper}
+Den til høyre gir interferensmønster fordi at spaltene er så nærme at bølgene som treffer er $\sim$ koherent $\Rightarrow$ planbølge. Den til venstre vil ikke gi et interferensmønster for som vi ser på figurens er spaltene så langt fra hverandre at de bølgene som kommer ikke lenger er koherente, og det medfører også at de ikke er planbølger og derfor får vi heller ikke et interferensmønster. Det blir kaotisk. 
+
+\subsection{Koherente og ikke koherente bølger}
+\begin{figure}
+\includegraphics[width = \linewidth]{koherent}\\
+\caption[Bølger]{De svarte strekene symboliserer bølgetopper, vi ser at både punkt A og B er på en bølgetopp. Hvis vi har tidsmessig koherens vil det være slik at hver gang vi har en bølgetopp på A vet vi hvilken fase bølgen har i punkt B}
+\label{koherent}
+\end{figure}
+Jeg skal forklare koherent bølge ved hjelp av figur \vref{koherent}. Vi ser at det er to punkter A og B her og dersom avstanden mellom A og B må være mindre enn noen få bølgelengder for å oppnå høy grad av korrelasjon sier vi at bølgen er ikke koherent. Om vi derimot kan finne høy grad av korrelasjon når avstanden mellom A og B er veldig mange bølgelengder sier man at bølgen er koherent (\cite{boka}). Som vi ser utifra teksten er overgangen mellom koherent og ikke-koherent veldig kontinuerlig.
+
+\section{Regneoppgaver}
+\subsection{To spalter belyses med koherentlys}
+\begin{center}
+\textbf{Gitt i oppgaven:}
+\end{center}
+\begin{align*}
+d = 0.450mm && R = 7.5m && \lambda = 500nm\\
+n_1 = 2 && n_2 = 3
+\end{align*}
+
+\begin{figure}
+\includegraphics[width = \linewidth]{opg13.pdf}\\
+\caption[Intensitetminimum]{Dette er en skisse av hvordan intensitets grafen vil se ut, grafen ser du skissert på skjermen helt til høyre i skissen. Der n=2 og n=3 skal illustrere andre og tredje intensitets minimum}
+\label{13}
+\end{figure}
+
+der d er avstanden mellom spaltene, R er avstanden til skjermen, $\lambda$ er bølgelengden til det koherente lyset, $n_1$ og $n_2$ er hvor jeg finner intensitets minimum.
+Jeg skal finne avstanden mellom 2. og 3. mørke linje i interfernesmønsteret, altså det 2. og 3. intensitets minimumet. Situasjonen har jeg illustrert i figur \vref{13}
+For å finne et intensitets minimum og vinkelen dette forekommer kan jeg bruke følgende ligning:
+$$
+sin(\theta) = \frac{\lambda}{d}\left(n+\frac{1}{2} \right) 
+\Rightarrow \theta = sin^{-1}\left(\frac{\lambda}{d}\left(n+\frac{1}{2} \right)\right) 
+$$
+Nå kan jeg finne de to forskjellige $\theta$ for hver av intensitets minimumet. 
+\begin{align*}
+n = 2\rightarrow \theta_1 = 0.15916\degree\\
+n = 3 \rightarrow \theta_2 = 0.22282\degree
+\end{align*}
+
+Når må jeg anvende trigonometri for å finne avstanden fra maksimum og ned til de to minimumene., jeg kommer frem til at:
+$$
+a = Rtan(\theta)
+$$
+Derfor blir avstanden mellom de to intensitets minimumene
+$$
+\Delta a = R(tan(\theta_2)-tan(\theta_1)) =\uu{\uu{ 8.3 mm}}
+$$
+
+\subsection{Youngs dobbelspaltforsøk der det blir plassert et glass foran en av spaltene}
+Hvis vi setter ett glass foran en av spaltene i Youngs dobbeltspalteforsøk vil vi endre på interfernsmønsteret, det blir forskjøvet i retning mot glasset. Dette er fordi at lyset går saktere igjennom glasset enn igjennom luft derfor vil bølgene interferere med hverandre noe senere enn uten glasset. Jeg tror ikke intensiteten blir mindre siden de reflekterte strålene er så lite at de er neglisjerbare, det blir sendt koherent lys $90\degree$ på glasset og mesteparten av lyset vil gå igjennom. 
+
+\subsection{Diffraksjonsbilde av et menneskehår}
+\begin{center}
+\textbf{Gitt i oppgaven:}
+\end{center}
+\begin{align*}
+N = 11 && L = 185cm m && \lambda = 532nm && \Delta min = 16.2 cm 
+\end{align*}
+Her skal vi analysere diffraksjonen når vi setter et menneskehår foran en lasermåler. Dette gir  N  lyspunkt imellom 2 minimumspunkt med avstand $\Delta min$, og lengden fram til skjermen er $L$. Siden vi nå har en gjenstand foran lyst og ikke en spalte må vi bruke Babinet's prinsipp. Dette prinsippet sier grovt sagt at interferens-mønsteret når lyset går mot en gjenstand blir motsatt av interferens-mønsteret når lyset går igjennom en spalte. Jeg bruker de samme formlene som for en enkelt spalt, dette gir meg nå maksimumspunktene til mønsteret, men avstanden mellom to maksimum er den samme som avstanden mellom to minimum. 
+Jeg bruker da følgende formel for å finne diameteren til håret.
+\begin{equation}
+a = \frac{\lambda}{sin(\theta)}
+\label{a}
+\end{equation}
+for å finne vinkelen $\theta$ må jeg nok engang anvende trigonometri, illustrert i figur \vref{}.
+$$
+\theta = tan^{-1}\left(\frac{\Delta min/2}{L} \right) = 2.5070\degree
+$$
+Jeg har nå funnet vinkelen fra det midterste minimumet til det siste minimumet der er det 5.5 lyse punkter i mellom. Dermed blir ligning \ref{a} noe annerledes
+$$
+a = \frac{\lambda}{2sin(\theta)} = 33.4\mu m
+$$
+I følge wikipedia er tykkelsen på et menneskehår fra $30\mu m \rightarrow100\mu m $, så dette er et godt resultat!
+
+\subsection{He-Ne laser på en CD}
+\begin{center}
+\textbf{Gitt i oppgaven:}
+\end{center}
+\begin{align*}
+d = 1.6\mu m && \lambda = 632nm 
+\end{align*}
+Jeg tenker på alle disse rillene som flere spalter og at det er maksimums intensiteten som reflekterer lys. Dermed kan jeg anvende formelen for intensitets maksima her:
+$$
+sin(\theta) = \frac{\lambda}{d} \Rightarrow \theta = sin^{-1}\left(\frac{\lambda}{d} \right) \simeq \uu{\uu{23.30\degree}}
+$$
+
+\subsection{Autokorrelasjonsfunksjonen}
+\begin{figure}[h!]
+\includegraphics[width = \linewidth]{signal}\\
+\caption[Signal]{Plottet av signal som ble generert av koden for Hvitstøy. Koden finner du under Appendix A.1}
+\label{signal}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width = \linewidth]{korrelasjon}\\
+\caption[Autokorrelasjon]{Dette er et plott av autokorrelasjonen til signalet. $t_c = \tau_c = 7.182 [s]$}
+\label{akorr}
+\end{figure}
+Signalet jeg anvendte autokerrelasjonsfunksjonen min kan du se på figur \vref{signal}, plottet jeg fikk er på figur \vref{akorr}. Jeg hadde forventet at korrelasjons tiden $\tau_c$ skulle være mindre enn 7[s], men bølgen kan se ut til å være ganske koherent.
+
+
+\subsection{Fourier- og wavelet-analyse}
+Vi kan se plottene av FFT av signalet og det kvadrerte signalet på figur \vref{fft}. 
+FFT av signalet (øverste bilde på figur \ref{fft}) ble som forventet der vi ser at signalet har sitt maksima på 5[kHz] og vi får en speiling på midten. FFT av det kvadrerte signalet var noe mer spennende, her ser vi at vi også får en topp ganske tidlig i frekvensspekteret. Vi dere ser jeg også at toppen har doblet seg til 10[kHz]. Hvorfor det blir en ekstra topp er fordi vi får noe som minner om 'beats' (\cite{grl}), mer enn dette fenomenet jeg fant her kan jeg dessverre ikke forklare. Wavelet analysen jeg fikk av signalet kan du se på figur \vref{wave1}. Her ser vi at meste parten av toppene ligger i frekvensområdet på 5[kHz] som forventet. Wavelet analysen min for det kvadrerte signalet ser du på figur \vref{wave2}. Vi kan se ganske bra at frekvensen ligger på 10[kHz], men jeg hadde likevel forventet å se noen topper litt lenger ned også. De blå skyene på siden er der pga rand-problematikken til wavelet analysen. Jeg plottet også to forskjellige K-verdier for å se forskjellen, men fant at k=24 var tilstrekkelig for å kunne se litt av hvordan den oppfører seg med tiden. (etter min mening)
+
+\begin{figure}
+\includegraphics[width = \linewidth]{Fouriertransformasjon}\\
+\caption[Fast Fourier transformasjon]{Øverst ser vi FFT av signalet, og den nederste ser vi FFT av det kvadrerte signalet}
+\label{fft}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width = \linewidth]{wavelet_signal}\\
+\caption[Wavelet av signalet]{Wavelet tranformasjon av signalet. Vi kan tydelig se at frekvensen er 5 [kHz]}
+\label{wave1}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width = \linewidth]{wavelet_signal2}\\
+\caption[Wavelet av $signalet^2$]{Wavelet transformasjon av $signalet^2$. Her ser vi at vi har fått to forskjellige frekvenser, en på 10[kHz] }
+\label{wave2}
+\end{figure}
+
+
+
+\begin{thebibliography}{}
+\bibitem{boka} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{foreleser}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}
+	\url{https://snl.no}
+
+\end{thebibliography}
+
+\newpage
+\begin{appendices}
+\appendix
+\section{Programkode}
+\subsection{Kode for autokerrelasjonsfunksjonen}
+\lstinputlisting[language=Python, lastline = 45]{opg15.py}
+\subsection{Kode for Fourier- og wavelet-analyse}
+\lstinputlisting[language=Python,lastline=38]{opg16.py}
+\end{appendices}
+
+\end{document}
