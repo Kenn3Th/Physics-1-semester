@@ -1,0 +1,396 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{enumitem}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 2}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+
+\section{Forståelses- og diskusjonsspørsmål}
+
+\subsection{Q-verdi}
+Grunnen til at det er lettere å oppnå høy Q-verdi for et system med høy resonansfrekvens er fordi at den taper mindre energi enn et system med lav resonansfrekvens. Eks en pendel som svinger med en lav hastighet blir utsatt for med luftmotstand per periode enn en som svinger hurtig. 
+$$
+Q \equiv 2\pi \frac{\text{Lagret energi}}{\text{Tap av energi per periode}}
+$$
+
+\subsection{Svingesystem uten demping med påtrykt kraft}
+Hvis et svingesystem hadde blitt utsatt for en harmonisk påtrykt kraft ved resonans frekvensen ville den etterhvert ha destruert systemet den befant seg i. F.eks en pendel ville først gått lenger å lenger opp på hver side før den hadde tatt en runde rundt, og den hadde begynt å snurre fortere å fortere helt til snora røyk. 
+\\ \\
+Hvis et svingesystem hadde blitt utsatt for en kraft som var bitte litt forskjellig fra resonansfrekvensen ville systemet begynt å ,,jage'', hvis den påtrykte kraften hele tiden er slik, vil svingesystemet for alltid være i en slik tilstand.
+
+\subsection{Fjerde ordens Runge-Kutta}
+Eulers metode (Eulers-, Eulers midtpunkt- ,Euler-Cromers-metode) er mer simplifisert enn Runge-Kutta sin metode. Den tar ikke hensyn til at f.eks akselerasjonen kan forandre seg underveis.
+Eulers metode tar kun utgangspunkt i stigningstallet i starten av det skrittet vi skal ta(eller i midten), mens Runge-Kutta av fjerde orden bruker fire forskjellige estimater for å finne stigningstallet.En i starten, en i slutten og to i midten for å beregne den gjennomsnittlige stigningstallet i intervallet. 
+
+\subsection{Tolkning av figurer}
+De to øverste figurene ser vi plott fra en pendel som som oscillerer rundt null punktet og blir gradvis dempet av friksjonen, altså en "normal" pendel svinging. Øverst til venstre ser vi at den har en maks amplitude på 1.5 radianer og øverst til høyre ser vi at bevegelsen starter med en vinkelhastighet på 6[rad/s], som dempes i løpet av tiden. 
+
+De nederste figurene er litt mer spennende. Figur nederst til venstre ser vi at vinkelhastigheten var så stor at pendel akkurat tok en fullstendig svingning, og begynte å oscillere rundt et nytt "nullpunkt". Dette er nok fordi at den tok en runde rundt opphengs-punktet som medførte at snoren ble kortere. At den akkurat klarte å ta en runde ser vi fordi grafen viser et platå før den faller ned og begynner å oscillere. Grafen nederst til høyre viser at den startet med en vinkelhastighet på 10[rad/s], den akselereres ned til 2[rad/s] da den når toppen før den fortsetter sin svingebevegelse. Den spissen i figuren er nok der fordi når pendelen kommer til den andre siden av sitt nye "nullpunkt" så har den ikke stor nok vinkelhastighet til å ta en ny runde og snoren blir slakk i toppen av den bevegelsen før pendelen faller ned og gir et rykk i snoren før den fortsetter videre med en dempet svingning.
+
+
+\section{Regneoppgaver}
+\subsection{Gammeldags radiomottaking}
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+&\text{Resonansfrekvens} = f_0 = 1313[kHz] && \text{Halvverdibredden} = \Delta f = 9[kHz] \\
+\end{align*}
+For å finne Q-verdien til radiomottakeren velger jeg å bruke ligning 3.16 fra boka.\cite{vistnes16}
+\begin{align*}
+Q &= \frac{f_0}{\Delta f} = \frac{1313[kHz]}{9[kHz]} = 145.89
+\end{align*} 
+
+
+\subsection{Flaggermus}
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+&\text{Frekvens} = f = 40-100[kHz] && \text{Q-verdi} = Q = 100 \\
+&\text{Lydenshastighet i luft} = v = 340[m/s]
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+\item 
+For å finne den minste avstanden flaggermusa kan ha fra en vegg hvis den gir ut en lydpuls som er infinitesimal liten kan beregnes ved bruk av følgende formler:
+\begin{align*}
+&\Delta t = \frac{Q}{\omega} && \omega = f2\pi\\
+&\text{strekning} = s = v\Delta t 
+\end{align*}
+
+\begin{align*}
+\Delta t_1 &= \frac{Q}{f_12\pi} = \frac{100}{2\pi * 40*10^3[Hz]} = \uu{3.98*10^{-4}[s]}\\
+\Delta t_2 &= \frac{Q}{f_22\pi} = \frac{100}{2\pi * 100*10^3[Hz]} = \uu{1.59*10^{-4}[s]}\\
+\end{align*}
+\begin{align*}
+s_1 &= v\Delta t_1 = 340[m/s]*3.98*10^{-4}[s] \simeq \uu{0.14[m] = 14[cm]}\\
+s_2 &= v\Delta t_2 = 340[m/s]*1.59*10^{-4}[s] \simeq \uu{0.05[m] = 5[cm]}
+\end{align*}
+Jeg antar at flaggermusa gir en lyd puls i løpet av $\Delta t_{1,2}$ før den kan begynne å høre igjen. Ut i fra dette tenker jeg at avstanden $s$ må dobbles siden lyden må komme tilbake til flaggermusa mens den ikke skriker. Dermed blir den minste avstanden en flaggermus kan oppfatte ekko fra en vegg  $10[cm] \rightarrow28[cm]$
+\item 
+\begin{align*}
+\Delta t_3 &= \frac{Q}{f_13\pi} = \frac{100}{2\pi * 1000[Hz]} = \uu{1.59*10^{-2}[s]}\\
+s_3 &= v\Delta t_3 =340[m/s]*1.59*10^{-2}[s] = 5.4[m]
+\end{align*}
+Med samme argument som for a) vil flaggermusa kun oppdage vegger som er 10.8[m] unna seg selv. Hvis dette var tilfellet tror jeg at flaggermusa hadde vært utryddet for lengst!
+\end{enumerate}
+
+
+
+
+\subsection{RCL-krets}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{RCL.jpg}
+\caption[RCL-krets]{Skisse av en RCL-krets med definisjoner på høyre side. R = resistans, L= Induktans og C = kapasitans}
+\label{RCL}
+\end{figure}
+Ligningene jeg nevner er hentet fra pensumboka (\cite{vistnes16})
+\begin{enumerate}[label=(\alph*)]
+\item
+\begin{center}
+\textbf{Analogier (\cite{forelesning})}\\
+\begin{tabular}{| l  c | l |}
+\hline
+\textbf{Mekanisk} & &\textbf{Elektrisk}\\
+\hline
+$m$: masse & $\rightarrow$& $L$: iduktans\\
+$k$: tilbakevirkende kraft& $\rightarrow$& $\frac{1}{C}: kapasitans$\\
+$b$: friksjon & $\rightarrow$& $R$: resistans\\
+$F$: kraft & $\rightarrow$ & $V_0$: start spenning\\
+\hline
+\end{tabular}
+\end{center}
+Sammenligner vi ligning (3.7) 
+$$
+\ddot{z}(t) + \left(\frac{b}{m} \right)\dot{z}(t) + \left( \frac{k}{m}\right)z(t) = \left( \frac{F}{m}\right)cos(\omega_F t)
+$$ og ligning (3.1) 
+$$
+\ddot{Q}(t) + \left(\frac{R}{L} \right)\dot{z}(t) + \left( \frac{1}{LC}\right)z(t) = \left( \frac{V_0}{L}\right)cos(\omega_F t)
+$$
+og ser på analogiene jeg har nevnt over ser vi at de er helt analoge. Hvis jeg bruker tabellen over kan jeg lett omforme ligning (3.3),(3,4) og (3,11).\\
+\begin{center}
+\begin{tabular}{| l  c | l |}
+\hline
+\textbf{Mekanisk} & &\textbf{Elektrisk}\\
+\hline
+$\omega_0^2 = k/m$ &$\rightarrow$& $\omega_0^2 =1/LC$\\ 
+(3.3): $cot(\phi) = \frac{\omega_0^2- \omega_F^2}{\omega_Fb/m}$ & $\rightarrow$& $cot(\phi) = \frac{\omega_0^2- \omega_F^2}{\omega_FR/L}$ \\
+(3.4)$A = \frac{F/m}{\sqrt{(\omega_0^2- \omega_F^2)+(\omega_F b/m)^2}}$& $\rightarrow$& $A = \frac{V_0/L}{\sqrt{(\omega_0^2- \omega_F^2)^2+(\omega_F R/L)^2}}$\\
+(3.11) $Q =\frac{m\omega_0}{b} =\sqrt{\frac{mk}{b^2}}$ & $\rightarrow$& $Q = \sqrt{\frac{L/C}{R^2}}=\sqrt{\frac{L}{CR^2}}$\\
+\hline
+\end{tabular}
+\end{center}
+
+\item
+For å beregne fase- og amplitude-resonans bruker jeg de analogiene i del a). Dette kan jeg gjøre fordi jeg skal beregne for ladningsoscillasjonene og ikke strømoscillasjonene. Jeg bruker verdiene som er oppgitt i figur \vref{RCL}
+
+$$
+f_{fase} = \frac{\omega_0}{2\pi} = \frac{1/\sqrt{LC}}{2\pi} = \frac{1}{2\pi \sqrt{LC}} = 100557.7154 \simeq \uu{\uu{1.01*10^5[Hz]}}
+$$
+$$
+f_{amp} = \frac{1}{2\pi}\sqrt{\omega_0^2-\frac{R^2}{2L^2}} = \frac{1}{2\pi}\sqrt{\frac{1}{LC}-\frac{R^2}{2L^2}} = 100658.4242 \simeq \uu{\uu{1.01*10^5[Hz]}}
+$$
+
+\item
+For å beregne Q faktoren bruker jeg ligning (3.11) som jeg har gjort om, og bruker verdiene i figur \vref{RCL}
+$$
+Q = \sqrt{\frac{L}{CR^2}} = 5\sqrt{10} = \uu{\uu{15.81}}
+$$
+
+\item
+For å finne faseforskjellen mellom påtrykt spenning og strøm ved faseresonansen definerer jeg $\omega_F = \omega_0 + \frac{\Delta \omega}{2}$ og bruker ligning (3.16) $Q = f_0/\Delta f$ og (3.3)
+Bruker (3.16) for å finne et utrykk for $\Delta \omega$
+$$
+Q = \frac{f_0}{\Delta f} =  \frac{f_02\pi}{\Delta f 2\pi} = \frac{\omega_0}{\Delta\omega} \Rightarrow \Delta \omega = \frac{\omega_0}{Q} = \frac{1}{Q\sqrt{LC}}
+$$
+$$
+\omega_F = \omega_0 + \frac{\Delta \omega}{2} = \frac{1}{\sqrt{LC}} + \frac{1}{2Q\sqrt{LC}} \simeq \uu{6.5*10^5}
+$$
+Anvender jeg nå ligning (3.3) kan jeg finne $\phi$
+\begin{align*}
+cot(\phi) &= \frac{\omega_0^2- \omega_F^2}{\omega_FR/L} \\ 
+\Rightarrow \phi &= arccot\left( \frac{\omega_0^2- \omega_F^2}{\omega_FR/L}\right)\simeq \uu{\uu{-45.44\degree}}\\
+\end{align*} 
+Denne ligger i fjerde kvadrant målt med klokka.
+\end{enumerate}
+
+
+
+
+\subsection{Runge-Kutta 4}
+\begin{enumerate}[label=(\alph*)]
+\item 
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+&m = 0.1[kg] && k = 10[N/m] &&b = 0.1 [kg/s]\\
+& z(0) = 0.1 [m] && \dot{z}(0) = 0 [m/s] && t_0 = 0[s]
+\end{align*}
+
+Før jeg lagde koden min tenkte jeg først på hvilken ligning jeg skulle løse denne for. En fjærpendel med en dempet svinge bevegesle kan uttrykkes matematisk ved:
+\begin{equation}
+\ddot{z}(t) = -\frac{b}{m}\dot{z}(t) - \frac{k}{m}z(t)
+\label{harm}
+\end{equation}
+Jeg bruker disse sammenhengene i koden min:
+\begin{align*}
+\ddot{z}(t) = a && \dot{z}(t) = v && z(t) = x
+\end{align*}
+Du kan se koden min for Runge-Kutta 4 på figur \vref{RK4} og hvordan den brukes på figur \vref{bRK4}. (Jeg kodet Runge-Kutta4 som en klasse i python slik at jeg lett kan importere den å bruke den uten å skrive den på nytt. Selve klassen tar inn verdiene for friksjonskoeffisienten, den tilbakeførende kraften og massen, selve Runge-Kutta 4 tar inn posisjon, hastighet, tiden og tidssteget.) \\
+På figurene \ref{100}, \ref{200}, \ref{300} og\vref{500} ser du plott av forskjellige steg jeg har tatt. Vi ser tydelig at 100 steg er for lite, videre så ser vi at ved 200 steg så er fortsatt endene i svingningebevegelsen kantete. Ved 300 steg ser vi at de begynner å bli rundere men man ser fortsatt at endene er spisse, ikke før et steg  på 500 blir endene mine runde å fine. Jeg konkluderer derfor med at 500 steg er tilstrekkelig for at dette skal jeg meg riktig løsning. Men når man zoomer inn på bølgene måtte jeg øke videre til $10^{5}$ for at kurven skulle bli rund å fin.
+
+For å løse denne ligningen analytisk definerer jeg noen nye uttrykk hentet fra boka (\cite{vistnes16}) og bruker det som er gitt i oppgaven.
+
+\begin{align*}
+&\gamma = \frac{b}{2m} = \frac{1}{2}&& \omega^2 = \frac{k}{m} = 100\\
+&\alpha = \gamma\pm\sqrt{\gamma^2 - \omega^2} && \omega' = \sqrt{\omega^2-\gamma^2} = \frac{\sqrt{399}}{2}
+\end{align*}
+
+Når jeg ser på plottet kjenner jeg igjen dette som en underkritisk-dempning. Dette ser vi også ved at $\gamma < \omega$. Dette medfører at jeg kan skrive 
+\begin{align*}
+z(t) = e^{-\gamma t}Acos(\omega't + \phi) 
+&& \dot{z}(t) =\gamma e^{-\gamma t}Asin(\omega't + \phi) 
+\end{align*}
+Med initialverdiene jeg har kan jeg løse dette å finne hva $A$ og $\phi$
+\begin{align*}
+z(t_0) &= e^{-\gamma t_0}Acos(\omega't_0 + \phi) = Acos(\phi) = 0.1 [m] \Rightarrow A = \frac{0.1[m]}{cos(\phi)}\\
+\dot{z}(t_0) &= \gamma e^{-\gamma t_0}Asin(\omega't_0 + \phi) = \gamma Asin(\phi) = 0 \Rightarrow \phi = 0
+\end{align*} 
+Dette medfører at $A = 0.1$ og $\phi = 0$. Setter inn alle uttrykkene jeg har i den opprinnelige ligningen:
+
+$$
+z(t) = e^{- \frac{1}{2}t}Acos\left(\frac{\sqrt{399}}{2}t \right)
+$$
+Jeg implementerte dette inn i koden min og plottet analytisk løsning sammen med numerisk løsning. Resultatet kan du se i figur \vref{ARK4}. Jeg zoomet inn på den neste bølgetoppen (\vref{zARK4}) for å undersøke hvor nøyaktig Runge-Kutta er og jeg observerte at den bommet litt. I min tids lengde gjorde ikke dette det store utfallet men hvis man hadde kjørt over en lenger tidsperiode ville dette blitt feil. Hvis også svingningen hadde vært mer kompleks burde jeg nok vurdert en høyere orden av Runge-Kutta. 
+
+\begin{figure}[h!]
+\caption{Runge-Kutta4 kode}
+\lstinputlisting[language=Python, firstline=3, lastline=37]{classRungeKutta4.py}
+\label{RK4}
+\end{figure}
+\begin{figure}[h!]
+\caption{Bruk av Runge-Kutta 4 kode}
+\lstinputlisting[language=Python, firstline=54, lastline=86]{classRungeKutta4.py}
+\label{bRK4}
+\end{figure}
+
+
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{100.png} 
+\caption{N = 100}
+\label{100}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{200.png} 
+\caption{N = 200}
+\label{200}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{300.png} 
+\caption{N = 300}
+\label{300}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{500.png} 
+\caption{N = 500}
+\label{500}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+	\begin{minipage}[b]{0.5\linewidth}
+		\includegraphics[width=\textwidth]{AnalytiskmotRK4.png} 
+		\caption[Analytisk vs Numerisk]{Analytisk løsning plottet med den numeriske løsningen. 
+		De er så like at det er vanskelig å skille de fra hverandre}
+		\label{ARK4}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}[b]{0.5\linewidth}
+		\includegraphics[width=\textwidth]{AnmotRK4.png} 
+		\caption[Zoom av neste bølgetopp]{Zoomet inn på neste amplitude å ser at RK4 koden 
+		bommer litt, dette kan føre til store feil over en lenger tid}
+		\label{zARK4}
+	\end{minipage}
+\end{figure}
+
+\item
+Her brukte jeg boka \cite{vistnes16} for å finne hva som karakteriserte de forskjellige dempingene. 
+\begin{align*}
+&\text{Overkritisk demping} \equiv \gamma > \omega &&\text{Kritisk demping} \equiv \gamma = \omega \\ 
+&\text{Underkritisk demping} \equiv \gamma < \omega
+\end{align*}
+Ut i fra dette ser jeg at jeg må endre på friksjonskoeffisienten $b$ og den tilbakevirkende kraften $k$ slik at ligningen over gjelder for den dempingen jeg vil etterligne. Plottet mitt ser du på \vref{ks}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{kritiskesvingninger.png} 
+\caption[Demping av svingebevegelse]{Dette er en fremvisning av de forskjellige dempingene vi har av en svingebevegelse}
+\label{ks}
+\end{figure}
+
+\item
+Her må jeg huske hvordan en tvungen svingebevegelse kan uttrykkes matematisk.
+\begin{equation}
+\ddot{z}(t) = \frac{F}{m}cos(\omega_Ft) - \frac{b}{m}\dot{z}(t) - \frac{k}{m}z(t)
+\label{tvungen}
+\end{equation}
+Her ser jeg at akselerasjons uttrykket mitt (ligning \ref{harm}) må erstattes med ligning \ref{tvungen}. Videre må jeg finne et utrykk for $\omega_F$. I boka \cite{vistnes16} finner jeg et utrykk for resonans som også bruker friksjonskoeffisienten og den tilbakevirkende-kraften. Velger derfor å bruke dette som $\omega_F$
+
+$$
+\omega_F = \frac{1}{2\pi}\sqrt{\omega_0^2-\frac{b^2}{2m^2}}
+$$
+For å etterligne plottene i figur 3.7 i boka \cite{vistnes16} ser jeg at plottet til venstre har $\omega_0 = \omega_F$, og plottet til høyre har $\omega_0 \neq \omega_F$. Implementerer jeg dette i koden min får jeg følgende plott som du kan se i figur \ref{lik} og \vref{ulik}
+
+\begin{figure}[h!]
+	\begin{minipage}[b]{\linewidth}
+	\includegraphics[width=\textwidth]{w0likwf.png} 
+	\caption[$\omega_0 = \omega_F$]{Her er $\omega_F = \omega_0$ og kraften blir påtrykt i 30 sekunder. Vi ser en logaritmiskvekst så lenge kraften er på men med engang den stopper synker svingningen eksponentielt}
+	\label{lik}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}[b]{\linewidth}
+	\includegraphics[width=\textwidth]{w0ulikwf.png} 
+	\caption[$\omega_0 \neq \omega_F$]{Her er $\omega_F \neq \omega_0$ og kraften blir påtrykt i 30 sekunder. Her ser vi at når kraften er på ligner grafen på en underkritisk demping, dette er fordi den påtrykte kraften ikke stemmer overens med resonansfrekvensen. Med engang kraften stopper synker svingningen eksponentielt}
+	\label{ulik}
+	\end{minipage}
+\end{figure}
+\item
+For å finne frekvensresponsen til systemet trenger jeg en array som er like lang som $z(t)$ å fylle den med forskjellige verdier for $\omega_F$. Dette ble gjort ved å lage en array med jevnt fordelte steg mellom [0.8,1.2] og multipliserte den med $\omega_F$. Nå vil $\omega_F$ variere, og den vil gi en gaussisk kurve der toppen er vil gi den amplituden systemet går mot. I dette tilfelle er den analytiske løsningen $\simeq 0.025$ så toppen vil være ca der. Halvverdibredden finner vi på grafen ved halvparten av maksimal amplitude, og er avstanden mellom de to strekene på grafen.
+Dette kan vi se i figur \vref{frekvensrespons}. Grunnen til at grafen når størst høyde rundt 10 er pga $\omega_F \simeq 10$
+
+På figur \vref{steady} ser vi at systemet når en ,,steady state'' etter ca 30 sekunder. Det er fra dette tidspunktet jeg henter verdier til amplituden min i fra, siden det er her systemet fall til ro rundt det analytiske svaret. 
+
+\begin{figure}[h!]
+\begin{minipage}[b]{\linewidth}
+\includegraphics[width=\textwidth]{frekvensrespons.png} 
+\caption[Frekvensrespons]{Denne figuren viser et plott av frekvensresponsen til systemet. Kan finne Q-verdien ved å ta $\omega_F$ som gir høyest amplitude og dividere det med halvverdibredden $\Delta f$ som er avstanden i grafen ved halvparten av maksimal amplituden}
+\label{frekvensrespons}
+\end{minipage}
+\begin{minipage}[b]{\linewidth}
+\includegraphics[width=\textwidth]{steady.png} 
+\caption[Steady state]{Denne figuren viser hvordan systemet beveger seg i løpet av en periode $T = 50 [s]$ med forskjellige verdier for $\omega_F$. Vi kan se at etter 30[s] har systemet kommet til en ,,steady state'' og det er her jeg henter verdiene for amplituden}
+\label{steady}
+\end{minipage}
+\end{figure}
+
+\end{enumerate}
+
+\subsection{Beregninger av tvungne svingninger}
+Det skjer ingen ting med rekvensresponsen til systemet om jeg endrer på $\omega_F$ eller $F$. Frekvensresponsen er konstant og dermed også Q-verdien, halvverdibredden og senterfrekvens. Måtte endre fra hvilket intervall $\omega_F$ hadde. Hvis jeg senket den påtryktefrekvensen måtte intervallet jeg til $\omega_F$ene senkes til ca [0.2, 1.1] og omvendt om jeg økte den. Dette synes jeg gir mening for hvis den påtrykte frekvensen er mindre så er jo også utslaget mindre og derfor må intervallet til $\omega_F$ endres. Det jeg synes var litt rart var at alle hadde samme amplitude topp og $\omega_F$ uansett hvordan jeg endret på den påtryktekraften. 
+
+Hvis jeg endret noen av de andre verdiene så endret også kurven seg. Men det gir mening siden da får vi en ny verdi får svingeligningen og endrer dermed også Q-verdien. Jeg observerte samme tilfelle her som jeg nevnte over, at uansett om jeg endrer den påtryktefrekvensen endrer ikke kurven seg.
+
+\newpage
+
+\begin{thebibliography}{}
+\bibitem{vistnes16} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{forelesning}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{internett}  
+	\url{https://no.wikipedia.org}\\
+	\url{https://snl.no}\\
+	\url{https://www.wolframalpha.com}
+\end{thebibliography}
+
+\end{document}
