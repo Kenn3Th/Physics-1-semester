@@ -1,7 +1,7 @@
 from oblig2 import*
-#Legger matriseme og vektorene i liste
+#Putting the matrices and vectrs in a list
 dat = [x,y,u,v,xit,yit]
-#Sjekker storrelsen til matrisene og vektorene
+#Checking the size of the matrices and vectors
 for j in range(6):
     value = []
     indx = ['x','y','u','v','xit','yit']
@@ -13,8 +13,8 @@ for j in range(6):
     elif j >= 4:
         print 'Vektoren %s har (x,y)' %(indx[j])
         print value[j]
-#test funksjoner.
-#sjekker om x regulert med et intervall paa 0.5 
+#test functions. 
+#Checking if x is regulated with an interval on 0.5.
 def test_x(q):
     for i in q:
         for j in range(194-1):
@@ -24,8 +24,8 @@ def test_x(q):
                 sucsess
             else :
                 print 'something went wrong'
-#sjekker om y er regulert med et intervall paa 0.5
-#og om den tar hele diameteren til roret
+#Checking if y is regulated with an interval on 0.5.
+#and if it takes the whole diameter of the pipe.
 def test_y(q):
     ykor = [] 
     for i in y:
@@ -41,6 +41,6 @@ def test_y(q):
             success
         else :
             print 'this is not right'
-#kaller paa testfunksjonene
+#Calling the test functions
 test_x(x)
 test_y(y)
