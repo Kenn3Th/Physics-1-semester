@@ -1,0 +1,447 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 1}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\begin{document}
+\maketitle
+\tableofcontents
+\listoffigures
+\newpage
+
+\section{Forståelses- og diskusjonsspørsmål}
+
+\subsection{2. Krav til kraft}
+\textbf{Hvilke krav må en kraft tilfredstille for å lage grunnlaget for svingninger?}\\
+1.) Det må være en funksjon av tid og posisjon (rundt et likevektspunkt)\\
+2.) Kraft og posisjon relativt til likevektspunktet skal til enhver tid ha motsatt retning.\\
+(For harmonsik svingning - Utslaget fra likevektspunktet er proposjonal med kraften, kraften må være konservativ)
+
+\subsection{4. Flytte system til månen 1}
+\textbf{Anta at vi har et lodd i en fjær som svinger opp og ned med en bestemt periode på jorda. Hvis vi tar med denne til månen vil da periode tiden endres?}\\
+Jeg antar at fjæra følger hooks lov. Lengden $L_0$ er fjæra uten lodd og $L_1$ er lengden med loddet. Da vil $k(L_1-L_0) = mg$ hvor k er fjær-konstanten og g er gravitasjons-konstanten der loddet befinner seg (månen eller jorda). Kraften F(t) som til enhver tid virker på loddet er:
+$$F(t) = k(L(t)-L_0) -mg = k(L(t)-L_0) - k(L_1-L_0) = k(L(t)-L_1)$$
+Som vi ser opphever dette gravitasjons-konstanten og bevegelsen blir ikke på virket av gravitasjonen.
+
+Videre ser jeg i boka at perioden T er $$T = 2\pi \sqrt{\frac{m}{k}}$$ massen er lik på jorden og månen og dermed vil ikke periode tiden påvirkes om vi flytter systemet til månen.
+
+\subsection{5. Flytte system til månen 2}
+\textbf{Anta at vi har en pendel som svinger med en bestemt periode på jorda. Hvis vi tar med denne til månen vil da periode tiden endres?}\\
+En pendel-bevegelse er avhengig av gravitasjonskraften ($F = mgsin\theta$) . Perioden T er definert som $$T = 2\pi \sqrt{\frac{l}{g}}$$ hvor l er lengden til pendelen og g er gravitasjonskraften der pendelen befinner seg. 
+
+ Som vi ser i ligningen for perioden så vil perioden til pendelen påvirkes om den flyttes til månen. Det er heller ingen atmosfære på månen som fører til at det ikke er luftmotstand der, dette vil også påvirke pendel-bevegelsen.
+
+\subsection{7. Ødelegge harmonisk bevegelse.}
+\textbf{Gi eksempler på hva som kan ødelegge en harmonisk svingning}\\
+1. Hvis man har høy friksjon kan dette stanse bevegelsen før den kan begynne å svinge.\\ 
+2. Hvis man strekker fjæra forbi elastisiteten slik at fjæra blir deformert. \\
+3. Begynner en svinge bevegelse med for høyt-utslag dette medfører en eliptisk-bevegelse og ikke en harmonisk.\\
+4. Hvis man fysisk stopper bevegelsen ved å innføre en motvirkende kraft, eks stopper en pendel med å ta tak i den og holde den i ro.\\
+5. La svingningen kollidere med et fast underlag som f.eks en vegg, gulv eller en annen gjenstand.
+
+
+\section{Regneoppgaver}
+Jeg kommer til å definere utrykk med tilhørende enheter og hva som er gitt av nyttig informasjon i starten av oppgaven hvor dette er relevant, og vil derfor ikke oppgi enheter i tall svarene jeg får.
+
+
+\subsection{9. Hastighet vs posisjon}
+Jeg plottet det i python og brukte en ligning for en harmonisk svingning. Brukte $Pos = sin(2\pi x)$ som gir $hastighet = 2\pi cos(2\pi x)$, med amplitude $A = 1[m]$, og $\omega = 2\pi$. Du ser plottet dette ga meg i figur \vref{1}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{opg9.png}
+\caption[Enkel harmonisk svingning]{Øverst er av en svingning med posisjon vs tid, nederst er av samme svingning med hastighet vs tid}
+\label{1}
+\end{figure}
+
+Når vi plotter hastighet mot posisjon observerer jeg at vi får en ellipseformet graf. 
+
+\subsection{10. Sprettball}
+Når jeg simulerte sprettballen som spretter opp å ned på et hardt underlag antok jeg at sprettballen ikke hadde noe tap, altså at bevegelsen var en harmonisk svingning. Jeg simulerte dette ved å kode det i python. Jeg tok absoluttverdien av samme ligning som jeg brukte i forrige oppgave for å simulere at den spretter når den treffer bakken. Det vil si at posisjon aldri går under null (likevekts punktet til en sprettball er bakken og den går ikke under bakken). Deretter plottet jeg hastigheten fra dette tilfellet mot posisjonen. Plottet jeg fikk kan du se i figur \vref{2}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{opg10.png}
+\caption[Sprettball]{Grønnt-punkt = $\pm \omega A$, Orange-punkt = maksimalt utslag/amplitude}
+\label{2}
+\end{figure}
+
+Jeg observerer plottene til sprettballen er lik plottene til loddet til en viss grad. De begge oscillerer, og hastighet mot posisjons grafene følger samme bevegelse helt til posisjonen nærmer seg 0. Forskjellen er er at sprettballen ikke beveger seg forbi likevektspunktet slik som loddet gjorde, dette medfører at sprettball grafen ikke går under null og er positiv gjennom hele bevegelsen. 
+
+Vi ser samme tendens i hastighet mot posisjons plottene. Når posisjonen til sprettballen blir null hopper den rett opp igjen til max hastighet og gjentar bevegelsen. Når posisjonen til loddet når null fortsetter loddet forbi likevektspunktet til maksimal utslag/amplitude på motsatt side før den gjentar bevegelsen motsatt rettet. Uten noe tap eller demping vil disse bevegelsene fortsette i det uendelige. 
+
+\newpage
+\subsection{11. Svingetid for loddets bevegelse i en fjær}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{opg11.jpg}
+\caption{Skisse av situasjonen}
+\label{3}
+\end{figure}
+
+\begin{center}
+\textbf{Definisjoner}
+\end{center}
+\begin{align*}
+&m = \text{Masse}[kg] && g = \text{Gravitasjonskonstan} = 9.81[m/s^2]\\
+&L = \text{Lengden til fjæra}[m] && x(t) = \text{Posisjon}[m]\\
+&\dot{x}(t) = \text{Hastighet}[m/s] && \ddot{x}(t) = \text{Akselerasjon}[m/s^2] \\
+&f_k = \text{Fjærkraft} = kx(t)[N] && G_k = \text{Kraft pga gravitasjon} = mg[N]\\
+& f = \frac{\omega}{2\pi}=\text{Frekvens}[Hz] && T = \frac{2\pi}{\omega}=\text{Svingetid/periode}[s]\\
+&\Sigma F = \text{summen av kreftene}[N] && \text{Fjærkonstant} = k[kg/s^2]
+\end{align*}
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+&\text{Initial lengden til fjæra} = L_0 = 0.3 && \text{Massen til loddet} = m = 0.1  \\
+&\text{Lengden med lodd}= L_1 = 0.48  && \text{Loddet blir trekt } 8[cm] = A = \text{Amplitude}\\
+&\text{Utstrekkning før vi slipper loddet}=L_2 = 0.56
+\end{align*}
+
+Jeg har begynt oppgaven med å definere uttrykk som er relevante for oppgaven, hva som er gitt i oppgave teksten og tegnet en skisse av situasjonen (figur \vref{3}).
+
+Der første jeg gjør er å identifisere alle kreftene som virker (jeg ser bort fra friksjon og luftmotstand) og fra figur \ref{3} finner jeg at $\Sigma F = G_k -f_k = m\ddot{x}(t)$ fra Newtons 2. lov. Ser også at denne bevegelsen blir en harmonisk svingning (siden jeg ser bort fra friksjon og luftmotstand). Dette hjelper meg på vei til å finne et matematisk uttrykk for å beskrive denne bevegelsen. 
+
+For å finne et matematisk uttrykk for dette velger jeg å se på et tilfelle hvor ikke gravitasjonen virker slik at jeg kun finner fjærkraften. Når jeg har funnet den kan jeg betrakte tilfellet med gravitasjon. 
+$$
+\Sigma F = m\ddot{x}(t) = - kx(t)\Rightarrow \ddot{x}(t) = -\frac{k}{m}x(t)
+$$
+Fra læreboken finner jeg at dette har en generell løsning
+$$
+x(t) = Bsin(\omega t) + Ccos(\omega t) \text{ hvor } \omega = \sqrt{\frac{k}{m}}
+$$
+og at ligningen kan omformes til:
+$$
+x(t) = Acos(\omega t + \phi)
+$$ 
+Jeg kan nå finne $\phi$ fordi jeg vet A og $x(t=0)$ 
+$$ 
+x(0) = Acos(\omega 0 + \phi) \Rightarrow \phi = arccos\left( \frac{x(0)}{A} \right) = \frac{\pi}{2}
+$$
+Nå returnerer jeg til tilfellet med gravitasjon og kan uttrykke denne bevegelsen matematisk med summen av kreftene.
+
+$$
+\Sigma F = mg -kx(t) = mg - kAcos(\omega t + \phi) = m\ddot{x}
+$$
+Ved hjelp av det jeg har funnet kan jeg finne svingetiden til loddets bevegelse, maksimal og minimal kraft som virker på loddet og fjæra. For å finne svingetiden $T$ trenger jeg å vite hva fjærkonstanten er og det medfører at jeg også vet hva $\omega$ er.
+For å fine fjærkonstanten ser jeg på tilfellet etter at vi har hengt loddet på fjæra og systemet har falt i ro. Nå har fjæren fått en utstrekning $\Delta x$ som tilsvarer gravitasjons kraften, dette er fordi at den har falt til ro og akselerasjonen $\ddot{x}(t)=0$.
+\begin{align*}
+&G_k = f_k \Rightarrow mg = k\Delta x = k(L_1-L_0) \Rightarrow k=\frac{mg}{L_1-L_0} = \underline{5.45}\\
+&T = \frac{2 \pi}{\omega} = \underline{\underline{0.851}}
+\end{align*}
+Maksimal kraft $F_{max}$er når fjæra er på bunn og det er når $t=0$, og minimal kraft $F_{min}$ er når loddet er på topp $t = \frac{T}{2} = \pi$
+\begin{align*}
+&F_{max} = x(t=0) = mg - kAcos(\phi) = mg - kAcos(\frac{\pi}{2}) = \underline{\underline{mg}}\\
+&F_{min} = x(t=\frac{T}{2}) = mg -kAcos(\omega \pi + \phi) = mg - kAcos\left(\frac{3\pi}{2}\right) =  \underline{\underline{mg}}
+\end{align*}
+Når jeg ser bort fra friksjon og luftmotstand er det kun gravitasjonen som virker på loddet under maksimal utslaget. Dette gir mening fordi når loddet er på toppen rett før den beveger seg ned er den i ro og da er det kun gravitasjonen som virker og samme når den er på bunn like før den er på vei opp. 
+
+\subsection{12. Svingende lodd}
+
+Siden dette er ganske likt forrige oppgave bruker jeg samme skisse (figur \vref{3}) for å illustrere bevegelsen og de samme definisjonene jeg ga i starten av oppgaven.
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+&\text{Frekvens}[Hz] = f =  0.40 && \text{Tid}[s] = t = 2  \\
+&\text{Posisjon}[m]= x(t) = 0.024  && \text{Hastighet}[m/s] = -0.16 \\
+\end{align*}
+I denne oppgaven skal jeg finne akselerasjonen $\ddot{x}(t)$ og en matematisk beskrivelse av bevegelsen. 
+Den matematiske beskrivelsen finner jeg ved hjelp av Newtons 2.lov
+$$
+\Sigma F = m\ddot{x}(t) = -kx(t) \Rightarrow \uu{\uu{\ddot{x}(t) =- \omega ^2x(t)}} \text{ hvor } \omega ^2 = \frac{k}{m} 
+$$
+Jeg trenger å vite hva $\omega$ er for å kunne løse denne ligningen. Fordi jeg vet hva frekvensen er kan jeg bruke frekvens-ligningen til å løse dette problemet.
+$$
+f = \frac{\omega}{2\pi} \Rightarrow \omega = f2\pi = 0.8\pi
+$$
+Setter dette inn i det matematiske uttrykket jeg fant for bevegelsen
+
+$$
+\ddot{x}(t) =- \omega ^2x(t) = - (0.8\pi)^20.024 = \uu{\uu{0.1515}}
+$$
+
+\subsection{13. Hvor stort er utslaget (Energi)}
+
+\begin{center}
+\textbf{Definisjoner}
+\end{center}
+\begin{align*}
+&\text{Totalt energi} = E_{tot} = \frac{1}{2}kA^2 [J]&& \text{Kinetisk energi} = \frac{1}{2}m\dot{x}^2[J]\\
+&\text{Potensiell energi} = \frac{1}{2}kx^2 [J] &&\text{Amplitude} = A\\
+&\text{Fjærstivhet/fjærkonstant} = k && \text{Masse} = m
+\end{align*}
+Under denne oppgaven antar jeg at energien er bevart (taper ikke noe energi til ytre omgivelser) og bruker bevaring av energi for å finne svaret. Det har blitt gitt i oppgaven at $E_{kin} = \frac{1}{2}E_{pot}$
+
+\begin{align*}
+&E_{tot} = E_{kin} + E_{pot} = \frac{1}{2}E_{pot} + E_{pot} = \frac{3}{2}E_{pot}\\
+&\frac{1}{2}kA^2 =\frac{3}{2}\left(\frac{1}{2}kx^2\right) = \frac{3}{4}kx^2 \Rightarrow 
+\frac{1}{2}\cancel{k}A^2 = \frac{3}{4}\cancel{k}x^2 \\
+&\uu{\uu{x = \sqrt{\frac{2}{3}}A}}
+\end{align*}
+Dette var det mest rafinerte svare jeg kunne få fra oppgave teksten.
+
+
+\subsection{14. $z(t) = Acos(\omega t + \phi)$}
+
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+&\text{Frekvens}[Hz] = f =  3.0 && \phi = 30\degree = \frac{\pi}{6}  \\
+&\text{Amplitude}[m]= A = 1.2 && 
+\end{align*}
+$$
+z(t) = Acos(\omega t + \phi)
+$$
+Jeg begynner med å finne $\omega$, den finner jeg ved hjelp av frekvens ligningen. $f = \frac{\omega}{2\pi} \Rightarrow \omega = f2\pi = \uu{6\pi}$. 
+Hvis jeg nå setter $ t_1 = \frac{T}{2} = \frac{2\pi/\omega}{2} = \frac{1}{3} $
+Kan jeg løse z(t).
+$$
+z(t_1) = 1.2cos(\frac{6\pi}{3} + \frac{\pi}{6}) =1.2cos(2\pi + \frac{\pi}{6})= \uu{\frac{3\sqrt{3}}{5}}
+$$
+Men jeg skal under denne oppgaven prøve å uttrykke $z(t)$ uten fase ledd, men med kombinsajon av cosinus og sinus og en kompleks beskrivelse av $z(t)$.\\
+For å kunne skrive $z(t)$ uten faseledd må jeg bruke denne trigonometriske identiteten:
+$$
+cos(a\pm b) = cos(a)cos(b) \mp sin(a)sin(b)
+$$
+
+\begin{align*}
+z(t) &= Acos(\omega t + \phi) \\
+&= A[cos(\omega t)cos(\phi) - sin(\omega t)sin(\phi)]\\
+&= [Acos(\phi)] cos(\omega t) + [-Asin(\phi)] sin(\omega t)\\ 
+&= Bcos(\omega t) + Csin(\omega t)
+\end{align*}
+Der $B = Acos(\phi) = \frac{3\sqrt{3}}{5}$ og $C = -Asin(\phi) = - \frac{3}{5}$. Dermed kan jeg skrive z(t) uten faseledd:
+$$
+\uu{\uu{z(t) = Acos(\omega t + \phi) = Bcos(\omega t) + Csin(\omega t)}}
+$$
+For å kontrollere uttrykket mitt løser jeg den for samme $t$:
+$$
+z(t_1) = \frac{3\sqrt{3}}{5}cos(2\pi) -\frac{3}{5}sin(2\pi) = \uu{\frac{3\sqrt{3}}{5}}
+$$
+Ikke uforventet fikk jeg samme svar her. Dermed kan jeg konkludere med at overgangen er korrekt\\ 
+\\
+Det jeg skal gjøre for å gi en kompleks beskrivelse av $z(t)$ er at jeg setter $D = B -iC$ slik at $D_{re} = B$ og $D_{im} = - C$
+
+\begin{align*}
+z(t) &= Bcos(\omega t) + Csin(\omega t) = D_{re}cos(\omega t) - D_{im}sin(\omega t) \\
+&= \Re \Big\{D_{re}cos(\omega t) + iD_{re}sin(\omega t) + iD_{im}cos(\omega t) + i^2D_{im}sin(\omega t)\big]\Big\} \\
+&= \Re \Big\{D_{re}\big[cos(\omega t) + isin(\omega t)\big] + iD_{im}\big[cos(\omega t) + sin(\omega t)\big]\Big\} \\
+&= \Re \Big\{ \big( D_{re}+D_{im}\big) \big(cos(\omega t) + isin(\omega t) \big) \Big\} \\
+&= \Re \left\{De^{i\omega t} \right\} 
+\end{align*}
+For å gi en kompleks beskrivelse av $z(t)$ måtte jeg her anta at $B$ og $C$ var en del av det komplekse tallet $D = B -iC = \frac{3\sqrt{3}}{5} -\left(-i\frac{3}{5}\right) = \frac{3\sqrt{3}}{5} +i\frac{3}{5}$. Med dette kan jeg uttrykke z(t) med de konstantene jeg har blitt gitt:
+$$
+\uu{\uu{z(t) = Re\left\{ \left(\frac{3\sqrt{3}}{5} +i\frac{3}{5}\right)e^{i6\pi t} \right\}}}
+$$
+
+\subsection{15. $z(t) = Asin(\omega t) + Bcos(\omega t)$}
+
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+\text{Amplitude}_1[m]= &A = 1.2 &&  \text{Amplitude}_2[m]= B = 0.7\\
+&\omega =  6\pi && 
+\end{align*}
+Her skal jeg uttrykke $z(t) = Asin(\omega t) + Bcos(\omega t)$ bare med et cosinus-ledd pluss et faseledd, og ved hjelp av komplekse tall. Jeg begynner med å løse z(t=T/2).
+$$
+z(t=T/2) = 1.2sin(2\pi) + 0.7cos(2\pi) = 0.7
+$$
+Jeg kommer til å bruke samme trigonometriske identitet som i forrige oppgave for å gjøre uttrykket om til kun et cosinus-ledd. Fra denne identiteten ser jeg fort at $B = Ccos(\phi)$ og $A = -sin(\phi)$
+
+\begin{align*}
+z(t) &= Asin(\omega t) + Bcos(\omega t) \\
+&= Bcos(\omega t) + Asin(\omega t) \\
+&= Ccos(\phi)cos(\omega t) + \big(-Csin(\phi)sin(\omega t)\big)\\ 
+&= C\big(cos(\phi)cos(\omega t) - sin(\phi)sin(\omega t)\big)\\
+& = Ccos(\omega t + \phi)
+\end{align*}
+For å finne tallverdien på de nye konstantene begynner jeg med å kvadrere summen av $A$ og $B$
+\begin{align*}
+A^2+B^2 &= (-Csin(\phi))^2 + (Ccos(\phi))^2\\ 
+&= C^2(sin^2(\phi)+cos^2(\phi)) \\
+&= C^2 \Rightarrow C=\sqrt{A^2+B^2} = \frac{\sqrt{193}}{10} \simeq 1.389
+\end{align*}
+Jeg deler $A$ på $B$ for å finne $\phi$
+$$
+\frac{A}{B} = \frac{-sin(\phi)}{cos(\phi)} = -tan(\phi) \Rightarrow \phi = -arctan\left(\frac{A}{B}\right) \simeq 1.043
+$$
+Nå som jeg funnet konstantene i mitt nye uttrykk kan jeg regne ut $z(t=T/2)$ som en kontroll.
+$$
+z(t) = Ccos(\omega t + \phi) = \frac{\sqrt{193}}{10}cos(2\pi + 1.043) \simeq 0.7
+$$
+Som forventet ble svarene nesten identiske for de to ligningene. Grunnen til at dem ikke er helt identiske er nok på grunn av tilnærmelsen jeg gjorde når jeg fant $\phi$.
+\\ \\
+Når jeg skal beskrive svingebevegelsen basert på komplekse tall må jeg også gjøre om $A$ og $B$ til kompleksetall. Hvis jeg setter $A = -D_{im}$ og $B = D_{re}$ slik at det komplekse tallet er $D = B - iA = 0.7 - 1.2i$ får jeg:
+
+\begin{align*}
+z(t) &= Bcos(\omega t) + Asin(\omega t) = D_{re}cos(\omega t) - D_{im}sin(\omega t)\\
+&= \Re \Big\{D_{re}cos(\omega t) + iD_{re}sin(\omega t) + iD_{im}cos(\omega t) + i^2D_{im}sin(\omega t)\big]\Big\} \\
+&= \Re \Big\{D_{re}\big[cos(\omega t) + isin(\omega t)\big] + iD_{im}\big[cos(\omega t) + sin(\omega t)\big]\Big\} \\
+&= \Re \Big\{ \big( D_{re}+D_{im}\big) \big(cos(\omega t) + isin(\omega t) \big) \Big\} \\
+&= \Re \left\{De^{i\omega t} \right\}
+\end{align*}
+Om jeg nå setter inn konstantene jeg har kan jeg skrive:
+$$
+z(t) =Re\left\{ (0.7 - 1.2i)e^{i6\pi t}\right\}
+$$
+Som blir den komplekse beskrivelsen av svingebevegelsen.
+
+\begin{center}
+\textbf{Oppsummering}
+\end{center}
+Jeg har vist under oppgaven at jeg kan skrive 
+$$
+ z(t) = Asin(\omega t) + Bcos(\omega t) = Ccos(\omega t + \phi) = \Re \left\{(B-Ai)e^{i\omega t} \right\}
+$$
+Når jeg setter inn konstantene jeg har blir dette:
+$$
+\uu{\uu {z(t) = 1.2sin(6\pi t) + 0.7cos(6\pi t) = \frac{\sqrt{193}}{10}cos(6\pi t + arctan\left(\frac{1.2}{0.7}\right) = \Re \left\{(0.7 - 1.2i)e^{i6\pi t} \right\} }}
+$$
+\subsection{16. Omformere ligninger}
+Her skal jeg omforme 
+$$
+y(t) = Re\big\{ (-5.8 + 2.2i)e^{i\omega t}\big\}
+$$
+til den kommer på formen $y(t) = Acos(\omega t) + Bsin(\omega t)$ og $y(t) = Ccos(\omega t + \phi)$. Først setter definerer jeg det komplekse tallet $D = A - Bi$ som gir meg $A=-5.8$ og $B=2.2$ for en enklere regning. 
+
+\begin{align*}
+y(t) &= \Re \big\{De^{i\omega t} \big\}\\
+&= \Re \big\{(A+iB)(cos(\omega t) + isin(\omega t) \big\}\\
+&= \Re \big\{Acos(\omega t) +iAsin(\omega t) + iBcos(\omega t) +i^2Bsin(\omega t)\big\}\\
+&= \Re \big\{Acos(\omega t) +iAsin(\omega t) + iBcos(\omega t) - Bsin(\omega t)\big\} \\
+&= \Re \big\{ Acos(\omega t) - Bsin(\omega t) + i(Asin(\omega t)+Bcos(\omega t)\big\}\\
+&= Acos(\omega t) - Bsin(\omega t) 
+\end{align*}
+Når jeg fyller inn for konstantene kan jeg skrive uttrykket:
+$$
+\uu{y(t) = Acos(\omega t) - Bsin(\omega t) = -5.8cos(\omega t) - 2.2sin(\omega t)}
+$$
+For å kunne uttrykket dette med et cosinus-og et fase-ledd bruker jeg samme trigonometriske identiteten som i oppgave 14. 
+$$
+cos(a\pm b) = cos(a)cos(b) \mp sin(a)sin(b)
+$$ 
+Så jeg setter $A = Ccos(\phi)$ og $B = -Csin(\phi)$
+\begin{align*}
+y(t) &= Acos(\omega t) - Bsin(\omega t)\\
+&=Ccos(\phi)cos(\omega t) +Csin(\phi)sin(\omega t)\\
+&= C(cos(\phi)cos(\omega t) +sin(\phi)sin(\omega t))\\
+&= Ccos(\omega t - \phi)
+\end{align*}
+Jeg skal nå finne amplituden C. Det gjør jeg ved å kvadrere $A$ og $B$ og tar summen av de.
+\begin{align*}
+A^2+b^2 &= C^2cos^2(\phi) -C^2sin^2(\phi) = C^2(cos^2(\phi) + sin^2(\phi) = C^2\\
+\Rightarrow C &= \sqrt{A^2+B^2} = \sqrt{-5.8^2+2.2^2} = \frac{\sqrt{962}}{5} \simeq 6.20
+\end{align*}
+For å finne fase-leddet deler jeg B på A
+$$
+\frac{B}{A}=-\frac{\cancel{C}sin(\phi)}{\cancel{C}cos(\phi)} = -tan(\phi)
+\Rightarrow \phi = arctan\frac{B}{A} \simeq = 0.36
+$$
+Ved å fylle inn for konstantene jeg har kan jeg skrive uttrykket
+$$
+\uu{y(t) = Ccos(\omega t - \phi) = \frac{\sqrt{962}}{5}cos(\omega t - \phi) \simeq 6.20cos(\omega t - 0.36) }
+$$
+\begin{center}
+\textbf{Oppsummering}
+\end{center}
+Etter at jeg definerte noen konstanter klarte å omforme uttrykket. Så ved at $D = A-iB$ og at $A = Ccos(\phi)$ og $B = -sin(\phi)$ kan jeg skrive:
+$$
+\uu{\uu{y(t) = \Re\big\{ De^{i\omega t}\big\} = Acos(\omega t) - Bsin(\omega t) = Ccos(\omega t - \phi)}}
+$$
+
+\subsection{19. Vis $\frac{dE}{dt} = -bv^2$}
+
+\begin{center}
+\textbf{Definisjoner}
+\end{center}
+\begin{align*}
+&\text{Totalt energi} = E_{tot} = \frac{1}{2}kA^2 [J]&& \text{Kinetisk energi} = \frac{1}{2}m\dot{x}^2[J]\\
+&\text{Potensiell energi} = \frac{1}{2}kx^2 [J] &&\text{Friksjonskraft} = F_f = -bv = -b\dot(x)
+\end{align*}
+Jeg skal vise at 
+$$
+\frac{dE}{dt} = -bv^2
+$$ 
+For å gjøre dette skal jeg bruke produkt-regelen for derivasjon: \\$(uv)' = u'v+uv'$ og Newtons 2.lov for en pendel: $\Sigma F = -kx -b\dot{x} = m\ddot{x}$
+$$E = E_{kin} + E_{pot}$$
+\begin{align*}
+&\frac{dE}{dt}(E_{kin} + E_{pot}) = \frac{d}{dt}(E_{kin})+\frac{d}{dt}(E_{pot})\\
+&= \frac{d}{dt}\left(\frac{1}{2}m\dot{x}^2 \right) \frac{d}{dt}\left( \frac{1}{2}kx^2\right) = \uu{m\ddot{x}\dot{x} + k\dot{x}x}
+\end{align*}
+Nå må jeg finne $\ddot{x}$ og det kan jeg gjøre ved hjelp av Newtons 2.lov.
+$$
+\Sigma F = -kx -b\dot{x} = m\ddot{x} \Rightarrow \uu{\ddot{x} = -\frac{k}{m}x -\frac{b}{m}\dot{x}}
+$$
+Setter dette uttrykket inn i uttrykket jeg har for $\frac{dE}{dt}$
+
+\begin{align*}
+&\frac{dE}{dt} = m\ddot{x}\dot{x} + k\dot{x}x = \cancel{m}\left(-\frac{k}{\cancel{m}}x -\frac{b}{\cancel{m}}\dot{x}\right)\dot{x} + k\dot{x}x\\
+&= \cancel{-k\dot{x}x} -b\dot{x}^2 + \cancel{k\dot{x}x} \Rightarrow \uu{\uu{ \frac{dE}{dt}=-b\dot{x}^2}}
+\end{align*}
+Som er det jeg skulle vise.
+
+
+
+
+
+
+
+\newpage
+
+\begin{thebibliography}{}
+\bibitem{vistnes16} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{forelesning}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{internett}  
+	\url{https://no.wikipedia.org}\\
+	\url{https://snl.no}
+\end{thebibliography}
+
+\end{document}
