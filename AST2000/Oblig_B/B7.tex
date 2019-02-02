@@ -1,0 +1,170 @@
+ 
+\documentclass[12pt,preprint]{aastex6}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage [norsk]{babel} 
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{cancel}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\VEV}[1]{\langle#1\rangle}
+
+\shorttitle{Simulering av solsystemet}
+\shortauthors{K.R. Eikrehagen}
+
+\usepackage{epsfig}
+
+\begin{document}
+
+
+
+\title{Oppgave 1B.7: Simulering av solsystemet}
+
+\author{Kenneth Ramos Eikrehagen}
+\affil{Institute of Theoretical Astrophysics, University of Oslo,
+P.O. Box 1029 Blindern, 0315 Oslo, Galactic Empire} 
+\email{kenneth.eikrehagen@gmail.com}
+
+
+\newpage
+
+\begin{abstract}
+Jeg har laget en enkel simulering av solsystemet jeg fikk utdelt fra UiO. For å gjøre dette har jeg brukt Euler-Cromer's numeriske metode sammen med Newton's andre lov til å løse 2-legeme problemet. Vanligvis vil det være et fler-legeme problem da planetenes gravitasjon virker på hverandre og stjerna. Dette er en enkel simulering så jeg har antatt at kreftene mellom planetene er neglisjerbare, at stjernen er i sentrum(Origo) og at stjernen ikke blir påvirket av gravitasjonskreftene fra planetene. Initialverdiene har jeg fått utdelt og bruker de til å bestemme planetenes start-posisjon og -hastighet. Måtte litt eksperimentering til for å få den ytterste planeten til å fullføre banen sin. 
+\end{abstract}
+
+\begin{figure}
+\includegraphics[width=\textwidth, height=6cm ]{klo.png} 
+\label{6}
+\end{figure}
+
+\section{Introduksjon}
+\label{sect:intro}
+Et solsystem består typisk av en stjerne (sola) og noen ikke-stjerne-legemer som kan være planeter, måner, asteroider, kometer, kosmisk støv etc. som går i bane rundt stjernen. Det antas at de aller fleste stjernene danner et solsystem, det finnes også solsystemer med flere enn 1 stjerne i sentrum av systemet. Da vil begge disse stjernene sirkulere rundt et felles massesenter, sammen med de ikke-stjerne-legemene. I mitt solsystem er det kun en stjerne og 8 planeter. Jeg skal programmere en enkel simulering av dette solsystemet og tolke en enkel visualisering av dette. 
+
+\section{Metode}
+Jeg antar at kreftene mellom planetene er neglisjerbare, at stjernen er i sentrum(Origo) og at stjernen ikke blir påvirket av gravitasjonskreftene fra planetene. Da får jeg et 2-legeme problem jeg må løse numerisk. Jeg må løse dette med hensyn på bevegelses ligningene og bruker derfor Newton's 2.lov. 
+$$F = ma$$ 
+Jeg vet at Newton's gravitasjons lov kan skrives :
+$$F = G\frac{Mm}{r^3}\vec{r} $$
+Hvor G = gravitasjonskonstanten, r = avstand mellom $M_{stjerna}$ og $m_{planet}$ og $\vec{r}$ = posisjons-vektor.
+Setter disse ligningene lik hverandre for å finne et utrykk for akselerasjonen
+\begin{align*}
+\cancel{m}a =  G\frac{M\cancel{m}}{r^3}\vec{r}\\
+a =  G\frac{M}{r^3}\vec{r}
+\end{align*}
+
+Nå kjenner jeg alle initialverdiene til planetene. Jeg skal bruke Euler-Cromer sin metode til å programmere banene til planetene, derfor bruker jeg sammenhengene mellom at akselerasjonen er den tidsderiverte av hastigheten($a=\frac{d\vec{v}}{dt}$). Velger derfor å skrive Newton's 2.lov slik:
+$$F = m\frac{d\vec{v}}{dt}$$ 
+For å få planetene til å gå i bane må jeg jo finne kreftene i x- og y-retning, derfor dekomponerer jeg kreftene slik at :
+\begin{align*}
+F_x = m(\frac{d\vec{v}_x}{dt})\\
+F_y = m(\frac{d\vec{v}_y}{dt})
+\end{align*}
+Bruker dette i Euler-cromer sin numeriske metode for å finne neste posisjon og hastighet til planetene. 
+Den krevende jobben er nå unnagjort og det jeg må gjøre nå er å finne et passende tidssteg og periode slik at planetene mine går i en pen bane rundt stjerna og den ytterste planeten utfører en hel bane. Her må man bare prøve seg frem.
+
+\section{Resultater}
+Mitt solsystem består av 1 stjerne og 8 planeter, jeg brukte initialverdiene som vi fikk oppgitt fra AST2000SolarSystemViewer for å finne start- hastighet og posisjon. Jeg kom også fram til et uttrykk for akselerasjonen og bruker da dette i Euler-Cromer til å iterere de neste stegene til planetene. For å finne tidsstegene og perioden måtte jeg prøve meg frem. Jeg plottet resultatene og såg fort at den ytterste planeten trengte en god del år for å fullføre sin bane, det tok 330 år. Du kan se resultatet plottet på figur \ref{4}, og simulert i ssview på figur \ref{6}. Har også lagt ved et bilde av hjemplaneten min og av en is gigant med hele 8 måner.
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{hjemplanet.png} 
+\caption{Hjemplanet med tilhørende måne}
+\label{7}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{isgigant.png} 
+\caption{En is gigant med 8 måner!}
+\label{8}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.40\linewidth}
+\centering
+\includegraphics[width=\textwidth]{005dt.png} 
+\caption{Solsystem x/y-akse er gitt i [AU] enheter}
+\label{4}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{solsystem.jpg} 
+\caption{Solsystem vist i ssview}
+\label{6}
+\end{minipage}
+\end{figure}
+
+
+
+\newpage
+\section{Diskusjon}
+Som vi kan se av figur \ref{1}, \ref{3} og \ref{2} er det viktig å velge et passende tidssteg for å få en god tilnærming. Vi ser at et for stort tidssteg ga store konsekvenser for de innerste planetene da de i det værste tilfellet endte med å forlate solsystemet. Jeg valgte å gå ned litt etter litt siden et for lite tidssteg vil gjøre koden tregere enn den trenger å være. Ikke før på figur \ref{5} fant jeg et akseptabelt tidssteg.
+
+I koden har jeg også gjort antagelser og tilnærminger slik at resultatet blir urealistisk. I realiteten vil jo stjerna bli påvirket av gravitasjonskraften fra planetene og planetene ville også vært preget av gravitasjon fra hverandre. Hele systemet ville gått i bane rundt et felles massesenteret og ikke rundt stjerna. Hvis jeg skulle tatt dette med i betraktning måtte jeg begitt meg ut på å løse et fler-legeme-problem og det er veldig mye mer utfordrende og faktisk ikke mulig å løse analytisk.
+
+\begin{figure}[h!]
+\begin{center}
+\textbf{Hvordan grafene endrer seg ved forskjellige tidssteg}\par\medskip
+\end{center}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{2dt.png} 
+\caption{Tidssteg = 2år}
+\label{1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{02z.png} 
+\caption{Tidssteg = 0.2år}
+\label{3}
+\end{minipage}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{05dt.png} 
+\caption{Tidssteg = 0.5år}
+\label{2}
+\end{minipage}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{005z.png} 
+\caption{Tidssteg = 0.05år}
+\label{5}
+\end{minipage}
+\end{figure}
+
+\section{Konklusjon}
+Jeg har laget en enkel simulering av solsystemet mitt. Ved hjelp av noen antagelser og tilnærminger klarte jeg å løse 2-legeme-problemet numerisk ved å bruke Newton's 2.lov og Newton's gravitasjons-lov i Euler-Cromer metoden. Dette er ikke en realistisk simulering, da hadde problemet blitt å løse et fler-legemeproblem. 
+
+
+
+
+
+\begin{acknowledgments}
+Takk til gruppelærere og med studenter for nyttige diskusjoner under arbeidet med denne artikkelen. 
+\end{acknowledgments}
+
+
+
+
+\begin{thebibliography}{}
+\bibitem[Hansen (2017)]{part1B} Hansen, F. K.,  2017, Forelesningsnotat 1B i kurset AST2000
+https://snl.no
+
+\end{thebibliography}
+
+
+
+\end{document}

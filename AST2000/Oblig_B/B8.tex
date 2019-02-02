@@ -1,0 +1,164 @@
+\documentclass[12pt,preprint]{aastex6}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage [norsk]{babel} 
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\VEV}[1]{\langle#1\rangle}
+
+\shorttitle{Oppgave 1B.8}
+\shortauthors{K.R. Eikrehagen}
+
+\usepackage{epsfig}
+
+\begin{document}
+
+
+
+\title{Oppgave 1B.8: Satelitt landing}
+
+\author{Kenneth Ramos Eikrehagen}
+\affil{Institute of Theoretical Astrophysics, University of Oslo,
+P.O. Box 1029 Blindern, 0315 Oslo, Galactic Empire} 
+\email{kenneth.eikrehagen@gmail.com}
+
+
+\newpage
+\begin{figure}[ht]
+\includegraphics[width=\textwidth, height = 5cm]{satland.png}
+\end{figure}
+
+\begin{abstract}
+Nå skal jeg prøve å lande en satellitt på en av planetene i mitt solsystem. Jeg antar her at jeg allerede er i bane rundt planeten og er 40 000 km over overflaten. Jeg må finne gravitasjonskraften fra planeten og passe på at friksjonskraften fra atmosfæren på satellitten ikke forårsaker den til å brenne opp føre den lander. For at satellitten skal få en trygg landing må jeg bestemme størrelsen på fallskjermen og inngangs hastigheten. 
+\end{abstract}
+
+\section{Introduksjon}
+\label{sect:intro}
+En gjenstand som kommer inn i en atmosfære har noen utfordringer, de fleste meteorer  som går inn i jordens atmosfære vil brenne opp før de når bakken fordi det oppstår mye friksjonskrefter fra atmosfæren på meteoren som skaper varme. Min satellitt har et varmeskjold som kan tåle en friksjonskraft opptil 25000 N. Fallskjermen som er på satellitten er med på å sørge for at den ikke skal oppnå så høy varme fra friksjon. 
+
+\section{Metode}
+Definisjon på bokstaver jeg bruker i teksten
+\begin{align*}
+&G = \text{ Newtons gravitasjonskonstant} && g = \text{ planetens gravitasjon ved overflaten}\\
+&\rho(h) = \text{ atmosfærisk tetthet som funksjon av høyden}&& A = \text{ Arealet til fallskjermen} \\
+&r = \text{ avstand fra planet til satellitt} && \hat{r} =  \frac{\vec{r}}{r} \\
+& M = \text{ Massen til planeten} && m = \text{ massen til satellitten}\\
+&h = \text{ høyde} && h_{scale}=  \frac{75200}{g} m \\
+\end{align*}
+
+\newpage
+For å få satellitten til å lande på planeten må jeg finne alle kreftene som virker på den. Det virker en gravitasjons kraft $F_G$ fra planeten og en friksjonskraft $F_d$ fra atmosfæren. Da får jeg : 
+$$ F = F_G+F_d$$ 
+$$ F =  G\frac{Mm}{r^2}\hat{r} + \frac{\rho(h) Av^2}{2}$$
+Der $$\rho(h) = \rho_0e^{-\frac{h}{h_{scale}}}$$
+
+Nå kan jeg finne akselerasjonen som påvirker satellitten, siden $F = ma$ får jeg:
+\begin{align*}
+ma &= G\frac{Mm}{r^2}\hat{r} + \frac{\rho(h) Av^2}{2}\\
+a =& G\frac{M}{r^2}\hat{r} + \frac{\rho(h) Av^2}{2m}
+\end{align*}
+
+Satellitten begynner 40 000 km over overflaten, jeg skal selv finne start hastighet og Arealet til fallskjermen. Jeg definerer en xy-akse fra sentrum av planeten, velger derfor å starte der hastigheten kun virker i x retning og akselerasjonen følgelig da kun virker i y retning. Får derfor:
+$$\vec{v} = v_0 \hat{x}, 0$$
+$$\vec{a} = 0 , G\frac{M}{r^3}\vec{r}$$
+For å hjelpe meg med å bestemme en god initial-hastighet finner jeg ut hvilken hastighet som trengs for å holde seg i bane rundt planeten, og deretter en initial hastighet som er lavere enn denne. 
+$$v_0 < v_{bane} = \sqrt{\frac{G*m_{satellitt}}{r}}$$
+Nå har jeg jo initialverdiene og kan da bruke dette direkte i Euler-Cromer metoden for å løse dette numerisk. 
+Heretter må jeg prøve å finne frem til en passelig størrelse på fallskjerm.
+
+\section{Resultater}
+Jeg prøvde å lande på en planet med veldig høy atmosfære. En atmosfærisk tetthet på ca 18 $\frac{kg}{m^3}$, dette medførte at jeg nesten ikke trengte en fallskjerm. Jeg prøvde selvsagt uten men da gikk den i bakken med en hastighet på 21 000 km/t. Men med en initial hastighet på $v_0 = \frac{v_{bane}}{3}$ og en fallskjerm ,med r = 0.5 meter, gikk den ikke engang en halv runde før den landet. Den gikk ca $\frac{1}{5}$ rundt planeten før den dalte ned å traff overflaten med en hastighet på 67 km/t. Doblet jeg arealet på fallskjermen halverte jeg hastigheten satellitten traff overflaten med, 33,6km/t. Dette anser jeg som en vellykket landing! Som vi kan se ve figurene under:
+
+\begin{figure}[ht]
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{A=05v=1000.png}
+\caption{$v_0 = 3600 km/t$, Areal fallskjerm = 1 m}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{A=05v=1500.png}
+\caption{$v_0 = 5400 km/t$, Areal fallskjerm = 1 m}
+\label{fig:figure2}
+\end{minipage}
+\end{figure}
+
+Vi kan se at den får en økning i hastighet før den stoppen omtrent helt opp og daler ned. Selv om jeg øker initial-hastigheten skjer det samme. Jeg tror det kan ha noe med at når satellitten kommer inn i planetens atmosfære blir den bremset så kraftig ned at den rett å slett stopper opp og det er kun gravitasjonen som virker. Jeg prøvde med en større fallskjerm kun får å få ned hastigheten ved landing. ser samme tendens der.
+
+\begin{figure}[ht]
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{A=1v=1000.png}
+\caption{$v_0 = 3600 km/t$, Areal fallskjerm = $2\pi1^2$ m}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{A=1v=1500.png}
+\caption{$v_0 = 5400 km/t$, Areal fallskjerm = $2\pi1^2$ m}
+\label{fig:figure2}
+\end{minipage}
+\end{figure}
+
+Jeg ble litt nysgjerrig å prøvde en annen planet for å utelukke om det er koden det kan være noe galt med. Valgte da en planet med en atmosfære lik jorden.
+
+\begin{figure}[ht]
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{jord_A=10v=2700.png}
+\caption{$v_0 = 9700 km/t$, Areal fallskjerm = $2\pi10^2$ m}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{jord_A=20v=2500.png}
+\caption{$v_0 = 9000 km/t$, Areal fallskjerm = $2\pi20^2$ m}
+\label{fig:figure2}
+\end{minipage}
+\end{figure}
+
+Som vi kan se så trenger jeg en mye større fallskjerm her for at landingen skal gå som planlagt, selv med en fallskjerm med A=  $2\pi20^2$ m når satellitten bakken med en hastighet på ca $2.5*10^4 km/t$ Jeg ville se hva som  kom til å skje hvis jeg hang på 15 fallskjermer med A = $2\pi20^2$. Hastigheten var fortsatt stor (470 km/t). Da jeg sjekket for gravitasjons akselerasjonen på denne planeten var den på $12 m/s^2$. Gravitasjons akselerasjonen på den forrige planeten var på kun $3.2m/s^2$, til sammenlikning er gravitasjons akselerasjon på jorda $9.8 m/s^2$
+
+\section{Diskusjon}
+Ved denne simuleringen er fallskjermen utløst under hele hendelsen. Dette vil jo forårsake et problem siden fallskjermen blir jo hele tiden utsatt for en enorm kraft som både materialet den er laget av, det den er festet med og festet til skal tåle. Jeg har også antatt at jeg har kommet meg vel frem til planeten og kan starte landingen ved 40 000 km over overflaten. Det er mye som kunne ha skjedd før jeg hadde kommet frem til planeten jeg skulle landet på.
+
+Tiltross for den store tettheten til atmosfæren er gravitasjons akselerasjonen liten(3.2 $m/s^2$), men jeg er skeptisk til at satellitten min vil tåle trykket den vil bli påført ved overflaten av planeten. Ved å sammenligne tettheten til atmosfæren på jorden, til tettheten til atmosfæren på planeten jeg landet på er differansen ca 17 $\frac{kg}{m^3}$. Om det likevel hadde vært mulig hadde det vært veldig lærerikt å sett hvordan det er på overflaten av denne planeten med en atmosfære med så høy tetthet og en liten gravitasjons akselerasjon.
+
+\section{Konklusjon}
+Det er en bra tilnærming til en situasjon der jeg har kommet meg til planeten og faktisk skal lande satellitten. Resultatene fra denne simuleringen kan være med å bestemme om et slikt oppdrag hadde vært gjennomførbart eller ikke, om vi kommer fram til planeten. For eksempel er det bra å vite hvilken vinkel man bør treffe atmosfæren med og hastighet en bør regne med å ha før man begynner landingen, slik at man kan få en så skånsom landing som mulig.
+
+
+
+
+\begin{acknowledgments}
+Takk til gruppelærere og med studenter for nyttige diskusjoner under arbeidet med denne artikkelen. 
+\end{acknowledgments}
+
+
+
+
+\begin{thebibliography}{}
+\bibitem[Hansen (2017)]{part1B} Hansen, F. K.,  2017, Forelesningsnotat 1B i kurset AST2000
+https:snl.no
+
+\end{thebibliography}
+
+
+
+
+
+
+\end{document}
