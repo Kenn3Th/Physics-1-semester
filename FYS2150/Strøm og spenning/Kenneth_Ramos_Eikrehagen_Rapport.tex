@@ -1,0 +1,370 @@
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{varioref}
+
+\bibliographystyle{plain}
+
+\title{Strøm og spenning}
+\author{Kenneth Ramos Eikrehagen}
+\date{\today}
+\begin{document}
+
+\renewcommand{\abstractname}{\large Sammendrag}
+\renewcommand{\contentsname}{\LARGE Innhold}
+\renewcommand{\listfigurename}{\Large Figur liste}
+\renewcommand{\listtablename}{\Large Tabell liste}
+
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+
+\begin{abstract}
+Målet med de eksperimentene jeg gjorde i denne oppgaven var å gjøre seg kjent med de viktigste metodene for måling av elektriske størrelser. Vi gjorde oss kjent med en AD-omformer, to forskjellige multimeter og motstander, et breadboard, variabel spenningskilde og en termistor. Jeg oppdaget at et multimeter følger Ohms lov til å beregne strøm $I$ eller motstand/resistans $R$. Hvordan man kobler sammen krets for å måle spenningen over en motstand og strømmen gjennom den har noe å si. Er resistansen i motstanden liten trenger man kun koble voltmeteret over motstanden, er den stor derimot bør man koble voltemeteret over motstand og ampermeteret for å måle korrekt strøm igjennom motstanden. Det siste jeg oppdaget var at en termistor fungerer slik at motstanden øker/synker med temperaturen den blir utsatt for. 
+\end{abstract}
+
+\section{Introduksjon}
+Hensikten med de eksperimentene som ble utført her var å gjøre seg kjent med de forskjellige måleinstrumentene for å måle elektriske størrelser. Det ble fokusert på å kunne koble eksperimentene riktig for å gjøre nøyaktige målinger. Jeg så både på like-strøm og spenning samt veksel-strøm og spenning. Jeg fikk jobbe med breadboard, termistor, stasjonær multimeter (Fluke45), handholdt multimeter (Fluke75), motstander med 10$[\Omega]$ og 1$[M\Omega]$ og PC med AD-omformer (NI USB-6211). Under alle disse eksperimentene var Eirik Frøili min lab
+
+
+\section{Teori}
+For å kunne forstå hvordan et multimeter eller annen elektrisk instrument fungerer er det alltid viktig å ha Ohms lov: 
+\begin{equation}
+I = \frac{U}{R}
+\label{ohm}
+\end{equation}
+der $I$ er strømmen gjennom lederen målt i Ampere $[A]$, $U$ er spenning over lederen målt i Volt $[V]$ og $R$ er motstanden eller resistansen med enhet $[\Omega]$ Det er også kjekt å ha ligningen for effekt i et gitt elektrisk system.
+\begin{equation}
+P = U*I = \frac{U^2}{R}
+\label{effekt}
+\end{equation}
+Hvor $P$ er effekt, $U$ er spenning, $I$ er strøm og $R$ er resistans. \\
+
+En AD-omformer konverterer analogesignaler til digitalesignaler fra f.eks en mikrofon til en pc. Følsomheten til en slik omformer avhenger av den maksimale amplituden $U_{max}$. En AD-omformer med $U_{max} = \pm 5[V]$ og en oppløsning på 8 bits har en følsomhet på $\Delta U_{AD} = \frac{10}{2^8}[V]$ (\cite{grl}). AD-omformeren vi brukte var en dataakvisisjonsboks (DAQ) ved navn NI USB-6211 \\
+
+Et breadboard er ett brett med mange forskjellige innganger man kan koble elektriske dubeditter og det brukes til prototyping av elektronikk(\cite{wiki}). Jeg brukte dette til å måle resistansen til motstandene jeg hadde, og for å se på automatiserte målinger med en termistor. En termistor er en elektronisk komponent som endrer motstand med temperaturen (\cite{wiki})\\
+
+Multimeter er et måleinstrument der man kan måle flere forskjellige verdier innen elektrisitet. I denne oppgaven brukte jeg slike multimeter til å måle strøm, spenning og motstand. 
+
+\section{Eksperimentelt}
+
+
+\begin{figure}[h!]
+	\begin{minipage}[b]{\linewidth}
+	\centering
+  	\includegraphics[width = 40mm, angle = 90]{Spenningvsmotstand.jpg}
+  	\caption[Spenning vs motstand]{Skisse av hvordan vi koblet sammen apparatene for å måle spenning vs motstand, og strøm mot spenning. Når vi målte andre veien satt vi Fluke75 på [V] og Fluke45 på $[\Omega]$. Svart ledning illustrer jording}  	
+	\label{sp}
+	\hspace{0.5cm}
+  	\end{minipage}
+	\begin{minipage}[b]{\linewidth}
+	\centering
+  	\includegraphics[width = 40mm, angle = 90]{stromvsmotstand.jpg}
+  	\caption[Strøm vs motstand]{Skisse av hvordan vi koblet sammen apparatene for å måle strøm 
+	vs motstand. Når vi målte andre veien satt vi Fluke75 på 100 [mA] og Fluke45 på $[\Omega]$. 
+	Svart ledning illustrer jording}
+  	\label{sr}
+  	\end{minipage}
+ \end{figure}
+ 
+Første eksperimentet jeg utførte var med 2 multimeter og innebar å måle strøm og spenning mot resistansen (motstand) og spenning mot strøm i dem. For å gjøre dette koblet vi multimeterene sammen som illustrert på figur \vref{sp} og figur \vref{sr}. Med Fluke45 kunne vi endre på følsomheten fra 1 desimal til 3 desimal så vi noterte ned resultatene fra de forskjellige følsomhetene når vi målte med dette multimeteret. Fluke75 hadde bare en gitt følsomhet. Usikkerhetene til disse multimeterene kan du se på figur \vref{F45}, \vref{F45DCA}, \vref{F45DCV} og figur \vref{F75}.\\
+ 
+ \begin{figure}[h!]
+ 	\begin{minipage}[b]{0.45\linewidth}
+		\centering
+  		\includegraphics[width = \textwidth]{fluke45.jpg}
+  		\caption[Breadboard og Fluke45]{Skisse av oppsett ved måling av resistansen R med Fluke45. R ble skiftet fra 10$[\Omega]$ og 1$[M\Omega]$}  	
+		\label{bf45}
+ 	\end{minipage}
+ 	\hspace{0.5cm}
+ 	\begin{minipage}[b]{0.45\linewidth}
+		\centering
+  		\includegraphics[width = \textwidth]{fluke75.jpg}
+  		\caption[Breadboard og Fluke75]{Skisse av oppsett ved måling av resistansen R med Fluke75. R ble skiftet fra 10$[\Omega]$ og 1$[M\Omega]$}  	
+		\label{bf75}
+	\end{minipage}
+\end{figure}
+\begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[height = 80mm, width = 80mm, angle = 270]{motstandfluke45.jpg}\\
+  	\caption[Skisse av krets]{Skisse av hvordan vi koblet sammen kretsen, vi målte spenning over resistansen og strømmen gjennom kretsen}
+  	\label{krets}
+  	\end{center}
+ \end{figure}
+ 
+Eksperiment 2 var med to motstander $R_1 = 10[\Omega]$ og $R_2 = 1[M\Omega]$ og et multimeter. Gjennomførte eksperimentet med både Fluke75 og Fluke45. Hvordan vi koblet sammen denne kretsen er skissert i figur \vref{bf45} og figur \vref{bf75}. Vi utførte første måling med Fluke75 og noterte ned dataene vi fikk samt relevant usikkerhet vi fant i databladet (\vref{F75}) deretter gjentok vi forsøket med Fluke45. \\
+
+Tredje eksperiment så koblet vi sammen en krets hvor vi målte spenningen over en motstand og strømmen igjennom kretsen. Du kan se oppsettet skissert i figur \vref{krets}. Vi brukte en spennings kilde der vi kunne justere hvor mye spenningen den ga systemet. Det var viktig her å regne ut på forhånd hvor mye maksimal spenning vi kunne påtrykke systemet slik at vi ikke brant motstanden og/eller kortsluttet systemet. Denne spenning fant vi ved hjelp av ligning \vref{effekt} og kunne derfor med sikkerhet holde oss innenfor denne grensen. \\
+\begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[height = 80mm, width = 80mm, angle = 270]{termistor.jpg}\\
+  	\caption[Skisse av krets med termistor]{Skisse av hvordan vi koblet sammen en spenningskilde, AD-omformer og en termistor ved hjelp av et breadboard}
+  	\label{termistor}
+  	\end{center}
+ \end{figure}
+ 
+Siste eksperimentet vi gjorde var med en termistor, AD-omformer (NI USB-6211), et breadboard og en spennings kilde. Vi koblet det sammen som skissert i figur \vref{termistor}. Først testet vi termistoren uten noen berøring for å se om målingene var konstant og om det eventuelt var en systematisk feil tilstedet. Andre forsøket så berørte vi termistoren med fingeren får å se hvordan den detekterer varme, og hvor konsis den var. 
+
+\newpage
+
+\section{Resultater}
+
+De første resultatene er fra målinger gjort av strøm mot resistans med de to multimeterne koblet sammen. Dataene der Fluke75 måler resistansen og Fluke45 måler strømmen er i tabell \vref{F75vsF45}. Strømmen Fluke75 målte i Fluke45 ser du i tabell \vref{F45I}. Når vi byttet om så kunne vi endre på følsomheten vi målte resistansen. Tabell \vref{300mA} viser de forskjellige følsomheten med når strømmen var koblet til 300[mA]. Tabll \vref{10A} viser følsomhetene når strømmen var koblet til 10[A]. Usikkerheten jeg nevner gjelder det siste gjeldene sifferet. Det ble observert at resistansen plutselig hoppet til 0.281 for 10[A]
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[F75 vs F45 Strøm mot resistans]{Fluke75 måler resistans og Fluke45 måler strøm}
+  		\begin{tabular}{|c|c|c|} \hline
+  		\textbf{Størrelse}&\textbf{Strøm $I$} &\textbf{Resistans $R$ [$\Omega$]} \\ \hline
+  		 10 [A] & 0& 0.02  $\pm$ 1\\
+  		100 [mA] &0.5497$\pm$1 & 11.2 $\pm$ 1 \\ \hline
+  		\end{tabular}
+  	\label{F75vsF45}
+\end{table}
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[Strøm i F75 målt med F45]{Fluke45 måler resistans og Fluke75 måler strøm}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Størrelse}&\textbf{Strøm $I$ [mA]} \\ \hline
+  		 10 [A] & 0.01 $\pm$1 \\
+  		300 [mA] &0.076$\pm$1 \\ \hline
+  		\end{tabular}
+  	\label{F45I}
+\end{table}
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[Følsomhet i F45 med 300mA ]{Fluke45 måler resistans $R$ og Fluke75 måler strøm $I$. Denne tabellen viser når vi har koblet til inngangen 300[mA] i Fluke45}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Følsomhet} &\textbf{Resistans $R$ [$\Omega$]} \\ \hline
+  		1 desimal & 6.4  $\pm$ 1\\
+  		2 desimal & 6.45$\pm$1 \\
+		3 desimal &  6.443 $\pm$1\\ \hline
+  		\end{tabular}
+	\label{300mA}
+\end{table}
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[Følsomhet i F45 med 10A ]{Fluke45 måler resistans $R$ og Fluke75 måler strøm $I$. Denne tabellen viser når vi har koblet til inngangen 10[A] i Fluke45}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Følsomhet} &\textbf{Resistans $R$ [$\Omega$]} \\ \hline
+  		1 desimal & 0.2  $\pm$ 1\\
+  		2 desimal & 0.26$\pm$1 \\
+		3 desimal &  0.252 $\pm$2\\ \hline
+  		\end{tabular}
+	\label{10A}
+\end{table}
+
+De neste resultatene er fra når vi målte spenning mot resistans med multimeterne var koblet sammen. Dataene der Fluke75 måler resistans og Fluke 45 måler spenning ser du i tabell \vref{F75r}, og omvendt ser du i tabell \vref{F45r}
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[F45 - spenning vs F75 - resistans ]{Fluke75 måler resistans $R$ og Fluke45 måler spenning $U$}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Volt} &\textbf{Resistans $R$ [$\Omega$]} \\ \hline
+  		0.7273 $\pm$1 & 0.9  $\pm$ 1\\ \hline
+  		\end{tabular}
+	\label{F75r}
+\end{table}
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[F75 - spenning vs F45 - resistans  ]{Fluke45 måler resistans $R$ og Fluke75 måler spenning $U$}
+  		\begin{tabular}{|c|c|c|} \hline
+  		\textbf{Følsomhet} &\textbf{Spenning [V]} &\textbf{Resistans $R$} \\ \hline
+  		1 desimal & 11.1 $\pm$ 0.05 &1$[M\Omega]$\\
+  		2 desimal & 11.00 $\pm$1 &1$[M\Omega]$ \\
+		3 desimal & 11.096 $\pm$1 &1$[M\Omega]$ \\ \hline
+  		\end{tabular}
+	\label{F45r}
+\end{table}
+
+Vi fikk utdelt to motstander $R_1 = 10[\Omega]$ og $1[M\Omega]$. Resultatene jeg fikk når jeg målte resistansen over disse motstandene finner du i tabell \vref{F75rr} og \vref{F45rr}.\\
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[F75 måler resistans over motstand]{Fluke75 måler resistans $R$ over motstandene vi har fått utdelt}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Resistans $R$} &\textbf{Målt resistans [$\Omega$]} \\ \hline
+  		$R_1$ & 10.4 $\pm$0.054 \\ 
+		$R_2$ & $0.998 *10^6$ $\pm$ $5*10^{3}$ \\ \hline
+  		\end{tabular}
+	\label{F75rr}
+\end{table}
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[F45 måler resistans over motstand]{Fluke45 måler resistans $R$ over motstandene vi har fått utdelt}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Resistans $R$} &\textbf{Målt resistans [$\Omega$]} \\ \hline
+  		$R_1$ & 10.262 $\pm$ 0.025\\ 
+		$R_2$ & $0.9994*10^6$ $\pm$ $5.997*10^2$\\ \hline
+  		\end{tabular}
+	\label{F45rr}
+\end{table}
+
+Da vi skulle måle spenning over en motstand og strømmen igjennom den vart det opplyst om at motstandene vi brukte ikke tålte mer en 0.25 Watt. Vi brukte ligning \vref{effekt} for å finne maksimal spenning vi kunne påtrykke kretsen for å holde oss innen for denne grensen. Denne grensen ser du i tabell \vref{Umax}. Målingen vi gjorde med denne kretsen ser du i tabell \vref{SMS}. Tabell \vref{forskjell} viser hvordan resistansen endret seg, utregning av resistansen ble gjort med ligning \vref{ohm} og verdiene av spenning og strøm er de som er nevnt i tabell \ref{forskjell}.
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[Maks spenning]{De maksimale verdiene vi fant at spenningen kunne ha}
+  		\begin{tabular}{|c|c|} \hline
+  		\textbf{Resistans, $R[\Omega]$} &\textbf{Maks spenning, $U_{max}[V]$} \\ \hline
+  		$R_1 = 10 $ &  1.6 \\ 
+		$R_2 =1 M$ &  500 \\ \hline
+  		\end{tabular}
+	\label{Umax}
+\end{table}
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[Spenning over motstand og strøm igjennom]{Data fra spenning målt over motstanden 
+	 og strømmen igjennom den}
+  		\begin{tabular}{|c|c|c|c|} \hline
+  		\textbf{Spenning inn, $V_i[V]$} &\textbf{Spenning over motstand, $V_R[V]$} 
+		&\textbf{Strøm $I[mA]$}&\textbf{Resistans $R[\Omega]$} \\ \hline
+  		1 &  -0.780 & 76.520 $\pm$2 &10\\ 
+		1 &  -1.334 & 0.0012 &1M\\ 
+		2 &  -2.304 & 0.0023 &1M\\ 
+		5 &  -5.530 & 0.0059 &1M\\ 
+		10 & -10.530 & 0.0114 &1M\\ 
+		15 & -15.300 & 0.0167 &1M \\ \hline
+  		\end{tabular}
+	\label{SMS}
+\end{table}
+
+\begin{table}[h!]
+ 	 \centering
+ 	 \caption[$\Delta \Omega$]{Forandring av resistansen i den største motstanden ved økt 
+	 spenning.}
+  		\begin{tabular}{|c|c|c|} \hline
+  		\textbf{Spenning $[V]$} &\textbf{Strøm[mA]}&\textbf{Resistans$[M\Omega]$} \\ \hline
+  		1.334& 0.0012 & 1.1 \\ 
+		2.304& 0.0023 & 1\\
+		5.53& 0.0059 & 0.937\\
+		10.53& 0.0114 & 0.924 \\
+		 15.3& 0.0167 & 0.916 \\ \hline
+  		\end{tabular}
+	\label{forskjell}
+\end{table}
+
+Når vi gjorde forsøke med termistoren satt vi verdien til den motstanden($R_2$) til det vi målte den til å være som vist i tabell \vref{F45r}. Grafene vi fikk kan du se i \vref{uberoring}, \vref{mberoring} og \vref{moguberoring}. 
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 100mm, angle = 90]{utenberoring.jpg}\\
+ 	\caption[Termistor uten berøring]{Denne grafen viser hvor konstant termistoren vi brukte var. 
+	Termistoren vi brukte ble utsatt for fuktighet dette gjør at det ble større spredning av punktene, 
+	som gjør at presisjonen ble dårligere.}
+	\label{uberoring}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \textwidth]{medberoring.jpg}\\
+ 	\caption[Termistor med berøring]{Denne grafen viser hvordan termistoren øker resistansen med 
+	temperaturen. Tid langs x-aksen og [kOhm] langs y-aksen}
+	\label{mberoring}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \textwidth]{moguberoring.jpg}\\
+ 	\caption[Termistor etter beroring]{Denne grafen viser hvordan termistoren senker resistansen 
+	med temperaturen. Tid langs x-aksen og [kOhm] langs y-aksen}
+	\label{moguberoring}
+	\end{center}
+\end{figure}
+
+\newpage
+%\begin{figure}
+%\begin{center}
+ % \includegraphics[width = 80mm]{liteneksempelfigur.png}\\
+%  \caption{Eksempel på figur som har blitt gjort ganske liten på skjermen i Matlab da den ble lagret, og som derfor er lett å lese i rapporten. }\label{fig:Matlabliten}
+%  \end{center}
+%\end{figure}
+
+\section{Diskusjon}
+Hvordan multimeterene målte strøm, spenning og motstand til hverandre sto til forventningene. De kjenner begge sin egen motstand og ved hjelp av Ohms lov (ligning \ref{ohm}) kan de regne ut strøm eller motstand(resistans). Dette kan de gjøre siden de måler spenningen de selv blir påtrykt. Fluke45 blir koblet direkte i stikkontakten og har derfor en høyere spenning. Det er vanligvis 240 [V] ut i fra en stikkontakt i Norge. Hvor mye spenning stikkontakten vi brukte tilførte multimeteret målte vi dessverre ikke. Med bakgrunn av dette så er det forventet at spenningen vi målte fra Fluke45 til å være større enn den i Fluke75. Fluke75 bruker et 9[V] batteri. Dette stemte overens med målingene vi gjorde. Det samme kan forklare hvorfor vi målte høyere strøm i Fluke45 i forhold til Fluke75.
+
+Når vi skulle måle strøm mot spenning var det ingen av apparatene som klarte å måle noe. Årsaken til dette er at et multimeter bruker Ohms lov til å beregne strømmen og er derfor avhengig av å måle en resistans. Var heller ikke noe utslag når vi prøvde å måle vekselstrøm(AC), som ikke er noe rart siden ingen av apparatene vi brukte er i stand til å levere dette.
+
+Fluke45 har en høyere nøyaktighet enn Fluke75, den er dessuten større enn en Fluke75 og blir derfor begrenset til kun å måle strøm, spenning eller motstand der den blir plassert. Fluke75 kan man derimot ta meg seg å måle strøm, spenning eller motstand på forskjellige steder uten å måtte sette opp apparatet for hvergang. \\
+
+Vi så at det har endel å si hvordan man kobler sammen et voltmeter og ampermeter hvis man skal måle spenningen over en motstand og strømmen igjennom den samtidig. Når spenningen blir høy ser man en forandring i resistansen, det vi la merke til er at strømmen vi målte ble større slik at resistansen vi regnet ut ble mindre(Se tabell \vref{forskjell}). Dette er nok fordi resistansen i voltmeteret ikke er stor nok til at alle elektronene velger å gå gjennom motstanden, og noen går også gjennom voltmeteret. I teorien har alltid et uendelig stor motstand, men i praksis er det foreløpig ikke mulig å oppnå en uendelig stor motstand i et voltmeter. For å få en mer korrekt måling av strømmen igjennom motstanden skulle vi ha koblet voltmeteret over både motstanden og ampermeteret.\\
+
+Breadboard gjorde det enkelt å måle resistansen over motstandene vi hadde fått utdelt. Det viste seg at motstandene vi hadde fått utdelt ikke hadde eksakt den oppgitte verdien(Se tabell \ref{F75rr} og \vref{F45rr}). De har blitt avrundet til det nærmeste heltallet.
+
+Når vi skule prøve ut termistoren brukte vi den største motstanden vi hadde fått utdelt og oppga den eksakte verdien vi fant i et MATLAB skript på en pc med en AD-omformer. Når vi skulle utførte målingene så testet vi ut termistoren litt og ville se hvordan den reagerte hvis den ble utsatt for en lavere temperatur og valgte å legge den i et glass med kaldt vann. Det viste seg at den termistoren vi hadde ikke var beregnet for å tåle vann, dette medfører dermed at våre målinger har en tilfeldig feil vi påførte og dermed er ikke målingene våre like presist som det ellers ville vært. Resultatet av at den ble utsatt for vann og dermed økte spredningen i dataen ser man tydelig på figur \vref{uberoring} der den egentlig skulle være stabil. Vi ser at etter 10 sekunder så stabiliserte den seg innenfor et intervall [24.1,24.25] $[k\Omega]$. Jeg syntes likevel at resultatet av hvordan den oppfører seg med berøring av en varm finger er tilfredstillende, presisjonen er fortsatt god. Se figur \vref{mberoring}. Vi så også på hvordan termistoren oppførte seg hvis vi sluttet å tilføre varme. Som vi ser på \vref{moguberoring} at den synker logaritmisk (ligner en -ln(x) kurve \cite{snl}
+
+
+
+
+\section{Konklusjon}
+Vi kom fram til at multimeterene kjenner sin egen motstand og kan måle hvor stor spenning den blir påtrykt og bruker dette til å regne ut strømmen ved hjelp av Ohms lov (ligning \vref{ohm}). Hvis multimeteret skal måle hvor mye motstand et annet objekt har regner den først ut strømmen som nevnt over og deretter anvender Ohm lov for å finne resistansen. 
+
+Fluke45 som er et stasjonært multimeter som har en høyere nøyaktighet. Dette apparatet vil derfor passe best til å måle strøm, spenning eller motstand i andre elektriske objekter. Fluke75 som er et handholdt multimeter har mindre nøyaktig men siden det er handholdt passer det perfekt til jobber der man trenger et mobilt-multimeter. Elektriker yrke er et eksempel på hvor man har stor nytte av et mobilt-multimeter. 
+
+Breadboard er et veldig praktisk verktøy man kan bruke til prototyping og testing av elektriske komponenter og hvordan de fungerer. 
+
+En AD-omformer er med på å gjøre det lettere å tolke elektriske signaler grafisk, selv om noe av nøyaktigheten blir borte når man gjør om et analogt signal til et digitalt signal. Dette er fordi en computer bare har et endelig antall siffer den kan bruke for å kompilere data. Et slikt verktøy blir ofte brukt i sammenheng med lydsignaler. 
+
+En termistor kan være praktisk hvis man trenger å måle temperatur. Et bruksområde er i bilindustrien der de blir brukt til f.eks å måle kjølevæske temperaturen til bilen. Blir temperaturen i kjølevæsken for høy betyr det at det kan være noe defekt med motoren (defekt topppakning, lekkasje i kjølesystemet etc) 
+
+\begin{figure}
+	\begin{minipage}[c]{\textwidth}
+		\caption[Usikkerhet i $\Omega$ Fluke45]{Usikkerheten i måling av resistansen}  
+  		\includegraphics[width = \textwidth]{Fluke45}	
+		\label{F45}
+  	\end{minipage} 
+	\begin{minipage}[c]{0.5\textwidth}
+		\caption[Usikkerhet i Volt Fluke45]{Usikkerheten i måling av spenning}  
+  		\includegraphics[height=6cm ,width = \textwidth]{DCV}	
+		\label{F45DCV}
+  	\end{minipage} 
+	\hspace{0.5cm}
+	\begin{minipage}[c]{0.5\textwidth}
+		\caption[Usikkerhet i Ampere Fluke45]{Usikkerheten i måling av strøm}  
+  		\includegraphics[height = 6cm,width = \textwidth]{DCA}	
+		\label{F45DCA}
+  	\end{minipage} 
+\end{figure}
+ 
+\begin{figure}
+\caption{Usikkerhet i Fluke75} 
+\includegraphics[width = \textwidth]{Fluke75} 	
+\label{F75}
+\end{figure}
+
+\begin{thebibliography}{}
+\bibitem{squires} 
+	G.L.Squires
+	\textit{Practical physics}
+	fourth edition
+	2001
+\bibitem{grl}
+	Stor takk til laboratorie-assistenter
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}  
+	\url{https://snl.no}
+\bibitem{youtube}  
+	\url{https://www.youtube.com}\\
+\end{thebibliography}
+
+
+
+
+
+\end{document}
