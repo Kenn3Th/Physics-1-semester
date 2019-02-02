@@ -1,0 +1,186 @@
+ 
+\documentclass[12pt,preprint]{aastex6}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage [norsk]{babel} 
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\VEV}[1]{\langle#1\rangle}
+
+\shorttitle{Oppgave 1A.6}
+\shortauthors{K.R. Eikrehagen}
+
+\usepackage{epsfig}
+
+\begin{document}
+
+
+
+\title{Oppgave 1A.6: En forenklet kode for rakettmotor}
+
+\author{Kenneth Ramos Eikrehagen}
+\affil{Institute of Theoretical Astrophysics, University of Oslo,
+P.O. Box 1029 Blindern, 0315 Oslo, Galactic Empire} 
+\email{luke@astro.uio.galemp}
+
+\newpage
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth, height = 3cm]{rakett.png}
+\end{figure}
+
+\begin{abstract}
+Jeg har laget en forenklet simulering av en rakett som forlater en planet. Denne planeten befinner seg i et solsystem jeg har fått utdelt av UiO. Det jeg har simulert er motoren til raketten, og jeg har tatt hensyn til at denne simuleringen skal kunne drives av en vanlig laptop. Det innebærer at jeg må gjøre noen tilnærminger og antagelser som f.eks at summen av mange små motorer er tilnærmet lik en stor motor. Så det jeg gjorde var å lage en motor av en liten boks med et hull i bunn, og antok at at alle partiklene i boksen er hydrogen molekyler ($H_2$) med en konstant temperatur $T = 1000[k]$, og at det er $10^5$ partikler i boksen. Partiklene vil strømme ut av hullet i bunn av boksen og jeg kan dermed beregne kraften dette gir ved hjelp av tapt bevegelsesmengde, som medfører at jeg også fant akselerasjonen en liten motor (boks) gir.
+Ved hjelp av denne ligningen $v = \sqrt{\frac{2GM}{r}}$ finner jeg utslippnings hastigheten. Jeg vet hvor mye akselerasjon en boks gir, jeg vil at raketten skal forlate planeten innen 20 minutter, jeg har funnet utslippnings hastigheten, og jeg ser bort ifra alle andre krefter og parametere (luftmotstand, at raketten endrer vekt, etc.), med all denne informasjon kan jeg finne hvor mange bokser jeg trenger for at raketten min oppnår dette. 
+\end{abstract}
+
+\section{Introduksjon}
+\label{sect:intro}
+Den første moderne raketten ble oppfunnet på starten av 1900 tallet. En russiske skolelæreren Konstantin Tsiolkovsky (1857-1935) foreslo i 1898 en utforskning av verdensrommet ved hjelp av raketter. Amerikaneren Robert H Goddard (1882-1945) gjennomførte praktiske eksperimenter basert på denne ideen. I en rapport fra 1920 hevdet Goddard at man med hjelp av raketter ville kunne bli i stand til å reise til månen. Goddard gjennomførte den den første oppskytningen av en rakett med flytende brennstoff i 1926. Den fløy kun i to og et halvt sekund, men den virket. Goddard kan derfor bli kalt den moderne rakettens far.
+
+4. oktober 1957 ble Sputnik 1 sent opp i verdensrommet, dette var første gang mennesket hadde klart å sende en satellitt ut i rommet og 20. juli 1969 landet Apollo med Neil Armstrong og Buzz Aldrin som de første mennesker på månen. \\
+
+Vi har fått utdelt et solsystem av UiO. Mitt solsystemet består av en stjerne og 8 planeter. Jeg har foreløpig kun etterforsket min egen hjem-planet som er den første planeten i dette systemet. Denne planeten har en radius på $7803.61$ km og er $1.1*10^{25}$ kg ($5.5*10^{-6}$[solmasse]) tung. Jeg skal prøve å lage min egen Sputnik 1 og sende en satellitt ut i rommet fra min hjem-planet.   
+
+Jeg skal ta hensyn til at dette skal simuleres på en laptop, så ved hjelp av noen antagelser og tilnærminger skal jeg sende Sputnik ut i rommet. Jeg må finne unslippnings hastigheten til planeten min og konstruere en motor som kan oppnå denne hastigheten innen 20 minutter.
+
+\section{Metode}
+Definisjoner på bokstaver jeg bruker i teksten.
+\begin{align*}
+T = & \text{ Temperatur }[K] && \kappa = \text{ Boltzmannkonstant } \left[\frac{m^2kg}{s^2K}\right] \\
+k = &\text{ Kinetisk Energi }[J] && H_2m = \text{ Hydrogenmolekyl masse } [kg] \\
+u = &\text{ Potensiell Energi}[J] && G = \text{ Newtons gravitisjonskonstant } \left[\frac{m^3}{kgs^2}\right] \\
+\vec{v} = & \text{ Hastighet } \left[\frac{m}{s}\right] && \Delta p = \text{ Bevegelsesmengde } \left[\frac{kg m}{s}\right]
+\end{align*}
+
+For å simulere denne motoren skal jeg bruke en tilnærming om at mange små bokser er tilnærmet lik en stor boks. Denne boksen skal ha en størrelse $L = 1\mu m$ (micro$=\mu=10^{-6} m$), det skal befinne seg $N = 10^5$ partikler, som alle antaes å være hydrogen molekyler ($H_2$), og gassen skal ha en temperatur $T = 10^4 [K]$.
+
+For å finne ut hvordan gassen beveger seg i boksen håndterer jeg gassen som en ideel gass. Jeg kan gjøre dette siden alle partiklene i boksen antas å være $H_2$-molekyler og de samhandler ikke med hverandre annet enn med fullstendig elastiske støt(energi bevares). 
+
+I en ideel gass følger hver hastighets komponent $(\vec{v}=v_x,v_y,v_z)$ til partiklene en helt tilfeldig Maxwell-Boltzmann sannsynlighets fordeling gitt ved:
+\[
+P(\vec{v}) = \left(\frac{m}{2 \pi \kappa T} \right)^{\frac{2}{3}} e^{-\frac{m(v_x^2+v_y^2+v_z^2)}{2\kappa T}}
+\]
+Ved å substituere $\sigma = \sqrt{\frac{\kappa T}{m}}$ i denne ligningen får vi
+\[
+P(\vec{v}) = \frac{1}{\sqrt{2 \pi}\sigma}  e^{-\frac{(v_x^2+v_y^2+v_z^2)}{2\sigma^2}} = 
+\frac{1}{\sqrt{2 \pi}\sigma}  e^{-\frac{v_x^2}{2\sigma^2}}\times 
+\frac{1}{\sqrt{2 \pi}\sigma}  e^{-\frac{v_y^2}{2\sigma^2}}\times 
+\frac{1}{\sqrt{2 \pi}\sigma}  e^{-\frac{v_z^2}{2\sigma^2}} = P(v_x)P(v_y)P(v_z)
+\]
+som er skremmende lik Gauss Fordeling:
+\[
+P(h) = \frac{1}{\sigma \sqrt{2 \pi}}  e^{-\frac{(h- \mu)^2}{2\sigma^2}}
+\]
+hvor $\mu$ = gjennomsnitts verdien og $\sigma$ = standardavviket.\\
+\\
+Siden Maxwell-Boltzmann sannsynlighets fordeling er så å si lik Gauss fordeling bruker jeg Gauss fordeling på hastighets komponentene. Posisjons komponentene til hver partikkel må også settes ut tilfeldig og derfor kan jeg bruke random modulen i python når jeg simulerer hastighet- og posisjons-komponentene.
+
+Jeg sjekker om mine numeriske resultater er tilnærmet-lik ($\simeq$) analytiske resultater. Jeg tester at den midlere kinetiske energien blir $\simeq \frac{3}{2}\kappa T$, den midlere hastigheten $\simeq \sqrt{\frac{8\kappa T}{\pi m}}$ og det midlere trykket $\simeq n\kappa T$ . Dette er en viktig test for å sjekke om jeg har simulert gassen korrekt.
+\\
+
+Jeg må forsikre meg om at partiklene ikke går igjennom veggene i boksen, kun gjennom det ene hullet i bunn, som senere skal lage oppdriften.
+Det som gjenstår er å finne ut hvor mye bevegelses mengde som går tapt, rømnings hastighet til planeten og hvor mange bokser(motorer) jeg trenger for å oppnå rømnings hastigheten innen 20 minutter. Når jeg har funnet ut dette kan jeg beregne hvor mye drivstoff jeg trenger.
+\newpage
+
+\textbf{Rømnings hastighet:}\\
+For å finne rømnings hastigheten bruker jeg bevaring av energi som gir oss at $k_1+u_1=k_2+u_2$.\\ Når vi står på bakken til planeten vil ikke $k_1$ gi noe bidrag siden hastigheten $v=0$, og når raketten har oppnådd rømnings hastighet vil ikke den potensielle energien ha noe bidrag. 
+Dermed har vi:
+\begin{align*}
+k &= u \\ 
+\frac{1}{2}mv^2& = G\frac{Mm}{R}\\
+v^2 &=2 G\frac{M}{R}\\
+v_{esc} &= \sqrt{\frac{2GM}{R}}
+\end{align*}
+
+\textbf{Bevegelsesmengde:}\\
+For å finne ut hvor mye bevegelsesmengde som har gått tapt analyserer jeg bunnen med hull i. Jeg teller hvor mange partikler som reiser gjennom hullet samtidig som jeg regner ut bevegelsesmengden som strømmer ut. Det jeg finner her er bare for én motor, men jeg kan bruke dette til å finne akselerasjonen en slik motor gir meg. \\
+
+\textbf{Antall motorer:}\\
+Siden jeg skal oppnå rømnings hastigheten på under 20 minutter vet jeg den midlere akselerasjonen jeg må ha ($a=\frac{\Delta v}{\Delta t}$). For å finne akselerasjonen den ene motoren gir meg bruker jeg at jeg kan skrive Newtons 2.lov på to måter: 
+\begin{align*}
+1.F= ma\\
+2.F = \frac{\Delta p}{\Delta t}\\
+\end{align*}
+Jeg setter så disse ligningene lik hverandre for å finne akselerasjonen.
+\begin{align*}
+ma =& \frac{\Delta p}{\Delta t}\\
+a = \frac{\left(\frac{\Delta p}{\Delta t}\right)}{m} =& \frac{\Delta p}{\Delta t}m
+\end{align*}
+Her har jeg funnet akselerasjonen jeg må ha for å oppdrive rømnings hastigheten på 20 minutter, jeg har tidligere funnet akselerasjonen fra en boks. For å finne hvor mange bokser jeg trenger deler jeg 
+$$antall\_motorer = \frac{a_{motor}}{a_{boks}}$$ 
+\\
+\textbf{Drivstoff:}\\
+Siden jeg allerede har telt opp hvor mange partikler som strømmer ut av hullet, og jeg vet hvor mange motorer jeg trenger, kan jeg finne ut hvor mye drivstoff jeg trenger, ved å multiplisere sammen (antall motorer)*(partikler som strømmer ut av hullet)*(massen til partikkelen).
+
+\newpage
+
+\section{Resultater}
+\begin{center}
+  \begin{tabular}{ | l | c | c | c |}
+    \hline
+    Gjennomsnitt: & Numerisk: & Analytisk: & Analytisk formel:\\ \hline
+    Kinetisk energi & $2.075*10^{-19}$ [J] & $2.071*10^{-19}$ [J] & $\frac{3}{2}\kappa T$ \\ \hline
+    Hastighet & 10.26[km/s] & 10.24[km/s] & $\sqrt{\frac{8\kappa T}{\pi m}}$\\ \hline
+    Trykk & 13.7 $[kN/m^2]$ & 13.8 $[kN/m^2]$ & $n\kappa T$ \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Som vi kan se her har testen gått bra og jeg har simulert gassen korrekt fordi numerisk $\simeq$ analytisk.  \\
+$$
+\text{Rømnings hastighet:}
+$$
+$$ v_{esc} = \sqrt{\frac{2GM}{R}} \simeq 13.7 [km/s]$$
+Raketten skal oppnå $v_{esc}$ på under 20 minutter. Akselerasjonen jeg må få fra motoren blir dermed $$a _{motor}=  \frac{v_{esc}}{\Delta t} = \frac{13.7[km/s]}{1200[s]} = 11.42[m/s^2]$$
+Akselerasjonen jeg får fra en motor(boks) er: 
+$$a_{boks} = \frac{\left(\frac{\Delta p}{\Delta t}\right)}{m} = \frac{3.38*10^{-9}\left[\frac{kgm/s}{s}\right]}{1000[kg]} = 3.38*10^{-12}[m/s^2]$$
+Deretter finner jeg hvor mange slike små bokser ($N_{bokser}$) jeg må ha for å klare å oppdrive den akselerasjonen motoren trenger. 
+$$N_{bokser} =\frac{a _{motor}}{a_{boks}} \simeq 3.38*10^{12}$$
+
+Jeg vet hvor mange partikler som forlater hver boks, og nå vet jeg hvor mange bokser jeg trenger som betyr at jeg nå kan finne hvor mye drivstoff en slik motor må ha. $$Fuel = N_{bokser}*N_{part.forlater.boks}*H_2m \simeq 845[kg]$$
+
+\newpage
+\section{Diskusjon}
+Dette er kun en enkel simulering og jeg har gjort endel tilnærminger og antagelser i koden som gjør at dette resultatet ikke er reelt. Jeg antok at gassen min kun besto av $H_2$ molekyler og at det derfor oppførte seg som en ideell gass, dette er kun en tilnærming og det ville ikke vært slik i naturen. $H_2$ molekylene ville kollidert med hverandre inne i boksen, de hadde også kollidert med andre molekyler/atomer, og disse kollisjonene er ikke-elastiske, dette medfører til at trykket inne i boksen ville blitt lavere. Jeg måtte derfor ha hatt flere partikler per boks, eller flere bokser i motoren eller høyere temperatur inne i boksen.
+ 
+Neste tilnærming er at jeg har brukt mange små bokser å satt sammen disse til en stor motor. Da dette er samme prinsipp som ved integrasjon vil det gi feil når vi skulle ha bygget motoren. Hvordan skulle vi da ha skalert det? Blir feil å skalere opp en liten boks til den virkelige størrelsen den trengte for å oppnå akselerasjonen, hullet i bunn ville jo blitt alt for stort å meste parten av drivstoffet ville ha falt rett gjennom uten noe effekt. Kunne ha brukt resultatet jeg fant her til å kode videre til en større boks og eksperimentert litt med størrelsen til hullet i bunn.
+
+Jeg har heller ikke tatt hensyn til at gravitasjonen fortsetter å dra på raketten mens den akselerer mot verdensrommet, heller ikke luftmotstanden og det faktum at drivstoffet minker. 
+Gravitasjonen hadde blitt svakere og svakere jo lenger unna overflaten raketten er, luft motstanden ville vært størst på bakken og avtatt jo høyere opp i atmosfæren den kommer. Deretter ville drivstoffet minket som hadde medført at raketten blir lettere, og trenger mindre kraft for å dyttes ut. 
+
+Alle disse faktorene burde bli tatt med for at dette skulle blitt et reelt tilfelle, men da burde jeg hatt en datamaskin med større kapasitet enn laptopen min til å kjøre koden. Jeg hadde hatt bruk for flere ,,verktøy" som f.eks ligningen som forklarer luft motstand etc. 
+
+\section{Konklusjon}
+Selv om dette ikke er et reelt tilfelle men dog heller en enkel simulering, ble det enklere å forstå fysikken bak en rakettmotor og hva som faktisk kreves for å kunne skyte en satellitt ut i verdensrommet. 
+Med mere jobb, flere hoder, større datakapasitet og flere verktøy i kassa kunne jeg nok ha klart å simulert et reelt tilfelle av dette. 
+Nå som jeg er ferdig med simuleringen min og forstår litt mer om fysikken bak en rakettmotor, kan jeg å se for meg reisen Robert H Goddard hadde når han eksperimenterte og lagde de første moderne rakettene drevet av flytende drivstoff. 
+ 
+
+
+
+\begin{acknowledgments}
+Takk til gruppelærere og med studenter for nyttige diskusjoner under arbeidet med denne artikkelen. 
+\end{acknowledgments}
+
+
+
+
+\begin{thebibliography}{}
+\bibitem[Hansen (2017)]{part1A} Hansen, F. K.,  2017, Forelesningsnotat 1A i kurset AST2000
+https://forskning.no/
+https://snl.no/
+\end{thebibliography}
+
+
+
+\end{document}
