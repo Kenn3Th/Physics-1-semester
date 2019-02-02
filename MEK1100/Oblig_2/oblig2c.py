@@ -1,7 +1,6 @@
 from oblig2 import*
 from seaborn import*
-
-#pilplott
+#arrow-plot
 n=11
 quiver(
     x[::n, ::n],
@@ -9,7 +8,7 @@ quiver(
     u[::n, ::n],
     v[::n, ::n],
     units='width', width = 0.0015)
-#Rektanglene
+#Rectangles
 def rektangel(xi,yi,xj,yj):
     x1 = x[yi][xi]; x2 = x[yj][xj]
     y1 = y[yi][xi]; y2 = y[yj][xj]
@@ -20,11 +19,11 @@ def rektangel(xi,yi,xj,yj):
 rektangel(35,160,70,170)
 rektangel(35,85,70,100)
 rektangel(35,50,70,60)
-#skilleflate
+#seperate flat
 plot(xit,yit,'*',color='yellow')
-#Navngir akser +tittel
+#Giving name to the axes and sets a title.
 xlabel('X-akse')
 ylabel('Y-akse')
 title('Vektor pil plott av hastigheten')
 savefig('2c.png')
-show()
+show() #Shows the plot
