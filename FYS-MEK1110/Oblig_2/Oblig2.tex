@@ -1,0 +1,175 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS-MEK 1110 Obligatorisk oppgave 2}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+\subsection*{a)}
+\begin{figure}[h!]
+\includegraphics[scale=0.09]{Frilegemediagram.jpg} 
+\caption{Frilegemediagram.}
+\end{figure}
+\subsection*{b)}
+Ser på frilegemediagrammet at de kreftene som virker på ballen er Gravitasjonskraften \textbf{G} og snordraget \textbf{Fs}. Siden vi kan se bort fra luftmotsanden
+$ \sum F = G + Fs$ Der $G = mg$ og $Fs = k*\Delta{L}$ der $\Delta{L} = L - Lo$ \\
+Vi ser at Gravitasjonskraften \textbf{G} kun virker nedover og mot positiv retning, når vi skriver den over på vektor form blir $G = -mg\hat{j}$\\
+Snordraget \textbf{Fs} er avhengig av strikken og hvordan endringen strikken er underveis i bevegelsen. Equilibrium lengden til strikken kaller vi for \textbf{Lo}. Posisjonen til pendelen er gitt ved $\vec{\textbf{r}} = x\hat{i} + y\hat{j}$ så lengden av $\vec{\textbf{r}}$ blir da lengden på det den strekte strikken. Med dette kan vi resonere oss frem til $\textbf{L} = |\vec{r}| = r \Rightarrow L = r$ Det som gjenstår nå er å finne enhetsvektoren som alltid peker i same retning som vektoren selv. Vi kaller den $\vec{\textbf{U}}_r$ Denne finner vi ved $\frac{\vec{r}}{|\vec{r}|}= \frac{\vec{r}}{r}$. Da får vi at  $\vec{\textbf{U}}_r = \frac{\vec{r}}{r}$. For å forsikre oss at kreftene til strikken alltid virker i riktig retning fører vi også inn et minus tegn. Da blir $\textbf{Fs}  = - k(r - Lo)\frac{\vec{r}}{r}$. Vi setter inn det vi nå har funnet i den opprinnelige ligningen: $$\sum{F} = -mg\hat{j} - k(r - Lo)\frac{\vec{r}}{r}$$
+
+\subsection*{c)}
+Først vil jeg forenkle den opprinnelige ligningen vi kom fram til i oppgave \textbf{b)} 
+$$\sum{F} = -mg\hat{j} - k(1 - \frac{Lo}{r})\vec{r}$$ 
+For å skrive om \textbf{Fs} over på vektor form ser jeg hva $\vec{r}$ og lengden r er definert som. $\vec{\textbf{r}} = x(t)\hat{i} + y(t)\hat{j}$ og $ r = \sqrt{x(t)^2 + y(t)^2}$ Setter dette inn i ligningen.
+$$\sum{F} = -mg\hat{j} - k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})(x(t)\hat{i} + y(t)\hat{j})$$ 
+Sorterer ligningen slik at jeg får $\hat{i}$ samlet og $\hat{j}$ samlet.
+$$\sum{F} = - k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})x(t)\hat{i} + (-mg- k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})y(t))\hat{j}$$
+Jeg kan nå dele disse opp i $\sum{F_x}$ og $\sum{F_y}$
+$$\sum{F_x} = - k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})x(t)$$ 
+$$\sum{F_y} = -mg\hat{j} - k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})y(t)$$
+
+\subsection*{d)}
+Hvis vi skal beskrive posisjonen av ballen ved hjelp av en vinkel $\theta$ blir $x_0 = Lo*sin(\theta) y_0 = Lo*cos(\theta)$. Men her vil vinkelen $\theta$ forandre seg med tiden t og vi får derfor ikke beskrevet hvordan bevegelsen forandrer seg med tiden t. 
+
+\subsection*{e)}
+Hvis strikken er festet i origo og $\theta = 0$ og $v_0 =0$ vil ballen henge vertikalt ned langs y-aksen. Nå er det kun gravitasjonskraften \textbf{G} som virker. Så her vil høyden langs y-aksen variere med fjærkonstanten \textbf{k}. Hvis fjærkonstanten er lav(slak) vil ballen henge lenger ned på y-aksen, enn om den er høy(stiv). 
+
+\subsection*{f)}
+Bruker Newtons 2 lov for å finne akselerasjonen. $\sum{F} = ma$ Bruker vi dette i ligningen får vi:
+$$ma = -mg\hat{j} - k(r - Lo)\frac{\vec{r}}{r}$$
+Med dette kan vi utlede hva akselerasjonen blir på vektor form, både som funksjon av $\vec{r}$ og dens lengde r, og som funksjon av x og y..
+$$\bold{a} = -g\hat{j} - \frac{k(r - Lo)}{m}\frac{\vec{r}}{r}$$
+For å finne et utrykk for akselerasjonen som funksjon av x og y utvider jeg utrykket, å får det over på vektor form.
+$$ ma = - k(1 - \frac{Lo}{r})x(t)\hat{i} + (-mg- k(1 - \frac{Lo}{r})y(t))\hat{j} = ma$$
+$$\bold{a} = - \frac{k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})x(t)}{m}\hat{i} + (-g- \frac{k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})y(t)}{m})\hat{j}$$
+Nå kan vi dele opp akselerasjonen i en x og y retning. \\
+$$\bold{a_x} = - \frac{k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})x(t)}{m} \quad \textrm{og } \quad \bold{a_y} = -g- \frac{k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})y(t)}{m}$$
+
+\subsection*{g)}
+Initial verdiene vi har fått oppgitt i oppgaven er $m = 0.1$kg, $Lo = 1$m, $\theta = 30\degree $ 
+$k = 200\frac{N}{m}$ \\
+Jeg har nå funnet et uttrykk for akselerasjonen i x og y retning. Jeg kan uttrykket dette ved hjelp av disse differensialligningene.
+$$\bold{x(t)} =\frac{d^2x}{dt^2} = - \frac{k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})x(t)}{m} \quad \textrm{og } \quad \bold{y(t)}= \frac{d^2y}{dt^2}  = -g- \frac{k(1 - \frac{Lo}{\sqrt{x(t)^2 + y(t)^2}})y(t)}{m}$$
+Kan gjøre dette siden jeg vet at akselerasjonen er den dobbelt deriverte av posisjonen.
+
+\subsection*{h)}
+Numerisk kan jeg skrive ligningene jeg trenger å løse på denne måten: \\
+    lr = np.sqrt(r[i,0]**2 + r[i,1]**2)\\
+    a[i,:] = np.array([(-k*(1-L0/lr)*r[i,0])/m,-g-(k*(1-L0/lr)*r[i,1])/m])\\
+    v[i+1,:] = v[i,:] + a[i,:]*dt\\
+    r[i+1,:] = r[i,:] + v[i+1,:]*dt\\
+    t[i+1] = t[i] + dt\\
+Her er \textbf{a}[i,:] = akselerasjon, \textbf{v}[i+1,:] = hastighet  og \textbf{r}[i+1,:] posisjonen. Grunnen til at jeg bruker [,:] notasjon er fordi jeg nå regner med vektorer i python. Ligningene som varierer med tiden er hastigheten og posisjonen. Det ser vi pga dt = tids-steg og den er med i disse ligningene. Akselerasjons ligningen er avhengig av posisjonen til ballen.
+
+\subsection*{j)}
+\lstinputlisting{Oblig2.py}
+\begin{figure}[h!]
+\includegraphics[width=1\textwidth]{ki200.png} 
+\caption{Grafen av hvordan pendelen beveger seg}
+\label{k200}
+\end{figure}
+På figur \vref{k200} ser vi hvordan pendelen oppførte seg. Det ser ut som om pendelen beveger seg i en pen bevegelse. Men siden linjen er tjukk tyder det på at ballen ikke beveger seg rett, zoomer vi inn på grafen ser vi at ballen beveger seg litt ujevnt og det er nok fordi strikken har en lav fjærkoeffisient.
+\begin{figure}[h!]
+\includegraphics[width=1\textwidth]{bd_200k.png} 
+\caption{Her ser vi hvordan posisjonen, hastigheten og akselerasjonen oppfører seg med tiden t}
+\label{200k}
+\end{figure}
+Jeg plottet også hvordan posisjonen, hastigheten og akselerasjonen oppførte seg langs en tid t. Både i x og y retning. Denne grafen kan du se på figur \vref{200k}
+
+\subsection*{k)}
+Det var ikke så stor forandring  i plottet av hvordan ballen beveget seg når jeg endret $dt = 0.01$s. Grafen ser vi på figur \vref{dt001} Når $dt = 0.1$s derimot ser vi at alt går helt over styr. Begge grafene er helt på villspor. På figur \vref{dt01} ser vi hvordan pendelen beveger seg og hvordan posisjon, hastighet og akselerasjonen blir. At vi får en forandring når vi endrer tidssteget er fordi da blir tilnærmingen min i Euler-Cromer metoden for dårlig, får ikke nok punkter til å kunne beregne en god tilnærming, den lille feilen vi får i starten eskalerer å blir ekstremt stor som er godt synlig når vi økte tidssteget fra 0.01s til 0.1 s. 
+\begin{figure}[h!]
+\includegraphics[width=0.8\textwidth]{dt001.png} 
+\caption{dt = 0.01}
+\label{dt001}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=0.6\textwidth]{dt01.png} 
+\includegraphics[width=0.6\textwidth]{bd_01dt.png} 
+\caption{dt = 0.1}
+\label{dt01}
+\end{figure}
+
+\subsection*{l)}
+\begin{figure}[h!]
+\includegraphics[width=0.6\textwidth]{20.png} 
+\includegraphics[width=0.6\textwidth]{bevegelsesdiagram_k20.png} 
+\caption{k = 20}
+\label{20k}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=0.6\textwidth]{2000.png} 
+\includegraphics[width=0.6\textwidth]{bd_2000.png} 
+\caption{k = 2000}
+\label{2000k}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=0.6\textwidth]{20.png}
+\includegraphics[width=0.6\textwidth]{ki200.png} 
+\includegraphics[width=0.6\textwidth]{2000.png} 
+\caption{Sammenligning av forskjellige fjærkonstanter. Øverst til venstre k = 20N/m, øverst til høyre k = 200N/m, nederst til venstre k = 2000N/m}
+\label{comp}
+\end{figure}
+Hvis du ser på figur \vref{20k} har jeg evaluert pendelen med en fjærkonstant på 20.0 N/m. Vi ser at den beveger seg mye opp og ned.Dette er nok pga en lav fjærkonstant som gjør at strikken blir slak, og det medfører at ballen får en "friere" bevegelse. Hvis vi ser på figur \vref{2000k} ser vi at bevegelsen har fått et mer fast satt bevegelses mønster. Den beveger seg ikke så mye fritt som på forrige figur. Dette er nok fordi fjærkonstanten i dette tilfelle er mye høyere og det fører til at strikken blir mye stivere.
+På figur \vref{comp} ser vi en sammenligning av de forskjellige fjærkonstantene. Vi ser nå at med en lavere fjærkonstant får vi en friere bevegelse, og desto høyere fjærkonstant får vi en mer begrenset bevegelse. Dette resultatet virker rimelig for meg, og jeg syntes det gir mening. Så basert på de resultatene vi har fått nå er det greit å anta at jo større fjærkonstant blir bevegelsen mer begrenset. Når Jeg prøvde å øke fjærkonstanten til $2*10^6$ dette medførte overflow! 
+
+\subsection*{m)}   
+Den forandringen jeg trengte å gjøre for å få til dette var å implementere følgende kode i python koden min\\
+def K(q):\\
+if (q-L0) > 0:\\
+return k (som er fjærkonstanten)\\
+else:\\
+return 0\\
+\begin{figure}[h!]
+\includegraphics[width=1\textwidth]{m.png} 
+\caption{$\vec{v}_0 = 6 m/s\hat{i}$  og $\vec{r}_0 = -Lo\hat{j}$}
+\label{mid}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=0.6\textwidth]{lavk.png}
+\includegraphics[width=0.6\textwidth]{stork.png} 
+\includegraphics[width=0.6\textwidth]{pi.png} 
+\includegraphics[width=0.6\textwidth]{vo3.png} 
+\caption{Øverst til venstre er lav k med høy hastighet, øverst til høyre er stor k med høy hastighet, nederst til venstre er ballen slept fra $\theta = 180\degree$, nederst til høre er $\vec{v}_0 = 3m/s\hat{i}$}
+\label{fors}
+\end{figure}
+Jeg har prøvd meg litt frem med forskjellige initialverdier og har fått forskjellige resultater. Jeg ser nå at strikken har en litt mer realistisk oppførsel, når den beveger seg for høyt slik at fjærkraften ikke lenger vil ha en funksjon faller ballen bare rett ned, og når fjærkonstanten da fungerer igjen spretter ballen tilbake med en kraft som sender den av gårde. På figur \vref{mid} ser vi hvordan pendelen beveget seg med $\vec{v}_0 = 6m/s\hat{i} $ og $\vec{r}_0 = -Lo\hat{j}$ Jeg har lagt ved noen figurer \vref{fors} som illustrer hvordan pendelen beveger seg med forskjellige initialverdier. Jeg prøvde $\theta = 180\degree$, høy, lav fjærkonstant og stor hastighet og starte pendelen med en hastighet på 3m/s i x retning. 
+
+\end{document}
+
+
+
