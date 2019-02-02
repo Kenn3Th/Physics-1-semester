@@ -1,0 +1,450 @@
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage[toc,page]{appendix}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\bibliographystyle{plain}
+
+
+\title{Brownske bevegelser}
+\author{Kenneth Ramos Eikrehagen}
+\date{\today}
+\begin{document}
+
+\renewcommand{\abstractname}{\large Sammendrag}
+\renewcommand{\contentsname}{\LARGE Innhold}
+\renewcommand{\listfigurename}{\Large Figur liste}
+\renewcommand{\listtablename}{\Large Tabell liste}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\lstset{language=Matlab}
+
+
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+
+
+
+
+\begin{abstract}
+Dette eksperimentet handler om avbildning og brownske bevegelser. Jeg så at vi kan bestemme pikselstørrelsen til kamerat vi brukte på mikroskopet. Det kunne vi gjøre ved hjelp av en kalibreringsbrikke som har kjente verdier for gitte mønster og en PC med MATLAB. Vi tok bilde av mønsteret og med intensitetsgrafen til dette bilde kunne vi finne pikselstørelsen. 
+
+Jeg så at brownske bevegelser eksisterer, partikler i et fluid beveger seg og er en bekreftelse på den mikroskopiske varme teorien. 
+\end{abstract}
+
+
+
+\section{Introduksjon}
+Browsnke bevegelser er uregelmessige og ustanselig bevegelser av svært små, faste partikler i en væske eller gass som skyldes kollisjoner fra partiklene i molekylene fra væsken eller gassen (fluid). Disse bevegelsene kan man observere under et mikroskop. Fenomenet ble oppdaget av Robert Brown i 1827, da han studerte en vanndråpe med pollen i \cite{snl}. Brown påviste at disse bevegelsene skyldes kollisjon mellom partiklene og ikke på grunn av liv. På tidlig 1900-tallet vart det klart for fysikerne at den ,,molekylær-kinetiske varmeteorien'' måtte vinne frem. 
+
+Albert Einstein klarte å forklare brownske bevegelser i 1905 med artikkelen ,,Investigations on the theory on Brownian movment'', og at disse bevegelsene er stokastiske prosess altså virrevandring (tilfeldig gange). \cite{uio}. Ikke så mange år etter klarte eksperimentalistene å måle de forskjellige størrelsene på uavhengig vis og dermed bekrefte modellen til Einstein og dermed også den mikroskopiske varmeteorien. 
+
+
+\section{Teori}
+\subsection{Langevin ligningen}
+Under disse eksperimentene brukte vi Langevin sin utledning av modellen for virrevandring og denne modellen har blitt en gjenganger i statistisk fysikk. Grunnleggende for den mikroskopiske varmeteorien er molekylbevegelse og ekvipartisjonsprinsippet. Ekvipartisjonsprinsippet sier at: ,,I likevekt er den kinetiske energien til hver frihetsgrad av bevegelse til molekylene i fluidet og partiklene som flyter i fluidet:
+$$
+\frac{kT}{2}
+$$
+der k er Boltzmann konstant og T er temperaturen.'' I x-retning blir da hastigheten ($v_x=dx/dt$) 
+$$
+m<v_x^2>=kT
+$$
+der $< >$ symboliserer middelverdien.
+
+Hvis partiklene er større en den midlere avstandene mellom fluid-molekylene så kan man behandle fluidet som et kontinuum og se på den hydrodynamiske dempningen av partikkelbevegelsen. Stokes fant at ved lave Raynoldstall er motstandskraften $F_d$ var:
+\begin{equation}
+F_d = 6\pi\mu v_xr
+\label{Fd}
+\end{equation}
+der $\mu$ er skjærviskositeten til væsken og $r$ er radien til kulen.
+
+Partiklene i væsken er i tillegg til den sakte varierende dempningskraften $F_d$ også påvirket av en hurtig varierende tilfeldig kraft $F_r$ på grunn av de termiske bevegelsene til fluid-molekylene. Langevin satte sammen disse kreftene til en bevegelses ligning
+\begin{align*}
+ma = F_r-F_d && a = \frac{d^2x}{dt^2}
+\end{align*}
+ og ved hjelp av å multiplisere begge sider av ligningen med x og bruk av kjerneregelen kom han frem til ligning \vref{langevin}:
+\begin{equation}
+\frac{1}{2}m\left(\frac{d^2}{dx^2} - 2v_x^2 \right) = xF_r-3\pi\mu r\frac{dx^2}{dt}
+\label{langevin}
+\end{equation} 
+Vi kan løse denne ligningen ved å ta middelverdien over mange partikler (ensemblemiddelet), og det viser seg da at bidraget fra $F_r$ forsvinner, $<xF_r = 0>$. Dette er fordi kraften $F_r$ er tilfeldig og ikke korrelert med seg selv i tid og rom. Ligning \vref{langevin} kan dermed skrives 
+\begin{equation}
+\frac{1}{2}m\frac{d^2<x^2>}{dt^2}-kT = -3\pi\mu r\frac{d<x^2>}{dt}
+\label{langevi}
+\end{equation}
+Ligning \vref{langevi} kan løses og vi får da:
+\begin{equation}
+\frac{d^2<x^2>}{dt^2} = -\frac{kT}{3\pi\mu r} + Ce^{-\frac{6\pi\mu rt}{m}}
+\label{langev}
+\end{equation}
+Det siste leddet i ligning \vref{langev} forsvinner når $t>> \frac{m}{6\pi\mu r} \sim 10^{-8}s$. Det betyr at om man kan spore posisjonen til mange partikler og beregne den midlere kvadratiske forflytningen per tidsenhet, og vi kjenner viskositeten og radien til partikkelen kan vi finne Boltzmanns konstant, $k$ \cite{opg}.
+
+\subsection{Optisk mikroskop og avbildning med elektroniske kameraer}
+Et optisk mikroskop gir deg muligheten til å observere små partikler og er utrustet med et stabilt stativ som gir muligheten til å gjøre små kontrollerte bevegelser av partiklene du skal se på i forhold til lyskilden og objektivet. Riktig belysning er minst like viktig for hva du ser med et mikroskop som hva slags objektiv man bruker. Et objektiv er linsen som er plassert nærmest objektet man ønsker å se på, de objektivene vi brukte hadde en forstørring på 20X og 40X. Hvis belysningen er riktig er oppløsningen til mikroskopet av gjort av den numeriske aperaturen (NA) til objektivet. Oppløsningen på objektivet er gitt av radien til diffraksjonsmønsteret fra lysende punkter og er på sitt beste er gitt ved ligning \vref{mikroskop}
+\begin{equation}
+r = \frac{\lambda}{2(NA)}
+\label{mikroskop}
+\end{equation}
+der $\lambda$ er bølgelengden \cite{opg}. \\
+
+Objektivet til kameraet sender ut en nesten parallell strålebunt som må gjennom et okular (linsen som sitter nærmest øyet) for at vi skal få et bilde på netthinnen, eller gjennom en avbildningslinse for å danne et bilde på bildeplanet i et kamera. 
+
+Den rommelige oppløsningen til et kamera er bestemt av hvor mange piksler bildebrikken er delt opp i. Det er ofte like viktig med intensitetsoppløsningen til kameraet, altså hvor mange intensitetnivåer hver pixel er delt opp i. Intensitetsdybden påvirkes av størrelsen på hver pixel, temperaturen til sensoren og utlesningsstøyen. Hvis man ikke skal bruke farge-informasjonen et fargekamera gir til noe vitenskapelig så er det bedre å anvende et gråtonekamera. Dette er fordi man mister romlig- og intensitets-oppløsning ved fargefiltrering \cite{opg}.
+
+Det er nyttig å vite om oppløsningen på avbildningen er begrenset av diffraksjon eller av antall piksler i kameraet. Ligningene \vref{forhold1} og \ref{forhold2} angir dette.
+\begin{equation}
+\frac{D_{20X}}{s_x}
+\label{forhold1}
+\end{equation}
+\begin{equation}
+\frac{D_{40X}}{s_x}
+\label{forhold2}
+\end{equation}
+der $D_{20X} = 0.7\mu m$ og $D_{40X} = 0.4\mu m$ er de teoretiske verdiene for oppløsningen til objektivene. 
+
+Ved å beregne ,, Modulation Tranfer Function'' (MTF) kan vi karakterisere avbildningssytemet på en god måte og er gitt ved ligning \vref{MTF}. 
+
+\begin{equation}
+MTF(f)=\frac{I_{max}(f)-I_{min}(f)}{I_{max}(f)+I_{min}(f)}
+\label{MTF}
+\end{equation}
+der f er antall linjepar per millimeter (LP/mm), $I_{max}$ og $I_{min}$ er maksimal- og minimal verdiene til intensiteten.
+
+
+%\newpage
+\section{Eksperimentelt}
+Under dette eksperimentet var lab-partnerne mine Eirik Frøili og Eirik Olav Haugen.\\
+
+\subsection{Avbildningskvalitet}
+Vi startet med å gjøre oss kjente med utstyret vi skulle anvende, utstyrliste finner du på siste side under Appendix. Det er veldig viktig at man ikke tar direkte på overflaten til kalibreringsbrikken da dette vil på virke hva man ser i mikroskopet, så vi brukte gummihansker da vi handterte gjenstander som skulle plasseres under objektivet til mikroskopet. Kalibreringsbrikken vi brukte ser du på figur \vref{kalibreringsbrikke}. 
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{kalibrering.jpg}\\
+	\caption[Kalibreringsbrikke]{Kalibreringsbrikken vi anvendte. Det er ikke så godt synlig, men denne brikken består av to rader med kalibrerings mål. Den øverste raden starter fra høyre med 5 sirkler og deretter 10 kavdrater med gitter mønster, nederste rad består av 17 firkanter med linjer. Se figur \vref{databladkali} }
+	\label{kalibreringsbrikke}
+	\end{center}
+\end{figure}
+
+
+Vi koblet til 20X objektivet til mikroskopet før vi skrudde det på, vi plasserte deretter kalibreringsbrikken under objektivet og stilte det inn slik at vi så et klart bildet av mønsteret til kalibreringsbrikken i okularet. På PC'n åpnet vi IC Capture, dette er en programvare som gjør det mulig å se objektet som er under objektivet til mikroskopet og man kan justere på innstillinger som gir et klarere bilde. Figur \vref{histo} viser hvor vi stilte inn dette.
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{histogram}\\
+	\caption[Histogram for justering av lukkertiden til kameraet]{På denne figuren ser vi vinduet med histogrammet og innstillinger for lukkertid og lysinntensitet.}
+	\label{histo}
+	\end{center}
+\end{figure}
+
+
+Vi skrudde av auto funksjonen i exposure og stilte in lysintensiteten (brightness) slik at bildet vi så på PC skjermen ble behagelig for øyet å se på. Deretter åpnet vi et vindu som viser et histogram over hvor mange piksler som registrerer hvilken intensitet. Vi brukte dette histogrammet til å bestemme lukkertiden til kameraet vi bruker, histogrammet skal vise 2 distinkte topper og mellomrommet mellom dem skal være størst mulig for best mulig bilde.  
+Etter dette var gjort tok vi et stillbildet av mønsteret og analyserte dette i MATLAB for å finne forstørrelsen til mikroskopet. Deretter skiftet vi ut 20X objektivet med et 40X objektiv og utførte samme prosedyre for dette objektivet. Vi skulle finne en verdi for $s_x$ og $s_y$ for hvert av objektivene. På intensitets grafene vi får når vi analyserer bilde får vi n-antall minimumspunkter. Ved å ta distansen mellom midten av et minimum til midten av neste minimum og deretter gjennomsnittet av alle distansene fant vi verdiene av $s_x$ og $s_y$. Oppsettet for eksperimentet ser du i figur \vref{mikroskop}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{mikroskop.jpg}\\
+	\caption[Mikroskop]{Mikroskopet er hele apparaturen bestående av et solid stativ, objektiv, okular og et elektronisk kamera som blir vist på PC'n. Stativet er utrustet med et system som gjør det mulig å bestemme posisjonen til objektet (heve, senke, høyre eller venstre) i forhold til objektivet veldig kontrollert.}
+	\label{mikroskop}
+	\end{center}
+\end{figure}
+
+
+Vi skulle så bruke det vi fant for disse to objektivene til å finne ut om oppløsningen er bestemt av diffraksjon eller antall piksler i kameraet. Vi brukte de teoretiske verdiene for oppløsningene til objektivene til å bergene dette forholdet (ligning \ref{forhold1} og \vref{forhold2}). Deretter skulle vi finne MTF (ligning \vref{MTF}) og plotte MTF(f) mot f for begge objektivene. På grunn av dårlig disponering av tid rakk vi ikke å måle intensiteten verdiene for 40X objektivet. Dette betyr at jeg ikke får sammenlignet disse, og plottet derfor kun MTF(f) for 40X objektivet.
+
+\subsection{Brownske bevegelser}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\begin{center}
+  	\includegraphics[width = \linewidth, height = 5cm]{ror.png}\\
+	\caption[Skisse av røret]{Skisse av røret vi brukte med mål for bredde (i x og y retning) og hvordan det så ut etter at vi hadde fylt i væske med partikler.}
+	\label{ror}
+	\end{center}
+\end{wrapfigure}
+Her skal vi studere Brownske bevegelser, vi fikk utdelt en væske med partikler. Vi plasserte noen dråper av denne væsken på et objektglass og satte kanten av et lite rør nedi væsken i et par sekunder, dette røret vil så suge opp væsken. Rett etter puttet vi begge endene av røret nedi kitt for å lukke endene. Vi la deretter røret på objektglasset å plasserte det under objektivet til mikroskopet. Det var vanskelig og finne partikler i væsken med vanlig belysning, det ble derfor montert på mørkfeltbelysning-filter som gjorde til at vi lett fant partikler i vannet. Vi observerte at partiklene i vannet beveget seg selv om de er livløse. Vi tok et bilde med mørkfeltbelysning og et uten av partiklene i vannet. Vi bestemte deretter størrelsen på partiklene ved hjelp av å analysere bilde på MATLAB. Ved hjelp av grafen vi fikk fra MATLAB kunne vi filtrere ut bakgrunnsstøy. 
+
+Neste vi gjorde var å ta opp en film i 30 sekunder med 15 bilder i sekundet av partiklene som beveget seg i vannet. Videre analyserte vi denne filmen med MATLAB, der vi kunne filtrere ut bakgrunnsstøy og partikler som ikke beveger seg. Deretter tok vi opp en 5 minutters filmsnutt med 15 bilder i sekundet av partiklene i væsken. Denne filmen skulle vi bruke til å beregne den midlere kvadratiske forflytningen til de Brownske partiklene. 
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{datablad-kali.jpg}\\
+	\caption[Datablad: Kalibreringsbrikke]{Databladet til kalibreringsbrikken vi anvendte.}
+	\label{databladkali}
+	\end{center}
+\end{figure}
+
+
+
+
+\section{Resultater}
+\subsection{Avbildningskvalitet}
+
+%På figur \vref{still20} ser du stillbilde av gitteret under 20X objektivet og \vref{still40} ser du stillbilde av gitteret under 40X objektivet.
+
+På figurene \ref{still20} og \vref{still40} ser du stillbilde tatt av gitteret under mikroskopet med 20X og 40X objektivene.
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = .8\linewidth]{still20x.png}\\
+	\caption[Stillbilde av gitter under 20X objektivet]{Stillbilde av gitter under 20X objektivet, der 0 i colorbar er helt svart of over 220 er helt hvitt}
+	\label{still20}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = .8\linewidth]{still40x.png}\\
+	\caption[Stillbilde av gitter under 40X objektivet]{Stillbilde av gitter under 40X objektivet, der 0 i colorbar er helt svart of over 220 er helt hvitt}
+	\label{still40}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.6\linewidth]{maalavgitter.png}\\
+	\caption[Hvordan vi fant gitter avstand]{Vi brukte bilde vi tok og anvendte cursertool i MATLAB til å finne punktene vi skulle analysere bilde mellom. Videre brukte vi disse punktene i MATLAB til å finne intensitets grafen.}
+	\label{målavgitter}
+	\end{center}
+\end{figure}
+
+Hvordan vi fant punktene vi skulle anvende i MATLAB ser du på figiur \vref{målavgitter}, disse punktene ble implementert i MATLAB for å finne intensitets grafene. Disse ser du ser på figur \ref{sy01} og \vref{sx01} og  \ref{sy02} og \vref{sx02} (koden finner du i appendixet under seksjon B Programmeringskode).  De utregnede verdiene for $s_x$ og $s_y$ for de objektivene finner du i tabell \vref{verdier}. I tabell \vref{forholdtm} ser du verdiene jeg fikk mellom forholdet til den teoretiske oppløsningen og den målte.
+
+
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = .8\linewidth]{sy01.png}\\
+	\caption[Intensitetsgrafen til $s_y$ for 20X objektivet]{Intensitetsgrafen til $s_y$ for 20X objektivet. Vi ser her at vi får 4 minimumspunkter ved: 111, 439, 765, 1092}
+	\label{sy01}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = .8\linewidth]{sx01.png}\\
+	\caption[Intensitetsgrafen til $s_x$ for 20X objektivet]{Intensitetsgrafen til $s_x$ for 20X objektivet. Her ser vi 3 minimumspunkter ved: 107, 432, 757 }
+	\label{sx01}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{sy02.png}\\
+	\caption[Intensitetsgrafen til $s_y$ for 40X objektivet]{Intensitetsgrafen til $s_y$ for 40X objektivet. her ser vi 2 minimumspunkter ved: 337, 647}
+	\label{sy02}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{sx02.png}\\
+	\caption[Intensitetsgrafen til $s_x$ for 40X objektivet]{Intensitetsgrafen til $s_x$ for 40X objektivet. Her ser vi 2 minimumspunkter ved: 247, 897}
+	\label{sx02}
+	\end{center}
+\end{figure}
+
+\begin{table}
+\caption[verdier for $s_x$ og $s_y$]{Verdiene for $s_x$ og $s_y$ til begge objektivene. I databladet fant jeg at kvadratene vi brukte hadde en bredde/høyde på 0.075 mm mellom strekene. }
+	\begin{align*}
+	&s_y20X = 327 piksel = \frac{0.075mm}{327 piksel} \simeq 0.229\mu m/piksel\\
+	&s_x20X=325piksel =  \frac{0.075mm}{325 piksel} \simeq 0.231\mu m/piksel \\ 
+	&s_y40X = 647 piksler = \frac{0.075mm}{647 piksel} \simeq 0.116\mu m/piksel \\ 
+	&s_x40X = 650 piksler = \frac{0.075mm}{650 piksel} \simeq 0.115\mu m/piksel \\ 
+	\end{align*}
+\label{verdier}
+\end{table}
+
+\begin{table}
+\caption{Forholdet mellom teoretisk verdi for oppløsningen til objektivet og den målte}
+	\begin{align*}
+	\frac{D20X}{s_x20X} \simeq 3.03 piksel && \frac{D40X}{s_x40X} \simeq 3.50 piksel
+	\end{align*}
+\label{forholdtm}
+\end{table}
+
+Verdiene jeg fant for modulation transfer function finner du i tabell \vref{MTFverdier} og grafen jeg fremstilte er i figur \vref{MTFgraf}.
+
+\begin{table}[h!]
+\centering
+\caption[MTF-verdier]{Intensitets maksimum og minimum for beregning av MTF, og antall linjepar per millimeter (LP/mm) for 40X objektivet. }
+	\begin{tabular}{| c | c | c |}
+	\hline
+	$I_{max}$ & $I_{min}$ & $LP/mm$ \\ 
+	\hline
+	253.0 & 23.4 & 420\\
+	254.4 & 26.2 & 320\\
+	254.3 & 31.7 & 806\\
+	254.6 & 33.7 & 1235\\
+	253.3 & 39.5 & 1783\\
+	253.7 & 44.9 & 2479\\
+	\hline
+	\end{tabular}\\
+\label{MTFverdier}
+\end{table}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{MTF.png}\\
+	\caption[MTF graf for 40X objektivet]{MTF graf for 40X objektivet med verdier fra tabell \vref{MTFverdier}}
+	\label{MTFgraf}
+	\end{center}
+\end{figure}
+
+%\newpage
+\subsection{Brownske bevegelser}
+
+Figur \vref{partlys} er et bilde av partiklene uten mørkfeltbelysning og figur \vref{partmork} er et bilde av partiklene med mørkfeltbelysning. Gjennomsnitts diameteren til en partikkel fant vi til å være $d \simeq 10\mu m$, hvordan dette ble funnet ser du på figur \vref{zoom}. Vi fant treshold til å være 80. Resultatet vi fikk for filmen på 30 sekunder av partiklene i væsken ser du på figur \vref{resultater30s}.
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{brownske01L.jpg}\\
+	\caption[Bilde av partiklene uten mørkfeltbelysning]{Bilde av partiklene uten mørkfeltbelysning, som man kan se er det ikke partiklene synlig.}
+	\label{partlys}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{brownske01M.jpg}\\
+	\caption[Bilde av partiklene med mørkfeltbelysning]{Bilde av partiklene med mørkfeltbelysning, her kommer partiklene tydelig frem. De store hvite prikkene er ikke partikler men smuss eller lignende.}
+	\label{partmork}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{zoompartM1.png}
+	\includegraphics[width = 0.8\linewidth]{zoompartM.png}\\
+	\caption[Zoom av partiklene]{Disse figurene viser zoom av partiklene med en colorbar for å se intensitet styrken. Den øverste figuren er et bilde av en partikkel og det var slik vi fant diameteren til en partikkel.}
+	\label{zoom}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{midlere_forflytning_30.png}
+	\includegraphics[width = \linewidth]{bevegelse01_30.png}\\
+	\caption[Resultater for 30s video]{Resultatene vi fikk for 30s videoen vi tok av partiklene.}
+	\label{resultater30s}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{midlerebevegelse.png}
+	\includegraphics[width = \linewidth]{partspor.png}\\
+	\caption[Resultater for 5min video]{Resultatene vi fikk for 5min videoen vi tok av partiklene.}
+	\label{resultater5min}
+	\end{center}
+\end{figure}
+
+%\begin{table}[h!]
+%\centering
+%\caption[Rådata for Faraday effekten]{Dataen vi samlet inn under Faraday effekten. $\theta_1$ er vinkelen vi målte for positiv strøm retning og $\theta_2$ er vinkelen vi målte for negativ strøm retning}
+%	\begin{tabular}{| c | c | c | c | c | c |}
+%	\hline
+%	$I$ A & $B$ mT & $\theta_1$ & $I$ A &$B$ mT& $\theta_2$ \\ 
+%	\hline
+%	3.0 & 119.0 & 44.6$\degree$ & -3.0 & -119.0 & 53.0$\degree$\\
+%	2.5 & 102.0 & 44.8$\degree$ & -2.5 & -102.0 & 52.6$\degree$\\
+%	2.0 & 83.0 & 45.6$\degree$ & -2.0 & -83.0 & 52.0$\degree$\\
+%	1.5 & 63.0 & 46.8$\degree$ & -1.5 & -63.0 & 51.0$\degree$\\
+%	1.0 & 43.0 & 47.4$\degree$ & -1.0 & -43.0 & 50.0$\degree$\\
+%	0 & 0 & 49.0$\degree$ & 0 & 0 & 49.0$\degree$\\
+%	\hline
+%	\end{tabular}\\
+%\label{vinkler}
+%\end{table}
+
+ %\begin{figure}
+%	\begin{center}
+%  	\includegraphics[width = \linewidth]{verdet}\\
+%	\caption[Verdet-konstant]{Dette plottet viser magnetisk flukstetthet plottet mot utregnet verdi for Verdet-konstanten}
+%	\label{verdet}
+%	\end{center}
+%\end{figure}
+
+
+
+
+
+\newpage
+\section{Diskusjon}
+
+Vi fant pikselstørrelsen til kameraet ved hjelp av intensiteten til bildet og kjente verdier for mønsteret i kalibreringsbrikken, dette er en god måte å bestemme disse på.  
+
+Jeg er litt usikker på hva forholdet mellom den teoretiske verdien for oppløsning og den eksperimentelle verdien sier oss om avbildnings systemet. Ut ifra informasjonen jeg har fra oppgave teksten er nok forholdet mellom disse et tegn på at belysningen ikke er helt optimal når vi gjorde eksperimentet. For hvis belysningen er optimal ville den eksperimentelle verdien vært nærme den teoretiske verdien for oppløsningen som medfører at forholdet går hadde vært nærmere 1. Avbildningen er uansett begrenset av diffraksjon og ikke antall piksler i kameraet. 
+
+Under disse eksperimentene jeg har utført er det blitt gjort noen antagelser og forenklinger. Vi har antatt at det er bevaring av energi under kollisjonene og at bevegelsen kun foregår i xy-planet. Dette stemmer ikke fordi det også er bevegelse i z-retning. Energien under kollisjonene er ikke nødvendigvis bevart, men selv om vi hadde tatt hensyn til dette så hadde ikke resultatene endret seg nevneverdig. 
+
+
+
+\section{Konklusjon}
+
+Det vi brukte meste parten av tiden vår på under dette eksperimentet var å lære hvordan avbildning foregår når man bruker et mikroskop. Jeg føler at mere informasjon om piksler og oppløsning hadde gjort avbildnings delen av eksperimentet mer interessant, vart mye grubling over hva vi gjorde som førte til at vi ikke fikk tid til å gjennomføre eksperimentet for begge objektivene til mikroskopet. Vi lærte dog veldig mye om avbildning og mikroskop, det var veldig interessant å se at vi kunne finne forstørrelsen og pikselstørrelse ved hjelp av intensiteten til bilde vi tok. At god belysning kunne være så avgjørende om man så noe under mikroskopet var litt overraskende. Viste at vi måtte ha lys men at man kunne få bedre resultater ved å anvende et mørkfeltbelysning filter var interessant. 
+
+Vi så at de brownske bevegelsene faktisk eksisterer og at partikler i en væske beveger seg. Vi fikk altså se den mikroskopiske varme teorien på nært hold. Selv med de antagelsene som er blitt gjort under dette eksperimentet fikk vi gode resultater av de brownske bevegelsene. 
+
+\begin{thebibliography}{}
+\bibitem{squires} 
+	G.L.Squires
+	\textit{Practical physics}
+	fourth edition
+	2001
+\bibitem{opg}  
+	Fysisk institutt, UiO, oppgave tekst
+	\textit{Brownske bevegelser}
+	Sist endret 28. Mars 2018.
+\bibitem{snl}  
+	\url{https://snl.no/brownske_bevegelser}
+\bibitem{uio}  
+	\url{https://www.mn.uio.no/ibv/tjenester/kunnskap/plantefys/leksikon/b/brownsk.html}
+\bibitem{grl}
+	Stor takk til laboratorie-assistenter
+\end{thebibliography}
+
+\newpage
+\begin{appendices}
+\appendix
+\section{Utstyrsliste}
+\begin{multicols}{2}
+\begin{itemize}
+  	\item Mikroskop, Olympus CX41
+	\item Gummihansker
+	\item PC med tilhørende programvare.
+		\begin{itemize}
+		\item MATLAB \item IC Capture
+		\end{itemize}
+	\item 40X og 20X objektiv, Maxlevy autograph
+	\item Objektglass / mikroskopslides
+	\item Væske med partikler
+	\item Kalibrerings-brikke
+	\item Mørkfeltbelysning-filter
+	\item Lite rør/reagensglass
+	\item Kitt
+\end{itemize}
+\end{multicols}
+
+\section{Programmeringskode}
+Egen skrevet kode:
+\lstinputlisting{intensitet.m}
+\lstinputlisting{MTF.m}
+Sammen med disse kodene brukte jeg koder som vi skulle bruke under dette eksperimentet som er å finne på emnesiden under Brownske bevegelser.
+
+
+\end{appendices}
+
+\end{document}
