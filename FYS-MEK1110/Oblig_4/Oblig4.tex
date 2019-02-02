@@ -1,0 +1,157 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS-MEK 1110 Obligatorisk oppgave 4}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\begin{center}
+\section*{Fange Atomer}
+\end{center}
+
+\subsection*{a)}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{a.jpg} 
+\caption{Skisse av den potensielle energien U(x)}
+\label{a}
+\end{figure}
+
+På figur \vref{a} har jeg skissert den potensielle energien.\\ 
+Når Atomet går forbi $\pm x_0$ ser vi at den kommer inn i fella, dette er også noe som blir kalt en potensiell brønn. Den røde streken jeg har tegnet inn skal demonstrere to forskjellige energi nivåer $E_0$ og $E_1$. Vi ser at hvis den totale energien ($E_0$) er mindre enn den potensielle energien som er inne i fella ($U_0$) så vil den ikke kunne unnslippe den potensielle brønnen, men den vil bevege seg mellom $\pm x_0$. Hvis dette skjer sier vi at atomet er bundet. Hvis den totale energien ($E_0$) er større enn $U_0$ så vil atomet slippe unna og bevege seg til det uendelige. Da sier vi at atomet er ubundet. \\
+De grønne punktene jeg har tegnet inn skal illustrere likevektspunktene. Likevektspunktene finner vi ved $\frac{dU}{dx} = 0$, altså de er maksimum og minimums punkter. Ved $\pm x_0$ er likevektspunktene noe vi kaller for ustabile likevektspunkt, vi kan oså si at de er nøytrale likevektspunkt. Ved x = 0 kaller vi punktet for et stabilt likevektspunkt.\\ 
+Et stabilt likevektspunkt er minimums punktet til kurven, som er når x = 0.Et ustabilt likevektspunkt er maksimums punktet til grafen. Et nøytralt likevekts punkt er når vi kan flytte partikkelen i en retning uten at den forlater equilibrium tilstanden, det kan vi gjøre ved $\pm x_0$. Negativ $x_0$ kan vi bevege den mot venstre uten at den forlater equalibrium tilstanden, motsatt for positiv. 
+
+\subsection*{b)}
+Jeg vet at den potensielle energien kan skrives som $U(x) = - \int \bold{F}(x) + C dx$ Dermed er $\bold{F}(x) = -\frac{dU}{dx}$ Og i fra en setning i boken i kap 11.2 sier de at en kraft $\bold{F}$ er konservativ hvis og bare hvis den kan bli skrevet som den deriverte av potensialet U(x). Ifølge dette så er denne kraften konservativ\\
+\begin{align*}
+\textrm{Hvis } |x|& \geq x_0 \Rightarrow \frac{dU}{dx} = 0\\
+\textrm{Hvis } |x|& <x_0 \Rightarrow \frac{dU}{dx} = \pm \frac{U_0}{x_0}
+\end{align*}
+Kraften blir en piecewise funksjon som ser slik ut:
+\[ F(x) = \begin{cases}
+0 & |x|\geq x_0\\
+\frac{U_0}{x_0} & 0 < x <x_0\\
+-\frac{U_0}{x_0} & 0 > x > -x_0
+\end{cases}\]
+
+
+\subsection*{c)}
+Hvis jeg bruker energibevaring $U_1(x) + K_1(x) = U_2(x) + K_2(x)$ Her er U = potensiell energi og K = kinetisk energi.\\
+Setter inn $v_0 = \sqrt{\frac{4U_0}{m}}$ i uttrykket for $v_1$ i $K_1 = \frac{1}{2}mv_1^2$ når x = 0\\
+Siden U(0) = 0 kan jeg stryke dette fra ligningen.
+\begin{align*}
+K_1(x) &= U_2(x) + K_2(x)\\
+x &= \frac{x_0}{2}\\
+\frac{1}{2}m\sqrt{\frac{4U_0}{m}}^2 &= U_0\frac{\frac{x_0}{2}}{x_0} + \frac{1}{2}mv_2^2\\
+\frac{1}{2}m \frac{4U_0}{m} -  U_0\frac{x_0}{2x_0}&= mv_2^2\\
+4U_0 - U_0 &= \frac{1}{2}mv_2^2\\
+v &= \underline{\underline{\sqrt{\frac{3U_0}{m}}}}\\
+\\
+x &= 2x_0\\
+\frac{1}{2}m\frac{4U_0}{m} &=  U_0 + \frac{1}{2}mv_2^2\\
+4U_0 - 2U_0 &= mv_2^2\\
+v &=\underline{\underline{\sqrt{\frac{2U_0}{m}}}}
+\end{align*}\\
+Hastigheten når x = $\frac{x_0}{2}$ er $v = \sqrt{\frac{3U_0}{m}}$\\
+Hastigheten når x = $2x_0$ er $v = \sqrt{\frac{2U_0}{m}}$
+
+\subsection*{d)}
+Jeg får de samme svarene som i c). Den kinetiske energien kan aldri være negativ. Siden jeg fjerner en rot står det igjen $\pm$ svaret. Da må jeg egentlig bare bruke min intuisjon om hvilket tegn jeg skal velge. Hvis atomet beveger seg mot min valgte x retning så må jeg selvsagt velge negativt tegn foran hastigheten.
+$$K = \frac{1}{2}mv_0^2 =  \frac{1}{2}m\left(-\sqrt{\frac{4U_0}{m}}\right)^2 = \frac{1}{2}m\pm\frac{4U_0}{m} =\pm 2U_0$$
+
+\subsection*{e)}
+En av definisjonene til energi er at \textbf{Energi = kraft anvendt gjennom en strekning}. Spørsmålet er hvor stor må kraften $F_0$ være for at atomet kan unslippe. Så $F_0$ må være større enn den potensielle energien i fella som er $U_0$. 
+\begin{align*}
+F_0\Delta{x} \textrm{ der }\Delta{x} &= x_0 - 0 = x_0\\
+K_0 &= 0\\
+F_0x_0 + 0 > U_0 &\Rightarrow \underline{\underline{F_0 > \frac{U_0}{x_0}}}\\
+K_0 &= \frac{U_0}{2}\\
+F_0x_0 +  \frac{U_0}{2} > U_0 &\Rightarrow \underline{\underline{F_0 > \frac{U_0}{2x_0}}}
+\end{align*}\\
+Når $K_0 = 0$ må $F_0 > \frac{U_0}{x_0}$ og når $K_0 = \frac{U_0}{2}$ må $F_0 > \frac{U_0}{2x_0}$
+
+\subsection*{f)}
+Jeg vet at hvis en kraft skal være konservativ må den være posisjons avhengig. Siden denne kraften kun er avhengig av hastighet så er den ikke konservativ.
+
+\subsection*{g)}
+Kreftene som virker på atomet inni fella er den magnetiske kraften og en ny kraft som er effekten av at det stadig skjer emisjon og absorpsjon i atomet pga at den blir skutt med fotoner med bølgelengde 671 nm (dette er for Li-atom).  La oss kalle disse kreftene for $F_m =$ magnetisk kraft og $F_f =$ kraften som blir tilført av fotoner. Nå kan jeg bruke Newtons 2. lov til å finne akselerasjonen. 
+$$\sum{F} = F_m +F_f = ma \Rightarrow a = \frac{F_m +F_f}{m}$$
+Her er $F_f = -\alpha v$ der v = hastighet og $F_m $= F(x) som vi fant i oppgave b).
+Initial verdiene som vi har fått oppgitt er:\\
+$U_0 = 150$, $m = 23$, $x_0=2$ $\alpha = 39.48$, $v_0 = 0$ Vi har også fått oppgitt at vi opererer med dimensjonsløse tall.  
+
+\subsection*{h)}
+Jeg har kodet dette i python:\\
+\\
+\lstinputlisting[language=Python, firstline=4, lastline=32]{h.py}
+
+\subsection*{i)}
+På figur \vref{i} kan vi se hvordan atomet blir fanget i fella. Hvis vi ser på den øverste grafen som beskriver posisjonen til atomet kan vi se at den nesten unnslipper($x_0 = 2$) men at den faller ned mot null og stabiliserer seg der. Grafen som beskriver hastigheten kan vi se at hastigheten = $v_0$ helt til den kommer inn i fella, da blir den bremset ned og vipper mellom 2 og -2. Akselerasjons-grafen observerer vi at den ikke har noen akselerasjon før den kommer inn i fella, da får den en negativ akselerasjon som samsvarer med hastighets-grafen. Akselerasjonen veksler mellom 5 og - 5. Med dette synes jeg det er trygt og konkludere med at atomet har blitt fanget i fella.
+\begin{figure}[h!]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[width=\textwidth]{i.png} 
+\caption{\\Øverst = Posisjons-graf\\ Midterst = Hastighets-graf \\ Nederst = Akselerasjons-graf}
+\label{i}
+\end{figure} 
+
+\subsection*{j)}
+På figur \vref{j} kan vi se at atomet unnslipper fella. På posisjons grafen ser vi at atomet kommer inn i fella, den endrer kursen sin litt før den fortsetter bevegelsen mot det uendelige, som jeg konkluderer med er fordi den unnslapp og bare fortsetter utenfor fella. Det blir enda tydeligere når vi ser på hastighets- og akselerasjons-grafen. De er begge veldig symmetriske og det er tydelig når atomet var innom fella og når den forsvant ut igjen. Atomet blir bremset ned til en hastighet på 2 og stabiliserer seg der, mest sannsynlig fordi den da har forlatt fella. Akselerasjonen blir negativ med engang atomet er inni fella men blir null igjen når den har forlatt. Jeg tror at grunnen til at atomet får en hastighet på 2, og en akselerasjon på null etter den har forlatt fella er fordi vi ikke lenger kan måle hvordan atomet oppfører seg. 
+\begin{figure}[h!]
+\centering
+\captionsetup{justification=centering}
+\includegraphics[width=\textwidth]{j.png} 
+\caption{\\Øverst = Posisjons-graf\\ Midterst = Hastighets-graf \\ Nederst = Akselerasjons-graf}
+\label{j}
+\end{figure} 
+
+\subsection*{k)}
+Ved prøv å feil metoden fant jeg ut at atomet kan en maksimal initial hastighet $v_0 = 8.73$ og fortsatt bli fanget.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
