@@ -1,0 +1,641 @@
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage[toc,page]{appendix}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\bibliographystyle{plain}
+
+
+\title{Magnetisme}
+\author{Kenneth Ramos Eikrehagen}
+\date{\today}
+\begin{document}
+
+\renewcommand{\abstractname}{\large Sammendrag}
+\renewcommand{\contentsname}{\LARGE Innhold}
+\renewcommand{\listfigurename}{\Large Figur liste}
+\renewcommand{\listtablename}{\Large Tabell liste}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+
+
+
+
+\begin{abstract}
+Innenfor temaet magnetisme skjuler det seg mange spennende fenomener. Vi skal under disse eksperimentene undersøke Diamagnetisme, ferromagnetisme, hysterese fenomenet og Faraday effekten. 
+
+Vi fant at selv om et diamagnetisk materialet har netto magnetisk moment lik null i sine atomer så blir det påvirket om i et magnetfelt. Vi observerte at ferromagnetisk material forsterket den magnetiske flukstettheten den ble plassert i, og hvor mye flukstettheten ble styrket kommer ann på den geometriske formen til materialet. Hvis et ferromagnetisk materialet som jern blir plasser i sentrum av en sekundærspole som igjen blir plassert i sentrum av en primærspole vil det bli indusert strøm i primærspolen. Med et program på en PC så vi at magnetiseringen til jernet laget en hysterese kurve. 
+Vi fikk også obervere Faraday effekten som innebærer at monokromatisk lys som blir sendt igjennom et flint glass i et magnetfelt blir avbøyd, avbøyningen til lyset avhenger av hvor sterkt magnetfeltet er.
+\end{abstract}
+
+
+
+\section{Introduksjon}
+Magnetisme som fenomen kan spores tilbake til grekerne, de omtaler en magnetjernstein som Herkules-stein. Ordet magnet kommer sannsynligvis fra gresk ,,magnetos lithos'', som betyr stein fra Magnesia hvor mineralet forekom. Den første vitenskaplige undersøkelsen av magneter ble gjort på 1600 tallet av W. Gilbert som skrev en bok om temaet. Han oppdaget at en magnet har to poler, som han kalte nordpol og sørpol, der like poler frastøter hverandre og ulike tiltrekkes hverandre.
+
+Charles-Augustin de Coulomb målte i (1784-85) kreftene mellom magnetpoler og viste at kreftene er omvendt proposjonal med kvadratet av avstanden, akkurat som for kreftene mellom elektriske ladninger og gravitasjon.
+
+Michael Faraday hadde noen andre synspunkter enn Coulomb i læren om magnetisme. Isteden for å se på kreftene i mellom polene men kraftvirkningene i rommet rundt en magnet slik at det danner magnetiske feltlinjer.  \cite{snl}. 
+
+James Clerk Maxwell var personen som klarte å forklare fenomenet matematisk og han la grunnlaget for elektromagnetisme med fire ligninger. 
+\begin{align*}
+\nabla \cdot E &= \frac{\rho}{\epsilon_0}\\
+\nabla \cdot B &= 0\\
+\nabla \times E &= -\frac{\partial B}{\partial t} \\
+\nabla \times B &= \mu_0\left(J + \epsilon_0\frac{\partial E}{\partial t} \right)
+\end{align*}
+
+Disse fire ligningene er det full symmetri mellom elektriske og magnetiske krefter. Alle magnetfelt vi kjenner til generes av ladninger i bevegelse, og danner lukkede magnetlinjer. Vi kan dele opp magnetisme i 3 deler: ferro-, dia- og para-magnetisme. Hvilken av disse materialet tilhører kommer an på hvilken oppbygning og egenskaper materialet har. 
+
+
+
+
+
+
+\section{Teori}
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\begin{center}
+  	\includegraphics[width = 0.48\linewidth]{mu}\\
+	\caption[Magnetisk dipolmoment]{Illustrasjon av magnetisk dipolmoment $\mu$ generert av en ladning som beveger seg i sirkelbane (her et elektron $\overset{-}{e}$). I er strømmen som skyldes bevegelsen til ladningen, og S er arealet av grenset av ladningens bane. }
+	\label{mu}
+	\end{center}
+\end{wrapfigure}
+De er uparede elektroner som gir opphav til nettospinn i et atom og dermed også et netto magnetisk moment $\mu$ som demonstrert i figur \vref{mu}. Dermed vil hvert enkelt atom fungere som en stavmagnet. Hvis dette er tilfellet sier vi at materialer er magnetisert $M$. Dette blir kvantisert ved ligning \ref{magnetiskdipolmoment}
+\begin{equation}
+M = \frac{d\mu}{dV}
+\label{magnetiskdipolmoment}
+\end{equation}
+ der $d\mu$ er det magnetiske momentet i et volum $dV$. Et magnetfelt blir definert som i ligning \ref{magnetfelt}:
+\begin{equation}
+H = \frac{B}{\mu_0} - M
+\label{magnetfelt}
+\end{equation}
+der $B$ er magnetisk flukstetthet.
+
+\subsection{Diamagnetisme}
+Diamagnetisme er den vanligste formen for magnetisme og forekommer når netto magnetisk moment i et atom er null, og er ikke magnetisk uten ytre påvirkning. Hvis materialet føres inn i et magnetfelt vil elektronorbitalene deformeres som gir et lite magnetisk moment. Vi sier da at den magnetiske susceptibilitet  $\chi < 0$. Dette er en egenskap som gjelder for alle atomer. og vi kan derfor si at alle materialer er diamagnetiske. 
+
+Dette er den svakeste magnetiske kraften av de tre. Men materialer som blir omtalt som superledere er diamagneter, disse har en susceptibilitet på $\chi = -1$ og siden den elektriske motstanden i superledere er null kan de sette opp et magnetfelt som eksakt kansellerer det påtrykte magnetfelt. 
+
+Man kan bestemme susceptibiliteten til et slikt materialet ved hjelp av ligning \vref{diasus}
+\begin{equation}
+F_z = -\frac{\chi}{2\mu_0}A(B_1^2 - B_2^2)
+\label{diasus}
+\end{equation}
+der A er tverrsnittet til materialet og $B_1$ er magnetisk flukstetthet ved kilden og $B_2$ er magnetisk flukstetthet ved den enden av materialet som ikke er i magnetfeltet. Dette er illusterert i figur \vref{vismuteks}
+\begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth, height = 8cm]{vismuteks}\\
+	\caption[Illustrasjon av vismut eksperimentet]{Illustrasjon av vismut eksperimentet, A er tverrsnittet til stanga og $F_z$ er den magnetiske kraften som virker på stanga.}
+	\label{vismuteks}
+	\end{center}
+\end{figure}
+
+\subsection{Paramagnetisme}
+Paramagnetiske materialer får kun en magnetisering når de plasseres i et ytre magnetfelt. I disse materialene så er magnetiseringen omtrent proposjonal med styrken på det påtrykte magnetfelt. Magnetiseringen skrives ofte som i ligning \ref{para}
+\begin{equation}
+M = \chi H
+\label{para}
+\end{equation}
+der susceptibiliteten er $0<\chi<<1$. En paramagnet fungerer derfor som en svak magnetforsterker. 
+
+\subsection{Ferromagnetisme}
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{ferro}
+  \end{center}
+  \caption[Magnetiseringen av ferromagneter]{Skisse av hvordan vi kan forvente at et ferromagnetisk materialet vil bli magnetisert. M er magnetiseringen og $H_0$ er det påtrykte magnetfeltet.}
+  \label{ferro}
+\end{wrapfigure}
+Et ferromagnetisk materialet vil oppføre seg veldig likt et paramagnetisk materialet i et magnetfelt, men magnetiseringen er mye større. I disse materialene er vekselvirkningen mellom de atomære dipolene så store at den klarer å opprettholde en gjennomsnittlig orientering også uten en påtrykt kraft. På grunn av dette kan vi lage en permanent magnet ved å plassere et ferromagnetisk materialet i et magnetfelt og deretter skru av magnetfeltet. 
+
+Men for et ferromagnetisk materialet er ikke $\chi$ en material konstant, $\chi$ vil generelt sett være avhengig av den magnetiske flukstettheten $B$ gjennom materialet. Magnetiseringen er derfor avhengig av geometrien til materialet og det på trykte magnetfeltet $H$. På figur \vref{ferro} er hvordan vi forventer et ferromagnetisk materialet oppføre seg når vi utsetter materialet for et magnetfelt for så å fjerne magnetfeltet. 
+
+\subsection{Avmagnetisering}
+\begin{figure}
+  	\begin{center}
+   	\includegraphics[width=\textwidth, height = 5cm]{BogHfelt}
+  	\caption[B- og H-felt for en uniformt magnetisert kule uten påtrykt felt.]{Illustrasjon av en kule med uniformt fordelt B-og H-felt uten påtrykt kraft utenfra. Figuren til høyre viser B-feltet og figuren til venstre viser H-feltet. Vi ser at uten for kulen er de identiske men ikke inni kulen.}
+	\label{HB}
+  	\end{center}
+\end{figure}
+Hvis vi tar utgang punkt i Ampere's lov: 
+\begin{equation}
+\nabla \times H = 0
+\label{ampere}
+\end{equation}
+og Gauss lov:
+\begin{equation}
+\nabla \cdot(H+M) = 0
+\label{gauss}
+\end{equation}
+og vi antar at det ikke er noen strømmer i materialet. Ampere's lov og Gauss lov må gjelde overalt, det betyr at ligning \vref{ampere} og \vref{gauss} må gjelde overalt. Selv mellom to materialer som har forskjellig magnetiske egenskaper. Vi kan se på figur \ref{HB} at B-og H-feltet er forskjellig. Feltene er identisk utenfor kula men inni kula er H-feltet motsatt rettet av B-feltet. Dette feltet kaller vi avmagnetiseringsfeltet $H_d$. 
+Hvis et ferromagnetisk materialet har en ellipsoide form og er uniform magnetisering kan vi finne magnetfeltet ved ligning \ref{hdi}
+\begin{equation}
+H_{i,d} = -D_iM_i 
+\label{hdi}
+\end{equation}
+der $i=x,y,z$ og $D_i$ er avmagnetiseringsfaktoren.
+ 
+H-feltet i et ferromagnetisk materialet kan også dekomponere to deler på grunn av superponering
+\begin{equation}
+H = H_0 + H_d
+\label{superH}
+\end{equation}
+I lignining \vref{superH} er $H_0$ magnetfeltet som skyldes elektriske strømmer utenfor materialet, og $H_d$ avmagnetiseringsfeltet som motvirker ferromagnetens magnetisering M.
+
+Vi kan regne avmagnetiseringsfaktoren for en ellipsoide, og formen til disse ellipsoidene kan begrenses til et tall. Dette tallet kalles ellipsoidens eksentrisitet $\epsilon$ og er gitt av ligning \vref{eksentrisitet}
+\begin{equation}
+\epsilon = \sqrt{1 - \frac{1}{f^2}}
+\label{eksentrisitet}
+\end{equation}
+der f er gitt som
+$$
+f = \frac{a_{||}}{a_\bot}
+$$
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth, height = 6cm]{ellipsoider}
+  \end{center}
+  \caption[Ellipsoider]{Ellipsoider som er rotasjonssymmetriske, med f>1 som ligner en ,,stang'', f=1 som er en kule og f<<1 som ligner en ,,skive''.}
+  \label{ellipsoider}
+\end{wrapfigure}
+
+Hvis $\epsilon >0$ har vi en strukket ellipsoide og hvis $\epsilon$ er imaginær har vi en flat trykket skive. For en kule er $\epsilon = 0$ og er et spesial tilfelle. 
+På figur \vref{ellipsoider} kan vi se forskjellige ellipsoider med sine verdier for f og $D_{||,\bot}$ 
+
+Dette fører til eksperimentelle konsekvenser, vi har ingen mulighet til å måle H-feltet eller magnetiseringen inne i magneten. Om man antar uniformt magnetisering og verdiene gitt i figur \vref{eksentrisitet}, kan man likevel estimere dette. H og M er lineære funksjoner av magnetisk flukstetthet B og ved hjelp av ligning \ref{M} og \vref{H} kan vi finne disse verdiene.
+\begin{equation}
+\mu_0M=A\Delta B = A(B-B_0)
+\label{M}
+\end{equation}
+\begin{equation}
+\mu_0H=B_0 + (1-A)\Delta B = A(B_0-DB)
+\label{H}
+\end{equation}
+der $A = (1-D)^{-1}$ og $D = D_{||}$ eller $D_\bot$. Vi kan også finne susceptibiliteten for magneten ved ligning \vref{sus}
+\begin{equation}
+\chi = \frac{M}{H} = \frac{B-B_0}{B_0-DB}
+\label{sus}
+\end{equation}
+dette gjelder for alle ferromagnetiske materialer.
+
+\subsection{Hysterese}
+Hysterese er et fenomen som fremkommer når en tilstandsendring fra en ytre påvirkning ikke blir borte når når påvirkningen fjernes. Magnetisk hysterese fremkommer derfor for ferromagnetiske materialer som for eksempel jern \cite{snlh}, se figur \vref{ferro}. 
+
+For en magnetisk hysterese kan vi finne endringen av magnetisk flukstetthet ($\Delta B$) ved hjelp av ligning \vref{endmagfluks}
+\begin{equation}
+\Delta B = \frac{\kappa \Delta S}{nA}
+\label{endmagfluks}
+\end{equation}
+der $\kappa$ er kalibreringskonstant, $\Delta S$ er verdien spenningsgeneratoren oppgir, n er antall viklinger på sekundærspolen og A er tversnittet til sekundærspolen. Videre kan vi bruke dette til å regne ut den magnetiske flukstettheten med ligning \vref{magfluks}
+\begin{equation}
+B = \frac{\Delta B}{2}
+\label{magfluks}
+\end{equation}
+faktoren $\frac{1}{2}$ skyldes symmetri rundt $I = 0$.
+
+\subsection{Faraday effekten}
+Faraday effekten er et magneto-optisk fenomen som viser at lys og elektromagnetisme henger sammen, Faraday oppdaget dette fenomenet i 1845. Han observerte at polarisasjonsretningen til lys som gikk igjennom en krystall endret seg med styrken til magnetfeltet krystallen var plassert i \cite{opg}.
+Styrken på Faraday effekten for et bestemt materialet måles med en konstant kalt Verdet-konstant. Denne konstanten er uavhengig av lengden $L$ til materialet eller magnetfeltet $B$ flint glasset er plassert i. Den avhenger dog av bølgelengden til materialet den kommer fra. Vi kan finne denne konstanten ved hjel av ligning \vref{verdet}
+
+\begin{equation}
+V(\lambda) = \frac{\theta(\lambda,B,L)}{LB}
+\label{verdet}
+\end{equation}
+der $V(\lambda)$ er Verdet-konstanten, $\theta$ er dreiningen av polarisasjons retningen, L er lengden til flint glasset og B er magnetfeltet. 
+
+
+
+\newpage
+\section{Eksperimentelt}
+Lab partner under disse eksperimentene var Eirik Frøyli og Eirik Oalv Haugen.
+
+\subsection{Ferromagnetisme}
+Første eksperimentet vi utførte var ferromagnetisme og vi startet med å gjøre oss kjent med utstyret. Vi hadde fått ut delt 4 magneter med forskjellig form, en kule, en ellipsoide, en skive og en stang. Stangen kunne vi tilnærme til en ellipsoide slik at vi kunne bruke figur \vref{ellipsoider} til å finne verdiene for f, $D_{||}$ og $D_\bot$. På figur \vref{skisseferro} er oppsette vi brukte under dette eksperimentet. Utstyret vi brukte under dette eksperimentet ser du i apendikset under seksjon A.2.
+
+ \begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{skisseferro}\\
+	\caption[Oppsett til ferromagnetisme]{Skisse av hvordan oppsettet var for ferromagnetisme eksperimentet.}
+	\label{skisseferro}
+	\end{center}
+\end{figure}
+
+Vi skulle plassere objektene i midten av en spole som hadde N = 244 vinninger av en ledning som leder strøm. Dette skaper et homogent magnetfelt inne i spolen når strømmen er skrudd på. 
+Vi skulle måle den magnetiske flukstettheten rundt objektene. Det første vi målte var magnetisk flukstetthet B inne i spolen uten noe for å finne $B_0$. Deretter fant vi den maksimale verdien til objektene ved å få måleinstrumentet parallellt med magnetfelt linjene. Siden vi ikke ser disse linjene måtte vi tenke oss hvordan det er i teorien (se figur \vref{HB}). Kula, stanga og skiva snudde vi 4 ganger og målte de maksimale verdiene til B-feltet for hver av sidene. Ellipsoiden var for lang til at vi kunne legge den på tvers derfor målte vi bare for topp og bunn for denne magneten.  
+Det siste vi skulle gjøre er å se om målingene vi har gjort stemmer overens med teorien.
+
+\subsection{Diamagnetisme}
+Vi startet med å gjøre oss kjent med utstyret vi skulle anvende under dette eksperimentet. Utstyret som vi hadde finner du i appendikset under seksjon A.1. Oppsettet vi brukte er skissert i figur \vref{diaoppsett}. 
+
+ \begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{diaoppsett}\\
+	\caption[Oppsett til diamagnetisme]{Skisse av hvordan oppsettet var for diamagnetisme eksperimentet.}
+	\label{diaoppsett}
+	\end{center}
+\end{figure}
+
+Vismut staven var (v.h.a en snor) festet til en stang som lå over en vekt, i andre enden av stangen var et lodd som utlignet vekten til vismut staven slik at den lå stabilt over vekten. Vismut stangen hang i mellom polene til en elektromagnet. Vi målte tverrsnittet til vismut staven med et skyelær og nullstilte vekten før vi skrudde på elektromagneten. Deretter gjorde vi målinger av B-feltet i mellom polene til elektromagneten og på toppen av vismut staven, i tillegg noterte vi oss vekten endringen til staven. Med dataen vi samlet inn skulle vi bestemme vismut staven sin susceptibilitet $\chi$. Jeg anvendte ligning \ref{diasus} for å finne $\chi$. Med litt omregning er $\chi$ gitt veg ligning \vref{chi}
+
+\begin{equation}
+\chi = -\frac{2\mu_0F_z}{A(B_1^2-B_2^2}
+\label{chi}
+\end{equation}
+der $F_z$ er kraften som medfører vekt endringen til vismutstaven. 
+$$
+F_z = ma = mg
+$$
+der m er masse endringen og g er gravitasjonskonstanten på jorda. 
+
+Jeg skulle også se sammenligne resultatet fra ligning \ref{chi} med å anta at det var en lineær sammenheng mellom magnetfeltet til elektromagneten og kraften som dytter vismutstangen opp. 
+
+
+Usikkerheten til utstyret vi brukte her var 0.05mm for skyvelæret, 0.03g for vekten og 
+\subsection{Hysterese}
+Før vi startet gjorde vi oss kjent med utstyret vi skule anvende under dette eksperimentet. Vi noterte ned alle konstantene som var oppgitt på instrumentene vi skulle bruke fordi vi har bruk for disse under utregningene våres etter eksperimentet er utført.
+
+Vi skulle plassere en jernstang i sentrum av sekundærspolen og igjen plassere sekundærspolen i sentrum av primærspolen. Sekundærspolen var koblet til en spenningsintegrator som igjen var koblet til en effektforsterker og en signal generator, primærspolen var koblet sammen med en pc som hadde en programvare som målte strømmen som gikk igjennom spolen grunnet magnetismen fra sekundærspolen og jernstangen. Oppsette for dette eksperimentet er illustrert i figur \vref{hystereseoppsett}
+
+ \begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{hystereseoppsett}\\
+	\caption[Oppsett til hysteresekurven]{Oppsettet vi brukte for å generere en hysteresekurve. Jernstangen ble plassert i sentrum av sekundærspolen og plasserte deretter sekundærspolen i sentrum av primærspolen.}
+	\label{hystereseoppsett}
+	\end{center}
+\end{figure}
+
+Vi gjorde deretter 8 målinger der $I \in [4.0,0.5]A$ var uniformt fordelt. Vi noterte ned verdien til spenningsintegratoren og strømmen $I$ i topp og bunnpunktet til hysterekurven. Vi brukte gjennomsnittet av absolutt verdiene i ligning \ref{endmagfluks} til å regne ut endringen i magnetisk flukstetthet. Tilslutt laget vi oss en figur som viser målepunktene vi fikk for den magnetiske flukstettheten ved hjelp av ligning \ref{magfluks}.
+
+\subsection{Faraday effekten}
+Under dette eksperimentet skal vi undersøke Faraday effekten (se teori). Oppsettet vi brukte for å observerer dette ser du i figur \vref{faradayeff}
+
+ \begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{faraday.jpg}\\
+	\caption[Oppsett til Faraday effekten]{Oppsettet til eksperimentet Faraday effekten.}
+	\label{faradayeff}
+	\end{center}
+\end{figure}
+
+Vi startet med å gjøre oss kjent med utstyret og noterte ned strøm og magnetfelt forholdet til utstyret. Polariseringsfiltrene er innstilt slik at $0\degree$ er øverst på filteret slik at vi måler vinklene $-\degree$ mot venstre og $+\degree$ mot høyre. Vi stilte inn første polariseringsfilter (nærmest lyskilden) til $-41\degree$. For at vi skulle kunne observere lyset på best mulig måte måtte vi fjerne mest mulig lys støy. Vi lukket alle gardiner og skrudde av lyset før vi skrudde på apparaturen. Det andre polariseringsfilteret ble så justert slik at vi så mest mulig lys passere gjennom krystallen. Deretter justerte vi polariseringsfilteret til det ikke kom noe lys gjennom filteret og noterte ned vinkelen. Vi skulle så gjenta dette for 10 uniformt fordelt strømstyrker $I \in [3.0,-3.0]A$. Når vi skulle endre strømstyrken måtte vi passe på at det ikke var noe strøm som gikk igjennom apparaturen. Rådataen vi samlet inn her skulle vi bruke til å finne Verdet-konstanten til det optiske filteret vi brukte.
+
+
+
+
+
+\section{Resultater}
+
+\subsection{Diamagnetisme}
+Tverrsnittet av vismut-prøven ble målt til $A = 10.2 \pm 0.05mm$.
+Dataen jeg samlet inn for diamagnetisme finner du i tabell \vref{vismuttabell}. Grafen jeg fikk da jeg plottet B-feltet til elektomagneten mot min utregnede verdi for $\chi$ er i figur \vref{vismutgraf}. Stigningstallet til lineær regresjonen er $-1.53 \pm 0.37 Tm$ og er det jeg fant at var verdien for $\chi$ til vismut-prøven jeg hadde var. 
+
+Plottet jeg fikk da jeg skulle anta at det var en lineær sammenheng mellom kraften til elektromagneten og kraften som dyttet vismutstangen opp ser du i figur \vref{FzvsB1}. Her er stigningstallet til lineær regresjonen $-3.89*10^{-3} \pm 0.27 *10^{-3}$.
+
+\begin{table}[!h]
+\centering
+\caption[Elektromagnet, vismutstang og vekt]{Målinger gjort med en vismutstang plassert i mellom polene til en elektromagnet. Vismutstangen er festet til en stang ved hjelp av hyssing og stangen er plassert på en vekt.}
+	\begin{tabular}{| l | c | c | c | c | c |}
+	\hline
+	$I$ A & $B_1$ mT  & $B_2$ mT & Vekt g & $\chi$ $\mu$Tm & $F_z$ mN\\ 
+	\hline
+	0.0 &17.8 $\pm$ 0.01&0.3 $\pm$ 0.01& 0.00 $\pm$ 0.03 & 0.00 & 0.00\\
+	0.2 &100.0$\pm$ 1.01 &0.5 $\pm$ 0.01& -0.02 $\pm$ 0.03 & 0.49 & 0.20 \\
+	0.4 &186.0 $\pm$ 1.01 &1.0 $\pm$ 0.01&-0.03 $\pm$ 0.03 & 0.21 & 0.29\\
+	0.6 &278.0 $\pm$0.51 &1.5 $\pm$0.11 &-0.05 $\pm$ 0.03 & 0.16 & 0.49\\
+	0.8 &368.0$\pm$1.01 &1.8$\pm$0.11 &-0.08 $\pm$ 0.03 & 0.15 & 0.78\\
+	1.0 &443.0$\pm$1.01 &2.1$\pm$0.11 &-0.10 $\pm$ 0.03 & 0.13 & 0.98\\
+	1.2 &510.0 $\pm$ 1.01 &2.3$\pm$0.11 &-0.13 $\pm$ 0.03 & 0.12 & 1.28 \\
+	1.4 &577.0$\pm$1.01 &2.6$\pm$0.11 &-0.17 $\pm$ 0.03 & 0.13 & 1.67\\
+	1.6 &636.0$\pm$1.01 &2.3 $\pm$0.11 &-0.21 $\pm$ 0.03 & 0.13 & 2.06\\
+	1.8 &690.0$\pm$1.01 &2.2$\pm$0.11 &-0.23 $\pm$ 0.03 & 0.12 & 2.26\\
+	2.0 &728.0$\pm$1.01 &2.2$\pm$0.11 &-0.26 $\pm$ 0.03 & 0.12 & 2.55\\
+	2.2 &766.0$\pm$1.01 &2.3$\pm$0.11 &-0.28 $\pm$ 0.03 & 0.12 & 2.75\\
+	2.4 &800.0$\pm$1.01 &2.2$\pm$0.11 &-0.31 $\pm$ 0.03 & 0.12 & 3.04\\
+	\hline
+	\end{tabular}\\
+\label{vismuttabell}
+\end{table}
+
+ \begin{figure}
+ 	\begin{minipage}{\linewidth}
+		\begin{center}
+  		\includegraphics[width = 0.85\linewidth]{grafvismut.png}\\
+		\caption[Graf av B-feltet til elektromagneten mot min utregnede $\chi$]{Graf av B-feltet til elektromagneten mot min utregnede verdi av $\chi$ plottet med lineær regresjon. Her er aksene logaritmen til verdiene.}
+		\label{vismutgraf}
+		\end{center}
+	\end{minipage}
+	\hspace{.5cm}
+ 	\begin{minipage}{\linewidth}
+		\begin{center}
+  		\includegraphics[width = 0.85\linewidth]{FzvsB1.png}\\
+		\caption[Graf av B-feltet til elektromagneten mot kraften $F_z$]{Graf av magnetfeltet generert av elektromagneten $B_1$ mot kraften som dytter vismut-prøven opp $F_z$}
+		\label{FzvsB1}
+		\end{center}
+	\end{minipage}
+\end{figure}
+
+\subsection{Ferromagnetisme}
+Dataen vi samlet inn for ferromagnetisme er i tabellene \ref{kule}, \ref{stang}, \ref{skive} og \vref{ellipsoide}. Hvilke sider som representerer hva er illustrert i figur \vref{sider}. Verdien for magnetisk flukstetthet B uten ferromagneter i sentrum var $B = 5.1mT$\\
+\begin{table}[!h]
+	\begin{minipage}{.5\linewidth}
+	\caption[Kule]{Målinger for en kule plassert omtrent i midten inni en spole}
+	\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		side & B mT & I A\\
+		\hline
+		1 & 14.9 & 5\\
+		2 & 14.1 & 5\\
+		3 & 14.1 & 5\\
+		4 & 13.9 & 5\\
+		\hline
+		\end{tabular}
+		\label{kule}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\caption[Stang]{Målinger for en stang plassert omtrent i midten inni en spole}
+	\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		side & B mT & I A\\
+		\hline
+		1 & 19.9 & 5\\
+		2 & 19.9 & 5\\
+		3 & 7.2 & 5\\
+		4 & 7.5 & 5\\
+		\hline
+		\end{tabular}
+		\label{stang}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\caption[Skive]{Målinger for en skive plassert omtrent i midten inni en spole}
+	\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		side & B mT & I A\\
+		\hline
+		1 & 5.6 & 5\\
+		2 & 5.6 & 5\\
+		3 & 16.8 & 5\\
+		4 & 17.2 & 5\\
+		\hline
+		\end{tabular}
+		\label{skive}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\caption[Ellipsoide]{Målinger for en ellipsoide plassert omtrent i midten inni en spole}
+	\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		side & B mT & I A\\
+		\hline
+		1 & 75.2 $\pm$ 0.2 & 5\\
+		2 & 74.4 $\pm$ 0.2  & 5\\
+		\hline
+		\end{tabular}
+		\label{ellipsoide}
+	\end{minipage}
+\end{table}
+
+ \begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{sider}\\
+	\caption[Sidene til magnetene]{Skisse av hvilken side som representerer hva i tabell \ref{kule}, \ref{stang}, \ref{skive}, \vref{ellipsoide}}
+	\label{sider}
+	\end{center}
+\end{figure}
+
+\newpage
+\subsection{Hysterese}
+Dataen vi samlet inn for magnetisk hysterese finnes i tabell \vref{hyst}. Konstantene jeg trenger i ligning \ref{endmagfluks} er
+\begin{align*}
+\kappa = 1.01 \mu Wb && D = 10 && \mu_0 = 2\pi*10^{-7}\frac{Tm}{A}
+\end{align*}
+Primærspolen:
+\begin{align*}
+n_1 = 344 && L = 315 mm
+\end{align*}
+der $n_1$ er antall viklinger og L er lengden vinklingene er spent over.\\
+Sekundærspolen
+\begin{align*}
+n_2 = 130 && A = 6.5 mm
+\end{align*}
+der $n_2$ er antall viklinger og A er tverrsnittet til spolen.
+
+1 av de 8 hysteresene vi framstilte under eksperimentet ser du i figur \vref{hystlab}. I tabell \vref{uthyst} er de utregnede verdiene jeg fant fra rådataen der $I_p$ er strømmen igjennom primærspolen, $\Delta S$ er integrator skalasvlesningen, $\Delta B$ er forandring i magnetisk flukstetthet og B er magnetisk flukstettheten i spolen. På figur \vref{BvsI} ser du strøm i primærspolen plottet mot magnetisk flukstetthet. 
+
+
+\begin{table}[!h]
+\centering
+\caption[Rådata av hysterese kurve]{Oversikt over verdiene til hysteresekurven som ble laget ved hjelp av ferromagnetisme}
+	\begin{tabular}{| c | c | c | c | c | c |}
+	\hline
+	$I_0$ A & $S_{top}$ & $S_{bunn}$ & $I_{top}$ A & $I_{bunn}$ A & SG  \\ 
+	\hline
+	$\pm$4.0 & 619.51 & -562.73 & 4.41 & -4.48 & 1.0 \\
+	$\pm$3.5 & 449.15 & -681.47 & 3.93 & -4.06 & 0.9 \\
+	$\pm$3.0 & 387.20 & -665.98 & 3.51 & -3.58 & 0.8 \\
+	$\pm$2.5 & 314.92 & -650.49 & 3.03 & -2.55 & 0.7 \\
+	$\pm$2.0 & 227.16 & -619.51 & 2.55 & -2.69 & 0.6 \\
+	$\pm$1.5 & 118.74 & -578.21 & 2.20 & -2.34 & 0.5 \\
+	$\pm$1.0 & -51.63 & -557.56 & 1.74 & -1.92 & 0.4 \\
+	$\pm$0.5 & -191.02 & -485.29 & 1.31 & -1.45 & 0.3 \\
+	\hline
+	\end{tabular}\\
+\label{hyst}
+\end{table}
+
+ \begin{figure}
+ 	\begin{minipage}{\linewidth}
+		\begin{center}
+  		\includegraphics[width = 0.8\linewidth]{hystereselab.png}\\
+		\caption[Hysteresen vi fremstille under lab-dagen]{Dette er en av de 8 hysteresekurvene vi fremstilte under eksperimentet}
+		\label{hystlab}
+		\end{center}
+	\end{minipage}
+	\hspace{.5cm}
+ 	\begin{minipage}{\linewidth}
+		\begin{center}
+  		\includegraphics[width = 0.8\linewidth]{BvsI.png}\\
+		\caption[Fremstilling av B mot I]{Fremstilling av magnetfeltet B mot strømmen I.}
+		\label{BvsI}
+		\end{center}
+	\end{minipage}
+\end{figure}
+
+
+\begin{table}[!h]
+\centering
+\caption[Utregnede verdier for $\Delta S$, $\Delta B$, B og I]{Her er de utregnede verdiene for $\Delta S$, $\Delta B$, B og $I_p$}
+	\begin{tabular}{| c | c | c | c |}
+	\hline
+	$\Delta S$ & $\Delta B$ mT & $B$ mT & $I_p$ [A]\\ 
+	\hline
+	591.12 & 7.07 & 3.53 & 4.45\\
+	565.31 & 6.76 & 3.38 & 4.00\\
+	526.59 & 6.29 & 3.15 & 3.55\\
+	482.71 & 5.77 & 2.88 & 3.10\\
+	423.34 & 5.06 & 2.52 & 2.62\\
+	348.48 & 4.17 & 2.08 & 2.27\\
+	304.60 & 3.64 & 1.82 & 1.84\\
+	338.16 & 4.04 & 2.02 & 1.38\\
+	\hline
+	\end{tabular}\\
+\label{uthyst}
+\end{table}
+
+
+\subsection{Faraday effekten}
+Første polariseringsfilter ble stilt inn på $-41\degree$. Vinklene og strømstyrken vi brukte under eksperimentet Faraday effekten er i tabell \vref{vinkler}. Verdet konstanten jeg fant for monokromatisk lys med en bølgelengde $\lambda = 595$ er $V(\lambda) = -0.31 \pm 0.07$. Jeg plottet mine utregnede verdier for Verdet-konstanten mot magnetisk flukstetthet i elektromagneten. Dette ser du i figur \vref{verdet}
+\begin{table}[h!]
+\centering
+\caption[Rådata for Faraday effekten]{Dataen vi samlet inn under Faraday effekten. $\theta_1$ er vinkelen vi målte for positiv strøm retning og $\theta_2$ er vinkelen vi målte for negativ strøm retning}
+	\begin{tabular}{| c | c | c | c | c | c |}
+	\hline
+	$I$ A & $B$ mT & $\theta_1$ & $I$ A &$B$ mT& $\theta_2$ \\ 
+	\hline
+	3.0 & 119.0 & 44.6$\degree$ & -3.0 & -119.0 & 53.0$\degree$\\
+	2.5 & 102.0 & 44.8$\degree$ & -2.5 & -102.0 & 52.6$\degree$\\
+	2.0 & 83.0 & 45.6$\degree$ & -2.0 & -83.0 & 52.0$\degree$\\
+	1.5 & 63.0 & 46.8$\degree$ & -1.5 & -63.0 & 51.0$\degree$\\
+	1.0 & 43.0 & 47.4$\degree$ & -1.0 & -43.0 & 50.0$\degree$\\
+	0 & 0 & 49.0$\degree$ & 0 & 0 & 49.0$\degree$\\
+	\hline
+	\end{tabular}\\
+\label{vinkler}
+\end{table}
+
+ \begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{verdet}\\
+	\caption[Verdet-konstant]{Dette plottet viser magnetisk flukstetthet plottet mot utregnet verdi for Verdet-konstanten}
+	\label{verdet}
+	\end{center}
+\end{figure}
+
+
+
+
+\newpage
+\section{Diskusjon}
+Nå jeg sammenligner hva jeg fant for magnetisk susceptibilitet ($\chi$) for vismut med hva andre har funnet ser jeg at jeg har bommet veldig mye. Den egentlige verdien er $\chi = -1.6*10^{-4}$ men jeg hadde $\chi = -1.53 \pm 0.37$. Tallet jeg får for min verdi av $\chi$ kunne ha vært innen for et standard avvik på $\pm 0.37$ om jeg ikke hadde bommet med størrelse orden på $10^3$. Dette betyr at noe har gått feil under mine beregninger. 
+
+Om jeg antar at $B_2=0$ har ingen ting å si på mine resultater, implementerer jeg dette så forandrer ikke grafene eller verdien for $\chi$ seg. Så jeg kan med god tilnærming anta at $B_2 = 0$. På figur \vref{FzvsB1} er hva jeg får når jeg antar lineær sammenheng mellom $F_z$ og $B_1$. Vi kan se på figuren at de er ganske lineære. Stigningstallet til denne sammenhengen passer mye bedre overens med hva som er funnet for susceptibilitet for vismut. Her bommer jeg med en størrelse orden på 10, som er bedre enn hva jeg fant ved hjelp av ligning \vref{chi}. 
+
+Når jeg målte magnetisk flukstetthet med ferromagnetiske materialer med ulik form fant jeg at de ferromagnetiske materialene uavhengig av form forsterket den magnetiske flukstettheten i spolen. Teorien sier at et ferromagnetisk materialet vil forsterke et magnetisk flukstetthet den befinner seg i, men styrken den forsterker flukstettheten avhenger av hvor mye magnetiskflukstetthet som strømmer igjennom materialet og den geometriske formen den har. Om vi ser på tabellene \ref{kule},\ref{stang},\ref{skive} og \vref{ellipsoide} ser vi at dette stemmer.
+
+
+For hysterese eksperimentet er plasseringen av jernstangen en årsak til feil i målingene. Siden stangen ligger helt inntil spolen på den ene siden til spolen (siden ned mot bordet) vil vi ikke kunne få maksimal effekt fra materialet.  
+
+
+\section{Konklusjon}
+
+Vi fant at ferromagnetiske materialer styrker den magnetiske flukstettheten den blir plasser i, og hvor mye den styrker flukstettheten avhenger av den geometriske formen til materialet. Magnetiseringen i et ferromagnetisk materiale følger en hysterese kurve som betyr at den beholder noe av magnetiseringen selv om den blir fjernet fra det påtrykte magnetfeltet.
+
+Selv om det er netto magnetisk moment lik null i et diamagnetisk materialet blir det påvirket av et magnetfelt, vi så at vekten til en vismut-stav ble mindre når den var plassert i et magnetfelt. 
+
+Under Faraday eksperimentet observerte jeg at monokromatisk lys som blir sendt gjennom et flint glass blir avbøyd. Avbøyningen avhenger av styrken til magnetfeltet krystallen befinner seg i. 
+
+Å gjøre eksperimenter med magnetisme var veldig interresant. Selv om jeg følte at mer kunnskap om Verdet-konstanten, hvordan finne magnetiseringen M som funksjon av H-feltet og den magnetiske susceptibiliteten hadde hjulpet meg mye under disse eksperimentene. 
+Dermed når jeg skulle finne susceptibiliteten til vismut-stangen så bommet jeg med en størrelse orden på $10^3$, jeg prøvde å finne en måte å finne magnetiseringen som funksjon av H-feltet men ingnenting av hva jeg fant ga noe mening. Jeg brukte en lineær regresjon til å finne verdet konstanten men vet ikke om det var riktig fremgangs måte.
+
+\begin{thebibliography}{}
+\bibitem{squires} 
+	G.L.Squires
+	\textit{Practical physics}
+	fourth edition
+	2001
+\bibitem{opg}  
+	Fysisk institutt, UiO, oppgave tekst
+	\textit{Magnetisme}
+	Sist endret 09. April 2018.
+\bibitem{snlh}  
+	\url{https://snl.no/hysterese}
+\bibitem{snl}  
+	\url{https://snl.no/magnetisme}
+\bibitem{grl}
+	Stor takk til laboratorie-assistenter
+\end{thebibliography}
+\newpage
+\begin{appendices}
+\appendix
+\section{Utstyrsliste}
+\subsection{Diamagnetisme}
+\begin{multicols}{2}
+\begin{itemize}
+  	\item Vismut stav
+	\item Vekt Highland HCB602H (AE-adam)
+	\item Strømkilde SM3004-D
+	\item Elektromagnet 0005322 UND
+	\item Meterstokk
+	\item Skyvelær
+\end{itemize}
+\end{multicols}
+\subsection{Ferromagnetisme}
+\begin{multicols}{2}
+\begin{itemize}
+  	\item Smart magnetic sensor (SMS102) TEL-Atomic Inc
+	\item Strømkilde ES 030-5
+	\item Meterstokk
+	\item Skyvelær
+	\item Spole
+	\item Magneter
+		\begin{itemize}
+		\item Ellipse-form
+		\item Kule-form
+		\item Stang-form
+		\item Skive-form
+		\end{itemize}
+\end{itemize}
+\end{multicols}
+\subsection{Hysterese kurve}
+\begin{multicols}{2}
+\begin{itemize}
+  	\item PC 
+	\item Integrator
+	\item Signal generator TG1006 DDS-Function generator
+	\item Effekt forsterker for hysterese 
+	\item Jernstang
+	\item 2 spoler
+\end{itemize}
+\end{multicols}
+\subsection{Faryday-effekten}
+\begin{multicols}{2}
+\begin{itemize}
+  	\item Stømkilde PAYWE Stelltrafo
+	\item 2 polariserings filter
+	\item PHYWE elektromagnet 06514.01
+	\item Flint glass
+	\item Optisk filter
+	\item Amperemeter 
+\end{itemize}
+\end{multicols}
+
+\end{appendices}
+
+\end{document}
