@@ -1,0 +1,521 @@
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+
+\bibliographystyle{plain}
+
+
+\title{Lengde, hastighet og akselerasjon}
+\author{Kenneth Ramos Eikrehagen}
+\date{\today}
+\begin{document}
+
+\renewcommand{\abstractname}{\large Sammendrag}
+\renewcommand{\contentsname}{\LARGE Innhold}
+\renewcommand{\listfigurename}{\Large Figur liste}
+\renewcommand{\listtablename}{\Large Tabell liste}
+
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+
+\begin{abstract}
+Målet med de eksperimentene som ble gjennomført var å bli bedre kjent med forskjellige måleinstrumenter for lengde, hastighet og akselerasjon. For å måle lengde brukte vi meterstokk, lasermåler og skyvelær og så på hvem av de som egner seg best til å måle en liten differanse i lengde, og hvem av dem som passer best til å måle lange avstander. Vi fant at skyvelær egnet seg best til å differanse måle differanse mellom to objekt med en forskjell under 2 [mm] og laser passet best for mål av høyder over 2 [m]. Måle lengder langs gulvet, høyde opptil 2[m] eller en differanse forskjell over 2[mm] er meterstokken best.
+
+Den letteste måten å finne hastighet og akselerasjon er ved hjelp bevegelsesligninger. Da trenger vi kun vite strekning, tid og start hastighet. Ut i fra dette kan man finne hastighet og akselerasjon. En mer spennende måte å finne dette på er ved hjelp av dopplereffekten og fast fouriertransformasjon. Vi brukte en radiostyrt bil med lydkilde når vi skulle finne dopplereffekten for en konstant hastighet. Dette ga stor spredning i presisjonen da det er vanskelig å kjøre den med en konstant fart. 
+
+For akselerasjon brukte vi en legobil med lydkilde og et skråplan. Her er det mindre spredning da det blir samme akselerasjon uansett hvor mange ganger vi gjør eksperimentet, men vinkelen til skrå planet må være konstant! Vi kan endre akselerasjonen ved å endre på vinkelen til skrå planet i forhold til bakken. 
+\end{abstract}
+
+\section{Introduksjon}
+Hensikten med eksperimentene som ble gjennomført under denne LAB-dagen var å bli kjent med de forskjellige måle instrumentene for å måle lengde, bevegelsesligningene og bruk av dopplereffekten til å måle hastighet og akselerasjon. 
+
+Vi brukte meterstokk, lasermåler og skyvelær for å måle forskjellige lengder og fant hvilket lengde intervall hver av de egnet seg best til. 
+
+Vi brukte bevegelsesligninger  (se teori) og dopplereffekten til å finne hastighet og akselerasjonen. Ved bruk av bevegelsesligningene må vi vite strekningen bilen beveg seg og tiden dette foregår. Når vi vet dette er det ganske rett frem ved å putte disse tallene inn i ligningen. 
+
+Ved bruk av dopplereffekten festet vi en lydkilde på bilene vi brukte. For å bestemme hastighet brukte vi en radiostyrt bil der vi forsøkte å holde en konstant fart mens vi kjørte mot en mikrofon som tok opp lyden. Det var veldig utfordrende å holde en konstant fart med en radiostyrt bil, så her har vi endel tilfeldig feil vi må ta hensyn til. Vi brukte de beste dataene vi fikk til å bestemme en hastighetsgraf. 
+
+Akselerasjonen vi fant ved dopplereffekten gjorde vi ved å bruke en legobil med lydkilde, et skråplan og en mikrofon i enden av skråplanet til å måle dopplereffekten. 
+Vi brukte fast fourier transformasjon til å bestemme frekvensene deretter frekvensen til å bestemme hastigheten, og tilslutt forandringen i hastighet til å bestemme akselerasjonen. Vi brukte også forandring i hastighet over strekning til å finne akselerasjon.
+
+
+\section{Teori}
+Når man måler lengde er det viktig å tenke på utvidelse/forminskelse av materialet på grunn av temperatur, vi brukte derfor følgende ligning for å bestemme den aktuelle lengden når vi målte med meterstokk. 
+\begin{equation}
+l = l_a + dl_s +\underset{i}{\overset{n}{\Sigma}}dl_{l,i}+dl_m + \alpha l_a(T-25\text{\degree}C)
+\label{lengde}
+\end{equation}
+Der $l=$ lengde, $l_a =$ målt lengde, $dl_s=$ korreksjon for sikting på meterstokken, $n=$ antall ledd på meterstokken som blir brukt under målingen, $dl_{l,i}=$korreksjon for slark i ledd, $dl_m=$ korreksjon for toleransen til målestrekene på meterstokken, $\alpha=$ lineær utvidelseskoeffisient og $T$ = temperaturen målingen blir gjort ved.
+
+Vi hadde en meterstokk av glassfiber og den lineære tempraturutvidelseskoeffisient for glassfiber er $\alpha = 4*10^{-5} \text{\degree C}^{-1}$\\
+
+Vi skal også finne hvor langt over det synlige taket en pendel er festet og trenger derfor ligninger som kan gi oss lengden på snoren til en pendel og perioden den bruker på en svingning.\\
+\begin{center}
+\textbf{Periode}
+\end{center}
+\begin{equation}
+T = \frac{t}{N}
+\label{tid}
+\end{equation}
+der $T=$ periode, $t=$ tiden som blir målt og $N=$ antall svingninger.
+
+\begin{center}
+\textbf{Hvordan vi finner lengden}
+\end{center}
+\begin{equation}
+T = 2\pi\sqrt{\frac{L}{g}} \Rightarrow L = T^2\frac{g}{4\pi^2}
+\label{pendel}
+\end{equation}
+hvor $T=$ periode, $L=$ lengden til snoren og $g=$ gravitasjons konstanten ($9.81[m/s^2]$)\\
+
+
+Bevegelsesligningene vi brukte når vi skulle finne hastighet og akselerasjon:
+\begin{center}
+\textbf{Akselerasjon}
+\end{center}
+\begin{equation}
+a = \frac{v_1-v_0}{\Delta t}
+\label{a1}
+\end{equation}
+\begin{equation}
+a = \frac{v_1^2-v_0^2}{2\Delta s}
+\label{a2}
+\end{equation}
+\begin{center}
+\textbf{Hastighet med konstant akselerasjon}
+\end{center}
+\begin{equation}
+\overset{-}{v} = \frac{\Delta t}{\Delta s}
+\label{hastighet}
+\end{equation}
+
+hvor $a=$ akselerasjon, $v_0=$ start hastighet, $v_1=$ slutt hastighet, $\overset{-}{v}=$ gjennomsnittshastighet, $\Delta t=$ forandring i tid og $\Delta S=$ forandring i avstand/strekning.\\
+
+For dopplereffekt og fast fourier transformasjon (heretter FFT) trenger vi å vite lydhastigheten og essensen i Nyquist' teorem. Lydhastigheten $v_l = 331.1+(0.606T)$ der $T$ er lufttemperaturen i celsius, og det vi trenger fra Nyquist' teorem er at den høyeste frekvensen vi kan måle er halvparten av samplingsfrekvensen($\frac{f_s}{2}$). Da kan vi bruke følgende for å finne hastigheten:
+\begin{equation}
+v = v_l\left( 1 - \frac{f}{f_m}\right)
+\label{doppler}
+\end{equation}
+der $v=$ hastighet, $v_l =$ lydhasstigheten, $f=$ frekvens til lydkilden og $f_m=$ målt frekvens av mikrofon.
+
+
+\section{Eksperimentelt}
+
+\subsection{Lengde}
+Det var to stenger med forskjellig lengde ($l_a$ og $l_b$) som ble sendt rundt som hver gruppe skulle måle ved hjelp av meterstokk og laser. Vi skulle deretter finne måle usikkerheten til disse for så å trekke de fra hverandre å finne forskjell i lengde, deretter kontrollere med et skyvelær. Dataene alle gruppene samlet inn er på figur \vref{tavle}. Vi skal bruke disse datene for å finne den relative usikkerheten til måleutstyret å kontrollere dette mot toleransen som er oppgitt i databladet til de forskjellige måle instrumentene. \\
+
+Når vi måler lengder av forskjellige gjenstander er det viktig å ta hensyn til utvidelsen/forminskning av materialet på grunn av temperaturen den befinner seg i. En slik tabell kan man finne på internett \cite{wiki} hvis man vet hva materialet består av. Her brukte vi en meterstokk av glassfiber (se Teori for $\alpha$ verdi) og vi brukte ligning \ref{lengde} for å finne den aktuelle lengden vi målte stengene til å være. For å holde styr på alle de forskjellige verdiene setter vi opp et usikkerhetsbudsjett.  Det er også viktig å tenke på at enden av meterstokken kan være slitt som kan medføre dårligere presisjon. Vi målte derfor litt inn på meterstokken (eks 10cm) for så å trekke fra dette i den målte lengden for å minimere tilfeldig feil.
+
+I laseren observerte vi at den ga oss forskjellige verdier for hver gang vi målte. Tok derfor 5 målinger og gjennomsnittet av disse er det vi oppga som målt lengde med laser. Når vi gjorde målingene ble stengene lagt inn til en metallplate som ble kontrollert med et vater for å se om den var rett, uten skader og at den sto rett (i lodd) inntil en vegg slik at vi utelukker mest mulig tilfeldig feil. Vi kontrollerte at metallplaten sto i lodd for hver måling.
+
+Vi brukte et skyvelær når vi skulle måle lengde forskjellen mellom stang a og stang b direkte. Vi tok 5 mål av forskjellen mellom stengene. Vi brukte samme fremgangsmåte som med laseren. \\
+
+Det siste eksperimentet innen lengde vi skulle gjøre var å undersøke hvor langt over det synlige taket Foucault pendelen er festet i fojaeen til fysikkbygningen ved UiO, Illustrert i figur \vref{Fpendel}. Siden laseren ikke er konsekvent med tallene den gir oss, tok vi 10 målinger av taket og gjennomsnittet av disse målingene er høyden vi bruker i utregningen.  For å finne perioden til pendelen tok vi tiden den brukte på å gjennomføre 10 svingninger deretter brukte vi ligning \ref{tid} for å finne hvor lang tid den brukte på en svingning. Lengden til pendelen fant vi ved å anta at massesenteret er midt i kula som henger i snora og må derfor finne radiusen til denne kula. Dette var utfordrende siden vi ikke kunne røre pendelen, men vi løste det med å lage et ,,plan'' med laseren slik at vi kunne finne topp og bunn av kula. Dette utførte vi ved å sikte oss inn der pendelen var på bunn av sin bevegelse og la laserstrålen være slik at den akkurat ikke traff kula. Vi hadde en meterstokk på andre siden for å leste av høyden, kontrollerte lasermålerens høyde slik at vi fikk et horisontalt plan med gulvet. 
+
+Nå kan vi bruke ligning \ref{pendel} for å finne lengden på snora. Deretter må vi addere radiusen til kula for så å trekke fra høyden som ble målt til taket. ($l_{p} = (L+r)-h$) Dette vil da gi oss hvor høyt over det synlige taket pendel er festet($l_p$) som illustrert på figur \ref{Fpendel}. \\
+
+Usikkerheten i meterstokk og laser er på figur \ref{ms} og \vref{laser}. Vi førte usikkerhetsbudsjett(figur \ref{meterstokka} og \vref{meterstokkb}) ved bruk av meterstokk. \\
+
+\begin{figure}
+\begin{center}
+  \includegraphics[width = 0.75\linewidth, height = 12cm]{pendel.jpg}\\
+  \caption[Illustrasjojn av Foucault pendel]{Skisse av Foucault pendelen i fojaeen. $h=$ høyden til synlig tak, $L=$ lengden på snora til pendelen og $l_p =$ lengden over tak}
+  \label{Fpendel}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{minipage}{.5\linewidth}
+	\includegraphics[width =\linewidth]{usikkerhetmeterstokk.png}\\
+  	\caption[Toleranse for meterstokken]{Vi brukte en 2 meter lang meterstokk av glassfiber.
+	Usikkerheten finner man under meterstokk, glassfiber 2 m.}
+  	\label{ms}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}{.5\linewidth}
+  	\includegraphics[width = \linewidth]{usikkerhetlaser.png}\\
+ 	 \caption[Toleranse for laser]{Her finner man usikkerheten til laseren vi brukte, Bosch PLR 30
+	 C}
+	\label{laser}
+	\end{minipage}
+\end{figure}
+
+Før vi begynte med hastighet og akselerasjons eksperimentene gjennomførte vi noen tester for å verifisere at mikrofonen og lydkilden fungerte slik som de skulle og for å gjøre oss kjent med FFT.
+
+\subsection{Hastighet}
+
+Her ble det brukt en radiostyrt bil med en lydkilde festet på. Først målte vi den aktuelle frekvensen til lydkilden ved at bilen sto ved siden av mikrofonen med lydkilden skrudd på. For å finne frekvensen analyserte vi denne lydfilen ved hjelp av FFT. Så plasserte vi bilen 2 meter unna mikrofonen for så å kjøre bilen mot mikrofonen så rett som mulig, og med en så konstant hastighet vi fikk til mens lydkilden var skrudd på. Deretter analyserte vi den nye lydfilen med FFT for å finne den målte frekvensen, for så å bruke ligning \ref{doppler} til å finne hastigheten. Vi lagde også en graf av hastigheten til bilen ved hjelp av dataen vi samlet inn. 
+
+Nå som vi har samlet inn denne dataen og vi vet avstanden kan vi finne gjennomsnitts hastigheten ved bruk av ligning \ref{hastighet}
+Eksperimentet er illustrert i figur \vref{hast}
+
+
+\subsection{Akselerasjon}
+
+
+
+Vi satt opp dette eksperimentet som vist i figur \vref{aks}. 
+
+
+Vi brukte en legobil med en påmontert lydkilde, satte den på toppen av skråplanet, skrudde på lydkilden og slapp den ned. Vi tok opp lyden i 15 sekunder så vi rakk å gjøre dette 3 ganger per gang vi analyserte lydfilen. 
+
+Nå kan vi finne slutt hastigheten ved ligning \ref{doppler} og deretter akselerasjonen enten ved ligning \ref{a1} eller ligning \ref{a2}
+
+\begin{figure}
+	\begin{minipage}{\linewidth}
+	\centering
+  	\includegraphics[width = 0.5\linewidth, height = 7cm]{hast.pdf}\\
+  	\caption[Skisse av hastighet eksperimentet]{Her er bilen i bevegelse. Start punkt var 2[m] fra en 
+	mikrofon som er tilkoblet en data med FFT}
+  	\label{hast}
+  	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}{\linewidth}
+	\centering
+  	\includegraphics[width = 0.7\linewidth]{aks.pdf}\\
+  	\caption[Skisse av akselerasjon eksperimentet]{Bilen starter 75.6[cm] fra en mikrofon som er 
+	koblet til en data med FFT. Den blir satt på et skråplan med en vinkel $\theta$ og en høyde h 
+	som i dette tilfellet var 14.5 [cm]}
+  	\label{aks}
+  	\end{minipage}
+\end{figure}
+
+\newpage
+\section{Resultater}
+
+\subsection{Lengde}
+
+På figur \vref{tavle} er lengde målene for stang a og b til alle gruppene som hadde LAB-dag sammen med oss.
+
+\begin{figure}
+\begin{center}
+  \includegraphics[width = 0.75\linewidth, angle = 90]{tavle.pdf}\\
+  \caption[Alle mål av stang a og b]{$l_a =$ lengden til stang a, $l_b=$ lengden til stang b, $\Delta =$ usikkerhet. Den underste linjen har jeg summert opp alle usikkerhetene og delt på antall målinger for å finne den relative feilen.}
+  \label{tavle}
+  \end{center}
+\end{figure}
+
+\begin{table}
+\caption{\textbf{Mål av stang a og stang b med meterstokk}}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Stang a}
+		\begin{tabular}{|l|c|c|}
+		\hline
+		&$x[mm]$ &$\Delta x [mm]$ \\ \hline
+		$l_a$&1194 &0\\
+		$dl_s$&0 &0.5\\
+		$\sqrt{n}dl_l$&0 &$\sqrt{6}0.5$\\
+		$dl_m$&0 &1\\
+		$\alpha l_a(T-25\text{\degree}C)$& -0.1528&0.0239\\ \hline
+		&$\frac{1}{N}\Sigma x$&$\frac{1}{N}\Sigma \Delta x$\\ \hline
+		$\simeq$&1194 & 2.7 \\ 
+		\hline
+		\end{tabular}
+	\label{meterstokka}
+	\end{minipage}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Stang b}
+		\begin{tabular}{|l|c|c|}
+		\hline
+		&$x[mm]$ &$\Delta x [mm]$ \\ \hline
+		$l_b$&1195 &0\\
+		$dl_s$&0 &0.5\\
+		$\sqrt{n}dl_l$&0 &$\sqrt{6}0.5$\\
+		$dl_m$&0 &1\\
+		$\alpha l_b(T-25\text{\degree}C)$& -0.1528&0.0239\\ \hline
+		&$\frac{1}{N}\Sigma x$&$\frac{1}{N}\Sigma \Delta x$\\ \hline
+		$\simeq$&1195 & 2.7 \\ 
+		\hline
+		\end{tabular}
+	\label{meterstokkb}
+	\end{minipage}
+\end{table}
+
+Vi observerte at lasermåleren ikke var konsekvent og gjorde derfor flere målinger å tok snittet av dette som du ser på table \ref{laser}. 
+
+
+\begin{table}
+\caption{\textbf{Mål av stang a og stang b med lasermåler}}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Stang a}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		&$x[cm]$ &$\Delta x [cm]$ \\ \hline
+		&119.7 &0.2\\
+		&119.6 &0.2\\
+		&119.5 &0.2\\
+		&119.8 &0.2\\
+		&119.8 &0.2\\ \hline
+		&$\frac{1}{N}\Sigma x$&$\frac{1}{N}\Sigma \Delta x$\\ \hline
+		$\simeq$&119.68 & 0.2 \\ 
+		\hline
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Stang b}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		&$x[mm]$ &$\Delta x [mm]$ \\ \hline
+		&119.7 &0.2\\
+		&119.8 &0.2\\
+		&119.6 &0.2\\
+		&119.7 &0.2\\
+		&119.8&0.2\\ \hline
+		&$\frac{1}{N}\Sigma x$&$\frac{1}{N}\Sigma \Delta x$\\ \hline
+		$\simeq$&119.72 & 0.2\\ 
+		\hline
+		\end{tabular}
+	\end{minipage}
+\label{laser}
+\end{table}
+
+\begin{table}
+\centering
+\caption[Direkte avlesning av lengdeforskjell]{Dirkete mål av lengde forskjellen mellom stang a og b med skyvelær}
+	\begin{tabular}{|c|c|}
+	\hline
+	$x[mm]$ & $\Delta x[mm]$ \\ 
+	\hline
+	1.70 & 0.05 \\
+	1.70 & 0.05 \\
+	1.70 & 0.05 \\
+	1.60 & 0.05 \\ \hline
+	$\frac{1}{N}\Sigma x$ &$\frac{1}{N}\Sigma \Delta x$\\
+	\hline
+	1.68 & 0.05 \\
+	\hline
+	\end{tabular}
+\label{skyvelaer}
+\end{table}
+
+\begin{table}
+\caption{\textbf{Foucault pendelen}}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Periode}
+		\begin{tabular}{| l | l |}
+		\hline
+		tid(t) [s]& svingninger(N)\\ \hline
+		75.59$\pm$ 0.01 & 10 \\ \hline
+		\end{tabular}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Kule målt fra gulv}
+		\begin{tabular}{| l | l |}
+		\hline
+		Topp[cm] & Bunn[cm]\\ \hline
+		24 $\pm$ 0.3 & 8.5 $\pm$ 1 \\ \hline
+		\end{tabular}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\caption{Høyde fra gulv til tak}
+		\begin{tabular}{|c|c|}
+		\hline
+		$x[m]$ & $\Delta x[m]$ \\ 
+		\hline
+		13.855 & $2*10^{-3}$ \\
+		13.853 & $2*10^{-3}$ \\
+		13.853 & $2*10^{-3}$ \\
+		13.856 & $2*10^{-3}$ \\
+		13.854 & $2*10^{-3}$ \\
+		13.856 & $2*10^{-3}$ \\
+		13.854& $2*10^{-3}$ \\ \hline
+		$\frac{1}{N}\Sigma x$ &$\frac{1}{N}\Sigma \Delta x$\\
+		\hline
+		13.854 & $2*10^{-3}$ \\
+		\hline
+		\end{tabular}
+	\end{minipage}
+	\hspace{.5cm}
+\label{foucault}
+\end{table}
+
+Med dataene fra table \vref{foucault} kan vi finne lengden fra det synlige taket i fojaeen til opphengspunktet til pendelen($l_p$) som illustrert i figur \ref{Fpendel}. Ved ligning \ref{tid} finner jeg  perioden T og ligning \ref{pendel} bruker jeg til å bestemme lengden til snora.
+\begin{align*}
+g &= 9.81[m/s^2]\\
+r & = \frac{24 - 8.5}{2} = 7.75 \pm 1.00 [cm] \\
+T &= \frac{t}{N} = \frac{75.59}{10} = 7.559 \pm 0.01 [s] \\
+L &= T^2\frac{g}{4\pi^2} = 14.198 \pm 0.100[m]
+\end{align*}
+Nå må jeg addere radiusen til snorlengden og trekke fra høyden til taket.
+$$
+l_p = (L+r)-h = 0.692[m] \pm 0.100 [m]
+$$
+
+\subsection{Hastighet}
+
+På figur \vref{hastgraf} ser du hastighetsgrafen vi fikk. Ut i fra punktene på grafen ser man at jeg prøvde å holde konstant fart fra ca $t= 0.55 [s]$ til jeg kjørte forbi mikrofonen ved $t=2.45[s]$.
+Brukte ligningene på side 39 i boka \cite{squires} til å finne en rett linje til hastigheten i dette tidsintervallet (rett linje $\equiv y = Ax+B$). Dette ga meg et stigningstall på $A=0.59$ og en usikkerhet i $dA=0.23$. På figur \ref{rett} og \vref{zoom} kan vi lese av hvilken gjennomsnitt hastighet bilen hadde på den rette linjene jeg konstruerte, vi kan lese av på figur\ref{zoom} hvilken hastighet bilen hadde, $\simeq 1.7 [m/s]$. 
+Jeg brukte også ligning \vref{hastighet} til å finne gjennomsnittshastigheten
+$$
+\overset{-}{v} = \frac{\Delta s}{\Delta t}= 0.87[m/s] 
+$$
+der jeg brukte at $\Delta s = 2.00[m]$ og $\Delta t = 2.3[s]$
+
+\begin{figure}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{biliro.pdf}
+	\caption[Frekvensen til lydkilden]{Dette er den originale frekvensen til lydkilden. Bil med lydkilde 	sto plassert rett ved siden av mikrofonen da lyden ble tatt opp}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{amplitude.pdf}
+	\caption[Tidsbilde av lydsignalet]{Dette er tidsbilde til lydsignalet mens bilen kjørte i mot
+	mikrofonen}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{rettlinje.png}
+	\caption[Rett linje basert på hastigheten]{}
+	\label{rett}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{zoomrettlinje.png}
+	\caption[Zoom av rett linje]{}
+	\label{zoom}
+	\end{minipage}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width = \linewidth]{hastighetsgraf.png}
+\caption[Hastighetsgraf]{Punktene er målepunktene vi gjorde med mikrofonen og den rette linjen er en lineærreggresjon mellom disse punktene. Ser at bilen ikke holdt en konstant hastighet. Hadde forventet en mye rettere linje. Brukte ligning \vref{doppler} til å finne hastigheten som er blitt plottet her}
+\label{hastgraf}
+\end{figure}
+
+\newpage
+\subsection{Akselerasjon}
+
+Vi brukte figur \vref{hastaks} til å finne endringen i hastighet og figur \vref{aks} til å finne strekning deretter anvendte vi ligning \ref{a2} til å finne akselerasjonen:
+
+$$
+a = \frac{v_1^2-v_0^2}{2 \Delta s} = 0.409[m/s^2]
+$$
+Hvis jeg ser bort fra at den starter på minus siden, dette gjør jeg fordi jeg vet at bilen starter med en hastighet på 0, får jeg en akselerasjon:
+$$
+a = \frac{v_1^2-v_0^2}{2 \Delta s} = 0.344[m/s^2]
+$$
+Analytisk så vet vi at start hastigheten $v_0=0$ og slutt hastigheten er $v=\frac{\Delta s}{\Delta t}$ med dette blir akselerasjonen:
+$$
+a = \frac{v_1^2-v_0^2}{2 \Delta s} = 0.357[m/s^2]
+$$
+
+Akselerasjons verdien som jeg har oppgitt her er et gjennomsnitt av de tre målingene vi gjorde som du ser i figur \vref{hastaks}
+
+\begin{figure}[h!]
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{FFT.png}
+	\caption[FFT av lydsignalet]{Dette er en tilfredstillende FFT av lydsignalet som viser tydelig i hvilket frekvensområdet lyden befinner seg i.}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\includegraphics[width = \linewidth]{biliroaks.pdf}
+	\caption[Frekvensen til lydkilden]{Her ser vi frekvensen til lydkilden, bilen er plassert rett ved 		siden av mikrofonen da lyden ble tatt opp.}
+	\label{biliroaks}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{fbilde.png}
+	\caption[Frekvens bilde]{Dette er frekvensbilde til lydsignalet mens bilen akselererte i mot
+	mikrofonen}
+	\label{frekaks}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{hastaks.png}
+	\caption[Hastighetsgraf]{Dette er hastighetsgrafen vi fikk under dette eksperimentet, vi brukte 		denne til å finne endring i hastighet deretter akselerasjonen. Brukte ligning \vref{doppler} til å 
+	finne hastigheten som er blitt plottet her}
+	\label{hastaks}
+	\end{minipage}
+\end{figure}
+
+\newpage
+\section{Diskusjon}
+
+\subsection{Lengde}
+Vi fant at skyvelær egnet seg best til å måle lengde forskjeller på gjenstander som har en differanse $\leq 2[mm]$, lasermåler egnet seg best til lengder $\geq 2[m]$ og (2)meterstokken mellom dette. 
+
+Hvis vi ser på figur \vref{tavle} er det litt forskjell på oppgitt usikkerhet når vi målte lengde med meterstokk og lasermåler, noen har til og med satt 0 som usikkerhet. Dette er ikke realistisk og hvis vi antar at de ikke regnet ut dette og fjerner dataen fra den relative feilen ser jeg at usikkerheten vi fikk er lik den relative usikkerheten. Når det gjelder den direkte avlesningen av forskjellen på stang a og b er det noen som har oppgitt usikkerhet som ikke samsvarer med databladet til skyvæleret vi brukte, dette gjør at den relative usikkerheten her blir høy i forhold til toleransen i databladet. \\
+
+Eksperimentet der vi skulle finne hvor høyt over det synlige taket opphenget til Foucault pendelen i fojaeen til fysikkbygget er, er det mange kilder til usikkerhet som gir dårlig presisjon til målingene vi gjorde. Den største usikkerheten ligger i måten vi fant radiusen til kula som henger i enden av pendelen. Ved å lage et horisontalt plan i forhold til gulvet med lasermåleren som vi selv holder er ikke optimalt. Her burde vi festet lasermåleren på et stativ der vi kan endre høyden og sjekke at den er i vater, på andre siden av pendelen skulle vi ha satt opp en lett vegg med lengdemål. Da hadde vi fjernet meste parten av den menneskelige feilen som blir begått uten et slikt utstyr. 
+En annen kilde til feil er perioden til pendelen. Vi brukte øyemål til å telle antall svingninger pendelen gjorde mens vi tok tiden på en stoppe klokke. Ved å la den svinge 10 ganger blir den feilen vi gjør minsket. En bedre måte hadde vært å satt et kamera som filmer pendelen, for så å analysere filmen. 
+
+Disse to kildene til feil her er mye større enn den systematiske feilen i utstyret vi brukte, spesielt hvordan vi fant radiusen til kula. \\
+
+\subsection{Hastighet}
+
+Det var utrolig vanskelig å holde en konstant hastighet med den radiostyrte bilen vi brukte. Dette resulterte i at vi fikk stor spredning i målingene våre. Vi hadde ikke nok tid til å finne en bedre måte og oppnå en konstant hastighet. Vi valgte å bruke en strekning på 2 meter, dette viste seg å ikke være tilstrekkelig. Dette medførte at hastigheten vi fant at bilen hadde utifra den tilnærmede linjen til hastigheten er forskjellig fra den analytiske løsningen vi fant ved ligning \ref{hastighet}. Det er også fordi at ved 2 meter var hastigheten = 0 og forbi mikrofonen var den ikke det. Derfor er gjennomsnittshastigheten blir mye mindre.
+
+Med den bilen vi brukte burde vi hatt en lenger strekning slik at vi kunne ha akselerert den til toppfart innen 2 meter fra mikrofonen. Målt hvor lang tid bilen bruker på å nå en avstand 2 meter fra mikrofonen, slik at vi kan se på tidsintervallet fra den er 2 meter fra mikrofonen til den var forbi mikrofonen. 
+
+\subsection{Akselerasjon}
+
+Her ble resultatene veldig gode som vi ser på figur \ref{frekaks} og \vref{hastaks}. Grunnen til at hastighetsgrafen viser at den starter med en hastighet >0 er fordi at der bilen starter å akselerere er frekvensen litt lavere pga avstand til mikrofonen. Og at grafen går så langt ned på minus siden er fordi vi tok bilen å flyttet den tilbake veldig raskt. Ser også at hastighetsgrafen og frekvens bildet er helt likt. Dette er fordi vi brukte ligning \ref{doppler} til å finne hastigheten, og hastigheten er jo forandring i frekvensen vi måler. 
+
+Vi ser også at den analytiske løsningen og den målte løsningen er tålelig like. Grunnen til at de ikke er helt like er fordi den analytiske løsningen ikke tar hensyn til friksjon i underlaget eller luftmotstand, som medfører at den analytiske verdien blir høyere.
+
+På FFT grafen ser vi at den frekvensen vi måler mens bilen akselerer nesten er lik den frekvensen vi målte lydkilden til når den sto ved siden av mikrofonen. Grunnen til at FFT gir en litt lavere verdi for frekvens er fordi at bilen er under bevegelse og ikke rett ved siden av mikrofonen. 
+
+\section{Konklusjon}
+
+En meterstokk er veldig god til lengde mål, spesielt etter bakken, og den kan måle differanser helt ned til 1[mm] og lengder som er 2-3 ganger sin egen lengde hvis man har en blyant til å merke med, og fortsatt ha en tålelig presisjon. Men om man måler lengder lenger enn lengden til meterstokken blir feilen større for hver lengde. 
+
+Om man skal måle små differanser mellom to objekt egner skyvelær seg mye bedre. Høyde mål er lasermåleren best til, ihvertfall for høyder lenger enn 2 [m], den er også bedre når man skal måle lengder langs bakken som er lenger enn 2 ganger meterstokken. 
+
+For å måle hastighet bør man enten ha en radiostyrt bil som er følsom på gassen og ikke av eller på. Vi burde også ha valgt en lenger avstand fra mikrofonen, 2[m] var ikke nok. Med den bilen vi brukte burde vi valgt en lenger strekning slik at bilen oppnådde en toppfart, og sørge for at den har oppnådd toppfart innen 2 [m] fra mikrofonen. Det hadde vært gøy å få til dette for å se hvordan dopplereffekten virker når gjenstanden har en konstant fart. \\
+
+Når det gjelder akselerasjon så ble resultatene våre veldig gode. Er enkelt og greit å lese av verdiene vi fikk og lett å regne videre med. Eneste som var litt dumt var at vi ikke hadde nok tid til å endre på skråplanet for å se hvordan dette hadde påvirket dataene vi samlet inn. Med de resultatene vi fikk kan man se for seg hva som hadde skjedd om vi hadde økt, eller senket verdien. Hastighetsgrafen ville fått en brattere eller lavere kurve, det som hadde vært spennende var om slutt hastigheten hadde endret seg og i såfall hvor mye. \\
+
+
+LAB-partneren min under disse eksperimentene var Eirik Frøili.
+
+\begin{thebibliography}{}
+\bibitem{squires} 
+	G.L.Squires
+	\textit{Practical physics}
+	fourth edition
+	2001
+\bibitem{grl}
+	Stor takk til laboratorie-assistenter
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}  
+	\url{https://snl.no}
+\bibitem{youtube}  
+	\url{https://www.youtube.com}
+\end{thebibliography}
+\end{document}
