@@ -1,0 +1,394 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{Fys 1120 Obligatorisk oppgave 1}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Oppgave 1}
+Gauss lov
+$$\oint \vec{E} \cdot d\vec{S} = \frac{Q_{\text{tot i s}}}{\epsilon_0}$$
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{Fig1.jpg} 
+\caption{Figur av problemstillingen i oppgave 1}
+\label{1}
+\end{figure} 
+Figur \vref{1}
+\subsection{a)}
+Her er radiusen r = 0.5 m. Ifølge Gauss lov blir den elektriske fluksen ut av denne flaten 
+$$\oint \vec{E} \cdot d\vec{S} = \frac{Q_{\text{tot i s}}}{\epsilon_0} =  \frac{0}{\epsilon_0} = 0$$ Som også er illustrert på tegning \vref{1}
+
+\subsection{b)}
+Jeg bruker også Gauss lov her.\\
+Siden jeg definerer Gaussflaten min som kuleflate. (Pga kulesymmetri vil $\vec{E}$ og $d\vec{S}$ peke i samme retning) $$\oint \vec{E} \cdot d\vec{S} =\int EdS = E\int dS =Er^2 \int^{2\pi}_0d\phi \int_0^{\pi} sin\theta d\theta = E4\pi r^2 $$
+
+Når radiusen er $r_1 = 1.5m$ blir den elektriske fluksen 
+\begin{align*}
+\oint \vec{E} \cdot d\vec{S} = \frac{Q_{\text{tot i s}}}{\epsilon_0}= \frac{q_2}{\epsilon_0} = \frac{-6nC}{\epsilon_0}\\
+E4\pi r^2 = \frac{-6nC}{\epsilon_0}\\
+E = \frac{-6}{4\pi \epsilon_0r^2} = -\frac{3}{2\pi \epsilon_0r^2}
+\end{align*}
+ \\
+
+Når radiusen er $r_2= 2.5 m$ blir den elektriske fluksen 
+\begin{align*}
+\oint \vec{E} \cdot d\vec{S} = \frac{Q_{\text{tot i s}}}{\epsilon_0}= \frac{q_1+q_2}{\epsilon_0} = \frac{4nC -6nC}{\epsilon_0} = -\frac{2nC}{\epsilon_0} \\
+E4\pi r^2 = -\frac{2}{\epsilon_0}\\
+E = -\frac{2}{4\pi \epsilon_0r^2} = -\frac{1}{2\pi \epsilon_0r^2}
+\end{align*}
+
+\[ Q_{\text{tot i s}} = \begin{cases}
+0 & r = 0.5 m\\
+ -6nC &  r = 1.5m \Rightarrow E = \begin{cases}
+ 0 & r = 0.5 m\\-\frac{3}{2\pi \epsilon_0r^2} &  r = 1.5m\\-\frac{1}{2\pi \epsilon_0r^2} & r= 2.5m
+ \end{cases}\\
+-2nC & r= 2.5m\\
+\end{cases}\]
+
+Jeg har illustrert dette på tegning \vref{1}
+
+\section{Oppgave 2}
+Gauss lov:
+$$\oint \vec{E} \cdot d\vec{S} = \frac{Q_{\text{tot i s}}}{\epsilon_0}$$
+Coulombs lov:
+$$\vec{F} = \frac{Qq}{4\pi \epsilon_0 r^2}$$
+$$\vec{E} = \frac{F}{q}$$
+
+\subsection{a)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{pktladn.jpg} 
+\caption{Et eksempel på en punkt ladning}
+\label{2}
+\end{figure} 
+
+I følge Coulombs lov som vist over (her er $obs.pkt = q$ og $R = r$ er avstanden mellom Q og q. Se tegning \vref{2}) og siden det elektriske feltet $\vec{E}$ er definert som $\vec{E} = \frac{\vec{F}}{q}$ i observasjons punktet, kan jeg skrive: 
+$$\vec{E} = \frac{\left(\frac{Qq}{4\pi \epsilon_0 r^2}\right)}{q} = \underline{\underline{\frac{Q}{4\pi \epsilon_0 r^2}}}$$
+Som blir det elektriske feltet overalt i rommet.
+
+\subsection{b)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{Kvolum.jpg} 
+\caption{Figur av volum av en kule. Q er jevnt fordelt i volumet}
+\label{3}
+\end{figure} 
+
+Romladningstettheten $\rho$ er gitt ved $$\rho = \frac{{Q}}{4\pi \frac{a^3}{3}} = \frac{{3Q}}{4\pi a^3} $$
+
+For å kunne finne det elektriske feltet $\vec{E}$ over alt i rommet må jeg først finne hva Q(r) er for $r< a$ og for $r>a$. Jeg kan finne $ Q(r) = \int_v \rho dv$ for $r<a$ og løse dette. Da får jeg:
+\begin{align*}
+Q(r) &= \int_v \rho dv = \rho \int_v dv = \rho \int_0^{2\pi}\int_0^{\pi} \int_0^{a}r^2 sin\theta dr d\theta d\phi\\ &= \rho \int_0^{2\pi}d\phi \int_0^{\pi} sin\theta d\theta \int_0^{r}r^2 dr = \rho \frac{4\pi r^3}{3} \\ 
+&= \frac{3Q}{4\pi a^3} \frac{4\pi r^3}{3} = \frac{\cancel{3}Q}{\cancel{4\pi} a^3} \frac{\cancel{4\pi} r^3}{\cancel{3}} = \underline{\frac{Qr^3}{a^3}}
+\end{align*}
+For $r>a$ er all ladningen inne i Gaussflaten jeg definerte meg, derfor blir $Q(r) = Q$
+\[ Q(r) = \begin{cases}
+ \frac{Qr^3}{a^3}& r < a\\
+ Q &  r \geq a
+\end{cases}\]
+
+Nå må jeg løse integralet på venstre siden av Gauss lov. Da må jeg finne en flate av kulevolumet. Jeg definerer flaten som man kan se ved tegning \ref{4} 
+Da kan jeg løse venstre siden:
+
+For $r<a$ 
+$$\oint \vec{E(r)} \cdot d\vec{S} = \int E(r)dS = E(r)\int dS = E(r) \int_0^{2\pi}\int_0^\pi r^2sin\theta d\theta d\phi = E4\pi r^2$$
+Setter jeg nå dette inn i Gauss lov får jeg:
+\begin{align*}
+\oint \vec{E}(r) \cdot d\vec{S} = \frac{Q(r)}{\epsilon_0}\\
+E(r)4\pi r^2 = \frac{Qr^3}{\epsilon_0a^3}\\
+E(r) =  \frac{Qr}{4\pi \epsilon_0 a^3}\\
+\underline{\vec{E}(r) =  \frac{Qr}{4\pi \epsilon_0 a^3}\hat{r}}
+\end{align*}
+
+For $r>a$
+ \begin{align*}
+\oint \vec{E}(r) \cdot d\vec{S} = \frac{Q(r)}{\epsilon_0}\\
+E4\pi r^2 = \frac{Q}{\epsilon_0}\\
+E(r) =  \frac{Q}{4\pi \epsilon_0 r^2}\\
+\underline{\vec{E}(r) =  \frac{Q}{4\pi \epsilon_0r^2}\hat{r}}
+\end{align*}
+
+\[ \vec{E}(r) = \begin{cases}
+ \frac{Qr}{4\pi \epsilon_0 a^3}\hat{r} & r < a\\
+ \frac{Q}{4\pi \epsilon_0r^2}\hat{r} &  r \geq a
+\end{cases}\]
+
+Merk: Siden enhetsnormalvektoren i $d\vec{S}$ peker i samme retning som det elektriske feltet $\vec{E}$ kan jeg fjerne vektor pilene. (Symmetri)
+
+\subsection{c)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{Kflate.jpg} 
+\caption{Figur av kuleflate med Gaussflate $r < a$ og $r>a$}
+\label{4}
+\end{figure} 
+
+Romladningstettheten $\rho_s$ er gitt ved $$\rho_s = \frac{Q}{4\pi a^2}$$
+
+Hvis $r<a$ i dette tilfellet vil det ikke være en ladning i Gaussflaten jeg lager meg, da er det heller ikke et $E-felt$ for $r<a$ \\
+For $r \geq a$  må jeg finne hva $Q(r)$ er, slik at jeg får høyre siden av Gauss lov. Her blir også all ladningen inne i Gaussflaten jeg definerer meg. Dette medfører at også her blir Q(r) = Q
+\[ Q(r) = \begin{cases}
+ 0 & r < a\\
+ Q &  r \geq a
+\end{cases}\]
+
+Siden det er et kuleskall har jeg allerede kuleflaten jeg trenger å integrere så da løser jeg venstre side av Gauss lov:
+$$ \oint \vec{E(r)} \cdot d\vec{S} = 0$$\\
+
+$$\oint \vec{E}(r) \cdot d\vec{S} = \int E(r)dS = E(r)\int dS = E(r)r^2 \int_0^{2\pi}d\phi \int_0^\pi sin\theta d\theta  = E(r)4\pi r^2$$
+Setter dette inn i Gauss lov :
+\begin{align*}
+\oint \vec{E}(r) \cdot d\vec{S} = \frac{Q(r)}{\epsilon0}\\
+E(r)4\pi r^2 = \frac{Qr^2}{\epsilon0r^2} \\
+\underline{E(r) = \frac{Q}{4\pi \epsilon_0 r^2}}
+\end{align*}
+
+\[ \vec{E}(r) = \begin{cases}
+ 0 & r < a\\
+ \frac{Q}{4\pi \epsilon_0 r^2}&  r \geq a
+\end{cases}\]
+Som blir det elektriske feltet ut av kuleskallet. 
+
+Merk: Siden enhetsnormalvektoren i $d\vec{S}$ peker i samme retning som det elektriske feltet $\vec{E}$ kan jeg fjerne vektor pilene. (Symmetri)
+
+\subsection{d)}
+$$\rho = kr$$
+Jeg begynner med å finne konstanten k ved å løse $Q' = \int_v\rho dv$
+
+\begin{align*}
+Q' &= \int_v \rho dv = \int^{2\pi}_0d\phi \int^{\pi}_0sin\theta d\theta \int^r_0 kr^3 dr\\
+&= \frac{\cancel{4}\pi kr^4}{\cancel{4}} =\pi kr^4 \Rightarrow \underline{k = \frac{Q'}{\pi r^4}}
+\end{align*}
+Setter jeg dette inni den opprinnelige $\rho$ får jeg:
+$$\rho = kr = \frac{Q'}{\pi r^4}r = \underline{\frac{Q'}{\pi r^3}} $$
+
+Nå kan jeg bruke dette til å finne Q(r):
+\begin{align*}
+Q(r) &= \int_v \rho dv = \rho \int^{2\pi}_0d\phi \int^{\pi}_0sin\theta d\theta \int^r_0 r^2 dr \\
+&=\rho \frac{4\pi r^3}{3} =\frac{Q'}{\cancel{\pi r^3}} \frac{4\cancel{\pi r^3}}{3} = \frac{4Q'}{3}\\
+\end{align*}
+
+\[ Q(r) = \begin{cases}
+\frac{4Q'}{3} & r < a\\
+ Q &  r \geq a
+\end{cases}\]
+Nå har jeg Q' ene så da løser jeg venstre side av Gauss' lov:
+
+For $r<a$ :
+\begin{align*}
+\oint \vec{E}(r) \cdot d\vec{S} = \frac{Q(r)}{\epsilon0}\\
+E(r)\cancel{4}\pi r^2 = \frac{\cancel{4}Q'}{3\epsilon_0}\\
+E(r) =  \frac{Q'}{3\pi \epsilon_0 r^2}
+\end{align*}
+
+For $r\geq a$
+\begin{align*}
+\oint \vec{E}(r) \cdot d\vec{S} = \frac{Q(r)}{\epsilon0}\\
+E(r)4\pi r^2 = \frac{Qr^2}{\epsilon0r^2} \\
+\underline{E(r) = \frac{Q}{4\pi \epsilon_0 r^2}}
+\end{align*}
+
+\[ \vec{E}(r) = \begin{cases}
+ \frac{Q'}{3\pi \epsilon_0 r^2} & r < a\\
+ \frac{Q}{4\pi \epsilon_0 r^2} &  r \geq a
+\end{cases}\]
+
+\section{Oppgave 3}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{Fig2.jpg} 
+\caption{Figur av likesidet trekant med de tre punkt ladningene i A, B og C}
+\label{5}
+\end{figure}
+
+For å finne arbeidet vi må gjøre på en ladning fra A til A' når ladningene fra B og C holdes i ro er forskjellen i potensiell energi. Se tegning \vref{5}
+Potensialet er gitt ved $$V = \frac{Q}{4 \pi \epsilon_0r} =\frac{Q}{4 \pi \epsilon_0a}$$
+\begin{align*}
+V_{\text{B på A}} &= V_{\text{C på A}} = \frac{Q}{4 \pi \epsilon_0a}\\
+V_{\text{B på A'}} &= V_{\text{C på A'}} = \frac{Q}{4 \pi \epsilon_0\frac{a}{2}}
+\end{align*}
+I følge Kirchoffs spennings lov kan jeg addere spenningene. Derfor blir 
+\begin{align*}
+V_{A} &= V_{\text{B på A}} + V_{\text{C på A}} = \frac{Q}{4 \pi \epsilon_0a} + \frac{Q}{4 \pi \epsilon_0a}
+= \frac{2Q}{4 \pi \epsilon_0a} = \underline{\frac{Q}{2 \pi \epsilon_0a}}\\
+V_{A'} &= V_{\text{B på A'}} + V_{\text{C på A'}} = \frac{Q}{4 \pi \epsilon_0\frac{a}{2}} + \frac{Q}{4 \pi \epsilon_0\frac{a}{2}} = \frac{2Q}{4 \pi \epsilon_0a} + \frac{2Q}{4 \pi \epsilon_0a} = \frac{\cancel{4}Q}{\cancel{4} \pi \epsilon_0a} = \underline{\frac{Q}{\pi \epsilon_0a}}\\
+V &= V_A - V_{A'} = \frac{Q}{2 \pi \epsilon_0a} - \frac{Q}{\pi \epsilon_0a} = \frac{Q}{\pi \epsilon_0a}\left(\frac{1}{2} - 1 \right) = \underline{\underline{- \frac{Q}{2\pi \epsilon_0a}}}
+\end{align*}
+
+Siden $V = \frac{arbeid}{q}$ og her er q = Q så med litt formel massasje får vi at $$arbeid = V*Q = - \frac{Q}{2\pi \epsilon_0a}*Q =\underline{\underline{ - \frac{Q^2}{2\pi \epsilon_0a}}}$$
+
+\section{Oppgave 4}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{Fig3.jpg} 
+\caption{Figur av metallplatene }
+\label{6}
+\end{figure}
+
+Poissons ligning: $$\nabla^2V = -\frac{\rho}{\epsilon} $$
+oppgitte verdier:
+\begin{align*}
+\epsilon_0 &= 8.85*10^{-12}\left[\frac{F}{m}\right] \text{ , } \epsilon_r = 1\\
+V_0 &= 10[V] \text{ , } d = 1 [cm]\\
+\rho &= -10^{-5}\left[\frac{C}{m^3}\right] 
+\end{align*}
+
+\subsection{a)}
+Initialbetingelsene mine er $V(0) = V_0$ og $V(x) = 0$
+Poissons ligning gir meg en 2. grads differensial ligning:
+\begin{align*}
+\nabla^2V(x) &= -\frac{\rho}{\epsilon_0 *\epsilon_r} = -\frac{\rho}{\epsilon_0}\\
+\int\int \frac{\partial^2V(x)}{\partial{x^2}}dxdx &= \int\int -\frac{\rho}{\epsilon_0}dxdx \\
+\int \frac{\partial V(x)}{\partial{x}} + C dx &= \int -\frac{\rho x}{\epsilon_0}dx\\
+V(x) +Cx + D &= -\frac{\rho x^2}{2\epsilon_0}\\
+V(x) = D + Cx &-\frac{\rho x^2}{2\epsilon_0}
+\end{align*}
+Integrasjons konstantene C og D er kun konstanter som er uavhengig av fortegn derfor kan jeg bytte de over likheten uten å skifte fortegn.
+
+Løser for initialbetingelsene for å finne integrasjons konstantene C og D. 
+
+\begin{align*}
+V(x) &= D + Cx -\frac{\rho x^2}{2\epsilon_0}\\
+V(0) &= D + \cancel{C0} -\cancel{\frac{\rho 0^2}{2\epsilon_0}} = V_0 \Rightarrow D = V_0\\
+V(d) & = D + Cd -\frac{\rho d^2}{2\epsilon_0} = 0 \Rightarrow Cd = - D +\frac{\rho d^2}{2\epsilon_0} \Rightarrow C = -\frac{V_0}{d} + \frac{\rho d}{2\epsilon_0}\\
+V(x) &= V_0 + \left( -\frac{V_0}{d} + \frac{\rho d}{2\epsilon_0} \right)x - \frac{\rho x^2}{2\epsilon_0}
+\end{align*}
+
+\subsection{b)}
+
+Siden den elektriske feltet $\vec{E} = - \nabla V(x)$ må jeg løse dette for å finne $\vec{E}$
+
+\begin{align*}
+\vec{E} &= - \nabla V(x) = -\frac{\partial Vx}{\partial x} = -\frac{\partial}{\partial x} \left(V_0 + \left( -\frac{V_0}{d} + \frac{\rho d}{2\epsilon_0} \right)x - \frac{\rho x^2}{2\epsilon_0}\right) \\
+& = -\left(-\frac{V_0}{d} + \frac{\rho d}{2\epsilon_0} - \frac{\rho 2x}{2\epsilon_0}\right) 
+=\underline{\underline{ \frac{V_0}{d} - \frac{\rho d}{2\epsilon_0} + \frac{\rho x}{\epsilon_0}}}
+\end{align*}
+
+Det elektriske feltet som funksjon av x kan uttrykkes $E(x) =  \frac{V_0}{d} - \frac{\rho d}{2\epsilon_0} + \frac{\rho x}{\epsilon_0}$
+
+\subsection{c)}
+
+For å finne minimums punktet til potensialet er det samme som å sette den deriverte til potensialet lik null, og det er jo $E(x)$. Setter jeg E(x) = 0 å løser dette ligning settet for x og da finner jeg minimums/maksimums punktet til V(x).
+
+\begin{align*}
+E(x) &=  \frac{V_0}{d} - \frac{\rho d}{2\epsilon_0} + \frac{\rho x}{\epsilon_0} = 0\\
+\frac{\rho x}{\epsilon_0} &= -\frac{V_0}{d} + \frac{\rho d}{2\epsilon_0} \\
+x &= -\frac{V_0\epsilon_0}{d\rho} + \frac{d}{2} \approx 5.885*10^-3
+\end{align*}
+Setter dette uttrykket for x i potensialet V(x) og får at $$V(x) = V_0 + \left( -\frac{V_0}{d} + \frac{\rho d}{2\epsilon_0} \right)x - \frac{\rho x^2}{2\epsilon_0} \approx -9.57 V$$ 
+Som var det jeg skulle få. (med $\approx$ mener jeg avrundet) 
+
+\subsection{d)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{graf.png} 
+\caption{Graf av potensialet V(x)}
+\label{7}
+\end{figure}
+Legger ved python koden:
+\lstinputlisting[language=Python, firstline=3, lastline=11]{oppg4.py}
+
+\subsection{e)}
+
+Her vil jeg bruke bevaring av energi. \\
+Elektrisk potensial V(x) (elektrostatisk potensial) er mengden av elektrisk potensiell energi per ladningsenhet, det er det samme som arbeidet et elektrisk felt gjør når en ladning flyttes. derfor kan jeg bruke at: $$V = \frac{arbeid}{ladning(q)} \Rightarrow arbeid = Vq = \text{potensiell energi}$$  Kinetisk energi er som før gitt ved $K = \frac{1}{2}mv^2$. 
+
+Bevaring av energi gir da:
+
+\begin{align*}
+K_0 + V_0 &= K_1 + V_1\\
+\frac{1}{2}mv_0^2 + V_0q &= \frac{1}{2}mv_1^2 + V_1q
+\end{align*}
+Jeg trenger å vite noe mer før jeg kan fortsette.
+$$m = 9.11*10^{-31} [kg] \text{ , } q = 1.6*10^{-19}[C] \text{ , }V_0 =V(0)$$
+Jeg vet at hvis den kinetiske energien $K_1 = 0$ vil ladningen stoppe på minimumspunktet $V(x) =5.885*10^-3$. Det betyr at $v_0$ må være akkurat så stor at den ikke blir null. Så bruker jeg at $K_1 = 0$ og at $V_1 = minimumspunktet$ får jeg:
+
+\begin{align*}
+\frac{1}{2}mv_0^2 + V_0q &= \cancel{\frac{1}{2}mv_1^2 }+ V_1q\\
+\frac{1}{2}mv_0^2 &= V_1q-V_0q\\
+v_0 &\geq \sqrt{\frac{2(V_1q-V_0q)}{m}} \approx 2.6*10^6 [m/s] 
+\end{align*}
+Dette betyr at elektronet må ha en start hastighet $v_0\geq2.6*10^6 [m/ s]$ for å nå den andre platen.
+
+\section{Oppgave 5}
+
+\subsection{a)}
+I luft er $\rho = 0$ fordi at det er ingen fri ladning der. Setter jeg dette inn i utrykkene jeg fant i oppgave 4 for potensialet og det elektriske feltet får jeg 
+$$V(x) =V_0 + \left( -\frac{V_0}{d} + \cancel{\frac{\rho d}{2\epsilon_0}} \right)x - \cancel{\frac{\rho x^2}{2\epsilon_0}} = V_0 -\frac{V_0x}{d} = \underline{V_0\left( 1- \frac{x}{d}\right)}$$
+$$E(x) = \frac{V_0}{d} - \cancel{\frac{\rho d}{2\epsilon_0}} + \cancel{\frac{\rho x}{\epsilon_0}} \Rightarrow \underline{E = \frac{V_0}{d}} $$
+Det står i oppgaven at det oppstår gjennomslag i luften når feltstyrken overgår $E_{tl} = 3*10^6 [V/m]$ så jeg vil at 
+\begin{align*}
+E &\leq  E_{tl}\\
+ \frac{V_0}{d} &\leq 3*10^6 \Rightarrow V_0 \leq 3*10^6 *10^-2 = 3*10^4
+\end{align*}
+Dette viser at den største spenningen som kan påtrykkes mellom platene er $V_0 = 3*10^4$[V]
+
+\subsection{b)}
+Jeg kan bruke den nye Gauss lov:
+$$\oint_s \vec{D} \cdot d\vec{S} = Q$$
+I porselen er $D_p = \epsilon_r\epsilon_0E_p$ og i luft 
+$D_l = \epsilon_r\epsilon_0E_l$ 
+
+Jeg får her fra Gauss lov at $D_p - D_l = \rho_s$ men siden det ikke er noe flateladningstetthet i luft er $\rho_s= 0$ blir $D_p = D_l$
+$$D_p = D_l \Rightarrow  \epsilon_r\epsilon_0E_{tp}=\epsilon_r\epsilon_0E_{tl} \Rightarrow 7E_{tp}=E_{tl} \Rightarrow E_{tp} = \frac{E_{tl}}{7}$$
+Her ser vi at den elektriske styrken i luften har blitt 7 ganger større enn i porselenet. Dette medfører at vi kan påtrykke mindre spenning mellom platene. 
+For å finne spenningen bruker jeg samme logikk som i oppgave a). Jeg vil at $E \leq E_{tp} + E_{tl}$ blir den større får jeg gjennomslag. ($d_p$ = lengde med porselen, $d_l$ = lengde med luft)
+\begin{align*}
+E\leq E_{tp} + E_{tl} = \frac{E_{tl}}{7} + E_{tl}  \\
+\frac{V_0}{d} \leq \frac{E_{tl}}{7} + E_{tl} \\
+V0 \leq \frac{E_{tl}}{7}d_p + E_{tl}d_l = 6857
+\end{align*}
+Det viser seg at jeg kun kan påtrykke en spenning på 6857 V før det gir gjennomslag. Som er betraktlig mye mindre enn med bare luft.
+
+\subsection{c)}
+Det hjalp ikke å fylle tom rommet med porselen siden porselenet ikke dekket hele mellomrommet. (se tegning \vref{8}) Det ble en liten luftlomme inn til en av veggene. Porselenet ble polarisert (dipolene ble orientert i samme retning) som gjorde at veggene ble flyttet nærmere hverandre. Dette medfører at elektronene kan skytes over ved hjelp av en mindre volt i forhold til da lengden var betydelig større. 
+Med andre ord så vil spenningsfallet fra V0 til 0 legge seg over luftrommet. Det vil derfor lett kunne oppstå gjennomslag (gnist) i luftrommet. 
+
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{dipol.jpg} 
+\caption{Mikroskopisk tolkning}
+\label{8}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
