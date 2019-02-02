@@ -1,14 +1,14 @@
 from oblig2 import*
 
-#virvling
+#Curl
 k = gradient(v,axis=1) - gradient(u,axis=0)
-#konturplott
+#Contour plot
 verdi = linspace(-1000,1000,9)
 contourf(x,y,k,verdi)
 colorbar()
-#skilleflate
+#seperate flat
 plot(xit,yit,'*',color='black')
-#rektanglene
+#rectangles
 def rektangel(xi,yi,xj,yj):
     x1 = x[yi][xi]; x2 = x[yj][xj]
     y1 = y[yi][xi]; y2 = y[yj][xj]
@@ -19,7 +19,7 @@ def rektangel(xi,yi,xj,yj):
 rektangel(34,159,69,169)
 rektangel(34,84,69,99)
 rektangel(34,49,69,59)
-#Navngir akser +tittel
+#Giving names to the axes and sets the title
 xlabel('X-akse')
 ylabel('Y-akse')
 title('Virvling')  
