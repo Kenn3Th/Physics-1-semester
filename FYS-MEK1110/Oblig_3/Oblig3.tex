@@ -1,0 +1,224 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS-MEK 1110 Obligatorisk oppgave 3}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+Først vil jeg bare oppgi hva slags variable vi har fått oppgitt i oppgaven.\\
+Masse = m [kg], Hastighet = $\vec{u}$ [m/s = meter per sekund], gravitasjons-konstant (jorda) = 9.81$[m/s^2$ = meter per $sekund^2]$, tid = t [s = sekund] \\
+Friksjons krefter, statisk = $\mu_s$ og dynamisk = $\mu_d$\\
+Masseløs fjær, der kreftene $\vec{F}_f = -k\Delta{L}$, hvor $\Delta{L}$ er forandring i lengden på fjæra. Fjæra har en equilibriums lengde = b.\\
+Start posisjon = $x(t_0)=0[m = meter]$ der $t_0 = 0[s]$\\
+Neste posisjon = $x_b(t_0) = x(t_0) + b$
+
+\subsection*{a)}
+På figur \vref{a} ser du tegningen min av frilegemediagrammet av klossen
+
+\begin{figure}[h!]
+\includegraphics[scale=0.1]{a.jpg} 
+\caption{Frilegemediagram av klossen}
+\label{a}
+\end{figure} 
+
+\subsection*{b)}
+Her har jeg brukt bevegelses ligningen for posisjon(r) $r = x_0 + v_0t + \frac{1}{2}at^2$ siden blokka står stille så er det ingen akselerasjon, hastigheten $\vec{u}$ og start posisjonen $x_0 = 0$ blir ligningen for $x_b$:
+$$x_b(t) = b + \vec{u}t$$
+
+\subsection*{c)}
+\begin{align*}
+\vec{F} &= -k\Delta{L}\\
+\Delta{L} &= (x_b - x) - b\\
+\vec{F} &= k(x_b-x-b)
+\end{align*}
+Kan fjerne minustegnet fordi vi drar blokka i positiv x-retning.
+
+\subsection*{d)}
+På figur \vref{d} ser du tegningen min av frilegemediagrammet av klossen
+\begin{figure}[h!]
+\includegraphics[scale=0.1]{d.jpg} 
+\caption{Frilegemediagram av klossen}
+\label{d}
+\end{figure}
+ 
+\subsection*{e)}
+\begin{align*}
+\sum \vec{F} &= (\vec{F_f}  -\vec{F_r})\hat{i}+(\vec{N_g} - \vec{G})\hat{j}\\
+\vec{F}_f &= k\Delta{L} = k(x_b-x-b)\\
+\vec{F}_r &= \mu \vec{N}\\
+\vec{G} &= \vec{N} = mg
+\end{align*}
+
+\subsection*{f)}
+
+\begin{align*}
+\sum \vec{F} &= (\vec{F_f}  -\vec{F_r})\hat{i}+(\vec{N_g} - \vec{G})\hat{j} = ma\\
+\sum \vec{F}_x &= k(x_b-x-b) - \mu mg = ma_x \textrm{ deler på m på begge sider }\\
+a_x &= \frac{k}{m}(x_b-x-b) -\mu g\\
+\sum \vec{F}_y &= mg - mg = ma = 0\\
+a = a_x &= \frac{k}{m}(x_b-x-b) -\mu g
+\end{align*}
+
+\subsection*{g)}
+$$\Delta{L} = x_b - x - b$$
+
+\subsection*{h)}
+Jeg bruker bevegelses ligningene og finner $x(t) = x_0 + v_0t + \frac{1}{2}at^2$
+Siden $x_0 = a = 0$ blir $x(t) = v_0t$
+
+\subsection*{i)}
+Siden bevegelsen er i ferd med å skje i x retning, vil kreftene som fungerer i y retning kannselere hverandre. Derfor tegner jeg nå bare fjær- og friksjons kraften. 
+\begin{align*}
+F_f &= k(x_b(t)-x(t)-b)\\
+F_r &= \mu * N
+N &= mg 
+\end{align*}
+Der $\mu$ avhenger av om klossen beveger seg eller står stille (dynamisk = $\mu_d$ eller statisk = $\mu_s$
+På figur \vref{i} ser du tegningen min av frilegemediagrammet
+\begin{figure}[h!]
+\includegraphics[scale=0.1]{i.jpg} 
+\caption{Frilegemediagram av klossen}
+\label{i}
+\end{figure} 
+
+\subsection*{j)}
+\begin{align*}
+&\sum \vec{F} = k(x_b-x-b) - \mu_s mg = 0\\
+&\Delta{L} = (x_b-x-b)\textrm{, } \vec{F_r} = \mu_s mg \\
+&k\Delta{L} -\vec{F_r} = 0 \Rightarrow k\Delta{L} = \vec{F_r} \Rightarrow \Delta{L} = \frac{\vec{F_r}}{k}
+\end{align*}
+
+\subsection*{k)}
+Før blokka starter å bevege seg vil friksjonskraften $\vec{F_r} \leq \mu_s\vec{N}$
+
+\subsection*{l)}
+Når blokka begynner å bevege seg er blir friksjons-koeffisienten endret fra $\mu_s \rightarrow \mu_d$ da får vi ligningen:
+\begin{align*}
+\sum \vec{F} = k(x_b-x-b) - \mu_d mg = ma \Rightarrow a = \frac{k}{m}(x_b-x-b) - \mu_dg\\
+\end{align*}
+
+\subsection*{m)}
+Ser figuren min \vref{m}
+
+\begin{figure}[h!]
+\includegraphics[scale=0.1]{m.jpg} 
+\caption{Frilegemediagram av klossen}
+\label{m}
+\end{figure} 
+
+
+\subsection*{n)}
+Siden det nå ikke er noen friksjonskrefter som fungerer blir akselerasjonen:
+$$a = \frac{k}{m}(x_b-x-b)$$
+
+\subsection*{o)}
+Her må vi løse en differensial ligning.
+\begin{align*}
+\vec{u} &= 0[m/s]\textrm{ , } t_0 = 0[s] \textrm{ , } v(t_0)=0[m/s]=v_0 \textrm{ , } \mu{d} = \mu{s} = 0\\
+\sum \vec{F} &= k(x_b-x-b) - \mu_d mg = ma \Rightarrow k((b+\vec{u}t) - x(t) - b) = ma \Rightarrow -kx(t) = ma
+\end{align*}
+Jeg vet at $a = \frac{\partial^2x}{\partial{t}^2} = \ddot{x}(t)$ og i fra oppgaven er $\omega = \sqrt{\frac{k}{m}}$ da får jeg:
+\begin{align*}
+m\ddot{x}(t) + kx(t) &= 0\\
+\textrm{karakteristisk ligning} &= \frac{1}{2m}(\pm \sqrt{-4mk}) = \frac{1}{2m}(\pm 2\sqrt{mk}i) = \pm \frac{\sqrt{mk}}{m}i = \pm \frac{\sqrt{m}\sqrt{k}}{\sqrt{m}\sqrt{m}}i \\
+ &= \pm \sqrt{\frac{k}{m}}i = \pm \omega i \Rightarrow r_1 = \omega i \cup r_2 = -\omega i
+\end{align*}
+Siden røttene mine er komplekse må jeg bruke formelen for komplekse røtter $x(t) = e^{Ax}(Csin(Bt) + Dcos(Bt))$ Jeg ser i løsningen min fra den karakteristiske ligningen at A = 0 og B = $\omega$ setter dette inn i formelen samt oppgir initial verdiene.
+\begin{align*}
+t_0 &= 0 \textrm{ , }  v(t_0) = v_0 \textrm{ , } \dot{x}(t) = v(t)\\
+x(t) &= e^{0}(Csin(\omega t) + Dcos(\omega t)) = Csin(\omega t) + Dcos(\omega t)\\
+\dot{x}(t) &= \omega Ccos(\omega t) - \omega Dsin(\omega t)
+\end{align*}
+Setter inn initial verdiene og får at D = 0 og at C = $\frac{v_0}{\omega}$, putter så dette inn i $x(t) = Csin(\omega t) + Dcos(\omega t)$ og får: $$\frac{v_0}{\omega}sin(\omega t)$$ Som var det jeg skulle vise.
+
+\subsection*{p)}
+Siden vi ikke har noen friksjon er det bare en kraft som påvirker blokka og det er fjærkrafta, og u = 0[m/s].$F_f = -kx(t)$ 
+da blir $a = -\frac{kx(t)}{m}$ også bruker jeg Euler-Cromer for å finne en numerisk løsning. 
+\lstinputlisting[language=Python, firstline=13, lastline=19]{p.py}
+
+\subsection*{q)}
+I figur \vref{q} viser jeg sammenligningen av min tilnærming med Euler-Cromer og den eksakte løsningen. Hvis jeg velger for stor $\Delta{t}$ blir plottet av den eksakte løsningen hakkete, stygg og gir ikke veldig mye mening. Euler-Cromer tilnærmingen blir omtrent bare en rett strek som slutter med en eskalering oppover y-aksen, gir heller ikke mye mening. 
+\lstinputlisting[language=Python, firstline=4, lastline=29]{q.py}
+Over ser du python koden min.
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{q.png} 
+\caption{Sammenligning av den eksakte funksjonen og tilnærming med Euler-Cromer}
+\label{q}
+\end{figure} 
+
+\subsection*{r)}
+Som vi ser på figur \vref{r} er det umulig å se en forskjell på den eksakte løsningen og den numeriske. Dette betyr at tilnærmingen er bra. Jeg har gjort noen små forandringer i python koden min, blant annet lagt til $x_b(t)$ som du kan se under.
+\lstinputlisting[language=Python, firstline=4, lastline=28]{r.py}
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{r.png} 
+\caption{Den eksakte løsningen sammenlignet med Euler-Cromer. Her ser vi at begge grafene sammenfaller}
+\label{r}
+\end{figure} 
+
+\subsection*{s),t)}
+På figur \vref{s} ser vi de to grafene jeg fikk av klossen med $m_1 = 0.1 kg \text{ , }m_2 = 1 kg \text{ , } \mu_d = 0.6 \text{ og } \mu_s = 0.6$ på samme graf ser du også fjærkraften som funksjon av tiden.\\ Det jeg observerer er at når klossen er 1 kg så ser vi at når kraften den blir dratt med går over 6 N blir klossen dratt og episoden gjentar seg. Det skjer noe helt annet når klossen bare er 0.1 kg, da ser jeg at fjærkraften svinger opp å ned veldig hyppig. Jeg tror dette kan være fordi klossen er så lett at den blir trukket inn mot fjæren med en så stor fart at den presser fjæren inn også dytter fjæren den ut slik at den får en llike stor fart tilbake slik at den ender med å dra i fjæren. Fenomenet gjentar seg.\\ 
+I python koden min har jeg gjort noen forandringer. Du kan se koden min under:
+
+\lstinputlisting[language=Python, firstline=4, lastline=30]{t.py}
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{t1kg.png} 
+\includegraphics[scale=0.8]{t01kg.png} 
+\caption{Øverst: Kloss = 1kg Nederst: kloss = 0.1kg \\Begge grafene har $\mu_s = 0.6$, $\mu_d = 0.3$ og k = 100.0 N}
+\label{s}
+\end{figure} 
+
+\subsection*{u)}
+På figur \vref{u} ser vi hvordan klossen beveger seg, og hvordan fjærkraften er som funksjon av tiden. Denne grafen sammenfaller med den grafen der massen = 1 kg og fjærkonstanten er 100 N i forrige oppgave, eneste forskjellen er at størrelsen på kraften er satt ned med en faktor 10. 
+
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{10N.png} 
+\caption{Fjærkonstanten k = 10.0N}
+\label{u}
+\end{figure} 
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
