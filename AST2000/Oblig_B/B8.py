@@ -1,7 +1,7 @@
 from pylab import*
 from Solmal import*
 
-SM = 1.98892*10**30 #solmasse i kg
+SM = 1.98892*10**30          #solmasse i kg
 dt = 0.5
 tmax = 10**7
 n = int(round(tmax/dt))
@@ -14,7 +14,7 @@ planet = 4                   #planet
 rh = rho[planet]             #Atmospheric density at surface [kg/m^3]
 M = Mass[planet]*SM          #massen til planeten [kg]
 m = 100.0                    #massen til satelitten [kg]
-A = (2*pi*(0.5**2))             #Areal til fallskjerm
+A = (2*pi*(0.5**2))          #Areal til fallskjerm
 rad = Radius[planet]*1000    #Radius til planeten
 limit = 2.5*10**4            #Fd grense
 
