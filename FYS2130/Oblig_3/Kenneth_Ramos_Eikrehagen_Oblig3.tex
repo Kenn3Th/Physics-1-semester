@@ -1,0 +1,329 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{enumitem}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 3}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+
+\section{Forståelses- og diskusjonsspørsmål}
+
+
+\subsection{Samplingsfrekvensen og lavpassfilter}
+
+For CD lyd er samplingsfrekvensen($f_s$) 44.1 kHz. Hvorfor må vi ha et lavpassfilter mellom mikrofonforsterker og samplingskretsene som fjerner frekvenser over 22 kHz?\\
+
+Hvis man bruker en fast fourier transformasjon (FFT) er den høyeste frekvensen vi kan oppløse $\frac{1}{2}f_s$. Hvis vi ignorerer dette kan det medføre at vi får høyere frekvens $f_n$ enn den vi maksimalt kan oppløse og lyden som spilles av på CD'en vil være i form av støy. Jeg har prøvd å illustrer hva som skjer om $f_n > \frac{1}{2}f_s$ på figur \vref{fn}. Som vi ser på figuren vil dette resultere i at vi ikke får tilstrekkelige punkter til å kunne evaluere det riktige signalet. Jeg har tegnet et signal med liten frekvens men i prinsippet kan det være uendelig mange frekvenser mellom disse punktene.
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{fn.jpg} 
+\caption[Samplingfrekvens]{Den sorte linjen er samplingfrekvensen $f_s(t_n)$ og $f_n(t_n)$ er en illustrasjon av at $f_n(t_n)>\frac{1}{2}f_s(t_n)$. De blå prikkene er punktene vi får hvis $f_n = \frac{1}{2}f_s$ og de blå prikkene med sirkel er eksempler på hva som kan skje hvis $f_n(t_n)>\frac{1}{2}f_s(t_n)$}
+\label{fn}
+\end{figure}
+
+
+\subsection{Forskjell mellom fourier transformasjon og waveletanalyse}
+
+\begin{tabular}{c|l|l}
+& \textbf{Fouriertransformasjon} & \textbf{Wavelettransformasjon}\\ \hline 
+1)& Spektogrammet bygges opp linje & Spektogrammet bygges opp linje \\
+ &for linje med $vertikale$ linjer & for linje med $horisontale$ linjer\\
+ & &\\
+ 2)& Behøver ikke velge hele tidsintervallet & Må velge hele tidsintervallet før analysen\\
+ & &\\
+ 3)& Kan ikke velge frekvensområde  &Kan velge hvilket frekvensområdet \\
+ &kjører gjennom hele signalet & man vil studere\\
+&og finner alle frekvenser &\\
+& &\\
+4)& God til stasjonære signaler & God til signaler som varierer over tid\\
+& &\\
+5)&,,Oppdaget'' for ca 200 år siden & ,,Oppdaget'' for ca 100 år siden\\
+& &\\
+6)& 2D beskrivelse & 3D beskrivelse \\
+& &\\
+7)& $X(\omega) = \underset{-\infty}{\overset{\infty}{\int}}x(t)e^{-i\omega t}dt$
+&$\gamma k(\omega_a,t) = \underset{-\infty}{\overset{\infty}{\int}}x(t + \tau)\Psi_{\omega_a,k}(\tau)d\tau $
+\end{tabular}\\
+
+
+Slenger til et sitat fra \cite{booth}: \\
+,, In layman’s terms: A fourier transform (FT) will tell you what frequencies are present in your signal. A wavelet transform (WT) will tell you what frequencies are present and where (or at what scale). If you had a signal that was changing in time, the FT wouldn’t tell you when (time) this has occurred. ''
+
+Fouriertransformasjon blir begrenset av noe som kan minne om Heisenberg uskarphetsrelasjon. Hvis vi velger å måle høyest presissjon i tiden til signalet mister vi all kontroll over frekvensen, og vice versa. Wavelettransformasjon bruker dette til sin fordel ved at for hver måling av en wavelet forteller den oss noe om tids utstrekningen og frekvensen til signalet. (\cite{wiki})
+
+\subsection{Situasjoner fouriertransformasjon gir ubrukelig resultat}
+
+Fast fouriertransformasjon (FFT) er ubrukelig hvis vi skal analysere signaler som endrer seg over tid. Da kan det heller lønne seg å bruke en ,,kort-tids-fouriertransformasjon'' , det er altså en stykkevis fouriertransformasjon (STFT). Fourertransformasjon klarer ikke å måle presisjon i tid og frekvens samtidig.
+
+\subsection{Ulemper med wavelettransformasjon sammenlignet med fouriertransformasjon}
+
+Ulempene med en wavelettransformasjon:
+
+\begin{enumerate}
+\item må velge hele tidsintervallet før analysen
+\item hvis vi velger å gjøre en wavelettransformasjon av flere frekvenser, si 100, så vil den bruke omtrent 100 ganger så lang tid som en enkel fouriertransformasjon
+\item fordi det er ulike start punkt og lengder underveis i beregningene gjør at det er vanskelig å holde orden på faser (fasorer)
+\item i en waveletanalyse gir ikke bare utslag for frekvenser som tilsvarer signalets men også nærliggende frekvenser. 
+\item har et randproblem
+\item må velge om vi vil a et skarpt frekvens-bilde eller et skarpt tidsbilde. Kan ikke få begge deler samtidig. 
+\end{enumerate}
+
+\subsection{Wavelettransformasjon sitt “randproblem”}
+
+For å forklarer randproblemet til en wavelettransformasjon må jeg nevne hoved prinsippet med en slik transformasjon. Prinsippet i en wavelettrasnformasjon er å gange sammen et signal med en wavelet punkt for punkt og summere sammen alle produktene. Vi flytter så waveleten og gjør det samme på nytt, dette gjør vi om igjen og om igjen. Wavelettransformasjon bruker tiden den tar inn i midten av waveleten. Dette medfører at ved starten og slutten av perioden så vil kun halve waveleten være med i dataområdet som gjør at en del av begge endene i spekteret vil gi unyttige data. Hvor mye av endene som vi må forkaste kommer an på bredden vi velger waveleten til å være (stor eller liten k)
+
+\section{Regneoppgaver}
+
+\subsection{Første punkt i en digital FT av et signal er lik gjennomsnittsverdien til signalet}
+Dette skal jeg vise matematisk og numerisk. For å vise dette matematisk bruker jeg ligning 5.18 i boka \cite{boka}. Jeg bruker at $k = 0$
+\begin{align*}
+X_{k=0} &= \frac{1}{N} \underset{n=0}{\overset{N-1}{\Sigma}}x_ne^{-i\frac{2\pi}{N}(k=0)}\\
+&= \uu{\uu{\frac{ \underset{n=0}{\overset{N-1}{\Sigma}} x_n }{N}}}
+\end{align*}
+Første punktet da k er null blir gjennomsnittet til signalet, numerisk gjorde jeg det i python som du kan se i figur \vref{opg8}. 
+
+\begin{figure}[h!]
+\lstinputlisting[language=Python, firstline=3, lastline=15]{opg8.py}
+\caption{Første punkt i en digital fouriertransformasjon numerisk}
+\label{opg8}
+\end{figure}
+Vi har nå sett at første punkt i en digital fouriertransformasjon er gjennomsnittet til signalet, analytisk og numersik.
+
+\subsection{Kommer linjene ut i frekvensspekteret?}
+
+Figurene \ref{100},\ref{200},\ref{400},\ref{700},\ref{950},\vref{1300} er de plotene jeg fikk da jeg satte inn for de forskjellige frekvensene. Frekvensene fram til 400 vet vi skal finne, men frekvenser fra 700 og oppover hadde vi ønsket at ikke ble synlig her. Det jeg observerer når jeg studerer frekvensspektrene er at når frekvensen blir for høy virker det som om den blir reflektert tilbake fra ,,veggen''. Figur \vref{700} ser vi at den har gått ca 200 ,,skritt'' tilbake fra veggen. Dette er akkurat differansen mellom frekvensen vi har og maks frekvens vi kan måle. Det samme fenomenet ser vi på figur \vref{1300} der den har blitt reflektert 2 ganger. 
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{freq100.png} 
+\caption{Frekvens = 100}
+\label{100}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{freq200.png} 
+\caption{Frekvens = 200}
+\label{200}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{freq400.png} 
+\caption{Frekvens = 400}
+\label{400}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{freq700.png} 
+\caption{Frekvens = 700}
+\label{700}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{freq950.png} 
+\caption{Frekvens = 950}
+\label{950}
+\end{minipage}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{freq1300.png} 
+\caption{Frekvens = 1300}
+\label{1300}
+\end{minipage}
+\end{figure}
+
+
+
+\subsection{Solflekker}
+
+Plottet jeg fikk kan du se på figur \vref{SF}. Som vi ser på frekvensbilde (frequency domain) er det en topp som kan være pga de høye amplitudene i tidsbilde (time domain), den neste tydelige toppen er nok der fordi vi ser at tidsbilde har en del topper rundt 100. Dette kan bety at det er en periode på ca 10 år hvor det forekommer 100 solflekker. \\
+Hvordan jeg løste oppgaven numerisk kan du se i figur \vref{opg11}.
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{solflekker.png} 
+\caption[Solflekker]{Til venstre er tidsbilde til solflekkene. Til høyre er frekvensbilde}
+\label{SF}
+\end{figure}
+\begin{figure}[h!]
+\caption{Kode: Solflekker}
+\lstinputlisting[language=Python, firstline=5, lastline=19]{opg11.py}
+\label{opg11}
+\end{figure}
+
+\subsection{Harmonisk signal}
+
+Koden jeg laget med signalet jeg valgte ser du i figur \vref{opg14}.  Tid- og frekvens-bilde av det første signalet med akkurat 13 perioder ser du på figur \vref{13p}. Tidsbildet viser et harmonisk signal med 13 perioder og frekvensspekteret viser en skarp og fin kurve på 1[Hz] akkurat som forventet. 
+Hvis vi ser på figur \vref{12p} ser vi på tidsbildet et harmonisk signal på 13.2 perioder. Jeg observere derimot at frekvensspekteret har endret seg. Den skarpe kurven som vi hadde ved forrige signal er nå blitt avrundet i bunn, kurven er også fått et mindre utslag. En fourier transformasjon antar at signalet er periodisk og stasjonært gjennom hele intervallet (\cite{foreleser}), noe den ikke lenger er i dette tilfellet. Det er nok forklaringen på forskjellen jeg observerer i frekvensspektrene.
+
+\begin{figure}[h!]
+\caption{Kode: Signal}
+\lstinputlisting[language=Python, firstline=5, lastline=25]{opg14.py}
+\label{opg14}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{minipage}[b]{\linewidth}
+\centering
+\includegraphics[width=\textwidth]{13perioder.png} 
+\caption[Signal med 13 perioder]{Signal med 13 perioder, Til venstre er tidsbilde og til høyre er frekvensspekteret }
+\label{13p}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{\linewidth}
+\centering
+\includegraphics[width=\textwidth]{132perioder.png} 
+\caption[Signal med 13.2 perioder]{Signal med 13.2 perioder, Til venstre er tidsbilde og til høyre er frekvensspekteret }
+\label{12p}
+\end{minipage}
+\end{figure}
+
+Jeg brukte scipy.signal.square() for å konstruere firkant-bølgen, som du ser du i koden (figur \vref{opg14}) under def square(p,n). Firkant-bølgen med tidsbildet og frekvensspekter ser du i figur \vref{square}. På internett (\cite{inf}) fant jeg et utrykk for amplituden for en firkant-bølge.
+$$
+A_n = \frac{2}{\pi (2n-1)}
+$$
+Når lar jeg n gå mot $\infty$ 
+\begin{align*}
+A_n = \frac{2}{\pi (2n-1)} = \underset{n\rightarrow \infty}{lim} \frac{2}{\pi (2n-1)} = \frac{1}{n}
+\end{align*}
+
+Dette resultatet samsvarer med det vi ser i frekvensspekteret til firkant-bølgen. $\frac{1}{n}$ gir oss nettop en slik graf. Hvis vi sammen ligner frekvensspekteret i figur \ref{square} og grafen i figur \vref{amplitude} ser vi at jeg får omtrent det samme fra mine numeriske beregninger.
+
+\begin{figure}[h!]
+\begin{minipage}{\linewidth}
+\includegraphics[width=\textwidth]{square.png} 
+\caption[Firkantbølge]{Til venstre er tidsbilde av en firkantbølge og til høyre er frekvensspekteret}
+\label{square}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{\linewidth}
+\includegraphics[width=\textwidth]{analytiskamplitude.png} 
+\caption{Analytsik løsning av amplitude av en firkant-bølge}
+\label{amplitude}
+\end{minipage}
+\end{figure}
+
+\subsection{Wavelettransformasjon og Heisenbergs uskarphetsrelasjon}
+
+På figur \ref{14a} og \vref{Fspekter} ser du tidsbildet til signalet og frekvensspekteret jeg fikk med FFT. Figur \vref{14c} viser spektogrammet jeg får med en wavelettransformasjon. Jeg ser her at ved en lav K får vi et bra tidsbilde, og jeg ser godt at signalene varer igjennom hele intervallet. Med en stor K får jeg et skarpt bilde av frekvensene til dette signalet, men det minste signalet blir nesten borte. Ser også at randproblemet kommer litt frem her, ser det på det første og siste 0.1[s] på frekvensen ved 1[kHz].
+
+
+\begin{figure}[h!]
+\begin{minipage}{0.5\linewidth}
+\includegraphics[width=\textwidth]{14a.png} 
+\caption{Zoom av tidsbildet til signalet}
+\label{14a}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[width=\textwidth]{frekvensbilde.png} 
+\caption[Frekvensspekter ved FFT]{Frekvensspekteret til signalet}
+\label{Fspekter}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{1.05\linewidth}
+\includegraphics[width=\textwidth]{14c.png} 
+\caption[Wavelet spektrogram]{Øverst er wavelettransformasjonen med en bredde $K = 24$, nederst er wavelettransformasjonen med en bredde $K = 200$. Fargekartet helt til høyre i begge figurene viser amplituden. Mørk rød = mange amplituder, mørk blå = ingen amplituder.}
+\label{14c}
+\end{minipage}
+\end{figure}
+
+Neste jeg gjør er å konvultert signalet med en gaussisk funksjon slik at jeg får 2 ,,bølgepakker'' som kommer tydelig frem i tidsbildet du ser i figur \vref{sig14d}. Jeg brukte deretter en FFT for å finne frekvensspekteret (figur \vref{Fspekter14d}) til disse ,,bølgepakkene'', og som forventet ble dette likt som i figur \vref{Fspekter}. Waveletspektogrammet ble annerledes, med å konvultere signalet har jeg fått frem at det kun er 2 frekvenser i dette signalet, spektogrammet ser du på figur \vref{14d}. På siste bilde der $K = 124$ har amplituden til det minste frekvensen forsvunnet! Dette viser at vi må være fornuftige av valg av bredden til waveleten. For stor kan medføre at informasjon forsvinner. Med en liten bredde ser vi derimot hvor lenge signalene varer, men på bekostning av at frekvensen blir mer utydelig. Jeg synes at ved K = 100 får vi et godt bilde av både tid og frekvens, ser tydelig at frekvensene er på 1.6 [kHz] og 1[kHz]. Og at den minste frekvensen varer i omlag 0.05[s] og den største frekvensen i omlag 0.4[s] som samsvarer med tidsbildet til signalet.\\
+Koden jeg brukte ser du på figur \vref{wave}
+
+\begin{figure}[h!]
+\begin{minipage}{0.5\linewidth}
+\includegraphics[width=\textwidth]{sig14d.png} 
+\caption[Tidsbilde 14.d)]{Tidsbilde av signalet}
+\label{sig14d}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[width=\textwidth]{frekvensbilde.png} 
+\caption[Frekvensspekter 14.d)]{Frekvensspekteret til signalet ved FFT}
+\label{Fspekter14d}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{1.05\linewidth}
+\includegraphics[width=\textwidth]{wave14d.png} 
+\caption[Wavelet spektrogram 14.d)]{Waveletspektogram med forskjellig K verdier $\in [15,124]$}
+\label{14d}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+\caption{Kode: Wavelettransformasjon}
+\lstinputlisting[language=Python, firstline=5, lastline=35]{wavelet2.py}
+\label{wave}
+\end{figure}
+
+
+
+\begin{thebibliography}{}
+\bibitem{boka} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{foreleser}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}
+	\url{https://snl.no}
+\bibitem{inf}
+	\url{http://www.informit.com/articles/article.aspx?p=1374896&seqNum=7}
+\bibitem{booth}
+	\url{http://bootmath.com}
+\end{thebibliography}
+
+\end{document}
