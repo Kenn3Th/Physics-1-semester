@@ -1,7 +1,6 @@
 from numpy import *
 from matplotlib.pyplot import * 
 
-#
 def force(dx,d,k,q):
     if dx<d:
         F = k*abs(dx-d)**q
