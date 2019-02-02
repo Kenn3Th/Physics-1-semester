@@ -1,0 +1,183 @@
+ \documentclass[12pt,preprint]{aastex6}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage [norsk]{babel} 
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\VEV}[1]{\langle#1\rangle}
+
+\shorttitle{Oppgave 1C.4}
+\shortauthors{K.R. Eikrehagen}
+
+\usepackage{epsfig}
+
+\begin{document}
+
+
+
+\title{1C.4: Ekstrasolare planeter}
+
+\author{Kenneth Ramos Eikrehagen}
+\affil{Institute of Theoretical Astrophysics, University of Oslo,
+P.O. Box 1029 Blindern, 0315 Oslo, Galactic Empire} 
+\email{kenneth.eikrehagen@gmail.com}
+
+\begin{figure}
+\includegraphics[width=\textwidth, height = 4cm]{form}
+\end{figure}
+
+\newpage
+
+\begin{abstract}
+I denne artikkelen har jeg tatt for meg data fra 5 forskjellige stjerner og analysert dette. Jeg skal finne ut om det kan være planeter som går i bane rundt stjernene, massen til eventuelle planeter og om mulig radiusen. Jeg bruker Dopplermetoden for å finne ut om det går planeter i bane rundt stjerna. Når vi sier at en planet går i bane rundt en stjerne mener vi egentlig at stjerna og planeten går i bane rundt et felles massesenter. Inklinasjons vinkelen som vi observerer stjerne-planet systemene er vanskelig å si noe om ved første øyekast, og kan derfor lønne seg å anta at denne inklinasjons vinkelen i = $\pi/2$.  
+Jeg starter ved å analysere dataene kun ved å se på grafen å henter informasjonen min derfra, men til slutt skal jeg bruke minste kvadraters metode for å finne mer nøyaktige data.
+\end{abstract}
+
+\section{Introduksjon}
+\label{sect:intro}
+Planeter som er utenfor vårt solsystem kaller vi for en ekstrasolar planet. Den første ekstrasolare planeten ble ikke oppdaget før 1995. Det var Michel Meyor og Didier Queloz som annonserte at de hadde oppdaget en planet i bane rundt stjernen 51 Pegasi. 
+
+Ekstrasolare planeter er vanskelig å oppdage fordi de ,,drukner" i lyset fra stjernen de tilhører. Den metoden som er mest brukt er Dopplermetoden, som er basert på dopplereffekten. Det betyr at hvis en stjerne beveger seg mot oss får lyset den sender ut kortere bølgelengder, dette kaller vi blå-forskjøvet. Beveger stjernen seg i fra oss får lyset den sender ut lengre bølgelengder, dette heter rød-forskjøvet. Dette kan vi bruke for å finne den radiale hastigheten til stjerna, ved å måle forskjellen til lyset i stjernespekteret.
+
+Vi kan også se om det er en planet som går rundt stjernen ved hjelp av det vi kaller stjerneformørkelse. Er planeten stor nok kan den forårsake en liten reduksjon av lyset stjernen sender ut. 
+
+\section{Metode}
+Dataene jeg har fra stjernene består av lister som er delt i 3. 
+\begin{align*}
+&1.\text{rad} = \text{Tid}\\
+&2.\text{rad} = \text{Observert bølgelengde fra H}\alpha \text{ spektrallinje}\\
+&3.\text{rad} = \text{Observert fluks fra stjernen}
+\end{align*}
+
+Jeg skal anvende Dopplermetoden for å finne ut om det befinner seg planeter rundt en eller flere av stjernene jeg skal analysere. Siden jeg vet at den observerte bølgelengde $\lambda$ er fra H$\alpha$ spektral linjen kjenner jeg også den opprinnelige bølgelengden $\lambda_0$. Derfor kan jeg bruke  formelen for forandring i bølgelengde på grunn av Doppler effekt:
+$$\frac{\lambda - \lambda_0}{\lambda_0} = \frac{v_r}{c}$$
+
+Hvor $\lambda$ er observert bølgelengde, $\lambda_0$ er den faktiske bølgelengden, $v_r$ er den radielle hastigheten til stjerna og c er lyshastigheten. Bølgelengdene er målt i nm =$10^{-9}m$, lys- og radiell-hastighet er begge målt i m/s \\
+Dette gir meg den radielle hastigheten til stjerna :
+$$v_*=v_r - V$$
+Hvor V er hastigheten til massesenteret (gjennomsnittet av $v_r$) og $v_*$ er hastigheten til stjerna. 
+
+Jeg kan ut i fra plottet til de forskjellige stjernene se om det er (minst) en planet som går i bane rundt stjerna. Hvis en stjerne og en planet går i bane rundt et felles massesenter kan jeg finne en periode P. Siden jeg også har fått oppgitt massene til stjernene($m_*$) kan jeg ved hjelp av denne ligningen:
+$$ m_p\sin i = \frac{m_*^{2/3}v_*P^{1/3}}{(2\pi G)^{1/3}} \text{ , } G=\text{gravitasjonskonstant}$$
+finne massen til planeten($m_p$).
+
+Massen jeg finner ved denne formelen er den minste massen denne planeten kan ha. Dette er fordi hvis stjerne-planet systemet er over $\pi /2$ vil resultatet jeg få her kun bli større hvis vi øker/senker vinkelen. 
+
+For å få en bedre estimering av hva massene til planetene kan jeg bruke minste kvadraters metode: 
+$$\sum_{t}(v_r^{data}- v_r\cos(\frac{2\pi}{P}(t-t_0)))^2$$
+Ved å se på hvilke verdier for P, $v_*$, og $t_0$ som gir den minste differansen kan jeg finne en bedre verdi for perioden P og hastigheten $v_*$ i ligningen over, som kan gi meg et mer nøyaktig anslag på massen til planeten $m_p$. \\
+
+Ved å se på lyskurven (fluks per tid grafene) kan jeg ,hvis heldig, finne radius ($R_p$) og tettheten til de planetene som formørker stjerna. Dette kan gjøres ved å zoome inn der fluks grafen får et lite ,,fall" å se hvor lang tid det tar fra planeten begynner å gå foran stjerna($t_0$) til hele planeten er inne i stjerna($t_1$)(total formørkelse). Siden vi nå vet hastigheten til stjerna og massen til stjerna og planeten, mangler vi kun å vite hastigheten til planeten $v_p$ (hastighet i forhold til massesenteret) for å kunne bestemme radiusen til denne planeten.\\ 
+Ved hjelp av følgende ligning kan vi finne $v_p$:
+$$v_p = v_*\frac{m_*}{m_p} $$
+Videre bruker jeg at
+$$ 2R_p = (v_*+v_p)(t_1-t_0)$$
+for å finne radiusen til en eventuell planet. For å finne den gjennomsnittlige tettheten til planeten ($\rho_p$) kan jeg bruke følgende:
+$$\rho_p = \frac{m_p}{4/3\pi R_p^3} $$
+
+
+
+
+\section{Resultater}
+Figurene \ref{stjerne0},\ref{stjerne1},\ref{stjerne2},\ref{stjerne3} og \ref{stjerne4} er plottet av hastighets- og den relative fluks-grafen til stjernene. Fra disse grafene kan vi se om det befinner seg planeter som går i bane rundt stjernene. Graf \ref{stjerne1} har ikke en svingning som kan bety at det ikke er en planet eller lignende som gir et felles massesenter, eller at inklinasjons vinkelen $i = 0$. Derimot på grafene \ref{stjerne0},\ref{stjerne2},\ref{stjerne3} og \ref{stjerne4} ser vi at disse stjernene har svinginger, som betyr at den går i bane rundt et felles massesenter med en planet. Der stjerna går i bane rundt et felles massesenter kan vi finne hastigheten til stjerna. Jeg har illustrert dette ved tegning \ref{teg}\\
+
+Ut i fra hastighets grafene kan jeg også finne massen til planeten som går i bane rundt stjerna. 
+$$m_p\sin i = \frac{m_*^{2/3}v_*P^{1/3}}{(2\pi G)^{1/3}}$$
+Denne ligningen gir meg de forskjellige massene til planetene, jeg antar her at $i=\pi /2$ som gir meg den minste massen planeten kan ha (fordi sinus blir størst ved $\pi /2$). 
+
+\begin{center}
+  \begin{tabular}{ | l | c | r |}
+    \hline
+    Planet & Jupitermasse([Jm]) & Minste kvadraters metode\\ \hline
+    1 & 0.82 & \\ \hline
+    2 & 0 & \\ \hline
+    3 & 2.26 & \\ \hline
+    4 & 4.44 & 3.79 Jupiter masse\\ \hline
+    5 & 5.62 & 6.17 Jupiter masse\\
+    \hline
+  \end{tabular}
+\end{center}
+
+Som vi kan se i tabellen over blir det en differanse på 0.65 Jupiter masse på planet 4 og 0.54 Jupiter masse på planet 5 ved å bruke minste kvadraters metode. \\
+
+Fra fluks grafene er det bare \ref{stjerne3} \ref{stjerne4} som viser tydelig at det er noe som formørker stjerna. For å kunne gjøre noe med dette må jeg få målinger med et mindre tidsintervall slik at jeg kan dømme hvor lang tid planeten bruker på å formørke stjerna, det kan være snakk om noen timer eller kun noen minutter planeten bruker på å formørke stjerna. Det kan også hende at dette bare er en målefeil eller ekstra støy. 
+
+\begin{figure}[ht]
+\begin{center}
+\textbf{Plott av hastighet- og lyskurve-grafene}\par\medskip
+\end{center}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{stjerne1.png}
+\caption{Øverst: Hastighets graf, Nederst: Lyskurven}
+\label{stjerne0}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{stjerne2.png}
+\caption{Øverst: Hastighets graf, Nederst: Lyskurven}
+\label{stjerne1}
+\end{minipage}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{stjerne3.png}
+\caption{Øverst: Hastighets graf, Nederst: Lyskurven}
+\label{stjerne2}
+\end{minipage}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{stjerne4.png}
+\caption{Øverst: Hastighets graf, Nederst: Lyskurven}
+\label{stjerne3}
+\end{minipage}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{stjerne5.png}
+\caption{Øverst: Hastighets graf, Nederst: Lyskurven}
+\label{stjerne4}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\centering
+\textbf{Hastighetsgraf}\par\medskip
+\includegraphics[width=\textwidth]{teg.jpg} 
+\caption{t = dager, V = massesenter-hastighet, $v_r$ = radiell-hastighet, P = periode}
+\label{teg}
+\end{figure}
+
+\section{Diskusjon}
+Meste parten av det jeg har gjort i denne artikkelen er å analysere dataene jeg har fra stjernene ved kun å se på plottet av hastighet- og fluks-grafen. Jeg tar utgangspunkt i at dataene jeg finner befinner seg midt i ,,støyet"(den tjukke linjen), og bruker dette til å finne hastighet og periode samt massen til planeten. Dette er ikke en nøyaktig måte finne ekstrasolare planeter på, heller ikke dens masse, radius og tetthet. Det er ikke slik astrofysikere analyserer dataene.  
+
+Til slutt brukte jeg minste kvadraters metode, med denne metoden velger man den løsningen som gir at summen av kvadratene av avvikene fra de gitte betingelsene er et minimum. Dette er også en tilnærming, men det er en mye bedre tilnærming enn midtpunktet i støyet. Svaret jeg fikk da ga meg en stor forskjell enn hva jeg fikk når jeg antok midtpunktet i støyet. 
+
+\section{Konklusjon}
+Selv om det er en dårlig tilnærming å ta utgangspunktet til midtpunktet i støyet, er det en god måte å oppbygge intuitiv forståelse for hvordan man kan oppdage ekstrasolare planeter. Det gjør at når man skal analysere grafene til stjerner kan man kun ved å se på hastighet- og lyskurve-grafen si om det er en planet som går i bane rundt planeten, hvor stor den antageligvis er og hvilken type planet det er(gass,stein etc) ved hjelp av tettheten. Man kan da gjøre en bedre tilnærming med minste kvadraters metode for å få mer nøyaktig data. Hvis man kan se på grafen om det er planeter der eller ikke sparer man seg for jobb, enn hvis man antar at det er planeter rundt alle stjerner og analyserer alle for dette. 
+
+\begin{acknowledgments}
+Takk til gruppelærere og med studenter for nyttige diskusjoner under arbeidet med denne artikkelen. 
+\end{acknowledgments}
+
+
+
+
+\begin{thebibliography}{}
+\bibitem[Hansen (2017)]{part1C} Hansen, F. K.,  2017, Forelesningsnotat 1C i kurset AST2000
+
+https://snl.no/ekstrasolar\_planet
+
+\end{thebibliography}
+
+
+
+\end{document}

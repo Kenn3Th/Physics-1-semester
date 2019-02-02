@@ -1,0 +1,136 @@
+ \documentclass[12pt,preprint]{aastex6}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage [norsk]{babel} 
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+\newcommand{\VEV}[1]{\langle#1\rangle}
+
+\shorttitle{Oppgave 1C.4}
+\shortauthors{K.R. Eikrehagen}
+
+\usepackage{epsfig}
+
+\begin{document}
+
+
+
+\title{1C.5: Simulere reell data}
+
+\author{Kenneth Ramos Eikrehagen}
+\affil{Institute of Theoretical Astrophysics, University of Oslo,
+P.O. Box 1029 Blindern, 0315 Oslo, Galactic Empire} 
+\email{kenneth.eikrehagen@gmail.com}
+
+\begin{figure}
+\includegraphics[width=\textwidth, height = 4cm]{sol}
+\end{figure}
+
+\newpage
+
+\begin{abstract}
+Her har jeg brukt det solsystemet jeg fikk utdelt fra UiO for å lage reelle data fra stjernen. Jeg har brukt de 3 tyngste planetene i systemet for å lage et felles massesenter stjerna og planetene beveger seg rundt, har sett bort fra gravitasjonen som virker mellom planetene. Deretter har jeg funnet hastigheten stjerna beveger seg med og plottet en graf av hastigheten med hensyn på tiden. For at det skal bli en simulering av reell data har jeg lagt til en uniform fordelt gaussisk kurve på grafen for å illustrere støy. 
+\end{abstract}
+
+\section{Introduksjon}
+\label{sect:intro}
+\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{center}
+\includegraphics[width=0.35\textwidth, height = 3cm]{stjerne1.png}
+\end{center}
+\caption{Øverst: bevegelsen til stjerna, Nederst: Fluksen stjerna sender ut}
+\label{1}
+\end{wrapfigure}
+Siden den første ekstrasolare planeten ble oppdaget i 1995 har Kepler satellitten funnet 2337 ekstrasolareplaneter, et nylig statistisk estimat har vist at det (i gjennomsnitt) finnes minst en planet rundt hver stjerne. Vi kan bruke Dopplermetoden til å sjekke om det er planeter som går i bane rundt stjerna. Dette ser vi hvis hastighetskurven til stjerna oscillerer, det betyr at stjerna beveger seg rundt et felles massesenter med noe andre himmellegemer som for eksempel planeter. Dataen vi får inn inneholder endel støy fra universet så vi ser ikke en perfekt kurve med en rett "strek", men heller en "hårete" kurve. som vist i figur \ref{1}. Det er nettopp en slik støy jeg skal legge til stjernen i mitt solsystem. 
+\\
+
+
+\section{Metode}
+Stjerna står foreløpig ,,låst" i origo, og jeg skal her få den til å bevege seg med planetene rundt et felles massesenter. Jeg tar utgangspunkt i de 3 tyngste planetene i solsystemet mitt og gjør at de påvirker stjerna med hver sin kraft. Jeg ser bort i fra at gravitasjonen virker mellom planetene. 
+\begin{center}
+  \begin{tabular}{ | l | c | r |}
+    \hline
+    Planet & Jupitermasse [m=$10^{-3}$] & Kraft ($F_G$)\\ \hline
+    1 & 5.8[m] & $F_G1$\\ \hline
+    2 & 12.6[m] & $F_G2$\\ \hline
+    3 & 630.8[m]& $F_G3$\\
+    \hline
+  \end{tabular}
+\end{center}
+Jeg bruker:
+$$F_G = G\frac{Mm}{r^3}\vec{r} \text{, } F = ma$$
+for å finne kraften planetene har på stjerna og sammen hengen mellom $F =G\frac{Mm}{r^3}\vec{r} = ma $ for å finne akselerasjonen til stjerna. Jeg får dermed at $$a_{stjerne} = \frac{F_G1+F_G2+F_G3}{M_{stjerne}}$$
+og bruker dette i Eulre-Cromer for å finne hastighet og posisjon. Jeg gjør det samme for planetene men da er det kun kraften fra stjerna som virker på hver av dem og akselerasjonen for hver planet blir dermed $$a_{planet} =  \frac{F_G}{m_{planet}}$$ 
+Perioden finner jeg ved å se når den ytterste planeten har gjennomført en runde rundt stjerna.
+Deretter finner jeg hastigheten til stjerna ved denne ligningen $$ v_r = v - V$$ hvor V = gjennomsnittet til v. Jeg ser på bevegelsen i x retning og bruker dette til å plotte hastighets-grafen til stjerna. For å simulere en realistisk verdi legger jeg til en uniformt Gauss-fordeling med $\mu = 0$ og $\sigma = \frac{v_{maks}}{5}$ til hastighetskurven jeg plottet. 
+
+
+
+\section{Resultater}
+
+Som vist i figur \ref{2} og \ref{3} ser vi hvordan stjerna beveger seg i løpet av tiden [år] med og uten støy.
+
+\begin{figure}[h]
+\begin{center}
+\textbf{Hastighetsgrafen til stjerna med og uten støy}\par\medskip
+\end{center}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{nois.png}
+\caption{Oscilleringen til stjerna med støy}
+\label{2}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{uten_nois.png}
+\caption{Oscilleringen til stjerna uten støy}
+\label{3}
+\end{minipage}
+\end{figure}
+
+Den ytterste planeten brukte 330 år på en runde rundt stjerna, du kan se plottet i figur \ref{4}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.58\textwidth]{planet_sol_bane.png}
+\caption{Banene til stjerne-planet systemet.}
+\label{4}
+\end{figure}
+
+\section{Diskusjon}
+Som vi kan lese av i figur \ref{3} ser vi at stjerna beveger seg veldig sakte, en størrelse orden på $10^{-16}$ dette er lite selv om det er målt i [AU]. Grunnen til at stjernen beveger seg så sakte er nok fordi at planetene som går i bane rundt stjerna ikke har så stor masse. Jeg har også her sett bort fra de 5 andre planeten som er i stjerne-planet systemet, og gravitasjonen som virker i mellom dem. Siden de andre planetene var endel mindre enn de 3 største tror jeg ikke det hadde gitt meg en bemerknings-verdig forandring i hastigheten til stjerna. Banene til planetene hadde nok forandret seg hvis jeg hadde tatt hensyn til gravitasjonen som hadde virket mellom dem. Skulle jeg tatt hensyn til dette måtte jeg ha løst et fler-legeme-problem isteden for et to-legeme-problem. 
+Legger også merke til at når jeg tilførte støy ser plottet ut som de jeg analyserte i forrige artikkel (1.C4 Ekstrasolare planeter). På grunn av dette tolker jeg det til at dette er en god simulering av reell data. 
+
+\section{Konklusjon}
+Ved å legge til en uniform Gauss-fordeling til oscillasjonen til stjerna gjorde til at jeg fikk en realistisk fremstilling av dataen jeg har. 
+
+\begin{acknowledgments}
+Takk til gruppelærere og med studenter for nyttige diskusjoner under arbeidet med denne artikkelen. 
+\end{acknowledgments}
+
+
+
+
+\begin{thebibliography}{}
+\bibitem[Hansen (2017)]{part1C} Hansen, F. K.,  2017, Forelesningsnotat 1C i kurset AST2000
+
+https://exoplanets.nasa.gov
+https://www.nasa.gov/mission\_pages/kepler/main/index.html
+1C.4 Ekstrasolare planeter
+
+\end{thebibliography}
+
+
+
+\end{document}
