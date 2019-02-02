@@ -1,0 +1,368 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage[toc,page]{appendix}
+\usepackage{url}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 5}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\newcommand{\ov}{\overset}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+
+\section{Forståelses- og diskusjonsspørsmål}
+
+\subsection{Dispersivt medium}
+Et dispersivt medium er et medium der bølger blir dempet. Hvis det er ingen dispersjon vil bølgen bre seg med samme hastighet gjennom mediet uansett bølgelengde bølgen har. Er mediet dispersivt er det en gjenopprettende kraft som vil endre seg med med bølgelengden.
+
+Derfor vil det bli forskjellige hastighet i forhold til bølgelengde i et dispersivt medium. For en harmonisk bølge vil den kun påvirke hastigheten. For en ikke harmonisk bølge blir bølgen spredt fordi at en ikke harmonisk bølge kan sees på som en sum av flere bølger.
+
+\subsection{Bølgepakke}
+Vi bruker bølgepakker når vi beregner dispersjon fordi dette gir oss en animasjon som forteller oss om gruppe- og fase-hastighet. Hele bølgepakken brer seg med en viss gruppehastighet mens bølgene inni denne pakken brer seg med en viss fasehastighet. Det er dispersjonen som er grunnen til at det er forskjell mellom fase- og gruppe-hastighet. Forskjellen på disse er som regel liten for elektromagnetiske bølger. 
+
+\subsection{Overflate bølger på vann}
+De fleste har sittet i en båt når en bølge treffer den. Når bølgen treffer båten så vil båten bevege seg opp og deretter ned igjen, slik at bølgen oppleves som transversal. Men partiklene vil bevege seg i ellipse formede baner når bølgene passerer. Dette betyr at overflate bølger på vann verken er transversale eller longitudinale bølger, bølgen er begge deler. 
+
+\subsection{Divergens og rotasjon}
+Divergens, $Div$, er per definisjon størrelsen på en kilde eller et sluk som gi opphav til strømninger. Så det betyr at hvis vi er nærme en kilde til et elektrisk felt, $\ov{\rightharpoonup}{E}$, så er $Div(\ov{\rightharpoonup}{E}) \neq 0$. I denne sammenhengen kan vi karakterisere hvor divergensen av det elektriske feltet er ulik null ved å studere Gauss lov for elektrisk felt.
+$$
+\nabla \cdot \ov{\rightharpoonup}{D} = \rho
+$$
+Så det vil si at divergensen til det elektriske feltet er ulik null hvis det finnes en netto romladning der.
+
+Rotasjon eller curl, $curl$, er per definisjon hvor mye et vektorfelt roterer. I denne sammenhengen kan vi benytte oss av Faradays lov:
+$$
+\nabla \times \ov{\rightharpoonup}{E} = -\frac{\partial \ov{\rightharpoonup}{B}}{\partial t}
+$$
+Vi ser her at for å finne hvor i rommet et elektriskfelt roterer må det være en forandring i et magnetfeltet der. 
+
+\subsection{Laserlys og kompass}
+Ingenting. B-feltet i laserlyset forandres mange ganger i sekundet (ca$10^{14}$per sekund) og derfor klarer ikke kompasset å detektere dette. Man kan også argumentere at siden den endrer retning så mange ganger vil netto magnetfelt ut fra laser lyset være $\simeq 0$ slik at den ikke har noen virkning.
+
+\subsection{Løsning av Maxwells ligninger som gir et elektriskfelt}
+Kanskje, det kommer an på hva man godkjenner som en bølge. Hvis frekvensen er slik at den er mye lenger enn avstanden mellom en spenningskilde og der man befinner seg, så vil magnetfeltet være mindre enn $\frac{E_0}{c}$. Dette er tilfellet hvis man er nærme spenningskilden altså i et nærfelt. 
+
+\subsection{Refleksjon i vindu}
+Man ser gjerne to speilbilder som reflekteres i et vindu. Dette skyldes at vi får en refleksjon mellom luft-glass sjiktet og glass-luft sjiktet igjen. Vi kan gjerne se flere enn 2 refleksjoner hvis det for eksempel er en glassrute med flere glass. 
+
+\subsection{Laserstråle mot en glass plate}
+Nei! Vi kan ikke oppnå totalrefleksjon når man lyser en laser stråle mot en glassplate. For å få en totalrefleksjon må brytningsindeksen lyset gå fra være større enn det den går inn i, og dette er ikke tilfelle fra luft til glass. 
+
+\subsection{Polaroide solbriller}
+Det finnes en enkel måte å teste om solbriller er polaroide på. Hvis man ser opp mot himmelen (ikke rett på sola! Det er farlig for øynene) kan man se at himmelen er mørk, om man vrir på brillene slik at de blir omtrent 90$\degree$ (loddrett) ser man himmelen blir lysere. Det lyseste punktet er der solbrillene er 90$\degree$ (loddrett), hvis ikke dette er tilfellet er ikke solbrillene polaroide.
+
+\subsection{Fermats prinsipp}
+Varmluft er raskere en kald luft. Fermats prinsipp sier: ,,en bølge som går fra punkt A til et annet punkt B, alltid vil velge en vei som tar kortest mulig tid.''(\cite{snl}) Om dagen er bakken varmet opp og lydbølgen vil gå ned mot bakken og blir reflektert opp og vil prøve å gå ned igjen, dette gjentas helt til bølgen er kommet frem. Om kvelden er jo bakken nedkjølt og lufta langs bakken blir kaldere enn over. Lydbølgen vil nå bevege seg opp mot den varme luften, men nå er det ingen hindring, den reflekteres ikke fra baken flere ganger. Derfor vil lyden nå lenger om kvelden enn om dagen. 
+
+\section{Regneoppgaver}
+
+\subsection{Program for å beregne numeriske løsninger av bølgeligningen}
+\begin{enumerate}[label=(\alph*)]
+\begin{figure}
+	\begin{minipage}{.5\linewidth}
+	\includegraphics[width=\textwidth]{orginal.png} 
+	\caption[Hvordan bølgen brer seg originalt]{Hvordan bølgen brer seg uten noen endringer. 
+	Observerer at når bølgen treffer ,,veggen'' blir utslaget og retningen motsatt av hva den startet 
+	med}
+	\label{orginal}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\includegraphics[width=\textwidth]{-dudt.png} 
+	\caption[Hvordan bølgen brer seg, $-\frac{du}{dt}$]{Her ser vi at om den tidsderiverte $\dot{u}$ 
+	er motsatt rettet så endrer også retningen bølgen starter å brer seg}
+	\label{-dudt}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\includegraphics[width=\textwidth]{05dudt.png} 
+	\caption[Hvordan bølgen brer seg, $0.5\frac{du}{dt}$]{Her ser man at bølgen deler seg å brer 
+	seg i begge retninger av start bølgen. Man kan se etter $3\Delta t$ at når bølgene treffer 
+	hverandre igjen blir utslaget mindre enn originalt}
+	\label{05dudt}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{.5\linewidth}
+	\includegraphics[width=\textwidth]{2dudt.png} 
+	\caption[Hvordan bølgen brer seg, $2\frac{du}{dt}$]{Også her ser man at bølgen deler seg å 
+	brer seg i begge retninger av start bølgen. Hvis vi ser på bølgen etter $3\Delta t$ at når 
+	bølgene treffer hverandre igjen blir utslaget større enn originalt}
+	\label{2dudt}
+	\end{minipage}
+\end{figure}
+\item
+Den orginale bølgeligningen og hvordan den brer seg kan du se på figur \vref{orginal}. Man kan se at bølgen brer seg mot høyre. Når den når ,,veggen'' endrer fortegnet til utslaget og retningen den brer seg, og den reflekterte bølgen er den samme bølgen bare med motsatt fortegn. 
+På figur \vref{-dudt} kan du se hva som skjer med bølgeligningen om vi endrer fortegn på den tidsderriverte. Det jeg observerer er at  bølgen skifter retning, ellers er den identisk til orginalen
+
+\item
+Figur \vref{05dudt} viser hvordan bølgen oppfører seg når jeg halverer den tidsderriverte. Ut i fra plottet er det ikke så enkelt å se hva som skjer, men om man animerer dette ser man at bølgen deler seg i 2. Den største delen beveger seg mot høyre mens den mindre delen beveger seg mot venstre. Observerer også at etter at bølgene har blitt reflektert og møtes igjen (ca $t = t + 3\Delta t$) er ikke amplituden den samme med motsatt fortegn som man skulle forvente, den har blitt redusert! Det er ikke så intuitivt å kunne forutsi dette utfallet på forhånd. 
+
+\item
+Figur \vref{2dudt} viser hvordan bølgen oppfører seg når jeg dobbler den tidsderriverte. Også her observerer jeg noe av det samme, den deler seg. Her ser vi at bølgen som går mot høyre blir større mens den bølgen som går mot venstre blir negativ. Når bølgene møtes igjen på midten etter å ha blitt reflekter (ca $t = t + 3\Delta t$) er amlpituden blitt en del større enn hva den startet som. Dette resultatet er heller ikke så intuitivt, men jeg forventet dette etter å ha observert hva som skjedde når jeg halverte den tidsderriverte. 
+
+\item
+\item
+Ut ifra de figurene vi så ovenfor så kan jeg konkludere med at det ikke er like intuitivt å forstå hvordan bølgen vil bre seg om man velger initialbetingelser uavhengige fra hverandre. Hvis man kun endrer hastigheten (tidsderriverte) så vil bølgen oppføre seg helt annerledes enn hva som er forventet. Skal man endre hastigheten må man også løse bølgelingingen på nytt, skal man ha større hastighet må også bølgen tilegnes mer energi. Hvorfor det blir slik er pga bevaring av energi, bølgen kan ikke bare få en større/mindre hastighet enn start-hastigheten uten at det blir tilført/mister energi. Det er av denne grunn vi observerer at bølgen deler seg, den kompenserer for at det blir tilført/fratatt energi fra systemet. 
+\end{enumerate}
+
+Programmet jeg skrev finner du under appendix seksjon A.
+
+\subsection{Elektromagnetiskbølge}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{elmagbolge.jpg} 
+\caption[Skisse av elmag-bølge]{Skisse av en elektromagnetisk bølge og hvordan det elektriske feltet er orientert i forhold til det magnetiske feltet. Det er meningen at de står vinkel rett på hverandre. Altså at magnetfeltet er rettet i x-retning}
+\label{elmag}
+\end{figure}
+
+
+Den elektromagnetiske bølgen vi skal se på i denne oppgave har et elektrisk felt gitt ved
+\begin{equation}
+\ov{\rightharpoonup}{E}(y,t) = E_0cos(ky-\omega t)\ov{\rightharpoonup}{k} , \ov{\rightharpoonup}{k} = \hat{z}
+\label{E}
+\end{equation}
+Der $E_0 = 6.3*10^4$V/m og $\omega = 4.33*10^{13}$rad/sek.
+
+Jeg finner bølgelengden ved hjelp følgende ligninger:
+\begin{align*}
+k = \frac{2\pi}{\lambda} && \omega = kc = \frac{2\pi c}{\lambda}
+\end{align*}
+
+$$
+\lambda = \frac{2\pi c}{\omega} \simeq \uu{\uu{43.5[mm]}}
+$$
+
+Elektromagnetiske bølge er en transversale, vi kan se utifra ligning \ref{E} at denne elektromagnetiske bølgen beveger seg i y retning med utslaget i z retning.
+Magnetfeltet $\ov{\rightharpoonup}{B}$ til en elektromagnetisk bølge står vinkelrett på det elektriske feltet $\ov{\rightharpoonup}{E}$ og derfor vil magnet peke i x retning. Dette er illustrert i figur \vref{elmag}.
+
+Antagelsene gjort under denne oppgaven er
+\begin{enumerate}
+\item
+Lysastigheten $c = 3*10^8$
+\item
+At denne bølgen befinner seg langt unna kilden sin.
+\end{enumerate}
+
+\subsection{Ugyldig måling av elektrisk felt og magnetfelt }
+I oppgaven står det at noen hundre meter unna en basestasjon ble det elektriske feltet målt til $1.9V/m$ og magnetfeltet $1.2mA/m$, begge ved omlag 900 MHz. Jeg antar at begge målingene er gjort på samme sted og har samme frekvens. 
+En kyndig person kan se at disse målingene ikke har overenstemmelse siden enhetene til magnetfeltet som er målt her svarer til H-feltet $\ov{\rightharpoonup}{H} \equiv A/m$, mens magnetfeltet som burde bli målt her er B-feltet $\ov{\rightharpoonup}{B} \equiv T$.
+
+Man kan også si at dette ikke stemmer overens ved å sette opp noen ligninger for en mulig løsning av Maxwells ligninger. 
+
+\begin{align*}
+\ov{\rightharpoonup}{E} = E_0cos(kz-\omega t)\hat{i} \\
+\ov{\rightharpoonup}{B }= B_0cos(kz-\omega t)\hat{j}\\
+E_0 = cB_0
+\end{align*}
+der i dette tilfellet er $c\sim lyshastighet$, pga at permeabilitet og permittivitet til luft begge er $\sim 1$.
+På grunn av denne sammenhengen mellom elektrisk og magnetisk felt for elektromagnetiske bølger så ser vi med engang at differansen er i helt feil størrelse orden. 
+
+Denne løsningen for Maxwells ligninger har man antatt at vi befinner oss i et fjernfelt, noe vi ikke gjør noen hundre meter unna en basestasjon, men det er en tilnærmelse som kan anvendes i de fleste tilfeller. 
+
+\subsection{Mobiltelefon}
+Hvis vi bruker en mobiltelefon der dekningen er dårlig vil mobilen yte maksimal effekt som er mellom 0.7-1.0 W effekt mens kommunikasjonen pågår, middel verdien av dette er 0.85W. Jeg skal anslå intensiteten rundt mobilen ved en radius på 5cm. Jeg skal også anta at intensiteten er isotrop rundt hele mobiltelefonen. Jeg vet at intensitet er effekt per areal, dette git meg:
+$$
+I = \frac{0.85 W}{4\pi*0.05^2} \simeq 27.06 W/m^2
+$$
+I følge Strålevern Info 10-11 (www.nrpa.no/filer/5c7f10ca06.pdf, tilgjengelig 9. mars 2016) er strålingen fra basestasjoner, trådløse nett m.m som oftest mindre enn $I=0.01W/m^2$. Hvis vi sammenligner strålingen fra mobiltelefonen med dette er det mye mer stråling som kommer ut av en mobiltelefon, og det værste er at vi legger den inntil hodet...
+
+\subsection{Interplanetarisk støv i vårt solsystem}
+I denne oppgaven skal jeg betrakte interplanetarisk støv i en avstand R fra sola. Jeg skal anta at all støvet er kuleformet med en radius r, tetthet $\rho$ og at all stråling fra sola blir absorbert av støvkornene. Situasjonen er skissert i figur \vref{straling}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{straling.jpg} 
+\caption[Skisse interplanetarisk støv]{Skisse av situasjonen der interplanetarisk støv blir truffet av stråling i en avstand R fra sola}
+\label{straling}
+\end{figure}
+
+Gravitasjonskraften fra sola på støvkornet er gitt ved 
+\begin{equation}
+F_G = \gamma\frac{Mm}{R^3}|\ov{\rightharpoonup}{R}|
+\label{gravitasjon}
+\end{equation}
+der $\gamma$ er gravitasjons konstanten, M er massen til sola, m er massen til interplanetariske støvet og R er avstanden mellom sola og det interplanetariske støvet. 
+Kraften som virker fra strålingen til sola på det planetariske støvet er:
+\begin{equation}
+F_s = P_{stråling}*A = \frac{I}{c}\pi r^2
+\label{I}
+\end{equation}
+I er jo intensiteten til sola, og intesitet er effekt fra sola over arealet den virker, setter jeg dette inn i ligning \ref{I} og dermed blir 
+$$
+F_s = \frac{P\pi r^2}{4\pi R^2c} = \frac{Pr^2}{4R^2c}
+$$
+Videre skal jeg finne radiusen til det interplanetariske støvet når $F_s$ og $F_G$ er like store. Jeg har også fått oppgitt at:
+\begin{align*}
+\rho = 2.5*10^3 [kg/m^3] && P_0 = 3.9*10^{26}[W]\\
+M = 1.99*10^{30}[kg] && \gamma =6.67*10^{-11}[Nm^2/kg^2]
+\end{align*}
+Dermed har jeg at:
+\begin{align*}
+\Sigma F &= F_s +F_G = 0\\ 
+F_s &= -F_G\\
+\frac{Pr^2}{4R^2c} &=  \gamma\frac{Mm}{R^3}|\ov{\rightharpoonup}{R}|\\
+|r| & = |-\frac{3P_0}{16\gamma\pi c\rho M}| = \uu{\uu{2.338*10^{-7}[m]}}
+\end{align*}
+Det jeg har regnet ut her er hvor stor radiusen til hvert enkelt støvkorn må være i den interplanetariske støvskyen. 
+
+\subsection{Finn brytningsindeksen til glasset for en glass terning nedsenket i vann}
+\begin{figure}
+\includegraphics[width=\textwidth, height = 10cm]{n2.pdf} 
+\caption[Skisse av lys mot glass under vann]{Skisse av situasjonen der lysstrålen treffer en glassterning under vann. Der $\theta = 48.7\degree$}
+\label{n2}
+\end{figure}
+
+
+I boka \cite{boka} finner jeg at
+\begin{equation}
+sin\theta= \frac{n_2}{n_1} \Rightarrow n_2= n_1sin\theta
+\label{n2}
+\end{equation}
+for total refleksjon der $\theta$ er vinkelen lyset treffer mediet med, $n_1$ og $n_2$ er brytningsindeksen for de to mediene.
+I oppgaven får vi oppgitt :
+\begin{align*}
+\theta = 47.8\degree && n_1 = 1.333
+\end{align*}
+og jeg skal finne $n_2$. ved å anvende ligning \ref{n2} finner jeg
+$$
+\uu{\uu{n_2 \simeq 1.001}}
+$$
+\subsection{Brytningsindeks}
+Har fått oppgitt at en upolarisert lysbunt treffer en glassflate med en vinkel $\theta_i = 54.5\degree$, og den reflekterte strålen er fullstendig polarisert. Jeg skal finne brytnings indeksen til glasset og vinkelen til den transmitterte strålen $\theta_t$.
+For å løse denne oppgaven trenger jeg ligningen for Brewster-vinkelen og Snels lov, og jeg antar at brytningsindeksen for synliglys i luft er $n_1 \sim 1$\\
+Ligningen for Brewster-vinkelen:
+\begin{equation}
+tan\theta_B \equiv tan\theta_i = \frac{n_2}{n_1}
+\label{brewster}
+\end{equation}
+Snels lov: 
+\begin{equation}
+n_1sin\theta_1 = n_2sin\theta_2 \Rightarrow \frac{n_1}{n_2} = \frac{sin\theta_2}{sin\theta_1}
+\label{snel}
+\end{equation}
+Jeg kan kombinere ligning \ref{brewster} og ligning \vref{snel} for å finne vinkelen til den transmitterte strålen.
+$$
+\theta_t = sin^{-1}\left(\frac{sin\theta_i}{tan\theta_i}\right) = \uu{\uu{35.5\degree }}
+$$
+Nå som jeg har funnet vinkelen til den transmitterte bølgen kan jeg finne brytningsindeksen for glasset ved hjelp av Snels lov (ligning \ref{snel}). 
+$$
+n_2 = \frac{n_1sin\theta_i}{sin\theta_t} \simeq \uu{\uu{1.402}}
+$$
+Dette viser seg å være det samme som det Brewster-vinkelen ga meg, ikke så rart siden jeg har antatt at $n_1 = 1$. 
+
+\subsection{Upolarisert lysstråle går gjennom et polariseringsfilter}
+Her skal jeg analysere hva som skjer med en upolarisert lysbunt som går igjennom først 2 lineære polariserings filter, deretter gjennom 3 lineære polariseringsfiltre.  Filtrene har en polariseringsakse:
+\begin{align*}
+Filter_1 &\equiv \theta_1 = 15.0\degree\\
+Filter_2 &\equiv \theta_2 = -70.0\degree\\
+Filter_3 &\equiv \theta_3 = -32.0\degree\\
+\end{align*}
+Jeg definerer Intensiteten til lyset før den går igjennom noen filtre til 
+$$
+I = 1
+$$
+\begin{enumerate}[label=(\alph*)]
+\item
+Før lyset har gått igjennom noen filtre er intensiteten $I=1$. Jeg vet fra boka \cite{boka} at intensiteten halveres etter å ha gått igjennom et lineært polarisert filter $I = 0.5$, for å finne hva det er etter å passert det 2. filteret må jeg anvende Malu's lov:
+\begin{equation}
+I = I_0cos^2(\theta_2 - \theta_1)
+\label{malu}
+\end{equation}
+der $I_0$ er intensiteten etter at det har passert det forrige filteret.
+$$
+I = I_0cos^2(-85) = 0.5cos^2(-85) \simeq 3.8*10^{-3}
+$$
+\item
+Nå skal jeg plassere $Filter_3$ imellom $Filter_1$ og $Filter_2$. Malus' lov (ligning \ref{malu}) gjelder kun for 2 lineære polariseringsfilter omgangen. Derfor må jeg først regnet ut hva intensiteten blir gjennom $Filter_3$ og deretter gjennom $Filter_2$.
+
+\begin{align*}
+I_3 = 0.5cos^2(\theta_3-\theta_1) \simeq 0.23\\
+I_2 = I_3cos^2(\theta_2-\theta_3) \simeq 0.14
+\end{align*}
+Dermed blir intensiteten til lyset gjennom alle tre filtrene når vi plasserer $Filter_3$ imellom $Filter_1$ og $Filter_2$ 
+$$
+I \simeq 0.14
+$$
+\item
+Her skal jeg finne ut om det hadde gjort en forskjell om det 3. filtere hadde blitt plassert etter $Filter_2$ isteden for imellom $Filter_1$ og $Filter_2$.
+\begin{align*}
+I_2 = 0.5cos^2(\theta_2-\theta_1) \simeq 3.8*10^{-3}\\
+I_3 = I_2cos^2(\theta_3-\theta_2) \simeq 2.36*10^{-3}
+\end{align*}
+
+Vi ser her at resultatet blir annerledes avhengig av hvor vi plasserer det 3. filteret. 
+\end{enumerate}
+
+\begin{thebibliography}{}
+\bibitem{boka} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{foreleser}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}
+	\url{https://snl.no}
+
+\end{thebibliography}
+
+\newpage
+\begin{appendices}
+\appendix
+\section{Programkode}
+Koden jeg brukte til å løse bølgeligningen numerisk:
+\lstinputlisting[language=Python]{oblig5.py}
+
+\end{appendices}
+
+\end{document}
