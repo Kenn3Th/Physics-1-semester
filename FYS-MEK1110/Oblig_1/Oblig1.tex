@@ -1,0 +1,103 @@
+\documentclass[,engelsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{varioref}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS-MEK 1110 Obligatorisk oppgave 1}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\textbf{a)}\\
+\begin{figure}[h!]
+\includegraphics[scale=0.09]{frilegemediagram.jpg} 
+\caption{Free body diagram.}
+\end{figure}
+
+\textbf{b)}\\
+I will start by solving this analytical, then numerical.\\
+$F = ma$ this gives us $a =\frac{F}{m}$ where $F = 400N$, $m = 80kg$ \\
+We put this in our equation that gives us $$a = \frac{400N}{80kg} = 5\frac{m}{s^2}$$ We know from motion-equations that $x(t) = v0t+\frac{1}{2}at^2$ The start velocity in this situation is zero($v0=0$) therefore the equation becomes $x(t) = \frac{1}{2}at^2$ we know \textbf{a} so no matter the value of time \textbf{t} we can find the position x(t). \\
+Numerical solution is:
+\lstinputlisting{numerical_example.py}
+Here I have used Euler-Cromer method,. I have chosen a time-intervall and I have given my code an objektive to stop the for loop when the runner hits 100 meters.\\
+\textbf{c)}\\
+I will use the motion equation I used in exercise b. \\
+$$x(t)=\frac{1}{2}at^2 => t^2=\frac{2x}{a} => t=\sqrt{\frac{2x}{a}}$$ To achieve the solution we insert the value of \textbf{a} and \textbf{x} in the equation above. $$ t=\sqrt{\frac{2*100}{5}}\approx 6.3s$$\\
+\textbf{d)}\\
+I will use Newtons 2 law. $$\sum F = ma$$
+$\sum F = Fd - D$ where Fd = driving force and D = air resistance. 
+$$ma = Fd-D => a = \frac{Fd-D}{m}$$
+$D = \frac{1}{2}\rho C_{D}A(v-w)^2$ (v = velocity and w = velocity of air) and $Fd = 400N$ we insert this in our equation and get that the acceleration is given by 
+$$a = \frac{ 400N - \frac{1}{2}\rho C_{D}A(v-w)^2}{m}$$
+\textbf{e)}\\
+\lstinputlisting{Oblig1.py}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{oppg_e.png} 
+\caption{Graphs of x(t),v(t) og a(t)}
+\label{Graph}
+\end{figure}
+I chose $\Delta{t}$ to be small ($\frac{1}{100}$) because my graph would become more accurate. I thought about measurement uncertainty but the assignment tells us that we do not have a test subject. This is therefore only theoretical calculation. You can se my plot in figure \vref{Graph} \\
+\textbf{f)}\\
+If we implement "print t[q]" in my code we get the eksakt time the runner used to run 100 m in my modell
+$$t[q] = 6.79s$$\\
+\textbf{g)}\\
+To find the maximum velocity of a runner driven by only these forces we can use 
+$\sum F = Fd - D$ I know that to find the maximum velocity we can use Newtons 1 law. With this we get $$\sum F = Fd - D = 0 => Fd = D$$ If $D = \frac{1}{2}\rho C_{D}A(v-w)^2$, $Fd = F$ and $w = 0$ we get 
+$$F = \frac{1}{2}\rho C_{D}Av^2 => 2F = \rho C_{D}Av^2 => v^2 = \frac{2F}{\rho C_{D}A} => v = \sqrt{\frac{2F}{\rho C_{D}A} }$$\\
+\textbf{h)}\\
+If the runner is subject only to the forces F and Fv then $\sum Fd = F + Fv$ According to the assignment $Fv = -f_{v}*v$ where v = velocity. If we apply our previous findings in exercise \textbf{g} we find that  
+$$F = f_{v}*v => v = \frac{F}{f_{v}}$$ We know from the exercise that $F = 400N$ and $f_{v} = 25.8sN/m$ We insert the numbers that we are given. We will then find that his maximum velocity is $v = \frac{400}{25.8}\approx 15.5$\\
+\textbf{i)}\\
+\lstinputlisting{Oblig12.py}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{Graph2.png} 
+\caption{Graphs of x(t),v(t) og a(t)}
+\label{Graph2}
+\end{figure}
+If we look at the figure \vref{Graph2} we can now see that this simulation is much more realistic.\\
+\textbf{j)}\\
+If we set t[q] we find the eksakt time the runner used. According to my numerical solution $t[q] = 9.32$ \\
+The runner runs 100 meters in 9.32 seconds. Not bad considering the world record is 9.58s\\
+\textbf{k)}\\
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{compare.png} 
+\caption{Graphs of the various forces}
+\label{comp}
+\end{figure}
+As we can see at figure \vref{comp} the air resistance is slightly getting stronger as the runner is going faster, and the initial driving force is fast canceled out as anticipated. We can see the physiological limit is increasing as time goes bye and this is an individual force.\\ The importance of these forces are great in it's own way. The physiological limit/force is important, because the air resistance is getting stronger the faster the person runs, and the person is getting exhausted. So the person needs to be in great shape.\\
+Air resistance in this case is not so important as for instance aviation, or car races.\\ Do not forget the driving force; this is important for the person to move! 
+\\ 
+\textbf{l)}\\
+If we change $w = \pm 1$ we can see that the result changes with approximately $\pm 0.1$ seconds
+\end{document}
