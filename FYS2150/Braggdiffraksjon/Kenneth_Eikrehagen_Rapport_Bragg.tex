@@ -1,0 +1,518 @@
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage[toc,page]{appendix}
+\usepackage{multicol}
+
+\bibliographystyle{plain}
+
+
+\title{Braggdiffraksjon}
+\author{Kenneth Ramos Eikrehagen}
+\date{\today}
+\begin{document}
+
+\renewcommand{\abstractname}{\large Sammendrag}
+\renewcommand{\contentsname}{\LARGE Innhold}
+\renewcommand{\listfigurename}{\Large Figur liste}
+\renewcommand{\listtablename}{\Large Tabell liste}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+
+
+
+
+\begin{abstract}
+Målet med de eksperimentene som ble gjennomført her er om vi kan fremvise braggdiffraksjon og elektrondiffraksjon eksperimentelt. Vi brukte et røntgenspektrometer for å undersøke braggdiffraksjon vi brukte 2 forskjellige krystaller og fant at ved noen gitte vinkler ble strålingen forsterket som betyr at braggs lov gjaldt for begge krystallene. Ved elektrondiffraksjon brukte vi en elektronkanon som var bygd inne i en evakuert glassbeholder. Der så vi at elektronene interfererte med hverandre som vil si de har bølgeegensaper, med andre ord materie kan også oppføre seg som bølger.
+\end{abstract}
+
+
+
+\section{Introduksjon}
+Tidlig 1900 tall var en spennende tid for fysikken og med Max Planck's innføring av virkningskvantum $h$ (også kjent som Planck's konstant). Albert Einstein sin teori om fotoelektrisk effekt, som førte til at vi også kunne tolke elektromagnetiske bølger som partikler, $E = mc^2$. Luis de Broglie sin hypotese om at fast-materie også kan ha bølge egenskaper, $\lambda = \frac{h}{mv}$ som fikk navnet de Broglie bølgelengden. Og William Lawrence Bragg sin oppdagelse av at bølger som ble reflektert fra to parallelle gitterplan kan komme ut i samme fase og derfor interferere konstruktivt, som betyr at de forsterker hverandre, $2dsin(\theta)=n\lambda$ som fikk navnet Braggs lov. Dette er noen av de teoriene som skapte en ny gren innen fysikk, kvantefsikk. 
+
+Det er de to siste påstandene jeg skal se nærmere på i de eksperimentene (\cite{opg}) som jeg utførte, de Broglie bølgelengden og Braggslov. Vi brukte et røntgenspektrometer til å gjøre oss bedre kjent med brags lov, og en evakuert glassbeholder for elektrondiffraksjon for å se på de Broglie bølgelengden for elektroner.
+
+
+\section{Teori}
+
+Braggs lov:
+\begin{equation}
+2dsin(\theta) = n\lambda
+\label{bragg}
+\end{equation}
+der $d$ er avstanden mellom gitterplanene, $\theta$ er vinkelen til den innkommende bølgen (strålen) i forhold til gitterplanet, $\lambda$ er bølgelengden og n er et heltall.\\ 
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{braggdiff.jpg}\\
+	\caption[Skisse av røntgenspektrometer]{Skisse av prinsippet bak røntgenspektrometeret og 
+	hvordan det fungerer. Prikkene mellom katoden og anoden forestiller elektronene som blir akselerert, og den rette streken fra anoden til krystallen og som ender opp i detektoren forestiller røntgenstrålen. Krystallen er vridd en vinkel $\theta$ i forhold til den innkommende strålen og den reflekterer den i en vinkel $2\theta$ i forhold til denne strålen.}
+	\label{skissebragg}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width = \linewidth]{skissekrystall.jpg}\\
+	\caption[Skisse av atom-strukturen i en krystall]{Skisse av atom-strukturen i en krystall hvor lengden mellom den hvite og blå prikken er $d$ overalt}
+	\label{krystall}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width = \linewidth]{bragg}\\
+	\caption[Prinsippet bak Bragg's lov]{En fremstilling av hva som skjer under braggdiffraksjon. Vi kan tenke oss at de røde prikkene er gitteret i en krystall og den innkommende strålen er røntgenstråler}
+	\label{bragg}
+	\end{minipage}
+\end{figure}
+
+For å undersøke brags lov brukte vi et røntgenspektrometer, se figur \vref{skissebragg}, dette er et apparat som inneholder tre hoveddeler: Et røntgenrør, en krystall og en detektor for røntgenstråling.
+\begin{enumerate}
+\item Røntgenrør\\
+Røntgenrøret er et vakumrør med en glødekatode. Elektroner fra katoden akselereres i feltet mellom katoden og anoden, og treffer anoden med en energi eU, der U er spenningen over røret. Når elektronet treffer anoden bremses de ned og produserer røntgenstråler.
+\item Krystall \\
+Hvis vi ser på hvordan atomene i en krystall er satt sammen ser vi at de kan betraktes som et gitter med flere parallelle plan, se figur \vref{krystall}.
+Røntgenstrålene blir sendt mot krystallen som er stilt inn i en vinkel $\theta$ i forhold til strålen. 
+\item Detektor \\
+Detektoren teller hvor mange fotoner som kommer gjennom. Den er montert slik at den står i en vinkel $2\theta$ i forhold til den innkommende strålen. Det er to spalter foran denne slik at den skjermes for spredt stråling.
+\end{enumerate}
+
+På figur \vref{bragg} ser vi hva som skjer i teorien for braggdiffraksjon.\\
+
+De Broglie bølgelengde: 
+\begin{equation}
+\lambda = \frac{h}{p} = \lambda_c\sqrt{\frac{mc^2}{2eU}}f(U)
+\label{broglie}
+\end{equation}
+der $\lambda$ er bølgelengden, $h$ er planck's konstant,$p$ er bevegelsesmengde,  $\lambda_c = \frac{h}{mc}= 2.426 pm$, $c$ er lyshastighet, $m$ er masse, og $f(U)$ er relativistisk korreksjonsfaktor.\\
+
+\begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = \linewidth]{elektrondiff.jpg}\\
+	\caption[Skisse av elektronkanonen]{Skisse av hvordan elektrondiffraksjon apparatet er satt opp.}
+	\label{elektrondiff}
+	\end{center}
+\end{figure}
+
+Vi brukte et apparat for elektrondiffraksjon for å undersøke de Broglie's hypotese (de Broglie bølgelengde). Dette apparatet består av en elektronkanon, karbonfilter og et fokuseringssystem montert inne i en evakuert glassbeholder, se figur \vref{elektrondiff}.\\
+
+Andre formler som ble brukt under eksperimentet.\\
+Energi:
+\begin{equation}
+E = \frac{hc}{\lambda}
+\label{energi}
+\end{equation}
+der $hc = 1240 nm$ og $\lambda$ er bølgelengde.\\
+Relativistisk korreksjonsfaktor:
+\begin{equation}
+f(U) = \frac{1}{\sqrt{1 + \frac{eU}{2mc^2}}}
+\label{kor}
+\end{equation}
+der $e$ er et elektronvolt, $U$ er spenningen, $m$ er massen og $c$ er lyshastigheten
+
+\section{Eksperimentelt}
+
+Under begge eksperimentene var lab-partner min Eirik Olav Haugen.
+\subsection{Braggdiffraksjon}
+Før vi begynte med eksperimentet gjorde vi oss kjent med røntgenspektrometeret, se figur \vref{rontgenspektrometer}. 
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth, height = 10cm]{rontgenspektrometer}\\
+	\caption[Bilde av røntgenspektrometeret]{Bilde av røntgenspektrometeret vi brukte. Detektoren er en GM detektor som teller hvor mange fotoner som kommer igjennom, de to spaltene foran detektoren er der for å skjerme for spredt stråling}
+	\label{rontgenspektrometer}
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width = \linewidth]{kopper}\\
+	\caption[Karakterisktiske linjer for kopper]{Karakteristiske linjer for kopper}
+	\label{kop}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width = \linewidth]{atomskall}\\
+	\caption[Karateristisk røntgenstråling]{Figuren viser energinivåer som svarer til de forskjellige elektronskallene i et atom (K,L,M...-skallet)}
+	\label{atomskall}
+	\end{minipage}
+\end{figure}
+Det vi kunne endre på var vinkelen detektoren sto i forhold til den innkommende strålen ($2\theta$), hvor stor spenning som var påtrykt over røntgenrøret $U_n$ og hvor lenge detektoren skulle telle fotoner. Den minste vinkelen vi kunne ha var på $12\degree$.
+ 
+Vi startet med å gjøre målinger med en LiF-krystall. Apparatet ble stilt inn på den minste vinkelen $12\degree$ og spenningen over røntgenrøret ble satt til $U_n = 20kV$. Vi målte oss fra 12$\degree$ til $22\degree$ hvor vi endret $\frac{1}{2}\degree$ for hver måling. Måletiden for detektoren ble satt til 60s for hver måling. Dataen vi samlet inn ble fremstilt grafisk slik at vi kunne bestemme spenningen over røntgenrøret. \\
+
+Deretter byttet vi til en KCL-krystall hvor vi skulle sjekke eksperimentelt hvor strålen ble forsterket. Vi brukte tall fra tabellen du kan se i figur \vref{kop}, tabellen viser bølgelengder for kopper. Disse bølgelengdene er hentet ut fra hvilket elektronskall elektronet blir løsrevet fra som man ser på figur \vref{atomskall}
+
+Braggs lov (ligning \ref{bragg}), med n = 1 og 2, ble brukt til å finne hvilken vinkel vi kunne forvente å finne disse forsterkningene. Vi begynte målingene $1.5\degree$ under den minste vinkelen vi fant analytisk og målte oss opp $0.5\degree$ helt til vi var $1.5\degree$ over den største vinkelen vi fant. Vi kunne dermed se hvor innen for denne spredningen den ble forsterket og hvor godt det stemte overens med det vi fant analytisk. Det ble gjort to målinger en for $K_\alpha$ og en for$K_\beta$, og måletiden til detektoren ble satt til 10s. Dataen ble fremstilt grafisk for å se om vi kunne påvise at det ble to topper. 
+
+Usikkerheten til GM-detektoren er en poisson fordeling \cite{grl} som betyr at usikkerheten er $\sqrt{\text{antall fotoner}}$, dette er en systematisk feil som vi må ta med i beregningene våres. Jeg avrundet denne feilen til nærmeste heltall, hvorfor jeg gjorde dette er diskutert under diskusjons delen.
+
+\subsection{Elektrondiffraksjon}
+Startet med å gjøre oss kjent med apparatet vi skulle bruke, se figur \vref{elektronkanon}.
+Vårt apparat var utrustet med et TELTRON 555-rør.
+\begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = \linewidth, height = 8cm]{elektronkanon}\\
+	\caption[Bilde av elektronkanonen]{En elektronkanon, fokuseringssystem og karbonfilm montert inne i en evakuert glassbeholder.}
+	\label{elektronkanon}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{minipage}{0.5\linewidth}
+  	\includegraphics[width = \linewidth]{diameter}
+	\caption[Skisse av hvordan diameteren ble målt]{Hvordan diameteren ble målt der $d_i$ er indre diameter og $d_y$ er ytre diameter. Vi brukte snittet av $d_i$ og $d_y$ som diameter.}
+	\label{diameter}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width = \linewidth]{d10}
+	\caption{Skisse som viser de to spredningsretningene for indre og ytre ring}
+	\label{d10}
+	\end{minipage}
+\end{figure}
+
+
+Vi startet med å finne den relativistiske korreksjonsfaktoren (ligning \ref{kor}) for $U =1,5,20,50$ og $100 kV$. Når vi skrudde på apparatet kom det frem 2 ringer på skjermen. Der vi gjorde 11 målinger mellom $3.0kV$ og $5.0 kV$ det ble målte diameteren på den indre og ytre ringen. For og ikke forstyrre elektronstrålene som fremkommer på skjermen brukte vi et skyvelær av plast. Hvordan vi målte diameteren på disse er illustrert på figur \vref{diameter}. Vi hadde påforhånd beregnet forholdet mellom $d_{11}$ og $d_{10}$ som illustrert på figur \vref{d10}. De verdiene vi målte for diameteren ble videre brukt til å finne gitteravstanden i karbonfilmen. I oppgave teksten \cite{opg} var det oppgitt noen ligninger som vi brukte til å finne dette. Deretter sammenlignet vi det vi fant eksperimentelt med det som vi fant analytisk.
+Usikkerheten til skyvelæret vi brukte har en usikkerhet på 0.05mm
+
+\section{Resultater}
+\subsection{Braggdiffraksjon}
+Bakgrunnsstøy i apparatet var 5 fotoner per min. Resultatet jeg oppgir er korrigert med dette.
+Med LiF krystallen gjorde vi 21 målinger hvor vi målte antall fotoner som kom igjennom, beregnet intensiteten gitt ved antall fotoner per tidsenhet og bølgelengden til fotonet med ligning \ref{bragg}, dette ser du i tabell \vref{LiF}. På figur \vref{rontgenspek} ser vi hvordan den grafiske fremstillingen av rådataen ble. På figur \vref{zoomront} ser vi det laveste punktet som gir oss hvilken verdi vi har funnet for spenningen over røntgenrøret, $U=24.5 kV$.\\
+\begin{table}
+\centering
+\caption[Resultat med LiF-krystallen]{Antall fotoner som kom gjennom, intensitet og bølgelengde for LiF-krystallen }
+	\begin{tabular}{|l|c|c|c|c|}
+	\hline
+	$2\theta$ & Antall fotoner & Intensitet & |$\lambda$| pm & Energi kV \\ 
+	\hline
+	12$\degree$ & 56 $\pm$ 8& 0.93 & 41.9 & 29.6\\
+	12,5$\degree$ & 64 $\pm$ 8 & 1.07 & 43.7 & 28.4 \\
+	13$\degree$ & 53 $\pm$ 8& 0.88 & 45.4 & 27.3 \\
+	13,5$\degree$ & 62 $\pm$ 8 & 1.03 & 47.1 & 26.3 \\ 
+	14$\degree$ & 55  $\pm$ 8 & 0.92 & 48.9 & 25.4 \\
+	14.5$\degree$ & 45 $\pm$ 7 & 0.75 & 50.6 & 24.5\\
+	15$\degree$ & 70 $\pm$ 9 & 1.17 & 52.3 & 23.7 \\
+	15.5$\degree$ & 53 $\pm$ 8 & 0.88 & 54.1 & 22.9 \\
+	16$\degree$ & 61 $\pm$ 8 & 1.02 & 55.8 & 22.2 \\
+	16.5$\degree$ & 88 $\pm$ 10  & 1.45 & 57.5 & 21.6 \\
+	17$\degree$ & 140 $\pm$ 12 & 2.33 & 59.3 & 20.9 \\
+	17,5$\degree$ & 172 $\pm$ 13 & 2.87 & 61.0 & 20.3 \\
+	18$\degree$ & 245 $\pm$ 16 & 4.08 & 62.7 & 19.8 \\
+	18.5$\degree$ & 271 $\pm$ 17 & 4.65 & 64.5 & 19.3 \\
+	19$\degree$ & 314 $\pm$ 18 & 5.23 & 66.2 & 18.8 \\
+	19.5$\degree$ & 333 $\pm$ 18 & 5.55 & 67.9 & 18.3 \\
+	20$\degree$ & 362 $\pm$ 19 & 6.03 & 69.6 & 17.8 \\
+	20.5$\degree$ & 363 $\pm$ 19  & 6.05.08 & 71.4 & 17.4  \\
+	21$\degree$ & 421 $\pm$ 21 & 7.02 & 73.1 & 17.0 \\
+	21.5$\degree$ & 428 $\pm$ 21 & 7.13 & 74.8 & 16.6 \\
+	22$\degree$ & 441 $\pm$ 21 & 7.35 & 76.5 & 16.2 \\
+	\hline
+	\end{tabular}
+\label{LiF}
+\end{table}
+
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{rontgenspek}\\
+	\caption[Røntgenspektrum]{Graf som viser hvordan energien varierer med intensiteten for en LiF-kraystall. Her har jeg plottet energien mot intensiteten og som vi ser begynner den kraftigste knekken er ca ved 22kV}
+	\label{rontgenspek}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = \linewidth]{zoomrontgen}\\
+	\caption[Zoom av røntgenspektrum]{Zoom av rontgenspekteret, her ser vi at den skarpeste knekken er mellom 22kV og 23kV, finner verdien fra tabell 1 side ?}
+	\label{zoomront}
+	\end{center}
+\end{figure}
+
+Analytiske beregninger for kopper toppene ved KCL-krystall.
+\begin{align*}
+&2d = 629pm && \overset{-}{K_\alpha} = 154 pm && \overset{-}{K_\beta} = 138.65 pm
+\end{align*}
+Der $\overset{-}{K_\alpha}$ og $\overset{-}{K_\beta}$ er gjennomsnittet av $K_\alpha$ og $K_\beta$ i figur \vref{kop}.
+\begin{align*}
+&2\theta_{\alpha1} = 2sin^{-1}\left(\frac{\overset{-}{K_\alpha}}{2d}\right) = 14.1\degree &&2\theta_{\alpha2} = 2sin^{-1}\left(\frac{\overset{-}{K_\alpha}}{d}\right) = 12.7\degree\\
+&2\theta_{\beta1} = 2sin^{-1}\left(\frac{\overset{-}{K_\beta}}{2d}\right) = 28.4\degree
+&&2\theta_{\beta2} = 2sin^{-1}\left(\frac{\overset{-}{K_\beta}}{d}\right) = 25.5\degree\\
+\end{align*}
+
+
+\begin{table}
+\centering
+\caption[$K_\alpha$]{Antall fotoner som kom gjennom, intensitet og bølgelengde for KCL-krystallen, $K_\alpha$ }
+	\begin{tabular}{|l|c|c|c|c|}
+	\hline
+	$2\theta$ & Antall fotoner & Intensitet &  $|\lambda |$pm \\ 
+	\hline
+	12$\degree$ & 22 $\pm$ 5 & 2.2 & 65.7\\
+	12,5$\degree$ & 27 $\pm$ 5 & 2.7 & 68.5 \\
+	13$\degree$ & 24 $\pm$ 5 & 2.4 & 71.2 \\
+	13,5$\degree$ & 32 $\pm$ 6 & 3.2 & 73.9 \\ 
+	14$\degree$ & 46  $\pm$ 7 & 4.6 & 76.7 \\
+	14.5$\degree$ & 43 $\pm$ 7 & 4.3 & 79.4 \\
+	15$\degree$ & 38 $\pm$ 6 & 3.8 & 82.1 \\
+	15.5$\degree$ & 57 $\pm$ 8 & 5.7 & 84.8 \\
+	16$\degree$ & 39 $\pm$ 6 & 3.9 & 87.5 \\
+	\hline
+	\end{tabular}
+\label{alpha}
+\end{table}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{alpha.png}\\
+	\caption[Topper for $K_\alpha$]{Grafisk fremstilling av toppene for $\overset{-}{K_\alpha}$, intensitet mot bølgelengde $\lambda$ for KCL-krystallen,}
+	\label{topa}
+	\end{center}
+\end{figure}
+
+\begin{table}
+\centering
+\caption[$K_\beta$]{Antall fotoner som kom gjennom, intensitet og bølgelengde for KCL-krystallen, $K_\beta$ }
+	\begin{tabular}{|l|c|c|c|}
+	\hline
+	$2\theta$ & Antall fotoner & Intensitet & $|\lambda |$ pm\\ 
+	\hline
+	24$\degree$ & 74 $\pm$ 9 & 7.4 & 130.8 \\
+	24,5$\degree$ & 274 $\pm$ 17 & 27.4 & 133.5 \\
+	25$\degree$ & 267 $\pm$ 16 & 26.7 & 136.1 \\
+	25,5$\degree$ & 207 $\pm$ 14 & 20.7 & 138.8 \\ 
+	26$\degree$ & 85 $\pm$ 9 &  8.5 & 141.5 \\
+	26.5$\degree$ & 99 $\pm$ 10 & 9.9 & 144.2 \\
+	27$\degree$ & 510 $\pm$ 23 & 51.0 & 146.8 \\
+	27.5$\degree$ & 1278 $\pm$ 36 & 127.8 & 149.5 \\
+	28$\degree$ & 1044 $\pm$ 32 & 104.4 & 152.2 \\
+	28.5$\degree$ & 764 $\pm$ 28 & 76.4 & 154.8 \\
+	29$\degree$ & 80 $\pm$ 9 & 8.0 & 157.5 \\
+	29.5$\degree$ & 55 $\pm$ 7 & 5.5 & 160.1 \\
+	30$\degree$ & 70 $\pm$ 8 & 7.0 & 162.8 \\
+	\hline
+	\end{tabular}
+\label{alpha}
+\end{table}
+
+\begin{figure}
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{beta.png}\\
+	\caption[Topper for $K_\beta$]{Grafisk fremstilling av toppene for $\overset{-}{K_\beta}$, intensitet mot bølgelengde$\lambda$ for KCL-krystallen,}
+	\label{topb}
+	\end{center}
+\end{figure}
+
+\newpage
+\subsection{Elektrondiffraksjon}
+Den relativistiske korreksjonsfaktoren vi regnet ut finner du i tabell \vref{relfak}. Målene vi gjorde for diameteren til indre- og ytre-ring, bølgelengde og $\phi$ er i tabell \ref{ring1} og \vref{ring2}. Usikkerheten til $\phi$ er gitt som $\Delta\phi = \frac{\sigma}{\sqrt{n}}$ der $\sigma$ er standardavviket og n er antall målinger. 
+\begin{table}
+\centering
+\caption[Relativistisk korreksjonsfaktor $f(U)$]{Den relativistiske korreksjonsfaktoren}
+	\begin{tabular}{| l | l |}
+	\hline
+	$f(U)$ & $U$ kV\\ 
+	\hline
+	0.9951 & 1 \\
+	0.9976 & 5 \\
+	0.9904 & 20 \\
+	0.9764 & 50 \\
+	0.9545 & 100 \\
+	\hline
+	\end{tabular}
+\label{relfak}
+\end{table}
+
+\begin{table}
+\centering
+\caption[Diameter ring 1]{Indre og ytre diameter vi målte for ring 1, der D er gjennomsnittet av indre og ytre diameter, $\lambda$ er bølgelengde og $\phi = \frac{\lambda}{D}$}
+	\begin{tabular}{| l | c | c | c | c | c |}
+	\hline
+	$U$ kV & indre($D_i$) cm & ytre($D_y$)cm & D cm & $\lambda$ pm & $\phi_1$ pm\\ 
+	\hline
+	3 & 2.72 & 3.32 & 3.02 & 22.4 & 741.9\\
+	3.2 & 2.62 & 3.35 & 2.99 & 21.7 & 726.8\\
+	3.4 & 2.44 & 3.20 & 2.82 & 21.0 & 746.3\\
+	3.6 & 2.32 & 3.05 & 2.69 & 20.5 & 761.8\\
+	3.8 & 2.37 & 3.10 & 2.74 & 19.9 & 727.9\\
+	4 & 2.19 & 2.91 & 2.55 & 19.4 & 760.9\\
+	4.2 & 2.10 & 2.83 & 2.47 & 18.9 & 768.2\\
+	4.4 & 2.20 & 2.70 & 2.45 & 18.5 & 755.1\\
+	4.6 & 2.50 & 2.71 & 2.61 & 18.1 & 694.6\\
+	4.8 & 2.00 & 2.63 & 2.32 & 17.7 & 765.2\\
+	5 & 2.02 & 2.53 & 2.28 & 17.4 & 762.9\\
+	\hline
+	\end{tabular}\\
+	Gjennomsnitt
+	\begin{align*}
+	\overset{-}{D} = 2.63 cm && \overset{-}{\lambda} = 19.6 pm 
+	&& \overset{-}{\phi_1} = 746.5 \pm 6.5 pm
+	\end{align*}
+\label{ring1}
+\end{table}
+
+\begin{table}
+\centering
+\caption[Diameter ring 2]{Indre og ytre diameter vi målte for ring 2, der D er gjennomsnittet av indre og ytre diameter, $\lambda$ er bølgelengde og $\phi = \frac{\lambda}{D}$}
+	\begin{tabular}{| l | c | c | c | c | c |}
+	\hline
+	$U$ kV & indre($D_i$) cm & ytre($D_y$)cm & D cm & $\lambda$ pm & $\phi_2$ pm\\ 
+	\hline
+	3 & 4.75 & 5.52 & 5.14 & 22.4 & 436.3\\
+	3.2 & 4.78 & 5.44 & 5.11 & 21.7 & 424.6\\
+	3.4 & 4.43 & 5.20 & 4.82 & 21.0 & 437.1\\
+	3.6 & 4.00 & 5.20 & 4.60 & 20.5 & 444.6\\
+	3.8 & 4.34 & 4.94 & 4.64 & 19.9 & 429.1\\
+	4 & 4.20 & 4.85 & 4.53 & 19.4 & 428.8\\
+	4.2 & 4.13 & 4.76 & 4.45 & 18.9 & 426.0\\
+	4.4 & 3.99 & 4.67 & 4.33 & 18.5 & 427.3\\
+	4.6 & 3.94 & 4.45 & 4.20 & 18.1 & 431.3\\
+	4.8 & 3.90 & 4.43 & 4.17 & 17.7 & 425.3\\
+	5 & 3.57 & 4.39 & 3.98 & 17.4 & 436.1\\
+	\hline
+	\end{tabular}\\
+	Gjennomsnitt
+	\begin{align*}
+	\overset{-}{D} = 4.54cm && \overset{-}{\lambda} = 19.6pm 
+	&& \overset{-}{\phi_2} = 431.5 \pm 1.8 pm
+	\end{align*}
+\label{ring2}
+\end{table}
+
+\begin{equation}
+\overset{-}{d} = 2L\overset{-}{\phi}
+\label{d}
+\end{equation}
+der L er diameteren til glass kuppelen som elektronkanonen er bygd inn i, dette er også er avstanden fra karbonfilmen til skjermen og $\overset{-}{\phi} = \frac{1}{n}\overset{n}{\underset{i=1}{\Sigma}}\frac{\lambda_i}{D_i}$. 
+Jeg bruker ligning \vref{d} til å finne $\overset{-}{d}$ for ring 1 og ring 2.
+\begin{align*}
+\overset{-}{d_1} = 208.6 pm && \overset{-}{d_2} = 124.0 pm
+\end{align*}
+
+Den eksperimentelle usikkerheten er gitt ved 
+\begin{equation}
+\frac{\Delta d}{\overset{-}{d}} = \frac{\Delta L}{L} \Rightarrow \Delta d = \overset{-}{d}\frac{\Delta L}{L} 
+\label{Dd}
+\end{equation}
+Jeg bruker ligning \vref{Dd} til å beregne eksperimentelle usikkerheten for ring 1 og 2
+\begin{align*}
+\Delta d_1 = 4.5 pm && \Delta d_2 = 2.7  pm
+\end{align*}
+
+\begin{equation}
+\delta d^2 = \Delta d^2 + \phi^2 \Rightarrow \delta d = \sqrt{\Delta d^2 + \phi^2}
+\label{dd}
+\end{equation}
+der $\phi$ er den statiske usikkerheten og $\Delta d$ er den eksperimentelle usikkerheten.
+Jeg brukte ligning \vref{dd} til å legge sammen usikkerhetene.
+
+\begin{align*}
+\delta d_1 = 7.7 pm  && \delta d_2 = 6.3 pm
+\end{align*}
+
+Min målte verdi for $d_{10}$ og $d_{11}$ med usikkerhet
+\begin{align*}
+d_{10} = 208.6 \pm 7.7 pm  && d_{11} = 124.0 \pm 6.3 pm
+\end{align*}
+$$
+\frac{d_{10}}{d_{11}}  \simeq 1.68
+$$
+Jeg brukte figur \vref{d10} til å regne ut forholdet mellom $d_{10}$ og $d_{11}$ analytisk ved hjelp av plan-geometri. 
+$$
+\frac{d_{10}}{d_{11}} = \sqrt{3} \simeq 1.74
+$$
+
+
+\section{Diskusjon}
+\subsection{Braggdiffraksjon}
+Den nominelle verdien vi satt for røntgenrøret var $U_n = 20kV$, mens den reelle verdien som vi målte over røntgenrøret var $U_r = 22.2kV$.
+Som man kan se har den reelle verdien et avvik på 2.2kV fra den nominelle, dette kan skyldes mange årsaker, som f.eks at apparat ikke er kalibrert korrekt eller bakgrunnsstøy. Slik at et avvik på 2.2kV ser jeg på som innenfor det vi kunne forvente å finne eksperimentelt. 
+
+Når det gjelder usikkerheten til antall fotoner som ble målt er dette en poisson fordeling, dette innebærer at man skal ta kvadratroten av antall målte fotoner. Dette gir ikke heltall men jeg valgte å oppgi heltall fordi jeg anser å telle eks 0.73 foton ikke er mulig, enten får vi et foton eller ikke.
+
+Når vi skulle fremvise de forskjellige toppene til $K_\alpha$ og $K_\beta$ eksperimentelt ble det begått en feil i utregningen som medførte at vi ikke fikk de resultatene vi burde. Som vi også ser i tabell \vref{alpha} er ikke bølgelengdene for disse vinklene riktige. De korrekte vinklene vi skulle ha målt ved når vi skulle fremstille disse toppene er:
+\begin{align*}
+&2\theta_{\alpha1} = 2sin^{-1}\left(\frac{\overset{-}{K_\alpha}}{2d}\right) = 28,4\degree &&2\theta_{\alpha2} = 2sin^{-1}\left(\frac{\overset{-}{K_\alpha}}{d}\right) = 58.7\degree\\
+&2\theta_{\beta1} = 2sin^{-1}\left(\frac{\overset{-}{K_\beta}}{2d}\right) = 25.5\degree
+&&2\theta_{\beta2} = 2sin^{-1}\left(\frac{\overset{-}{K_\beta}}{d}\right) = 52.3\degree\\
+\end{align*}
+Dette er grunnen til at vi ikke får hentet noe særlig informasjon ut av den første fremstillingen av de to toppene, som vi ser på figur \vref{topa}. Vi var derimot heldige på den andre fremstilling da disse traff toppene mellom $K_{\alpha1}$ og $K_{\beta1}$. Vi kan se på figur \vref{topb} at vi får en topp mellom 133pm og 138pm, og en annen top mellom 144pm og 154pm. Dette er et resultat vi forventet å få og er innen for et akseptabelt standardavvik.
+Med dette i betrakting så burde vi ha gjort eksperimentet på nytt med de riktige verdiene, for å se om vi også kunne ha fremvist de to andre toppene eksperimentelt. 
+
+Jeg er trygg på at vi kunne ha fremstilt de andre to toppene også med de riktige vinklene. Det er fordi disse toppene er resultat av karakteristisk stråling, som innebærer at fotonene får diskrete verdier som tilsvarer forskjellen mellom atomets energi nivåer. Det betyr også at spenningen over røntgenrøret ikke har noe å si for hvor disse toppene ville ha forekommet, posisjonen hadde vært den samme uavhengig av spenningen, så lenge spenningen er høy nok til å kunne eksitere elektroner fra stoffet som blir bestrålt.
+
+\subsection{Elektrondiffraksjon}
+
+ \begin{figure}[h!]
+	\begin{center}
+  	\includegraphics[width = 0.8\linewidth]{eldiff.jpg}\\
+	\caption[Elektrondiffraksjon]{ Bilde av skjermen til elektronkanonen. Vi kan tydelig se at vi får 2 ringer}
+	\label{eldiff}
+	\end{center}
+\end{figure}
+
+Som vi ser på figur \vref{eldiff} får vi to tydelige ringer som vi kan måle, vi observerte at ringene ble tydeligere og tydeligere jo høyere spenningen vi hadde. Dette er nok fordi jo høyere spenning desto flere elektroner vil interferere gjennom gitteret. Det faktum at vi her ser at elektronene interfererer er et bevis på at materie også har bølgenatur. Vi kunne derfor bruke braggs lov til å finne gitteravstanden og spredningsretningene til elektronene. Når vi beregnet korreksjonsfaktoren $f(U)$ ser på tabell \vref{relfak} at den endrer seg ikke betydlig innen for det intervallet vi målte diameteren til ringene, og derfor neglisjerte den videre. I resultater så vi at det analytiske forholdet mellom $d_{10}$ og $d_{11}$ var $\simeq 1.74$ mens den eksperimentelle var $\simeq 1.68$. Som vi så på figur \ref{eldiff} er det veldig vanskelig og måle diameteren her med stor presisjon. Selv om usikkerheten til skyvelæret er relativt liten så vil den menneskelige feilen som blir begått her være mye større, jeg anslår den til omlag $\pm 1 mm$. Jeg tror ikke flere målinger kunne gitt oss et annet utfall, men om vi hadde hatt en annen måte å måle diameteren på enn og sikte oss inn med det blotte øyet. Kunne vi nok ha fremstilt noen bedre resultat som hadde vært nærmere den analytiske verdien. Med dette tatt i betraktining så er den eksperimentelle løsningen innen for et avvik som er å forvente med metodene vi brukte til å måle diameteren til ringene.
+
+\section{Konklusjon}
+
+Det vi har godt igjennom å sett under disse eksperimentene er at brags lov gjelder i aller høyeste grad, vi observerte at til og med materie oppfører seg som bølger som gjør at braggs lov er et godt verktøy å ha når man måler ting i denne størrelses orden. 
+
+Man bør absolutt dobbelt sjekke de analytiske svarene man regner ut før eksperimentet slik at man unngår den feilen vi gjorde når vi skulle påvise disse toppene for kopper. La gjerne en annen person se over utregningen dine. Er ikke særlig produktivt å måle på noe som i utgangspunktet er feil. 
+
+Metoden vi brukte når vi målte diameteren til ringene som kom frem på skjermen til elektronkanonen kan i aller høyeste grad forbedres. Hvis det f.eks hadde vært godt kalibrerte målestreker på skjermen, deretter tatt bilde av skjermen også analysert dette på en datamaskin. Med denne metoden ville nok resultatet blitt betraktlig bedre og jeg tror vi hadde fått et mye mindre avvik fra den analytiske løsningen. 
+
+
+\begin{thebibliography}{}
+\bibitem{squires} 
+	G.L.Squires
+	\textit{Practical physics}
+	fourth edition
+	2001
+\bibitem{opg}  
+	Fysisk institutt, UiO, oppgave tekst
+	\textit{Braggdiffraksjon}
+	Sist endret 22. februar 2018. Ole Ivar Ulven, Carsten Lukten, Alex Read
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}  
+	\url{https://snl.no}
+\bibitem{youtube}  
+	\url{https://www.youtube.com}
+\bibitem{grl}
+	Stor takk til laboratorie-assistenter
+\end{thebibliography}
+
+\begin{appendices}
+\appendix
+\section{Utstyrsliste}
+\begin{multicols}{2}
+\begin{itemize}
+  	\item Røntgenspektrometer med GM-detektor
+  	\item LiF-krystall
+  	\item KCL-krystall
+  	\item Evakuert glassbeholder for elektrondiffraksjon
+  	\item Spenningskilde
+  	\item Skyvelær i plast
+\end{itemize}
+\end{multicols}
+
+
+\end{appendices}
+
+\end{document}
