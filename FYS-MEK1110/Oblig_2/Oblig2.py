@@ -1,20 +1,20 @@
 import numpy as np, matplotlib.pyplot as plt
 from seaborn import*
-#opgitte verdier
+#Given values
 m = 0.1       #kg
-g = 9.81      #N, jordas gravitasjons akselerasjon
+g = 9.81      #m/s^2, Earth gravitational acceleration.
 L0 = 1.0      #m
 k = 200.0     #N/m
-theta = np.radians(30.0)  #grader omgjort til radianer
-dt = 0.1    #tidssteg
-time = 10.0   #tid
-#Vektor verdiene som blir regnet ut i for loopen
+theta = np.radians(30.0)  #Degrees redefined to radians
+dt = 0.1      #timestep
+time = 10.0   #time
+#Vector values that is calculated in the for looop
 n = int(round(time/dt))
 t = np.zeros((n,1),float)
 r = np.zeros((n,2),float)
 v = np.zeros((n,2),float)
 a = np.zeros((n,2),float)
-#initial verdier
+#initial values
 v[0] = np.array([0,0]) 
 r[0] = np.array([L0*np.sin(theta),-L0*np.cos(theta)])
 
@@ -25,7 +25,7 @@ for i in range(n-1):
     r[i+1,:] = r[i,:] + v[i+1,:]*dt
     t[i+1] = t[i] + dt
        
-#plot av grafene til pendelen
+#plot of the graphs of the pendulum
 plt.plot(r[:,0],r[:,1])
 plt.title('Pendulum')
 plt.axis('equal')
