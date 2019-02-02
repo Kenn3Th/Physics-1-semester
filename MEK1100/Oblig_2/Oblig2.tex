@@ -1,0 +1,197 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{MEK 1100 Obligatorisk oppgave 2}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\tableofcontents
+\section*{Oppgave 1}
+\subsection*{a)}
+Jeg laget først en kode som henter dataene vi har fått oppgitt. Denne laget jeg for seg selv siden jeg importer dette programmet videre i andre koder slik at jeg slepper å skrive de samme kommandoene flere ganger.\\
+Legger ved koden under:
+ \lstinputlisting[language=Python, firstline=1, lastline=10]{oblig2.py}
+Neste kode sjekker om matrisene $x, y, u, v$ og vektorene $xit$ og $yit$ hadde de oppgitte verdiene. Legger ved koden.
+\lstinputlisting[language=Python, firstline=1, lastline=46]{oblig2a.py}
+Koden printer følgende i terminalen\\
+Terminal: python oblig2.py\\
+Matrisen x har (x,y)\\
+(201, 194)\\
+Matrisen y har (x,y)\\
+(201, 194)\\
+Matrisen u har (x,y)\\
+(201, 194)\\
+Matrisen v har (x,y)\\
+(201, 194)\\
+Vektoren xit har (x,y)\\
+(1, 194)\\
+Vektoren yit har (x,y)\\
+(1, 194)\\
+
+\subsection*{b)}
+\begin{figure}[h!]
+\includegraphics[scale=0.8] {2b.png} 
+\caption{Konturplott av luft og vann. Øverst Luft, nederst vann}
+\label{2b}
+\end{figure} 
+
+For å kunne lage et konturplott av hastighetskomponentene i $xy$-planet bruker jeg kommandoen countourf(x,y,z) den trenger 3 variabler. Jeg tolker $x$ og $y$ matrisene som punkter i et gridd der $x$ matrisen er x koordinatene og $y$ matrisen er y koordinatene. Jeg lager deretter en variable  $z = sqrt(u^2+v^2)$ der u og v er matrisene som inneholder komponentene til hastighets feltet.\\
+På figur \vref{2b} ser du konturplottene mine. Jeg har manuelt redigert verdiene slik at man enkelt kan se strukturen i gass- og væskefasen. Den svarte linjen som går gjennom plottene skal demonstrere skilleflaten.
+Legger ved python koden min under:
+\lstinputlisting[language=Python, firstline=1, lastline=19]{o2b.py}
+
+
+\subsection*{c)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{2c.png} 
+\caption{Hastighetsfelt}
+\label{pil}
+\end{figure} 
+
+Jeg brukte kommandoen quiver for å tegne pilene i hastighetsfeltet. Jeg valgte å plotte en pil per 11 punkt, jeg syntes dette ga ett fint inntrykk av hvordan strømmene er i røret.For å skille fluidene har jeg brukt gult for å merke skilleflaten i $xy$-planet. Jeg har også laget en egen funksjon som tar inn $x$ og $y$ koordinatene og tegner tilhørende rektangel med farge kodene som ble gitt. Du kan se plottet på figur \vref{pil}\\ Legger ved python-koden under.
+\lstinputlisting[language=Python, firstline=4, lastline=22]{oblig2c.py}
+
+\subsection*{d)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{div.png} 
+\caption{Divergens}
+\label{div}
+\end{figure} 
+
+For å regne ut divergensen til $u\bold{i} + v\bold{j}$ bruker jeg at $div(u\bold{i} + v\bold{j})= \nabla  \cdot (u\bold{i} + v\bold{j})$
+\begin{align*}
+\nabla  \cdot (u\bold{i} + v\bold{j}) = (\bold{i}\frac{\partial}{\partial{x}} + \bold{j}\frac{\partial}{\partial{y}}) \cdot (u\bold{i} + v\bold{j}) = \frac{\partial}{\partial{x}}u + \frac{\partial}{\partial{y}}v
+\end{align*}
+Jeg har kodet dette i python, der kan jeg bruke kommandoen $gradient()$ som regner ut gradienten til matrisen jeg sender inn. Jeg bruker også kommandoen axis som gjør at jeg kan velge hvilken akse jeg vil ha. ($axis=1\Rightarrow x$-akse, $axis=0 \Rightarrow y$-akse). Du kan se plottet mitt på figur \vref{div} \\
+Legger ved koden under:
+\lstinputlisting[language=Python, firstline=3, lastline=22]{oblig2d.py}
+
+$div(u\bold{i} + v\bold{j})$ er ikke divergensen til $\bold{v}$ fordi vi mangler den siste komponenten til $\bold{v}$. Divergensen til $\bold{v}$ er: 
+\begin{align*}
+div(\bold{v}) &= \nabla \cdot \bold{v}\\ 
+&= (\bold{i}\frac{\partial}{\partial{x}} + \bold{j}\frac{\partial}{\partial{y}}+ \bold{k}\frac{\partial}{\partial{z}}) \cdot (u\bold{i} + v\bold{j} + w\bold{k})\\
+&= \frac{\partial}{\partial{x}}u + \frac{\partial}{\partial{y}}v + \frac{\partial}{\partial{z}}w
+\end{align*}
+Siden fluidene er inkompressible betyr dette at fluidene har konstant tetthet som medfører at divergensen til hastighetsfeltet er null. $$div(\bold{v}) = \nabla \cdot \bold{v} = 0$$
+Med dette kan vi nå finne et uttrykk for $w$.
+\begin{align*}
+div(\bold{v}) &= \nabla \cdot \bold{v} = 0\\
+\frac{\partial}{\partial{x}}u + \frac{\partial}{\partial{y}}v + \frac{\partial}{\partial{z}}w &= 0\\
+\frac{\partial}{\partial{z}}w &= -(\frac{\partial}{\partial{x}}u + \frac{\partial}{\partial{y}}v)\\
+w &= -\int{(\frac{\partial}{\partial{x}}u + \frac{\partial}{\partial{y}}v) dz}
+\end{align*}
+
+\subsection*{e)}
+\begin{figure}[h!]
+\includegraphics[width = 1\textwidth]{2e.png} 
+\caption{Virvling normalt på $xy$-planet}
+\label{curl}
+\end{figure} 
+For å finne virvlinga til $\bold{v}$ bruker jeg at $curl(\bold{v}) = \nabla \times \bold{v}$. 
+\begin{align*}
+curl(\bold{v}) &= \nabla \times \bold{v} \\
+&= \begin{vmatrix}
+\bold{i} & \bold{j} & \bold{k}\\
+\frac{\partial}{\partial{x}} & \frac{\partial}{\partial{y}} & \frac{\partial}{\partial{z}}\\
+u & v & 0
+\end{vmatrix} \\
+&= -\bold{i}\frac{\partial}{\partial{z}}v + \bold{j}\frac{\partial}{\partial{z}}u + \bold{k}(\frac{\partial}{\partial{x}}v- \frac{\partial}{\partial{y}}u)
+\end{align*}
+Siden jeg skal plotte virvlinga som står normalt på $xy$-planet bruker jeg $\bold{k}(\frac{\partial}{\partial{x}}v- \frac{\partial}{\partial{y}}u)$ fordi $\bold{k}$ står normalt på både $\bold{i}$ og $\bold{j}$ som utspenner hele $xy$-planet.\\
+Du kan se plottet mitt på figur \vref{curl}. Legger ved python koden under: 
+\lstinputlisting[language=Python, firstline=3, lastline=21]{oblig2e.py}
+
+\subsection*{f)}
+Her skal jeg anvende stokes sats på rektanglene, skriver opp formelen:
+\begin{align*}
+\textbf{Stokes sats}&\\
+\int_{\sigma} (\nabla \times \bold{v})\cdot \bold{n}d\sigma =& \oint_{\lambda} \bold{v} \cdot d\bold{r}\
+\end{align*}
+
+Siden integral kan tenkes på som en sum, $$\int f(x)dx \approx \sum_i f(x_i) \Delta{x}$$ programmerer jeg integralene jeg skal ta deretter. Sirkulasjonen til et rektangel kan deles opp i fire integral, ett integral per side av rektangelet, og summen av disse integralene. Sirkulasjonen går rundt rektangelet i én retning hele veien. Jeg har definert at sirkulasjonen går mot klokka. Som du kan se i koden min har jeg satt ett minus tegn på to av sidene, dette er fordi python ikke vil gå mot aksene. Motsatt fortegn fikser dette problemet. \\
+Når jeg skal anvende stokes husker jeg på at det er et flate-integral som betyr dobbelt integral. Jeg må derfor multiplisere summen med både $\Delta{x}$ og $\Delta{y}$ som begge er 0.5, så jeg ganger derfor summen med 0.25.\\ 
+Legger ved koden min:
+\lstinputlisting[language=Python, firstline=2, lastline=35]{oblig2f.py}
+Kode printer følgende i terminalen:
+
+Terminal python oblig2f.py\\
+----------------------------\\
+Rektangel 1\\
+Bunn:         70100.52388\\
+Hoyre side:   266.27358\\
+Topp:         -68332.85610\\
+Venstre side: 661.57274\\
+Sirkulasjon = 2695.51409\\
+Stokes = 2621.55870\\
+----------------------------\\
+Rektangel 2\\
+Bunn:         652.32920\\
+Hoyre side:   118.49871\\
+Topp:         -61243.46478\\
+Venstre side: -163.30325\\
+Sirkulasjon = -60635.94012\\
+Stokes = -61095.33233\\
+----------------------------\\
+Rektangel 3\\
+Bunn:         5133.34785\\
+Hoyre side:   207.91001\\
+Topp:         -5410.03972\\
+Venstre side: 78.30288\\
+Sirkulasjon = 9.52102\\
+Stokes = -12.21433\\
+----------------------------\\
+
+Stokes sats sier at kurve integralet(sirkulasjonen) er lik flate integralet(stokes). Jeg ser her at de ikke er like! Dette kan forklares med at det kan ha kommet vanndråper eller lignende på kameraet som lager "hull" i flaten, dette medfører at flate integralet blir feil. Med det i tankene er de ganske så like uansett, ikke så mye som skiller dem. Dette havner under kategorien måle usikkerhet, vi har ikke fått oppgitt en måleusikkerhet så kan ikke si så mye mer enn det. \\
+Det er størst aktivitet i de to øverste rektanglene, noe som er forventet siden hastigheten i lufta er mye høyere enn den i vannet. Resultatene jeg får når jeg analyserer verdiene som kommer ut fra hver siden av rektanglene er overraskende.\\
+Rektangel 1 og 3 er som forventet, omtrent like mye strømning langs topp og bunn, men det som likevel overrasker er at strømningen inn og ut er så forskjellig. Observasjonene i rektangel 2 er veldig interessante. Verdien langs bunn av rektangelet er veldig mye lavere enn på toppen. Hadde forventet at den skulle være lavere, men ikke lavere enn verdiene som er på topp eller bunn på rektangel 3. Verdiene inn og ut av rektangel 2 er også spennende, siden de nesten nuller hverandre ut, akkurat som topp og bunn på de to andre rektanglene. 
+
+\subsection*{g)}
+Her skal jeg bruke Gauss sats, skriver opp formelen:
+\begin{align*}
+&\textbf{Gauss sats}\\
+&\int_{\tau} \nabla \cdot \bold{v}d\tau = \int_\sigma \bold{v} \cdot \bold{n}d\sigma
+\end{align*}
+
+Jeg vet at divergensen til hastighets feltet er null ($\nabla \cdot \bold{v}=0$). Dette betyr at integralet på venstre siden er lik null, da må følgelig integralet på høyre siden også være lik null.\\ 
+Jeg har funnet tidligere i oppgaven at hvis $\nabla \cdot \bold{v}=0$, får jeg et utrykk for $w$, $w = -\int (\frac{\partial}{\partial{x}}u +\frac{\partial}{\partial{y}}v)dz$\\
+Jeg skal regne ut den integrerte fluksen av hastighetsvektoren $u\bold{i} + v\bold{j}$ ut av sidene av rektanglene orientert langs $xy$-planet. Siden jeg skal bruke Gauss sats kan jeg skrive dette om til $\int_\sigma \bold{v} \cdot \bold{n}d\sigma$. Jeg deler opp integralet slik at jeg integrer hver flate for seg selv. Da peker $\bold{n}$ ut av hver flate, dette gjør at jeg skal prikke hastighets vektoren med hennholdsvis $\pm \bold{i}$ og $\pm \bold{j}$. Dette gir integralene:
+\begin{align*}
+\int_\sigma (u\bold{i}+v\bold{j}) \cdot \bold{n}d\sigma = \int_{høyre} udx + \int_{topp} vdy -\int_{venstre} udx - \int_{bunn} vdy
+\end{align*}
+Jeg er usikker på hvordan jeg skal gjøre om disse integralene til kurve integraler. Så jeg klarer dessverre ikke løse resten av denne oppgaven. Setter pris på en forklaring på hva som er lurt å gjøre får å løse dette problemet.
+
+\end{document}
