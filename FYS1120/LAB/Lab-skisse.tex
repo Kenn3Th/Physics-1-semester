@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage [norsk]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{rotating, graphicx}
+
+\begin{document}
+
+\title{FYS1120 Labrapport 2}
+\author{Kenneth R. Eikrehagen, Gabriel Cabrera \& Jowita Borowska}
+
+\maketitle
+\tableofcontents
+\newpage
+\section{Oppgave 1}
+\subsection{Programerklæring}
+Vi skal prøve å forstå hall-effekten på de positive og negative halvlederkrystallene. 
+
+\subsection{Metode}
+Vi brukte en positiv halvlederkrystall av germanium (p-Ge), for å bestemme retningen til B-feltet ser vi hvilken vei viklingene på de strømførende ledningene går på elektro-magneten og bruker høyrehånds-regelen. Vi måler deretter $V_H$ som funksjon av B, og bruker de 6-punktene hvor vi vet verdien til B-feltet. For å finne stigningstallet plotter vi de tallene vi har fått, du kan se plottet \ref{1} under resultater. Vi bruker dette til å bestemme $R_H = \frac{V_H d}{IB}$ og videre finne $N$ ved $R_H = \frac{1}{Nq}$. Fra det vi nå har funnet kan vi bestemme drifthastigheten ($v$) ved denne formelen $$I = bdNqv \Rightarrow v = \frac{I}{bdNq}$$ Vi sammenligner dette med hastigheten et elektron ville ha oppnådd gjennom prøven fra en tilstand av ro. Vi antar at det kun virker en potensiell energi ($bEq$) i starten og kun kinetisk energi($\frac{mv^2}{2}$) i enden, og bruker bevaring av energi til å finne følgende formel $$v = \sqrt{\frac{2Vq}{m}}$$ Hall-spenningens polaritet er vist på figur \ref{2} under resultater.
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{hall.png} 
+\caption{B-feltet er orientert inn i arket.}
+\label{0}
+\end{figure}
+
+\newpage
+\subsection{Resultater}
+
+\begin{center}
+Målinger\\
+  \begin{tabular}{ | c | c |}
+    \hline
+    $V_H$ [mV] : & $\vec{B}$ [mT]\\ \hline
+      -14 & 66 \\ \hline
+      -4.5 & 18 \\ \hline
+      -22 & 114 \\ \hline
+      -31 & 164 \\ \hline
+      -40 & 218 \\ \hline
+      -50 & 272 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+   \begin{tabular}{  l  l  }
+   d = 0.001[m]  & $R_H = \frac{V_H d}{I B} = St\left(\frac{d}{I}\right) = 1.059*10^{21} \left[\frac{m^3}{As} \right]$ \\
+   b = 0.01[m] & $N = \frac{1}{R_Hq} \simeq 1.003*10^{21}$\\
+   Stigningstall(St) = $5.9015*10^{-3}[m^2/s]$ &$v_d = \frac{I}{bdNq} \simeq 17.7 [m/s]$\\
+   &$v_e = \sqrt{\frac{2V_H q}{m_e}} \simeq 3.05*10^6[m/s]$
+   \end{tabular}
+\end{center}
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{oppgave1.png} 
+\caption{}
+\label{1}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{polarisering.jpg} 
+\caption{Skisse av hvordan polariseringen er.  Øverst: p-Ge Nederst: n-Ge}
+\label{2}
+\end{figure}
+
+\newpage
+\subsection{Konklusjon}
+Forskjellen mellom den positive(p-Ge) og negative (n-Ge) halvlederkrystallene er at polariteten er motsatt som medfører at resultaene vil bli speilvendt.  Det betyr at i p-Ge er det ,,hull'' som betyr at den mangler elektroner som gjør den positiv, og i n-Ge er det et overskudd av elektroner som betyr at den blir negativ, som illustrert i figur \ref{2}. \\
+Vi ser også at et elektron i vakuum får mye høyere hastighet sammenlignet med driftshastigheten, dette er nok på grunn av at elektronet i vakuum ikke møter så mye motstand som de gjør i halvlederkrystallen. 
+
+
+
+\newpage
+\section{oppgave 2}
+
+\subsection{Programerklæring}
+Her skal vi bestemme magnetiseringen i en sylindrisk permanent-magnet ved å måle feltet langs-symmetriaksen
+
+\subsection{Metode}
+Vi la en sylindrisk permanent-magnet inntil en linjal slik at 0 var rett ved overflaten av magneten (som vist i fig \ref{3}). Vi målte deretter magnetiseringen med et Teslameter i 5 uniformt fordelt punkter fra 0-10cm. Deretter plottet vi punktene vi målte. 
+
+\subsection{Resultater}
+Radius : $a = 1.7[cm]$, Tykkelse: $t = 1 [cm] $
+
+\begin{center}
+  \begin{tabular}{ | c | c |}
+    \hline
+    Høyde(h) over magneten [cm] : & Magnetiseringen $B_x(h)$ [mT] $m=10^{-3}$\\ \hline
+      0 & 230 \\ \hline
+      2 & 34 \\ \hline
+      4 & 12.8 \\ \hline
+      6 & 6.2 \\ \hline
+      8 & 3.6\\ \hline
+      10 & 2.6 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{mag.jpg} 
+\caption{Skisse av magneten inntil linjalen.}
+\label{3}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{2.png} 
+\caption{Graf av datapunktene sammenlignet med analytisk løsning. Øverst: Målinger, Nederst: Analytisk.}
+\label{4}
+\end{minipage}
+\end{figure}
+
+\subsection{Konklusjon}
+Her har vi gjort noen tilnærmelser. Siden vi ikke har $J_s$ behandlet vi denne som en konstant som bare ville blitt multiplisert med resten av det utledede utrykket 
+$B_x(h) = \frac{\mu_0}{2}J_s\left[\frac{h+t}{\sqrt{(h+t)^2+a^2}} - \frac{h}{\sqrt{h^2+a^2}}\right] $ og derfor ikke endret noe særlig på plottet vi fikk. Så hadde $J_s$ ville vi fått andre verdier langs y-aksen for den analytiske løsningen, men utseende hadde vært den samme. 
+
+
+\newpage
+\section{Oppgave 3}
+\subsection{Programerklæring}
+Her skal vi måle B-feltet fra en sylindrisk elektromagnet med en Hall-sonde. 
+
+\subsection{Metode}
+Vi målte B-feltet på 5 uniformt fordelt punkter fra 0-10cm fra overflaten av sylinderen og opp, og for B-feltet inne i sylinderen. Deretter plottet vi en graf av datapunktene vi fikk fra de 5 punktene vi fant. 
+For å finne utrykket for J vi brukte her bruker jeg at den totale strømmtettheten(J) kan skrives $J = \frac{NI}{L}$ hvor N er antall viklinger, I er strømmen som går igjennom og L er lengden av den sylindriske elektromagneten. 
+
+\subsection{Resultater}
+B-feltet uten for sylinderen:
+\begin{center}
+  \begin{tabular}{ | c | c |}
+    \hline
+    Høyde (h) [cm]=centimeter : & Magnetiseringen $B_x(h)$ [mT] $m=10^{-3}$\\ \hline
+      0 & 3 \\ \hline
+      2 & 1.807 \\ \hline
+      4 & 0.916 \\ \hline
+      6 & 0.696 \\ \hline
+      8 & 0.527 \\ \hline
+      10 & 0.492 \\
+    \hline
+  \end{tabular}
+\end{center}
+B-feltet sentrert inne i sylinderen:\\
+$B_x = 5.32[mT]$
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth, height = 6cm]{oppgave3.png} 
+\caption{}
+\label{4}
+\end{figure}
+
+
+\subsection{Konklusjon}
+Det kan ofte være en vanskelig øvelse å prøve og modellere magnetfeltstyrken over og under spoler; vi vet fra før at magnetfeltet i en solenoide er konstant, men når vi forsøker å modellere feltet over og under solenoiden må vi ta hensyn til mange andre variabler. Selv om formålet med dette forsøket ikke nødvendigvis var å modellere hele magnetfeltet, det er likevel interessant at vi fikk en omtrentlig ide om hvor raskt feltstyrken minker når vi ser på observasjonspunkter som flytter seg langs magnetens midtakse - vi kan til og med se fra vårt plott at en \textit{invers} regresjon virker å passe de punktene vi målte til en rimelig grad. Regresjonen ga oss ligningen:
+
+\begin{equation}
+B(h) =  \frac{6.15 \times 10^{-5}}{x + 0.02}
+\end{equation}
+
+Det er ikke mulig å vite om dette samsvarer med modellen vår helt nøyaktig med mindre vi øker antall punkter vi måler, men det er helt klart intuitivt at en invers funksjon samsvarer med dataene våre – grunnen til at dette gir mening er at når vi finner magnetfeltet på senteraksen over en enkelt sløyfe med en strøm, får vi magnetfeltligningen:
+
+\begin{equation}
+\vec{B} = \frac{\mu_0 I}{2R}\hat{z}
+\end{equation}
+
+Vi ser med en gang at dette også en funksjon av samme form (untatt for $0.02$ leddet i vår regresjon) som betyr at vår konklusjon hovedsakelig kan argumenteres for.
+
+
+
+
+
+
+\end{document}
