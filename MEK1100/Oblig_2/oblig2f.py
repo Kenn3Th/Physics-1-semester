@@ -1,5 +1,5 @@
 from oblig2 import*
-#Sirkulasjon
+#Circulation
 def sirkulasjon(xi,yi,xj,yj):
     dt = 0.5
     side1 = sum(u[yi,xi:xj+1]*dt)
@@ -12,14 +12,14 @@ def sirkulasjon(xi,yi,xj,yj):
     print 'Topp:         %.5f' %(side3)
     print 'Venstre side: %.5f' %(side4)
     return 'Sirkulasjon = %.5f' %(sirk)
-#stokes sats
+#Stokes' theorem
 def stokes(x1,y1,x2,y2):
     dvx = gradient(v,0.5,axis=1)
     duy = gradient(u,0.5,axis=0)
     nXv = dvx - duy
     q = sum(nXv[y1:y2+1,x1:x2+1])*0.25
     return 'Stokes = %.5f'%(q)
-#skriver ut informasjonen
+#Printing the information
 print '----------------------------'
 print 'Rektangel 1'
 print sirkulasjon(34,159,69,169)
