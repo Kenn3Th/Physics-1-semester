@@ -1,0 +1,243 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS-MEK 1110 Obligatorisk oppgave 5}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\maketitle
+\begin{center}
+\section*{Newton's vugge}
+\end{center}
+
+Vi får oppgitt at den vuggen vi skal studere har to baller med identisk masse og de henger i en tynntråd. En av ballene blir løftet opp til en høyde $h_0$ og den treffer den andre ballen når tråden henger vertikalt.
+\subsection*{a)}
+For å finne hastigheten $v_0$ ball \textbf{a} har i det den treffer ball \textbf{b} kan jeg bruke bevaring av energi. $$E_{tot} \equiv K_0 + U_0 = K + U$$ hvor $E_{tot}$ er den totale energien, $K = \frac{1}{2}mv^2$ (kinetisk energi) og $U = mgh$ (potensiell energi). \\ 
+Jeg har definert $h_0$ som høyden vi slepper ball \textbf{a} fra og h er høyden når tråden henger vertikalt. Dette medfører at h = 0, jeg vet også at start farten vi slepper ballen med er 0. 
+\begin{align*}
+E_{tot} &\equiv K_0 + U_0 = K + U\\
+&\equiv \frac{1}{2}mv^2 + mgh_0 = \frac{1}{2}mv_0^2 + mgh\\
+&\equiv 0 + mgh_0 = \frac{1}{2}mv_0^2 + 0\\
+&\equiv mgh_0 = \frac{1}{2}mv_0^2\\
+&\underline{\underline{\equiv v_0 = \sqrt{2gh_0}}}
+\end{align*}
+
+Hastigheten ball \textbf{a} har før den treffer ball \textbf{b} er gitt ved $v_0 = \sqrt{2gh_0}$
+
+\subsection*{b)}
+Her skal vi anta at kollisjonen er elastisk, og finne hastigheten $v_1^A$ og $v_1^B$. Siden jeg har to ukjente må jeg finne 2 ligninger. Jeg kan bruke bevaring av både bevegelsesmengde (P) og energi (E) og løse disse ligningene med hensyn på de ukjente. 
+\begin{align*}
+\textrm{Bevegelsesmengde } \rightarrow & P_{\textrm{før}} = P_{etter} \\
+& P_{\textrm{før}} = m_av_{0a} + m_bv_{0b}\\
+& P_{etter} = m_av_a + m_bv_b\\
+\textrm{Energi } \rightarrow & K_{0a} + K_{0b} = K_a + K_b
+\end{align*}
+Jeg husker på at massene til ballene er identiske, dette betyr at $m_a = m_b = m$ og at hastigheten $v_{0b} = 0$
+\begin{align*}
+\underline{\textrm{Bevegelsesmengde}}\\
+m_av_{0a} + m_bv_{0b} &= m_av_a + m_bv_b \\
+mv_{0a} + mv_{0b} &= mv_a + mv_b\textrm{ } |\frac{1}{m}\\
+v_{0a} + v_{0b} &= v_a + v_b\\
+v_a &= v_{0a} - v_b
+\end{align*}
+
+\begin{align*}
+\underline{\textrm{Energi}}\\
+\frac{1}{2}m_av_{0a}^2 + \frac{1}{2}m_bv_{0b}^2 &= \frac{1}{2}m_av_{a}^2 + \frac{1}{2}m_bv_{b}^2\\
+\frac{1}{2}mv_{0a}^2+\frac{1}{2}mv_{0b}^2&=\frac{1}{2}mv_{a}^2+\frac{1}{2}mv_{b}^2 \textrm{ }|\frac{2}{m}\\ 
+v_{0a}^2+v_{0b}^2&=v_{a}^2+v_{b}^2\\
+v_b &= \sqrt{v_{0a}^2 -v_a^2}
+\end{align*}
+Nå kan jeg sette inn det jeg har funnet for hvert av utrykkene for å finne hver av de ukjente. 
+
+\begin{align*}
+v_a &= v_{0a} - v_b \\
+v_a &= v_{0a} - \sqrt{v_{0a}^2 -v_a^2}\\
+v_a^2 &= v_{0a}^2 - v_{0a}^2 -v_a^2\\
+v_a^2+v_a^2 &= v_{0a}^2 - v_{0a}^2\\
+2v_a^2 &= 0 \Rightarrow \underline{v_a = 0}\\
+v_b &= \sqrt{v_{0a}^2 -v_a^2}\\
+v_b &= \sqrt{v_{0a}^2 - 0}\\
+v_b &= \pm v_{0a} \Rightarrow \underline{v_b = \pm\sqrt{2gh_0}}
+\end{align*}
+
+Hastighetene er $\underline{\underline{v_a = 0\textrm{ og } v_b = \pm\sqrt{2gh_0}}}$\\ Dette stemmer overens med hva jeg allerede vet om Newton's vugge. Ball \textbf{a} stopper og ball \textbf{b} fortsetter bevegelsen til ball \textbf{a}, med samme hastighet som ball \textbf{a} hadde i det den traff ball \textbf{b}.
+
+\subsection*{c)}
+For å finne ut hvor maks høyden $h_1$ ball \textbf{b} oppnår, kan jeg bruke energi bevaring på ball \textbf{b} etter kollisjonen. Jeg vet også at når ballen oppnår maks høyde er hastigheten til ballen lik 0.
+\begin{align*}
+\frac{1}{2}mv_b^2 + mgh &= \frac{1}{2}mv_{1b}^2 + mgh_1\\
+v_b^2 &= 2gh_1\\
+h_1 = \frac{v_b^2}{2g} &= \frac{2gh_0}{2g} = h_0
+\end{align*}
+
+Maks høyden ball \textbf{b} oppnår er $\underline{\underline{h_1=h_0}}$\\ Altså samme høyde vi slapp ball \textbf{a} fra.
+
+\subsection*{d)}
+Her skal jeg anta at kollisjonen er fullstendig uelastisk, det vil si at ballene henger sammen etter støtet. Jeg skal deretter finne maks høyden de to ballene oppnår hvis de henger sammen etter støtet. Jeg velger å bruke bevaring av bevegelsesmengde og energi for å løse dette problemet. Før støtet vet jeg at ball \textbf{b} er i ro, så det er kun bevegelsesmengde fra ball \textbf{a}. Jeg kjenner hastigheten ball \textbf{a} har før kollisjonen. Det jeg må finne er hva hastigheten blir etter kollisjonen for å finne hvor høyt ballene kommer. 
+
+\begin{align*}
+m_av_{0a} &= (m_a+m_b)v\\ 
+mv_{0a} &= 2mv\\
+v_{0a} = 2v &\Rightarrow \underline{v = \frac{v_{0a}}{2}}
+\end{align*}
+\begin{align*}
+\frac{1}{2}mv^2 &= mgh\\
+h = \frac{1}{2g}v^2 &= \frac{1}{2g}(\frac{v_{0a}}{2})^2 = \frac{1}{2g}\frac{v_{0a}^2}{4} = \frac{v_{0a}^2}{8g}\\
+h &= \frac{2gh_0}{8g} = \frac{h_0}{4}
+\end{align*}
+
+Høyden ballene oppnår hvis de henger sammen etter kollisjonen er $\underline{\underline{h = \frac{h_0}{4}}}$
+
+\subsection*{e)}
+Jeg ser at dette ikke er et elastisk støt og derfor kan jeg ikke bruke bevaring av energi, men jeg kan fortsatt bruke bevaring av bevegelses mengde for å finne den andre ligningen jeg trenger for å løse dette problemet. (Husk at jeg fant ut at bevegelses mengden som ble bevart for disse ballene i oppgave b: $v_{0A} = v_A + v_B$) Ligningene jeg må løse er. 
+$$rv_0 = v_B - v_A \Rightarrow \underline{v_B = rv_0 + v_A}$$
+$$v_{0A} = v_A + v_B \Rightarrow \underline{v_A = v_{0A} - v_B}$$
+Løser for $v_B$
+\begin{align*}
+v_B &= rv_0 + v_A\\
+v_B &= rv_0 + v_{0A} - v_B\\
+2v_B &= rv_0 +v_{0A}\\
+v_B &= \frac{rv_0 +v_{0A}}{2}
+\end{align*}
+Løser $v_A$
+\begin{align*}
+v_A &= v_{0A} - v_B\\
+v_A &= v_{0A} - \frac{rv_0 + v_{0A}}{2}\\
+v_A &= \frac{2v_{0A} - (rv_0 + v_{0A})}{2}\\
+v_A &= \frac{2v_{0A} - rv_0 - v_{0A}}{2}\\
+v_A &= \frac{v_{0A} - rv_0}{2}
+\end{align*}
+Hastighetene etter kollisjonen er:
+$$\underline{\underline{v_A = \frac{v_{0A} - rv_0}{2} \textrm{ og } v_B = \frac{v_{0A}+rv_0}{2}}}$$
+
+\subsection*{f)}
+Denne oppgaven er veldig lik oppgave b, bare at nå må jeg gjøre den samme utregningen 2 ganger. Først bruker jeg bevaring av bevegelsesmengde og energi på ball A og B.
+\begin{align*}
+\underline{\textrm{Bevegelsesmengde}}\\
+mv_{0A} + mv_{0A} &= mv_A + mv_B\textrm{ } |\frac{1}{m}\\
+v_{0A} + v_{0B} &= v_A + v_B | v_{0B} = 0\\
+v_A &= v_{0A} - v_B
+\end{align*}
+\begin{align*}
+\underline{\textrm{Energi}}\\
+\frac{1}{2}mv_{0A}^2+\frac{1}{2}mv_{0B}^2&=\frac{1}{2}mv_{A}^2+\frac{1}{2}mv_{B}^2 \textrm{ }|\frac{2}{m}\\ 
+v_{0A}^2+v_{0B}^2&=v_{A}^2+v_{B}^2\\
+v_B &= \sqrt{v_{0A}^2 -v_A^2}
+\end{align*}
+\begin{align*}
+v_A &= v_{0A} - v_B \\
+v_A &= v_{0A} - \sqrt{v_{0A}^2 -v_A^2}\\
+v_A^2 &= v_{0A}^2 - v_{0A}^2 -v_A^2\\
+v_A^2+v_A^2 &= v_{0A}^2 - v_{0A}^2\\
+2v_A^2 &= 0 \Rightarrow v_A = 0\\
+v_B &= \sqrt{v_{0A}^2 -v_A^2}\\
+v_B &= \sqrt{v_{0A}^2 - 0}\\
+v_B &= \pm v_{0A}
+\end{align*}
+Etter den første kollisjonen er det kun hastigheten fra ball A som blir overført til ball B og ball C er fortsatt i ro. For å finne hastigheten til ballene etter den andre kollisjonen bruker jeg bevaring av bevegelsesmengde og energi på ball B og C.
+\begin{align*}
+\underline{\textrm{Bevegelsesmengde}}\\
+mv_{B} + mv_{C} &= mv_{1B} + mv_{1C}\textrm{ } |\frac{1}{m}\\
+v_{B} + v_{C} &= v_{1B} + v_{1C} | v_{C} = 0\\
+v_{1B} &= v_B - v_{1C}
+\end{align*}
+\begin{align*}
+\underline{\textrm{Energi}}\\
+\frac{1}{2}mv_{B}^2+\frac{1}{2}mv_{C}^2&=\frac{1}{2}mv_{1B}^2+\frac{1}{2}mv_{1C}^2 \textrm{ }|\frac{2}{m}\\ 
+v_{B}^2+v_{C}^2&=v_{1B}^2+v_{1C}^2\\
+v_{1C} &= \sqrt{v_{B}^2 -v_{1B}^2}
+\end{align*}
+\begin{align*}
+v_{1B} &= v_B - v_{1C} \\
+v_{1B} &= v_{B} - \sqrt{v_{B}^2 -v_{1B}^2}\\
+v_{1B}^2 &= v_{B}^2 - v_{B}^2 -v_{1B}^2\\
+v_{1B}^2+v_{1B}^2 &= v_{B}^2 - v_{B}^2\\
+2v_{1B}^2 &= 0 \Rightarrow v_{1B} = 0\\
+v_{1C} &= \sqrt{v_{B}^2 -v_{1B}^2}\\
+v_{1C} &= \sqrt{v_{B}^2 - 0}\\
+v_{1C} &= \pm v_{B} = v_{0A}
+\end{align*}
+Hastighetene etter kollisjonen er ball A = ball B = 0 [m/s] og ball C =$v_{0A}$ [m/s], ved bevaring av energi og bevegelses mengde har blitt overført fra ball A over til ball B og videre til ball C. Dette skjer når/hvis vi kan se bort i fra luftmotstand og friksjon. 
+
+\subsection*{g)}
+Støtet er fortsatt elastisk og jeg kan bruke bevaring av bevegelses mengde og energi. Jeg finner dermed to ligninger relatert til før og etter kollisjonen, men jeg har tre ukjente. Dette er derfor ikke nok til å kunne klare å løse problemet/ligningene. Før kollisjonen henger B og C i ro og derfor faller disse bort fra venstre siden av likheten. Jeg går også utifra at $m_A = m_B = m_C$ og skriver disse som $m$ Ligningene jeg får er følgende:
+\begin{align*}
+m_Av_{0A} = mv_A + mv_B + mv_C = m(v_A+v_B+v_C)\\
+\frac{1}{2}mv_{0A} = \frac{1}{2}mv_A + \frac{1}{2}mv_B + \frac{1}{2}mv_C = \frac{m}{2}(v_A+v_B+v_C)
+\end{align*}
+
+\subsection*{h)}
+Jeg valgte disse parametrene: N = 3, m = 0.5, k = 0.5, q = 1, d = 0.2, v0 = 2 time = 3, dt = 0.001. Du ser plott \vref{h}. Foreløpig ser det ut som programmet er en god tilnærming til hva som skjer i Newton's vugge.
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{h.png} 
+\caption{Plot av hastighetene til 2 baller}
+\label{h}
+\end{figure}
+
+\subsection*{i)}
+Eneste forandringen jeg har gjort i mine parametre er time = 4. Du ser plott \vref{i}. I følge grafen er hastigheten til ball a = ca -0.25, ball b = ca 0.3, ball c = ca 1.95. Hvis vi sammenligner de med mine beregninger så er ikke dette hva jeg kom fram til. Dette var ikke hva jeg forventet å se skje i Newton's vugge; jeg tror heller ikke dette er fysisk mulig i dette tilfellet.
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{i.png} 
+\caption{Plot av hastighetene til 3 baller}
+\label{i}
+\end{figure}
+
+\subsection*{j)}
+Her har jeg forandret q fra 1 til 3/2 som oppgaven sa. Du ser plott \vref{j}. Dette var en mye mer realistisk fremstilling av hva som skjer i Newton's vugge.  Vi ser at etter kollisjonen så faller nesten både ball A og B til ro, men ikke helt. 
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{j.png} 
+\caption{Plot av hastighetene til 3 baller, q = 3/2}
+\label{j}
+\end{figure}
+
+\subsection*{k)}
+Jeg lekte litt rundt med forskjellige verdier for k og q og fant ut at k hadde en større virkning på tid enn hastighet. Dette er fordi k bestemmer hvor hard/myk ballene er. Endret jeg på q fikk jeg en bedre å bedre tilnærming, siden q skulle være mindre eller lik 4 fant jeg ut at den beste tilnærming hvor hastigheten til A og B ble null var da q = 4. Alle de andre verdiene er de samme som jeg oppga i oppgave h). Du kan se plott \vref{k} 
+
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{k.png} 
+\caption{Plot av hastighetene til 3 baller, q = 4}
+\label{k}
+\end{figure}
+
+
+
+
+
+
+
+
+\end{document}
