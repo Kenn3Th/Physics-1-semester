@@ -1,1 +1,1 @@
-In this assigment i have used MATLAB to calculate the matrices
+In this assigment I have used MATLAB to calculate the matrices
