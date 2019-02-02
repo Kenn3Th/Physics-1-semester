@@ -1,0 +1,347 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{enumitem}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 4}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\newcommand{\ov}{\overset}
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+
+\section{Forståelses- og diskusjonsspørsmål}
+\subsection{Tordenvær}
+Grunnen til at vi ser lynet før vi hører torden er fordi lyset går raskere enn lyden. I det et lyn slår ned går den blandt annet gjennom lydmuren som gir et smell. Lydfarten er ca 344 [m/s] i luft (i følge boka \cite{boka}) og lyset er ca $3*10^8[m/s]$. Lyset vil treffe øyet nesten med en gang mens lyden bruker ca 3 sekunder på å reise 1km. Derfor kan kan vi noenlunde bestemme hvor langt unna lynet er ved å telle antall sekunder det har tatt siden vi så lynet til vi hører torden.
+
+
+\subsection{Overflatebølger på vann}
+Ved posisjon som funksjon av tid på vannoverflaten kan vi:
+\begin{enumerate}[label = \alph*)]
+\item
+bestemme hvor den kommer fra utifra hvilken vei bølgen brer seg.
+\item
+finne bølgelengden ved å ta tiden fra en bølge topp til neste bølge topp
+\item
+avgjøre om bølgen er fra en eller flere kilder ved å se om amplituden til bølgen blir forsterket eller kanselert pga interferens i løpet av tiden 
+\end{enumerate}
+
+\subsection{Ultralydundersøkelser}
+Den første grenseflaten vil ikke ødelegge bildet av fosteret fordi vi kan forkaste dette bildet. Ved hjelp av akustisk impedans vil det bli transmittert en lydbølge fra denne grenseoverflaten og videre inn til fosteret. Fosteret vil reflektere disse lydbølgene og ved hjelp av å analysere ekkoet fra disse bølgene kan vi definere avstander og siden vi kan sende inn lydbølger fra flere retninger kan vi danne oss et bildet av fosteret i livmoren. 
+
+
+\subsection{Når lyd går fra luft til vann}
+Hvilken av følgende holder seg konstant når lyd går fra luft til vann:
+\begin{itemize}
+\item Frekvens (f)\\
+Frekvens er alltid bevart med mindre impedansen i mellom mediene er uendelig. (\cite{grl})
+\item Bølgelengde $(\lambda)$\\
+Bølgelengde er gitt ved $\lambda = \frac{v}{f}$ og siden frekvensen er bevart så ser vi at bølgelengden endrer seg. Blir mindre i dette tilfellet.
+\item Bølgehastighet (v)\\
+Lydhastigheten for luft og vann er gitt ved
+$$
+v = \sqrt{\frac{K}{\rho}} 
+$$
+der $K =$ kompressibilitetsmodulen og $\rho =$ massetettheten\\
+Både $K$ og $\rho$ er forskjellig i luft og vann derfor er også lydhastigheten forskjellig i luft og vann.
+\item Utslag (i posisjon)\\
+Den akustiske impedansen er stor i forhold til luft og vann. Dermed vil meste parten av lyden bli reflektert. Siden ikke impedansen er uendelig stor vil noe også bli transmittert, men utslaget til bølgen som blir transmittert kommer an på vinkel og trykket til den innkommende lydbølgen, men den er uansett mindre enn utslaget til den innkommende lydbølgen.
+
+\end{itemize}
+
+Kommentar:\\
+Det burde stått i boka at frekvensen alltid er bevart. (Med mindre impedansen er uendelig)
+
+\subsection{Å legge til X dB i lyden}
+Desibel skalaen er definert som en logaritmisk skala fordi vi mennesker oppfatter endring i lydstyrken ca logaritmisk. 
+$$
+L = (10dB)log\left( \frac{I}{I_0}\right)
+$$
+Rent matematisk hvis vi legger til en logaritme til en annen er det det samme som å multiplisere det som er inne i logaritmene:
+$$
+log(a)+log(b) = log(ab)
+$$ 
+Så svaret på spørsmålet er ja. Å legge en til X [dB] i en lyd er det samme som å multiplisere intensiteten til den opprinnelige lydbølgen med en bestemt faktor.
+
+\section{Regneoppgaver}
+
+\subsection{Planbølge}
+\begin{equation}
+S = Asin(\ov{\rightharpoonup}{k} \cdot \ov{\rightharpoonup}{r}-\omega t)
+\label{plan}
+\end{equation}
+Dette er en planbølge hvis A også er en vektor og $\ov{\rightharpoonup}{k}$ og $\ov{\rightharpoonup}{r}$eksempel vis kan være 
+\begin{align*}
+\ov{\rightharpoonup}{k} = \left[
+	\begin{matrix}
+	k\\0\\0
+	\end{matrix} \right] \text{, }
+\ov{\rightharpoonup}{r} = \left [
+	\begin{matrix}
+	x\\y\\z
+	\end{matrix} \right] 
+\end{align*}
+Dermed blir prikkproduktet i ligning \ref{plan} $kx$ dermed blir ligningen:
+$$
+S = Asin(kx-\omega t)
+$$
+En planbølge har bølgefronter som illustrert i figur \vref{front}. Og amplituden vi måler på bølgen er den samme uansett hvor i dette planet du velger å måle, som jeg har prøvd å illustrere i figur \vref{planbolge}
+
+\begin{figure}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width=\textwidth]{front.jpg} 
+	\caption[Bølgefront]{Her har jeg illustrert en plan bølge med eksempler på bølgefronter}
+	\label{front}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{0.5\linewidth}
+	\includegraphics[width=\textwidth]{planbolge.jpg} 
+	\caption[Planbølge]{Tegning av en bølge der $\bigotimes$ betyr at z retningen går inn i arket. Jeg har også prøvd å illustere at uansett hvor på dette planet du velger å måle amplituden vil du få ut det samme uavhengig om du er på bølgen eller lenger inn eller ut.}
+	\label{planbolge}
+	\end{minipage}
+\end{figure}
+
+Måten en slik bølge brer seg kommer an på bølgevektoren $\ov{\rightharpoonup}{k}$,  dette medfører også at den bestemmer hvilken retning bølgefrontene beveger seg.
+
+\subsection{Ultralydbilder}
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+\text{Lydbølger i vann/vev} \equiv v = 1500[m/s] && \text{bølgelengde} \equiv \lambda = 1[mm]
+\end{align*}
+For å finne frekvensen den må ha bruker jeg følgende formel:
+$$
+f\lambda = v \Rightarrow f = \frac{v}{\lambda}
+$$
+$$
+f = \frac{1.5*10^3[m/s]}{1*10^{-3}[m]} = 1.5*10^6[s^{-1}]
+$$
+Hvis vi tenker på at ultrafiolett(UV) stråling og hva slags frekvens de har er jo ikke dette noe som helst. Mens hvis vi definerer at ultralyd er lyd som vi ikke hører men med mer energi, analogt med at UV lys er lys vi ikke ser men med mer energi, så kan jeg godta denne betegnelsen. 
+
+\subsection{2[m] metallstreng}
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+\text{Metallstreng lengde} &\equiv L = 2.0 [m] && \text{Masse til metallstreng} \equiv m_M = 3*10^{-3}[kg]\\
+\text{Masse til lodd} &\equiv m_l = 3.0 [kg] 
+\end{align*}
+
+\begin{figure}
+\centering
+\includegraphics[width = 0.5\textwidth]{opg22}
+\caption[Figur til 2m metallstreng strekt over et bord]{Figur av en 2[m] metallstreng strekt over et bord med et lodd festet til i enden.}
+\label{opg22}
+\end{figure}
+
+\begin{enumerate}[label = \alph*)]
+\item
+\begin{figure}
+\centering
+\includegraphics[width = 0.5\textwidth]{tegning.jpg}
+\caption[Kraft illustrasjon]{Figur av kreftene som virker}
+\label{krefter}
+\end{figure}
+Bruker en ligningen hentet fra boka \cite{boka} som sier at hastigheten er gitt ved 
+\begin{equation}
+v = \sqrt{\frac{S}{\mu}}
+\label{hast}
+\end{equation}
+
+Der $S$ = summen av kreftene og $\mu =$ massetettheten til strengen. \\
+For å finne hastigheten til en transversalbølge langs strengen ser jeg fra ligningen at jeg må finne en kraft $S$. Jeg lager en ny tegning (figur \vref{krefter}) og tenker på kreftene som virker i dette systemet for å finne kraften $S$.
+Kraften der loddet henger avhenger kun av y-retning som dermed blir gravitasjonen $G=m_lg$, der $g = 9.81 [m/s^2]$. Kraften $F$ der snoren er festet i bordet avhenger kun av x-retning. For at systemet skal være konstant så må $F=G$. Massen til snoren er så liten i forhold til massen til loddet og derfor velger jeg å se bort i fra massen til snoren når jeg regner ut G. Dermed har jeg at 
+\begin{align*}
+\mu = \frac{m_M}{L} = \frac{3*10^{-3}}{3} = 1.5*10^{-3} [kg/m] && G = m_lg \simeq 29.4 [kgm/s^2]
+\end{align*}
+Dette gir meg en hastighet:
+$$
+v = \sqrt{\frac{F}{\mu}} \simeq \uu{\uu{140.1 [m/s]}}
+$$
+\item
+Hastigheten til den transversalebølgen vil ikke endre seg selv om vi endrer på den horisontale delen som er strekt over bordet. Dette er fordi snoren vil alltid være 2 [m] og dermed alltid ha samme massetetthet. Slik at hastigheten vil være konstant uavhengig om hvor mye av strengen som er strekt over bordet.
+\item
+For å finne hvor lang en slik metallstreng må være for å kunne produsere en frekvens $f=280 [Hz]$ Bruker jeg følgende ligning (hentet fra boka \cite{boka}):
+\begin{equation}
+f = \frac{v}{2L} \Rightarrow L = \frac{v}{2f}
+\label{leng}
+\end{equation}
+$$
+L = \frac{v}{2f} = \uu{\uu{2.5[cm]}}
+$$
+\item
+For å kunne doble frekvensen hvis vi antar samme lengde som i c) bruker jeg ligning \ref{hast} og \ref{leng} som utgangs punkt:
+
+\begin{align*}
+& f_* = \frac{v}{2L} = \frac{\sqrt{\frac{mg}{\mu}}}{2L}\\
+& \Rightarrow f_*^2 = \frac{mg}{4\mu L^2} \\
+&\Rightarrow m = \frac{4f_*^2L^2\mu}{g} = \uu{\uu{12 [kg]}}
+\end{align*}
+hvor $f_* = 2f$\\
+
+Mer generelt kunne jeg argumenter at siden alle de andre variablene er like(uforandret) ser jeg at $f \propto \sqrt{m}$ som medfører at hvis vi skal doble frekvensen må vi 4 doble massen.
+
+\end{enumerate}
+
+\subsection{Strenger på gitar}
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+\text{Frekvens til G-tone} \equiv f_G = 196.1[Hz] && \text{Frekvens til C-tone} \equiv f_C = 261.7[Hz] \\
+\text{Lengde til strengen} \equiv L = 65.0 [cm]
+\end{align*}
+Får å få en C-tone på gitaren må vi presse ned G-strengen på 5 bånd. Jeg skal her finne avstanden til 5 bånd. Jeg starter med å finne hastigheten der jeg bruker ligning \ref{leng} der jeg har manipulert den til å gi meg hastigheten.
+\begin{align*}
+v &= f2L\\
+&=f_G2*L = \uu{254.9[m/s]}
+\end{align*}
+Nå som jeg vet hastigheten til strengen kan jeg igjen bruke ligning \ref{leng} til å finne avstanden fra opphengspunktet til strengen til bånd 5.
+\begin{align*}
+L &= \frac{v}{2f}\\
+&= \frac{v}{2f_C} = \uu{\uu{48.7[cm]}}
+\end{align*}
+
+\subsection{Beregn posisjon til første og 6 båndet}
+
+Her skal jeg bruke resultater fra forrige oppgave. Det er også blitt oppgitt at hvis vi skal gå opp en halv tone (bevege oss til neste bånd) gitt ved å multiplisere med $\Delta f = 1.0595 [Hz]$. 
+Her skal jeg finne avstanden til 6. bånd og 1. bånd, skal også vise at avstanden mellom båndene er gitt ved å multiplisere $dL = 0.0561$ med lengden til strengen der den er klemt inn og til neste bånd. Eksempel strengen blir klemt inn på 5. bånd multipliserer vi med dL finner vi lengden til bånd 6. 
+Jeg begynner med å finne lengdene til 6. og 1. bånd ved hjelp av ligning \ref{leng}:
+
+\begin{flalign*}
+f_1 = fG*\Delta f = 207.7680[Hz] && f_6 = fC*\Delta f = 277.2717[Hz] \\
+L_1 = \frac{v}{2f_1} = 61.35[cm] && L_6 = \frac{v}{2f_6} = 45.97 [cm]
+\end{flalign*}
+
+Nå skal jeg finne differansen mellom båndene for deretter å se om det er tilnærmet lik det samme som å multiplisere lengden til strengen med $dL =0.0561$.
+
+\begin{align*}
+\Delta L_{L,L_1} = L - L_1 = 65.0[cm] - 61.35[cm] \simeq 3.65 [cm] \\
+L*dL = 65.0[cm]*0.0561 \simeq 3.65 [cm]
+\end{align*}
+
+Det ser ut som om det kan stemme at lengden til neste bånd er gitt ved å multiplisere med dL. Vi sjekker mellom bånd 5 og 6 også:
+
+\begin{align*}
+\Delta L_{L_5,L_6} = L_5 - L_6 = 48.7[cm] - 45.97[cm] \simeq 2.73 [cm] \\
+L*dL = 48.7[cm]*0.0561 \simeq 2.73 [cm]
+\end{align*}
+
+I begge tilfellene vart svarene tilnærmet lik det samme. Hvis jeg hadde inkludert et desimal til vil ikke svarene stemt så godt som det viser seg her. Men avstanden til neste bånd kan sies å være tilnærmet det samme som å gange lengden til der strengen er klemt inn med konstanten $dL = 0.0561$
+
+
+\subsection{Sjekk frekvensene}
+
+Hvis vi skulle ha brukt en lydanalyse ved hjelp av fouriertransformasjon vil vi her fått 3 forskjellige samplingstider. Ser at for de laveste frekvensen så er nøyaktigheten på 3 desimaler, i midten er nøyaktigheten på 2 desimaler og for de høyeste frekvensene er nøyaktigheten på 1 desimal. Dette i seg selv virker urealistisk. Hvis man skal bruke en nøyaktighet på 3 desimaler må man også kunne skille mellom frekvenser helt ned til 3 desimalers nøyaktighet, uavhengig av om frekvensen er lav eller høy. På spørsmålet om det er mer realistisk å angi de største frekvensene med 5 gjeldende siffer enn de laveste frekvensene mener jeg ja. Det er enklere å skille 0.1[Hz] fra hverandre enn 0.001[Hz].  Jeg mener de heller burde vært konsekvent på hvor mange desimaler de bruker enn hvor mange gjeldene siffer de har. 
+
+Hvis vi bruker tid-båndbredde-teoremet som står på side 105 i boka \cite{boka} kan jeg finne de tre samplingstidene vi må ha.
+$$
+T\Delta f \geq 1 \Rightarrow T \geq \frac{1}{\Delta f}
+$$
+\begin{align*}
+\Delta f_1 = 0.001 [Hz] && \Delta f_2 = 0.01[Hz] && \Delta f_3 = 0.1[Hz]
+\end{align*}
+Med dette får vi samplingtider på :
+\begin{align*}
+T_1 \geq \frac{1}{\Delta f_1} &=1000.0 [s] \\
+T_2 \geq \frac{1}{\Delta f_2} &=100.0 [s]\\
+T_3 \geq \frac{1}{\Delta f_3} &=10.0 [s]\\
+\end{align*}
+
+
+
+\subsection{Bil i 60 [km/t]}
+
+
+\begin{center}
+\textbf{Dopplereffekt}
+\end{center}
+\begin{equation}
+f_0 = \frac{v \pm v_0}{v\pm v_k}f_k
+\label{doppler}
+\end{equation}
+Der $f_0=$ oppfattet frekvens, $v=$ lydhastigheten i luft, $v_0=$ observatørens hastighet, $v_k=$ kildens hastighet og $f_k=$ frekvensen til lydkilden. Fortegnet i denne formelen er avhengig av om kilden beveger seg imot eller ifra observatøren\\
+
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+v \simeq 344.00 [m/s] && v_0 = 60.00[km/t] \simeq 16.67[m/s]\\
+f_k = 600[Hz] && v_k = 110 [km/t] \simeq 30.56 [m/s]
+\end{align*}
+
+I ligning \ref{doppler} vil fortegnet til $v_0$ forbli positiv siden vi alltid beveger oss i samme retning i forhold til kilden mens $v_k$ vil endre fortegn. Positiv når den kommer i mot observatøren og negativ da den har passert.\\ \\
+
+Oppfattet frekvens før politibilen har passert:
+$$
+f_0 = \frac{v + v_0}{v + v_k}f_k = 577.75[Hz]
+$$
+
+
+Oppfattet frekvens etter at politibilen har passert:
+$$
+f_0 = \frac{v + v_0}{v - v_k}f_k = 690.41 [Hz]
+$$
+
+
+\begin{thebibliography}{}
+\bibitem{boka} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{foreleser}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}
+	\url{https://snl.no}
+
+\end{thebibliography}
+
+\end{document}
