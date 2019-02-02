@@ -9,7 +9,6 @@ bredde = 3000 #Hz
 N = 2000
 K = [12,24]
 omega_analyse = np.linspace(0,10000*2*np.pi,100)
-#omega = np.linspace
 
 fourier,signal,tid,frekvens = Hvitstoy(fsenter,bredde,N) #
 omega = frekvens*2*np.pi
@@ -36,7 +35,7 @@ for j in xrange(len(K)):
     plt.xlabel('Tid [s]')
     plt.ylabel('Frekvens [Hz]')
     plt.title('K = %d' %(K[j]) )
-
+#plott
 plt.figure()
 plt.subplot(2,1,1)
 plt.plot(frekvens,fftsignal)
