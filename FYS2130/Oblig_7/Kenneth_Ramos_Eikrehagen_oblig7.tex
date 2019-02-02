@@ -1,0 +1,259 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage[toc,page]{appendix}
+\usepackage{url}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+\title{FYS2130 Svingninger \& Bølger \\Obligatorisk oppgave 7}
+\author{Kenneth Ramos Eikrehagen}
+
+\newcommand{\uu}{\underline}
+\newcommand{\ov}{\overset}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+
+\section{Forståelses- og diskusjonsspørsmål}
+
+\subsection{Finne brennvidden til en konveks og en konkav linse}
+Ved hjelp av en paraksial forenkling kan jeg anvende linseformelen (ligning \vref{linseformelen}) til å finne den omtrentlige brennvidden $f$.
+
+\begin{equation}
+\frac{1}{s} + \frac{1}{s'} = \frac{1}{f}
+\label{linseformelen}
+\end{equation}
+der $s$ er avstanden fra objektet til midtpunktet av linsen, $s'$ er avstanden fra midtpunktet av linsen til bildepunktet og $f$ er brennvidden \cite{boka}. 
+
+Så hvis jeg vet avstanden fra objektet til midtpunktet til linsen og avstanden fra mitdpunktet av linsen til bildepunktet kan jeg oppgi en omtrentlig brennvidde til en konveks linse. Det er samme fremgangs måte for å finne den omtrentlige brennvidden for en konkav linse men da må jeg endre fortegn på brennvidden $f$.
+
+\subsection{Se under vann}
+Om man ser under vann uten dykke-briller blir alt uskarpt men om man har på seg dykke-briller blir det skarpt igjen. Dette er fordi at menneskets øyet er laget for å se i luft, og grovt sagt så trenger hornhinnen luft til at den skal klare å regulere seg til lyset som treffer øyet. 
+For å forklare hvordan man kan se under vann ved hjelp av noen briller som ikke har luft noe sted trenger jeg linsemaker formelen:
+\begin{equation}
+\frac{n_1-n_0}{n_0}\left( \frac{1}{R_1} - \frac{1}{R_2}\right) = \frac{1}{s} + \frac{1}{s'}= \frac{1}{f}
+\label{linsemakerformelen}
+\end{equation}
+hvor $n_1$ er brytningindeksen til linsen, $n_0$ er brytningsindeksen til mediet linsen befinner seg i, $R_1$ og $R_2$ er krummnings radien til linsen på hver sin side av midtpunktet og f er brennvidden.
+
+Brytnings indeksen i vann er større en brytnings indeksen i luft. Som vi ser i linsemakerformelen (ligning \vref{linsemakerformelen}) blir venstre siden større som igjen medfører at brennvidden $f$ blir større under vann, slik at brennvidden i øyet vil være større enn diameteren til øyet. Bruker vi en konveks linse som vil flytter brennvidden slik at den kommet innenfor diameteren til øyet vil vi igjen kunne se under vann igjen. Siden en slik linse ikke vil kunne regulere seg med lyset så vil krumningen til den konvekse linsen avhenge av lysstyrken under vannet der man ønsker å se noe.
+
+\subsection{Hvor høyt må et speil være, og hvor høyt på en loddrett vegg må den plasseres for at vi skal kunne se hele oss selv i speilet?}
+Speil frembringer et virituelt bilde som er motsatt i forhold til objektet. Det betyr hvis du hever høyre hånd i speilet er venstre side av bildet du ser som hever hånden. I plane speil er bildet og objekt størrelsen like, i konvekse speil blir bildet forminsket. I konkave sfæriske speil blir bildet forstørret og er virituelt om avstanden er $\leq $ halve radiusen til speilet, er avstanden større så blir bildet virtuelt og man kan se bilde på en skjerm, bildet blir også snudd opp ned i forhold til objektet \cite{snl}.
+
+Så det kommer altså an på hvilket speil man har. Har man et plant speil vil avstanden man skal speile seg i være avgjørende for hvor stort, og hvor høyt på veggen speilet skal henge. Hvis man har et konvekst speil trenger man ikke et like stort speil som om man skaffer seg et plant speil, da dette forminsker bildet. Hvor mye et slikt speil forminsker bildet kommer an på hvor stor krumning det er i det konvekse speilet. Jeg tror ikke det er hensiktsmessig å skaffe seg et konkavt speil (om man ikke vil ha det litt gøy), da dette forstørrer bilde og man må stå minst en halv radius fra speilet for at man i det hele tatt skal kunne se seg selv i det. 
+
+
+
+\section{Regne oppgaver}
+
+\subsection{Lysstrålediagram for en konveks linse}
+
+\begin{figure}
+	\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{05f}
+	\caption[Objektavstand 0.5f]{Lysstrålediagram der et objekt er plassert 0.5f fra en konveks linse. Bildet av objektet blir forstørret på samme side av linsen og er rettet samme vei som objektet. Dette blir kalt et virituelt bilde.}
+	\label{05f}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{f}
+	\caption[Objektavstand f]{Lysstrålediagram der et objekt er plassert på brennpunktet til en konveks linse. Bildet blir forstørret til et uendelig stort bilde som er uendelig langt borte fra objektet. Bildet er rettet samme vei og på samme side som objektet. Dette blir kalt for et virituelt bilde.}
+	\label{f}
+	\end{minipage}
+\end{figure}
+\begin{figure}
+	\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{15f}
+	\caption[Objektavstand 1.5f]{Lysstrålediagram der et objekt er plassert 1.5f fra en konveks linse. Bildet blir speilet om aksen og forminsket i forhold til objektet. Dette er et reelt bilde.}
+	\label{15f}
+	\end{minipage}
+	\hspace{.5cm}
+	\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width = \linewidth]{3f}
+	\caption[Objektavstand 3f]{Lysstrålediagram der et objekt er plassert 3f fra en konveks linse. Bildet blir speilet om aksen og forminsket i forhold til objektet. Dette er et reelt bilde.}
+	\label{3f}
+	\end{minipage}
+\end{figure}
+
+På figurene \ref{05f} og \vref{f} og \ref{15f} og \vref{3f} ser du skissene av lysstrålediagram for en konveks linse med objektavstandene $f = 0.5, 1, 1.5, 3$. Jeg observerer at når objektet er i en avstand $f=1$ kan jeg kun bruke 2 av de 3 standardlysstrålene i konstruksjon av bildet. Dette er fordi at når objektet akkurat er i brennpunktet til en konveks linse vil lysstrålene bli parallelle og bildet vil bli forstørret til uendelig stort uendelig langt vekk fra linsen. Jeg ser også at for avstander $ \leq f $ er bildet rettet riktig vei men blir forstørret, disse bildene er ikke reelle men virtuelle bilder av objektet. Derimot når avstanden er $>f$ observerer jeg at bildet er opp ned og på andre siden av linsen i forhold til objektet, bildet er også blitt forminsket. 
+
+\newpage
+\subsection{Ta bildet av en venn med et kamera}
+Vennen jeg skal ta bilde av er $h=1.75m$ høy og står $s=3.5m$ unna kamera linsen. Kameraet jeg bruker har en CMOS bildebrikke med størrelse 24 x 36mm. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width = \linewidth]{kamerat}
+\caption[Bilde av en venn]{Skisse av situasjonen der jeg skulle ta et bilde av en venn.}
+\label{kamerat}
+\end{figure}
+
+
+Først skal jeg finne avstanden til bildeplanet $s'$. Jeg anvender linseformelen som gir meg:
+\begin{align*}
+s' = \frac{fs}{s-f} \simeq \uu{\uu{0.087m = 87mm}}
+\end{align*}
+For å finne ut om hele vennen min får plass på bildet jeg tar bruker jeg forstørrelses formelen jeg fant fra boka \cite[s. 329]{boka} og multiplisere dette med høyden til personen.
+\begin{equation}
+M = -\frac{s'}{s}
+\label{M}
+\end{equation}
+fortegnet er der kun for å symbolisere at bildet er opp ned i forhold til objektet. 
+\begin{align*}
+M &= \uu{-0.025}\\
+M*h &= \uu{\uu{0.04375m = 43.75mm}}
+\end{align*}
+Sammenligner vi forminskningen til vennen min og størrelsen til bildebrikken så ser vi at vi ikke klarer å få med hele personen på bilde. 
+$$
+\frac{36.0mm}{43.75mm} \simeq \uu{\uu {0.82}}
+$$
+Vi får med os ca $82\%$ av personen på bilde hvis vi snur kameraet slik at høyden på bilde er 36 mm.
+
+Hvis vi bytter bilde brikke til CMOS på størrelse 15.8 x 23.6 mm og snur kameraet slik at høyden på bilde blir 23.6 mm vil vi kunne få litt over halve personen (54\%) med på bilde. 
+$$
+\frac{23.6mm}{43.75mm} \simeq \uu{\uu{0.54}}
+$$
+
+\subsection{a)Nærpunkt og b)fjernpunkt til et øyet}
+
+Et dioptre er definert som $\frac{1}{f}$ i linseformelen (ligning \vref{linseformelen}).
+\begin{enumerate}[label=(\alph*)]
+\item
+Jeg skal finne hvor nærpunktet til en person som har 2.75 dioptre som styrke i brillene sine ligger. Denne styrken har tatt med $s'$ i fra linseformelen derfor dropper jeg den i her i mine utregninger og jeg får fra linseformelen at nærpunktet er
+\begin{align*}
+2.75 m^{-1} = \frac{1}{s} \Rightarrow s = \frac{1}{2.75m^{-1}} \simeq \uu{\uu{0.36m = 36cm}}
+\end{align*}
+\item
+Jeg skal finne hvor fjernpunktet til en person som har -1.30 dioptre i brillene sine ligger. Jeg vet at hvis man har -a dioptre så er man nærsynt og linsen i brillene må derfor gjerne 1.3 dioptre for at man skal kunne se klart. Derfor dropper jeg fortegnet i mine utregninger å finner at fjernpunktet er ca
+\begin{align*}
+1.30 m^{-1} = \frac{1}{s} \Rightarrow s = \frac{1}{1.30m^{-1}} \simeq \uu{\uu{0.77m = 77cm}}
+\end{align*}
+
+
+\end{enumerate}
+
+\newpage
+\subsection{Et mikroskop på labben}
+
+\begin{figure}
+\includegraphics[width = \linewidth]{mikroskop}\\
+\caption[Mikroskop]{Skisse av innsiden av et teleskop.}
+\label{mikroskop}
+\end{figure}
+
+
+\begin{center}
+\textbf{Gitt i oppgaven}
+\end{center}
+\begin{align*}
+f = 8mm && f_2 = 18mm && L = 197mm
+\end{align*}
+
+
+\begin{enumerate}[label=(\alph*)]
+\item
+På figur \vref{mikroskop} ser du en skisse av situasjonen og jeg skal finne $s_1$ som er avstanden mellom objektivet og objektet. Jeg skal anvende linseformelen, ligning \vref{linseformelen} og trenger derfor å finne $s'_1$. Siden jeg et avstanden mellom okularet og objektivet, og brennvidden $f_2$ til okularet så kan jeg finne $s'_1$
+$$
+s'_1 = L - f_2 = \uu{179mm}
+$$
+Dermed får jeg 
+\begin{align*}
+s_1 = \frac{f s'_1}{s'_1 - f} \simeq \uu{\uu{8.37mm}}
+\end{align*}
+Det betyr at avstanden mellom objektet og objektivet er 8.37mm.
+
+\item
+Forstørrelsen på objektivet er gitt ved
+\begin{align*}
+M_{ob} = \frac{s'_1}{s_1} \simeq \uu{\uu{21.4}} 
+\end{align*}
+
+\item
+Jeg bruker her 250mm fordi det er nærpunktet til øyet og forstørrelsen til okularet er da
+\begin{align*}
+M_{ok} = \frac{250mm}{f_2} \simeq \uu{\uu{13.9}} 
+\end{align*}
+
+\item
+Et optisk mikroskop bygger på avbildning ved hjelp av synlig lys. Forstørringen skjer først gjennom objektivet som er stilt inn slik at forstørringen kommer i brennvidden til okularet (se figur \vref{mikroskop}). Okularet har igjen en forstørring og forstørrer bildet enda en gang. Den totale forstøringen er gitt ved
+\begin{equation}
+M_{tot} = \frac{s'_1 \Phi}{s_1 f_2}
+\label{forst}
+\end{equation}
+der $\Phi=25 cm$
+\item
+Den totale forstørrelsen til mikroskopet er gitt ved ligning \vref{forst}:
+\begin{align*}
+M_{tot} = \frac{s'_1 250mm}{s_1 f_2} \simeq \uu{\uu{297}} 
+\end{align*}
+\end{enumerate}
+
+
+
+\begin{thebibliography}{}
+\bibitem{boka} 
+	Arnt Inge Vistnes
+	\textit{Svingninger og bølgers fysikk}
+	first edition
+	Desember 2016
+\bibitem{foreleser}
+	Lasse Clausen
+	\textit{Forelesninger}
+	vår 2018
+\bibitem{grl}
+	Stor takk til gruppelærere
+\bibitem{wiki}  
+	\url{https://no.wikipedia.org}
+\bibitem{snl}
+	Trygve Holtebekk (UiO)
+	\url{https://snl.no/speil_-_fysikk}
+	20. februar. 2018
+\end{thebibliography}
+
+\end{document}
