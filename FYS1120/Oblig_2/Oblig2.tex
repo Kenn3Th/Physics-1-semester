@@ -1,0 +1,251 @@
+\documentclass[a4paper,12pt,norsk]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage{cancel}
+\usepackage{dsfont}
+\usepackage{float}
+\lstset{
+	tabsize=4,
+	rulecolor=,
+	language=python,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+	numbers=left,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941}
+        }
+
+
+\title{FYS 1120 Obligatorisk oppgave 2: Syklotron}
+\author{Kenneth Ramos Eikrehagen}
+\begin{document}
+\newcommand{\understrek}[1]{\underline{\underline{#1}}}
+\maketitle
+\tableofcontents
+
+\section{Oppgave 2}
+
+\subsection{b)}
+Jeg måler omløpstiden ved å se på posisjon- og hastighetsgrafen. Jeg ser at partikkelen bruker ca 1.8 ps på en runde på fig \ref{hp1}.\\
+
+\begin{figure}[H]
+\begin{center}
+\textbf{Plott av hastighet- og posisjon-grafene$$v=(10km/s,0,0km/s)$$}\par\medskip
+\end{center}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{opg2.png}
+\caption{Øverst: Posisjonsgraf, \\Nederst: Hastighetsgraf}
+\label{hp1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{3dopg2.png}
+\caption{3D-graf}
+\label{3d1}
+\end{minipage}
+\begin{center}
+\textbf{Plott av hastighet- og posisjon-grafene $$v=(5km/s,0,2km/s)$$}\par\medskip
+\end{center}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{opg2c.png}
+\caption{Øverst: Posisjonsgraf, \\Nederst: Hastighetsgraf}
+\label{hp2}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{3dopg2c.png}
+\caption{3D-graf}
+\label{3d2}
+\end{minipage}
+\end{figure}
+
+\subsection{c)}
+For å vise at $\omega_c = \frac{qB}{m}$ bruker jeg at jeg har to verdier for kraften F og setter disse lik hverandre.
+\begin{align*}
+F &=ma = m\frac{v^2}{r}
+&F = q |\vec{v} \times \vec{B}| = qvB \\
+m\frac{v^2}{r} &= qvB \Rightarrow v =  \frac{qBr}{m}  &\text{| Bruker at } v = \omega r\\
+&\understrek{\omega = \frac{qB}{m}}
+\end{align*}
+Videre skal jeg vise at $T = \frac{2\pi m}{qB}$. For å vise dette bruker jeg denne sammenhengen:
+$$Strekning = Hastighet*Tid$$
+Hvor $Strekning = \Delta s = 2\pi$, $Hastighet = \Delta v = \Delta \omega = \frac{qB}{m}$ og $Tid = \Delta t = T$
+$$
+2\pi = \frac{qB}{m}T \Rightarrow T = \frac{2\pi}{( \frac{qB}{m})} = \frac{2\pi m}{qB}
+$$
+som var det jeg skulle vise.\\
+
+\subsection{d)}
+Når jeg ser på forskjellen mellom resultatet jeg fikk ved å analysere grafen og det analytiske resultatet, er den en liten differanse. Den analytiske løsningen gir meg en periode $T \simeq 1.7889ps$ som er tilnærmet 1.8 ps. Jeg tolker det til at jeg har en god tilnærming. Jeg kan analysere T bedre numerisk ved å endre koden min til å finne perioden, da blir differansen enda mindre. 
+
+
+
+\section{Oppgave 3}
+
+
+\begin{figure}
+\centering
+\textbf{Plott av y(t) mot x(t)}\par\medskip
+\includegraphics[width=\textwidth]{3a.png} 
+\caption{}
+\label{3a}
+\end{figure}
+
+\subsection{a)}
+Når vi ser på figur \ref{3a} ser vi at radiusen ikke øker like mye for hver omløp den gjør. Det tolker jeg til at siden protonet kun blir akselerert i E-feltet som er i $vallay$ $gap$ til syklotronen blir strekningen protonet må reise før den blir akselerert på nytt større. Vi ser at i starten er ikke radiusen så stor, som betyr at protonet derfor bli akselerert mer hyppig, men jo større hastighet blir jo større blir radien også som medfører at akselerasjonen forekommer sjeldnere.  Hvis vi i tillegg ser på $F_b = q\vec{v} \times \vec{B}$ ser vi at kraften fra magnetfeltet øker sammen med hastigheten som gjør at den holdes til sin sirkelbane.\\
+
+\begin{figure}[h]
+\begin{center}
+\textbf{Plott av posisjon- og hastighets-grafene}\par\medskip
+\end{center}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{3b_pos.png}
+\caption{Posisjonsgraf}
+\label{pg}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{3b_hast.png}
+\caption{Hastighetsgraf}
+\label{hg}
+\end{minipage}
+\end{figure}
+
+\subsection{b,c)}
+Hvis vi ser på figurene \ref{pg} og \ref{hg} ser vi at protonet til slutt forlater B-feltet. Den forlater B-feltet med en hastighet på 8.89 $\left[ \frac{Mm}{s}\right]$\\
+
+\subsection{d)}
+For å vise at den kinetiske energien til en partikkel som går i bane i en avstand r fra sentrum av syklotronen kan skrives $E_k=\frac{1}{2}\frac{q^2B^2r^2}{m}$.\\ 
+Minner jeg om $E_k = \frac{1}{2}mv^2$, og $ F=qvB=m\frac{v^2}{r}$ 
+\begin{align*}
+qvB&=m\frac{v^2}{r} \Rightarrow v = \frac{qBr}{m}\\
+E_k&=\frac{1}{2}mv^2 = \frac{1}{2}m \left(\frac{qBr}{m}\right)^2 = \frac{1}{2}\frac{q^2B^2r^2}{m}
+\end{align*}
+
+\subsection{e)}
+Nå skal jeg bruke dette til å beregne energien protonet har når den forlater syklotronen 
+$$E_k=\frac{1}{2}\frac{q^2B^2r^2}{m} \simeq 0.77 \text{ [fJ]}$$
+Kan sammen ligne dette med den numeriske løsningen jeg fikk for hastigheten den forlot syklotronen med. 
+$$E_k=\frac{1}{2}mv^2 \simeq 0.66 \text{ [fJ]}$$
+Jeg ser at det skiller 0.11[fJ] fra den analytiske og den numeriske løsningene. Det er ikke så ille med tanke på at det er snakk om en størrelse på $10^{-15}$
+
+Øker vi radiusen i syklotronen $r_D = 1 [m]$ blir unslippnings hastigheten $v = 9.42*10^6 [m/s]$. Bruker vi nå dette til å regne forskjellen mellom den numeriske og analytiske forskjellen får jeg :
+\begin{align*}
+E_k&=\frac{1}{2}\frac{q^2B^2r^2}{m} = 3.066*10^{-11}\\
+E_k&=\frac{1}{2}mv^2 = 7.41*10^{-14}
+\end{align*}
+Nå skiller svarene med en faktor $10^3$ som er mye! Jeg tror dette kan ha noe med at når hastigheten nærmer seg 10\% av lysetshastighet så bør man begynne å regne relativistisk. Det gikk bra når hastigheten var godt under 10\% av lyshastigheten. \\
+
+Til slutt i denne oppgaven legger jeg ved koden min: (har også lagt den ved som vedlegg i devilry)
+\lstinputlisting[language=Python, firstline=1, lastline=45]{opg3.py}
+
+\section{Oppgave 4}
+\subsection{a)}
+Siden strømmene $I$ er jevnt fordelt kan jeg forenkle Ampéres lov pga symmetri. 
+
+\begin{align*}
+\oint_c \vec{B} \cdot d\vec{l} = \int Bdl = B\int dl = \underline{B2\pi r = \mu_0 I_{tot.gj.c} }
+\end{align*}
+
+Siden jeg skal finne det magnetiske feltet $\vec{B}$ overalt må jeg dele den opp i 4 deler.\\
+
+
+$\textbf{1.}$ For $r > (b+t)$:\\
+Når r blir større en $(b+t)$ vil det strømme I gjennom innerlederen og -I gjennom ytterlederen som resulterer i $I_{tot.gj.c} = 0$ Dermed gir Ampéres lov oss :
+$$\oint_c \vec{B} \cdot d\vec{l} = \mu_0 I_{tot.gj.c} = \mu_0(I-I) = 0$$ 
+$$\vec{B} = 0$$
+
+$\textbf{2.}$ For $a<r<b$:\\
+I dette tilfelle er det kun strømmen i innerlederen som går gjennom integralkurven c da gir Ampéres lov meg at
+$$\oint \vec{B} \cdot d\vec{l} = \mu_0 I_{tot.gj.c} \Rightarrow B2\pi r = \mu_0 I$$
+$$\underline{\vec{B} = \frac{\mu_0 I}{2\pi r}\hat{\varphi}}$$
+
+
+$\textbf{3.}$ For $b<r<(b+t)$:\\
+Her velger jeg å finne strømtettheten i ytterlederen fordi den avhenger av radiusen. Strømmen i innerlederen forblir den samme og derfor bruker jeg også uttrykket jeg fikk i punkt 2 for denne strømmen.
+$$I = \int_S \vec{J_B} \cdot d\vec{S} = J_B\int _b^{b+t}dS = J_b\pi ((b+t)^2-b^2) \Rightarrow J_B = \frac{I}{\pi ((b+t)^2-b^2)}$$
+Da gir i Ampéres lov meg:
+\begin{align*}
+&\oint_c \vec{B} \cdot d\vec{l} = \mu_0 I_{tot.gj.c} = \mu_0\left(I - \int_0^{r} \vec{J_B} \cdot d\vec{S}\right) =  \mu_0\left(I - J_B\int_0^{r} dS\right) =\mu_0(I - J_B\pi r^2) \\
+&\Rightarrow B2\pi r =\mu_0(I - J_B\pi r^2) = \mu_0I - \frac{\mu_0 I r^2}{((b+t)^2-b^2)}\\
+&\Rightarrow \vec{B} = \left(\frac{\mu_0I}{2\pi r} - \frac{\mu_0 I r}{2\pi ((b+t)^2-b^2)}\right)\hat{\varphi} = \underline{\frac{\mu_o I}{2\pi}\left( \frac{1}{r} - \frac{r}{((b+t)^2-b^2)}\right)\hat{\varphi}}
+\end{align*}
+
+
+$\textbf{4.}$ For $r<a$:\\
+Strømtettheten avhenger også av radiusen i dette tilfelle, men her kun for innerlederen. Da starter jeg med å definere en $J_A$
+$$ I = \int_S \vec{J_A} \cdot d\vec{S} = J_A \int_0^a dS = J_A\pi a^2 \Rightarrow J_A = \frac{I}{\pi a^2}$$
+\begin{align*}
+&\oint_c \vec{B} \cdot d\vec{l} = \mu_0 I_{tot.gj.c} = \mu_0\int_S \vec{J}_A \cdot d\vec{S} = \mu_oJ_A\in_0^r dS = \mu_0 J_A \pi r^2\\
+&\Rightarrow B2\pi r = \mu_0 J_A \pi r^2 = \frac{\mu_0I r^2}{a^2}\\
+&\underline{\Rightarrow \vec{B} = \frac{\mu_0 I r}{2\pi a^2}\hat{\varphi}}
+\end{align*}
+
+Da samler jeg dette sammen så det blir lettere å se hva $\vec{B}$ blir:
+
+\begin{align*}
+\underline{\underline{\vec{B} =
+\begin{cases}
+0 & (b+t)<r\\
+\frac{\mu_o I}{2\pi}\left( \frac{1}{r} - \frac{r}{((b+t)^2-b^2)}\right)\hat{\varphi} & b<r<(b+t) \\
+\frac{\mu_0 I}{2\pi r}\hat{\varphi} & a<r<b \\
+\frac{\mu_0 I r}{2\pi a^2}\hat{\varphi} & r<a
+\end{cases}}}
+\end{align*}
+
+Når jeg skisserte grafen isolerte jeg ut for de 3 tilfellene som ga meg et B-felt($r<a$, $a<r<b$ og $b<r<b+t$) og summerte jeg disse for å gi meg hele $|\vec{B}|$.
+Skisse av grafen ser man på figur \ref{skisse}
+
+\begin{figure}
+\centering
+\textbf{Skisse av den magnetiske feltstyrken $|\vec{B}|$}\par\medskip
+\includegraphics[width=\textwidth]{skisse.jpg} 
+\caption{Venstre: Skisse av hvert enkelt tilfelle for $|\vec{B}|$ Høyre: Summen av venstre siden som blir hele $|\vec{B}|$. }
+\label{skisse}
+\end{figure}
+
+\subsection{b)}
+For å vise hvem av figurene som er riktige bruker jeg eliminerings metoden. Magnet feltet biter seg selv i halen, den er også jevnt fordelt ut i fra sentrum av innerlederen pga symmetri og magnetfeltet blir også påvirket av ytterlederen. Med dette resonnementet har jeg utelukket alle unntatt figur 2, som medfører at figur 2 er korrekt. Det forteller oss også at B-feltet beveger seg utenfor ytterlederen hvis lederne blir liggende eksentrisk. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
