@@ -1,0 +1,320 @@
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage{gensymb}
+\usepackage[toc,page]{appendix}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{cancel}
+\usepackage{natbib}
+
+\bibliographystyle{plain}
+
+
+\title{Fra harmoni til kaos}
+\author{Kandidat nr: 15280}
+\date{\today}
+\begin{document}
+
+\renewcommand{\abstractname}{\large Sammendrag}
+\renewcommand{\contentsname}{\LARGE Innhold}
+\renewcommand{\listfigurename}{\Large Figur liste}
+\renewcommand{\listtablename}{\Large Tabell liste}
+\renewcommand\appendixpagename{Appendix}
+\renewcommand\appendixtocname{Appendix}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+
+
+
+
+\begin{abstract}
+Dette er en prosjektoppgave for FYS2130 Svingninger og bølger. Under denne prosjektoppgaven skal jeg jobbe med hvordan en dryppende vannkran oppfører seg og modellere dette for flere verdier av masseøkningsraten. Jeg skal lage min egen RungeKutta funksjon som skal løse differensialligningene som beskriver dette. Jeg kom fort til konklusjon av at dette er et kaotisk dynamisk system. Sammenlignet med andre eksperimenter og studier om samme tema fant jeg at det jeg jobbet med her samsvarer med det som allerede har blitt funnet. 
+\end{abstract}
+
+\section{Oppgave 1}
+
+I denne oppgaven skal jeg løse $m\ddot{x}(t) + kx(t) = 0$ numerisk, der objektet hadde en masse $m= 500g$ og en fjærkonstant $k = 1 N/m$. Initialbetingelsene jeg skulle bruke var $x(0) = 1m$, $t = 20s$ $\ddot{x}(0) = 0$ og $\Delta t =0.01$. 
+\begin{wrapfigure}{r}{0.6\textwidth}
+	\begin{center}
+	\includegraphics[width=0.7\textwidth]{posvshast.png}
+	\end{center}
+	\caption[Faserommet til systemet uten påtrykt kraft eller motstand]{Plott som beskriver faserommet til systemet der det ikke er påtrykt kraft eller motstand som kan endre energien}
+	\label{1faserom}
+\end{wrapfigure}
+Jeg antar videre at det ikke er noen påtrykt kraft eller noen form for motstand. Da får jeg et faserom som illustrert i figur \vref{1faserom}. I en harmonisk oscillator er det ikke mulig å få faserommet på en annen form en ellipse, dette er pga bevaring av energi. Vi kan tenke oss at dette er en pendel som beveger seg frem og tilbake over et likevektspunkt. Bevegelsen starter i posisjon x = 1m så begynner den å bevege seg mot likevektspunktet, med klokken, til den når motsatt side. Siden jeg antar at det ikke er noe påtrykt-kraft eller motstand i dette systemet så vil den nå akkurat 1m på motsatt side før den begynner å bevege seg mot likevekt punktet igjen, mot klokken, helt til den når punktet der den startet sin bevegelse. Siden dette ikke er noen annen kraft som påvirker dette systemet så forsvinner det ikke eller oppstår energi i systemet, slik at denne bevegelsen vil pågå til evig tid så lenge den ikke blir påvirket av en annen kraft. X- og Y-aksen i systemet vil alltid stå vinkelrett på hverandre. Hvis vi tenker oss at vi definerer y aksen til å følge snoren til pendelen så vil alltid bevegelsen skje langs x-aksen(forutsatt at systemet fortsatt er slik som her), og etter denne definisjonen så vil alltid x og y være vinkelrett på hverandre. \\
+
+Den numeriske løsningen som bruker Runge-Kutta 4 til å løse differensial ligningen for en harmonisk oscillator finner du i appendikset under A1. Jeg har brukt pensumboka som inspirasjon til programmet \citep[s. 69]{svolger}.
+
+\section{Oppgave 2}
+I denne oppgaven skal jeg bruke samme kode som i oppgave 1 men implementere en dempning også. Dempningskonstanten jeg skal bruke er b = 0.1
+
+\begin{wrapfigure}{r}{0.6\textwidth}
+	\begin{center}
+	\includegraphics[width=0.7\textwidth]{pvhb.png}
+	\end{center}
+	\caption[Faserommet til systemet uten påtrykt kraft, med en motstand]{Plott som beskriver faserommet til systemet med en motstand}
+	\label{2faserom}
+\end{wrapfigure}
+
+
+Det vi ser i figur \vref{2faserom} er at hastigheten blir mindre når tiden går. Dette skjer fordi at motstanden i systemet bremser pendelen ned og hastigheten konvergerer, og til slutt stabiliserer seg på 0. Men situasjonen er fortsatt den samme som i oppgave 1. Pendelen går frem å tilbake over et nullpunkt, i oppgave en var det ingen motstand eller påtrykt kraft derfor kunne systemet gå frem å tilbake for alltid. Her har vi introdusert en motstand, og som vi så i figur \ref{2faserom} så gjør motstanden at pendelen mister energi og bevegelsen blir mindre og mindre. Systemet med motstand er ellers ganske likt systemet uten motstand slik at vi kan gjøre samme tanke eksperiment og komme frem til at banen fortsatt står loddrett på begge aksene. 
+
+En attraktor er da systemet ikke lenger kan deles inn i mindre deler, i dette tilfelle da systemet ikke lenger beveger seg \cite{Milnor:2006}. Punktet hvor $x=0$ og $\dot{x}=0$ er da vårt systemet ikke lenger beveger seg, og punktet er da per definisjon derfor en attraktor. Vi ser også fra denne definisjonen at ikke kurven i oppgave 1 er en attraktor. 
+
+\section{Oppgave 3}
+
+Jeg skal løse 
+\begin{equation}
+m\ddot{x}(t) + kx(t) = F(t)
+\label{2difflig}
+\end{equation}
+der $F(t) = F_Dcos(\omega_Dt)$. Ligning \vref{2difflig} er en 2. ordens differensial ligning og der er løsningen 
+\begin{equation}
+x(t) = x^h(t) + x^p(t)
+\label{losning}
+\end{equation}
+der $x^h(t)$ er den homogene løsningen og $x^p(t)$ er den partikulære løsningen. 
+Jeg begynner med å løse den homogene delen av diff.ligningen $x^h(t)$
+\begin{equation}
+m\ddot{x}(t) + kx(t) = 0 \Rightarrow \ddot{x}(t) = -\frac{k}{m}x(t)
+\label{homogen}
+\end{equation}
+Jeg prøver en løsning på formen 
+\begin{equation}
+x(t) = Acos(\omega t) + Bsin(\omega t)
+\label{gjett}
+\end{equation}
+\begin{align*}
+x(t) &=  Acos(\omega t) + Bsin(\omega t)\\
+\dot{x}(t) &=  \omega Bcos(\omega t) - \omega Asin(\omega t)\\
+\ddot{x}(t) & = -\omega^2( Acos(\omega t) + Bsin(\omega t)) = -\omega^2x(t)
+\end{align*} 
+Setter dette inn i ligning \vref{homogen}
+\begin{align*}
+-\omega^2\cancel{x(t)} = -\frac{k}{m}\cancel{x(t)} \Rightarrow \omega = \sqrt{\frac{k}{m}}
+\end{align*}
+Som viser at ligning \vref{gjett} er en løsning der $\omega =  \sqrt{\frac{k}{m}}$
+Dette er da den generelle løsningen for den homogene diff.ligningen, altså $x^h(t) = Acos(\omega t) + Bsin(\omega t) $. 
+Nå må jeg løse den partikulære delen av differensial ligningen $x^p(t)$ og jeg prøver med en løsning lik høyresiden av likheten, som betyr at jeg prøver på samme løsning som for den homogene diff.ligningen (ligning \vref{gjett}). Setter jeg ligning \vref{gjett} rett inn i den partikulære delen $\ddot{x}(t) + kx(t) = F(t)$ får jeg
+\begin{align*}
+&-m\omega_D^2(Csin(\omega_Dt)+Dcos(\omega_Dt)) + k(Csin(\omega_Dt)+Dcos(\omega_Dt)) = F_Dcos(\omega_Dt)\\
+&Csin(\omega_Dt)(k-m\omega_D^2) + Dcos(\omega_Dt)(k-m\omega_D^2) = F_Dcos(\omega_Dt)\\
+&\text{Her må sinus leddet være lik 0 og cosinus leddene må være lik hverandre}\\
+&Csin(\omega_Dt)(k-m\omega_D^2) = 0 \Rightarrow C=0\\
+&Dcos(\omega_Dt)(k-m\omega_D^2) = F_Dcos(\omega_Dt) \Rightarrow D = \frac{F_D}{k-m\omega_D^2}
+\end{align*}
+Med dette blir den partikulæreløsningen 
+\begin{equation}
+x^p(t) = \frac{F_D}{k-m\omega_D^2}cos(\omega_Dt)
+\label{partik}
+\end{equation}
+Nå samler jeg sammen løsningen slik som i ligning \vref{losning}
+\begin{equation}
+x(t) = Acos(\omega t) + Bsin(\omega t) + \frac{F_D}{k-m\omega_D^2}cos(\omega_Dt)
+\label{losning1}
+\end{equation}
+For å finne de 2 ukjente i ligning \vref{losning1} løser jeg ligningen med initialbetingelsene.
+$$
+x(0) = 2 \text{ , } \dot{x}(0) = 0
+$$
+\begin{align*}
+&x(0) = Acos(\omega 0) + \cancel{Bsin(\omega 0)} + \frac{F_D}{k-m\omega_D^2}cos(\omega_D0) =A + \frac{F_D}{k-m\omega_D^2} = 2\\
+&\Rightarrow A = 2-\frac{F_D}{k-m\omega_D^2}\\
+&\dot{x}(0) = \cancel{-\omega Asin(\omega 0)} + \omega Bcos(\omega 0) \cancel{- \frac{\omega_DF_D}{k-m\omega_D^2}sin(\omega_D0)} =\omega B = 0\\
+&\Rightarrow B = 0
+\end{align*}
+Den spesielle løsningen til ligning \vref{2difflig} blir dermed:
+\begin{equation}
+x(t) = \left(2-\frac{F_D}{k-m\omega_D^2}\right)cos(\omega t) +  \frac{F_D}{k-m\omega_D^2}cos(\omega_Dt)
+\label{splosning}
+\end{equation}
+Ligning \vref{splosning} kan jeg skrive om ved hjelp av en formel jeg finner i Karl Rottmann's formel bok \citep[s. 88]{rottmann}. For å gjøre regningen enklere definerer jeg nye variabler $\zeta = \frac{F_d}{k-m\omega_D^2}$, $a=\omega t $ og $b =\omega_Dt $ 
+\begin{align*}
+x(t) &= 2cos(a) + \zeta cos(b)- \zeta cos(a) \\
+&= 2cos(a) + \zeta[cos(b)- cos(a) ]\\
+&=2cos(a) -2\zeta sin\left(\frac{b+a}{2}\right)sin\left(\frac{b-a}{2}\right)\\
+&\text{Setter inn for variablene}\\
+&= \underline{\underline{2cos(\omega t ) -\frac{2F_d}{k-m\omega_D^2} sin\left(\frac{\omega_Dt+\omega t }{2}\right)sin\left(\frac{\omega_Dt-\omega t }{2}\right)}}
+\end{align*}
+
+
+\section{Oppgave 4}
+
+I denne oppgaven skal jeg løse diff.ligningen i oppgave 3 numerisk (ligning \vref{2difflig}). Jeg skal bruke følgende verdier:
+\begin{align*}
+F_D = 0.7 N && \omega_D = \frac{13}{8}\omega_0 && x(0) = 2 m && \dot{x}(0) = 0
+\end{align*}
+Jeg skal analysere hva som skjer over en periode på $T = 200s$
+
+\begin{figure}
+\centering
+	\begin{minipage}{0.8\linewidth}
+	\includegraphics[width = \linewidth]{numvsan.png}
+	\caption[Numerisk mot analytisk plott av faserommet]{Her har jeg plottet den numeriske oppå den analytiske løsningen,. Jeg observerer at de ligger på hverandre som betyr at de er helt like innen for vårt tidsintervall.}
+	\label{numvsan}
+	\end{minipage}
+	\hspace{0.5cm}
+	\begin{minipage}{0.8\linewidth}
+	\includegraphics[width = \linewidth]{2numvsan.png}
+	\caption[Endret drivfrekvensen til $\omega_D=\frac{2}{\sqrt{5}-1}$]{Her har jeg endret drivfrekvensen til $\omega_D=\frac{2}{\sqrt{5}-1}$}
+	\label{drivfrek}
+	\end{minipage}
+\end{figure}
+
+På figur \vref{numvsan} har jeg plottet den analytiske løsningen sammen med den numeriske. Som vi kan se ligger de oppå hverandre som betyr at de er helt like for en tid på 200s. Jeg observerer også på figuren at den har et mønster som gjentar seg for ca hvert 50s som betyr at den er periodisk. 
+
+Figur \vref{drivfrek} viser plottet koden min lager når jeg endret drivfrekvensen til $\omega_D=\frac{2}{\sqrt{5}-1}$. Jeg ser også her at mønsteret gjentar seg, men her noe hyppigere enn på figur \vref{numvsan}, så også denne har en periodisk bevegelse.
+
+Koden jeg brukte for å løse denne oppgaven er bakerst i appendikset under seksjon B.
+
+\section{Oppgave 5}
+
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=0.8\textwidth]{opg5.png}
+	\caption[Faserommet for de første 100s]{Faserommet til de første 100s av systemet gitt i oppgave 3 med dempning}
+	\label{2motstand}
+	\end{center}
+\end{figure}
+Her skal jeg innføre en dempning til systemet i oppgave 3. Jeg bruker samme kode som i oppgave 4 med en motstanden $b=0.1kg/s$ og og perioden $T=100s$. 
+Plottet jeg får når jeg implementerer de nye verdiene ser man på figur \vref{2motstand}. Jeg skal sammenligne det jeg får i figur \vref{2motstand} 
+med plottet jeg fikk i oppgave 2 (figur \vref{2faserom}). Etter å ha prøvd ut mange forskjellige initialverdier i dette systemet ser jeg at systemet tilnærmer seg periodisk bevegelse som er styrt av den påtrykte kraften. Starten av bevegelsen er den samme som for oppgave 2, men vi ser allerede etter en periode at bevegelsen her blir annerledes. Bevegelsen blir litt mer ustabil pga den påtrykte kraften og hopper litt rundt likevektspunktet, men etter en stund så stabiliserer den seg til en periodisk bevegelse rundt likevektspunktet som er styrt av den påtrykte kraften.
+
+Systemet jeg hadde i oppgave 2 hadde ingen påtrykt kraft og derfor tilnærmet systemet seg likevektspunktet og bevegelsen ville ha stoppet om vi hadde betraktet det systemet over en lengre periode enn det vi gjorde. 
+
+\section{Oppgave 6}
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=0.8\textwidth]{vanndrape.png}
+	\caption[Plott av vanndråpen etter 3s]{Denne figuren viser et plott av posisjonen til vanndråpen etter 3s, den synker lineært fordi dråpen blir større og større.}
+	\label{vanndrape}
+	\end{center}
+\end{figure}
+Posisjonen til vanndråpen som henger i kranen er simulert på figur \vref{vanndrape}. Det vi ser her at vanndråpen vokser med tiden, jeg har definert enden på kranen til å være x=1 mm som oppgaven tilsier, og dråpen vokser og veldig stor (35mm) etter 3 sekunder. Dette er ikke en realistisk beskrivelse siden vanndråpen ville ha sluppet lenge før den hadde blitt så stor.
+
+Koden jeg brukte for å modellere dette systemet er å finne bakerst i appendikset under seksjon C.
+
+\section{Oppgave 7}
+I denne oppgaven skal jeg bruke diff.ligningen i oppgave 6 og modifisere den slik at dråpen drypper fra kranen. Den kritiske tilstanden dråpen ikke kan gå forbi er $x_c = 2.5*10^{-3}m$, hver gang den gjør det så skal vannet miste en del av massen som resulterer i at en dråpe drypper fra kranen. Massen som drypper fra kranen er definert som 
+$$
+\Delta m = \beta m(t_c)\dot{x}(t_c)
+$$
+der $t_c$ er tidspunktet når posisjonen passerer $x_c$ og $\beta = 50 s/m$. Når det drypper en dråpe fra vannet må også posisjonen til vannet endres og endring av posisjon er gitt ved:
+
+$$
+\Delta x = \sqrt[3]{\frac{3(\Delta m)^4}{4\pi\rho m(t_c)^3}}
+$$
+der $\rho$ er massetettheten av vann, som jeg antar er $1000 kg/m^3$. Initial betingelsene jeg skal bruke er
+\begin{align*}
+x(0) = 1 mm && \dot{x}(0) = 10^{-3}m/s && m = 10^{-5} kg && \Delta t = 10^{-4} && T = 20.0s
+\end{align*}
+Figur \vref{drypp} viser tidsbildet til vannkranen som drypper. Jeg observerer at dryppene blir konstant etter en kort tid, men som vi ser på figur \vref{zoom} så er ikke tiden mellom hver dråpe konstant det første sekundet. Tiden mellom de tre første dråpene er rundt 0.11s men når den har stabilisert seg er tidsforskjellen mellom dråpene akkurat 0.13s. Det betyr at dryppene er konstante etter 1 sekund, mens første sekundet så varierer tiden mellom hvert drypp. Selv om jeg varier på initialene innen for rimelighetenes grenser, ser jeg samme 
+
+\begin{figure}
+\centering
+\includegraphics[width = 0.8\linewidth]{Faserom7.png}
+\caption[Faserommet av vannkranen som drypper]{Dette er faserommet til den dryppende vannkranen. Vi ser at den begynner å få hastighet når dråpen vokser og at hastighet og posisjons endringen blir konstant etter noen få drypp.}
+\label{Faserom7}
+\end{figure}
+
+\begin{figure}
+	\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width = 0.8\linewidth]{drypp.png}
+	\caption[Tidsbilde av vannkran som drypper]{Dette er tidsbilde til  drypper de første 20s. Vi ser at vannet drypper ganske konstant i 20 sekunder men er interessant å se hva som skjer det første sekundet.}
+	\label{drypp}
+	\end{minipage}
+	\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width = 0.8\linewidth]{dryppzoom.png}
+	\caption[Zoom av det første sekundet av vannet som drypper]{Tidsbildet av første sekund av vannkranen som drypper. Kan observere her at tiden mellom hvert drypp ikke er konstant det første sekundet}
+	\label{zoom}
+	\end{minipage}
+	\hspace{0.5cm}
+\end{figure}
+Figur \vref{Faserom7} ser vi et plott av faserommet til vannkranen som drypper. Her ser vi at hastigheten vokser helt til vannet slepper sin første dråpe, og vi ser videre at dryppene blir konstante etter noen få drypp. Sammenlignet med de figurene jeg fikk i oppgave 2 og 4 (figur \vref{2faserom} og figur\vref{2motstand} ser jeg at hastigheten her blir konstant og ikke endrer seg med tiden slik den gjorde i de to andre faserommene. 
+
+Programmet jeg skrev til denne oppgaven ligger bakerst i appendikset under seksjon D.
+
+\newpage
+\section{Oppgave 8}
+Under denne oppgaven skal initialbetingelsene holdes konstant mens masseøkningsraten $\psi$ skal varieres fra $\psi \in [5.5*10^{-4},7.4*10^{-4}]kg/s$. Jeg skal bruke 100 forskjellige psier innenfor dette intervallet. Skal også se på 4 forskjellige $\psi$ som man kan se i figur \ref{psier} og \vref{psier1}. I forrige oppgave (oppgave 7) så jeg at  dråpene kom veldig hyppig og ble konstant nesten som rennende vann, men for disse verdiene av $\psi$ ser jeg at dette ikke lenger er tilfelle. Jeg observerer at tiden mellom hvert drypp og hvordan det drypper er forskjellig for hver av dem. 
+\begin{figure}
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width = \linewidth]{psier.png}
+\caption[$\psi = 6*10^{-4}kg/s$, $\psi = 6.3*10^{-4}kg/s$]{Her ser vi tidsbildet av: øverst: $\psi = 6*10^{-4}kg/s$, nederst: $\psi = 6.3*10^{-4}kg/s$. }
+\label{psier}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width = \linewidth]{psier1.png}
+\caption[$\psi = 6.5*10^{-4}kg/s$, $\psi = 7.3*10^{-4}kg/s$]{Her ser vi tidsbildet av: øverst: $\psi = 6.5*10^{-4}kg/s$, nederst: $\psi = 7.3*10^{-4}kg/s$.}
+\label{psier1}
+\end{minipage}
+\end{figure}
+
+Figur \vref{psivsdt} ser vi tidsforkjellen mellom de 50 siste dråpene som drypper for alle de 100 forskjellige $\psi$-ene jeg skulle bruke. Jeg observerer at tidsforkjellen mellom de første og siste dråpene varierer veldig, men det virker som om alle de $\psi$-ene har dråper som drypper litt under 1s, 1.5s og 2s som gjør at det ser ut som planebølger i midten.
+\begin{figure}
+\centering
+\includegraphics[width = \linewidth]{psivsdt.png}
+\caption[$\psi$ mot tiden mellom de siste 50 dråpene]{Plott av 100 forskjellige $\psi \in [5.5*10^{-4},7.4*10^{-4}]kg/s$ mot tidsforkjellen mellom de siste 50 dråpene. Denne figuren kan minne om plane bølger.}
+\label{psivsdt}
+\end{figure}
+
+Programmet jeg skrev for denne oppgaven finner du bakerst i appendikset under seksjon E.
+
+\section{Oppgave 9}
+I denne oppgaven skal jeg sammenligne arbeidet jeg har gjort og mine resultater med hva andre har funnet om samme tema: ,,Dryppende vannkran'' (,,Dripping faucet''). Jeg brukte google og google scholar til å finne relevante artikler som jeg kunne sammenligne med. Den ene artikkelen jeg fant hadde gjort det samme som meg og modellert en dryppende vannkran \citep{teori}.
+Her ser jeg at figur 5,6 og 7 som tilsvarer tid mot posisjon er like figur \vref{zoom}, figur \ref{psier} og figur \vref{psier1} som jeg har for tid mot posisjon. Faseroms plottet mitt (figur \vref{Faserom7}) har noen likheter til faserommet i denne artikkelen. 
+Når jeg ser på en artikkel jeg fant for et eksperimental forsøk \citep{Dreyer:1991} ser jeg at figur \vref{psivsdt} er veldig lik figur 3 og 4 i denne artikkelen. Jeg kan derfor konkludere med at det arbeidet jeg har gjort her svarer godt overens med det som allerede er blitt forsket på om dette emnet.
+\newpage
+\bibliography{bibliography}
+
+\newpage
+\begin{appendices}
+\appendix
+\section{Kode oppgave 1}
+\subsection{Runge-Kutta4 klasse}
+\lstinputlisting[language=Python, lastline = 50]{classRungeKutta4.py}
+\subsection{Kode som genererer figur til oppgave 1}
+\lstinputlisting[language=Python, lastline = 30]{oppg1.py}
+\section{Kode oppgave 4}
+\lstinputlisting[language=Python]{oppg4.py}
+\section{Kode oppgave 6}
+\lstinputlisting[language=Python]{waterdrop.py}
+\section{Kode oppgave 7}
+\lstinputlisting[language=Python]{drippingfaucet.py}
+\section{Kode oppgave 8}
+\subsection{Program for integreringen}
+\lstinputlisting[language=Python]{oppg8.py}
+\subsection{Program for plott av psi}
+\lstinputlisting[language=Python]{plotopg8.py}
+
+%\section{Utstyrsliste}
+%\begin{multicols}{2}
+%\begin{itemize}
+%\item
+%\end{itemize}
+%\end{multicols}
+
+
+\end{appendices}
+
+\end{document}
